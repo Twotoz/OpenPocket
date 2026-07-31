@@ -11,7 +11,9 @@ dimensions must follow from the reviewed schematic and enclosure.
 | 1 | ESP32-S3 development board or module | enough exposed GPIO, native USB, and at least 8 MB flash recommended | MCU family fixed; exact board still open |
 | 1 | RX5808 5.8 GHz receiver module | VIDEO OUT, RSSI, and programmable DATA/LE/CLK available | verify the exact PCB revision and pinout |
 | 1 | AT7456E OSD module | 30×16 character OSD, SPI, VIDEO IN/OUT, 27 MHz clock, and video passives fitted | module recommended for the first prototype |
-| 1 | composite LCD | accepts both PAL and NTSC with a documented 75 Ω video input | pixel resolution does not determine the character grid |
+| 1 | AMT630A snow-screen controller board | CVBS input, PAL/NTSC autodetection, no blue-screen squelch, and firmware matched to the panel | fixed display-controller family; record the exact PCB revision |
+| 1 | matched TFT panel | exact resolution, RGB format, FFC pinout, voltage, and timing required by the AMT630A board firmware | never assume two 40-pin panels are interchangeable |
+| 1 | AMT630A key board or resistor-button network | access to brightness, contrast, aspect, and factory-safe display settings | optional after settings are validated |
 | 1 | ExpressLRS TX module | full-duplex, non-inverted 3.3 V CRSF UART | a normal ELRS receiver is not sufficient |
 | 2 | dual-axis gimbal | analog outputs compatible with conditioned ESP32 ADC inputs | four primary axes total |
 | 1 | dedicated ARM switch | maintained, two-position | never share it with menu controls |
@@ -30,17 +32,23 @@ dimensions must follow from the reviewed schematic and enclosure.
 | 1 | unidirectional 5 V-to-3.3 V buffer | AT7456E SDOUT/MISO into the ESP32-S3 |
 | 1 | open-drain transistor stage | optional AT7456E RESET control |
 | several | 100 nF ceramic capacitors | each digital and analog supply pin |
-| several | 10–470 µF low-ESR bulk capacitors | local to OSD, LCD, RX5808, and ELRS, sized from measured peak load |
+| several | 10–470 µF low-ESR bulk capacitors | local to OSD, AMT630A board, panel backlight, RX5808, and ELRS, sized from measured peak load |
 | several | 22–100 Ω series resistors | optional digital edge damping after measurement |
 | 1 | fuse or resettable PTC | prototype supply fault limiting |
 
 A ready-made AT7456E module may already contain level shifting, the clock, and
 video passives. Verify its schematic; do not trust the product title alone.
 
+AMT630A controller boards are sold with different input regulators, panel
+timings, connectors, and SPI-flash images. “AMT630A” alone does not identify a
+safe power input or a compatible panel. Buy the board and TFT as a verified
+pair, and confirm that its firmware shows snow rather than a blue or black
+screen when composite sync disappears.
+
 ## Mechanical and later product work
 
 - shielded or carefully routed composite-video cable
-- strain-relieved connectors for gimbals, LCD, and RF module
+- strain-relieved connectors for gimbals, TFT panel, and RF module
 - main switch and controlled power latch
 - protected battery, charger, cell monitoring, and suitable fuse
 - passive piezo or haptic warning device

@@ -11,10 +11,12 @@ markings and check continuity against the matching schematic before wiring.
       |
    RX5808
  VIDEO OUT --------> AT7456E VIDEO IN / VIN
-                      AT7456E VIDEO OUT / VOUT --------> LCD CVBS IN
+                      AT7456E VIDEO OUT / VOUT --------> AMT630A CVBS IN
+                                                         |
+                                                         +--> matched TFT FFC
 
 RX5808 GND ----------+
-AT7456E AGND/DGND ----+---- common video ground ---- LCD VIDEO GND
+AT7456E AGND/DGND ----+---- common video ground ---- AMT630A VIDEO GND
 ESP32-S3 GND ---------+
 
 ESP32-S3 DATA/LE/CLK -------------------------------> RX5808 tuning
@@ -27,9 +29,9 @@ ESP32-S3 CRSF TX/RX <-------------------------------> ExpressLRS TX
 ## Composite-video path
 
 - Use one continuous composite route. Do not leave a second, parallel
-  terminated RX5808-to-LCD path around the OSD.
-- The LCD is the single 75 Ω load. Do not add a second 75 Ω termination without
-  validating the complete source and coupling network.
+  terminated RX5808-to-AMT630A path around the OSD.
+- The AMT630A board is the final video load. Do not add a second 75 Ω
+  termination without validating the complete source and coupling network.
 - Use the AC-coupling and SAG/COUT components specified by the exact AT7456E
   module or relevant datasheet reference circuit.
 - Keep video traces away from the ESP32 clock, switching-regulator inductor,
@@ -61,13 +63,34 @@ control. The final firmware driver must not bit-bang DATA/LE/CLK from the
 | CS | `RIVETTX_AT7456E_CS_GPIO` | active-low with pull-up during reset |
 | RESET | `RIVETTX_AT7456E_RESET_GPIO` | optional active-low; `-1` selects software reset |
 | VIN | RX5808 VIDEO OUT | composite input |
-| VOUT | LCD CVBS IN | composite output with overlay |
+| VOUT | selected AMT630A CVBS input | composite output with overlay |
 | AGND / DGND | common ground | short, low-impedance connection |
 
 A bare AT7456E normally operates in a 5 V video domain. Use suitable buffers
 between 3.3 V and 5 V for a bare IC. Never connect SDOUT directly to an
 ESP32-S3 if that line can rise above 3.3 V. A breakout module may already
 provide translation; verify its schematic rather than assuming it does.
+
+## AMT630A board and TFT panel
+
+| AMT630A board net | Connection | Requirement |
+|---|---|---|
+| selected CVBS input | AT7456E VOUT | use the input enabled by the board firmware |
+| VIDEO GND | common RX5808/AT7456E ground | short return alongside the video signal |
+| board power input | validated display rail | use the exact PCB rating, not the AMT630A IC voltage |
+| TFT FFC | matched panel only | verify pin 1, RGB format, timing, and connector orientation |
+| backlight output | matched panel backlight | verify current regulation and thermal load |
+| key-board input | matching button board/network | optional; preserve known-good factory values |
+
+The first OpenPocket revision treats the AMT630A board as an autonomous
+composite-to-TFT stage. Do not connect its internal SPI flash, I2C, UART, or
+factory-programming signals to the ESP32-S3. OpenPocket menus remain on the
+AT7456E; the AMT630A internal OSD may be used only for display setup.
+
+Before final wiring, prove that this exact board, flash image, and panel show
+RF snow when sync is missing and recover quickly when video returns. Many
+visually similar AMT630A boards intentionally replace weak video with a blue
+screen and therefore do not meet the OpenPocket requirement.
 
 ## ExpressLRS and controls
 

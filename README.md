@@ -1,18 +1,18 @@
 <p align="center">
-  <img src="docs/assets/openpocket-hero.svg" alt="OpenPocket — an ESP32-S3 handheld FPV controller" width="100%">
+  <img src="docs/assets/openpocket-hero.svg" alt="OpenPocket — an ESP32-S3 handheld FPV controller with an AMT630A display" width="100%">
 </p>
 
 <p align="center">
   <a href="https://github.com/Twotoz/OpenPocket/blob/main/LICENSE"><img alt="MIT license" src="https://img.shields.io/github/license/Twotoz/OpenPocket?style=flat-square"></a>
   <img alt="ESP32-S3" src="https://img.shields.io/badge/controller-ESP32--S3-E7352C?style=flat-square&logo=espressif">
   <img alt="RivetTX" src="https://img.shields.io/badge/firmware-RivetTX-38BDF8?style=flat-square">
-  <img alt="Analog video" src="https://img.shields.io/badge/video-RX5808%20%2B%20AT7456E-8B5CF6?style=flat-square">
+  <img alt="Analog video" src="https://img.shields.io/badge/video-RX5808%20%2B%20AT7456E%20%2B%20AMT630A-8B5CF6?style=flat-square">
   <img alt="ExpressLRS" src="https://img.shields.io/badge/radio-CRSF%20%2F%20ExpressLRS-22C55E?style=flat-square">
   <img alt="Engineering prototype" src="https://img.shields.io/badge/status-engineering%20prototype-F59E0B?style=flat-square">
 </p>
 
 <p align="center">
-  <strong>An open ESP32-S3 handheld that combines RivetTX control, ExpressLRS, an RX5808 video receiver, and an AT7456E analog OSD.</strong>
+  <strong>An open ESP32-S3 handheld that combines RivetTX, ExpressLRS, an RX5808 receiver, an AT7456E OSD, and an AMT630A snow-screen display.</strong>
 </p>
 
 <p align="center">
@@ -41,7 +41,8 @@ backend. The ESP32 never has to capture or process video pixels.
 |---|---|
 | **One handheld** | Gimbals, switches, ExpressLRS control, telemetry, video, and menus in a single enclosure. |
 | **Purpose-built MCU** | ESP32-S3 provides the GPIO, native USB, and task separation needed by the complete controller. |
-| **Low-latency video** | RX5808 baseband composite video passes through the AT7456E directly to the LCD. |
+| **Low-latency video** | RX5808 composite video passes through the AT7456E into an AMT630A TFT controller without digital capture. |
+| **Snow-screen display** | The selected AMT630A board keeps weak or lost analog video visible as noise instead of hiding it behind a blue screen. |
 | **Native analog OSD** | PAL/NTSC autodetection, a 30×16 character grid, custom glyphs, delta updates, and video-loss recovery. |
 | **Bounded background work** | OSD and receiver services cannot delay control, CRSF, or telemetry processing. |
 | **Open development path** | Wiring, BOM decisions, bring-up evidence, and future KiCad sources live in this repository. |
@@ -59,7 +60,8 @@ flowchart LR
 
     E[5.8 GHz antenna] --> F[RX5808]
     F -->|composite video| G[AT7456E]
-    G -->|video + overlay| H[Composite LCD]
+    G -->|video + overlay| H[AMT630A<br/>snow-screen board]
+    H --> I[Matched TFT panel]
 
     B -->|tune + RSSI| F
     B -->|bounded SPI| G
@@ -68,7 +70,7 @@ flowchart LR
     classDef control fill:#102a43,stroke:#38bdf8,color:#f8fafc;
     classDef video fill:#26163f,stroke:#a78bfa,color:#f5f3ff;
     class A,B,C,D control;
-    class E,F,G,H video;
+    class E,F,G,H,I video;
 ```
 
 The 250 Hz control task owns channel output and safety. The OSD driver advances
@@ -84,7 +86,8 @@ path.
 | ExpressLRS TX hardware | full-duplex 3.3 V CRSF control and telemetry link |
 | RX5808 module | tunable 5.8 GHz analog receiver, composite video, and RSSI |
 | AT7456E OSD module | PAL/NTSC character overlay between the receiver and display |
-| PAL/NTSC composite LCD | live FPV image and the complete OpenPocket interface |
+| AMT630A snow-screen controller board | PAL/NTSC composite decoding without blue-screen signal masking |
+| matched parallel-RGB TFT panel | live FPV image and the complete OpenPocket interface |
 | two dual-axis gimbals | four primary analog control axes |
 | switches, menu buttons, and optional encoder | arming, AUX controls, navigation, and editing |
 | validated regulators and protection | clean supplies sized for RF, display, video, and logic peaks |
@@ -106,7 +109,9 @@ The existing RivetTX compositor produces a hardware-independent 30-column by
 - communication retry/backoff and redraw after video loss or recovery
 
 The RX5808 feeds baseband video to the AT7456E; the AT7456E overlays text and
-passes the result to the LCD. See the [complete wiring guide](docs/wiring.md).
+passes the result to the AMT630A board, which drives its matched TFT panel. The
+AMT630A's internal OSD is not used for OpenPocket menus. See the
+[complete wiring guide](docs/wiring.md).
 
 ## Build path
 
@@ -117,7 +122,8 @@ Bring up one subsystem at a time:
 2. Build and measure the protected 5 V and 3.3 V rails on a current-limited
    supply.
 3. Add the ESP32-S3, controls, and ExpressLRS link with RF output constrained.
-4. Prove the direct RX5808-to-LCD composite path in PAL and NTSC.
+4. Prove the direct RX5808-to-AMT630A composite path in PAL and NTSC, including
+   snow-screen behavior with no received signal.
 5. Insert the AT7456E, level shifting, and SPI control lines.
 6. Configure RivetTX, then complete every item in the
    [bring-up checklist](docs/bring-up.md).
@@ -151,12 +157,13 @@ until a specific ESP32-S3 module and reviewed schematic are selected. See the
 | Document | Contents |
 |---|---|
 | [Bill of materials](docs/bom.md) | prototype parts, electrical requirements, and unresolved selections |
-| [Wiring](docs/wiring.md) | ESP32-S3, RX5808, AT7456E, ExpressLRS, and LCD interconnects |
+| [Wiring](docs/wiring.md) | ESP32-S3, RX5808, AT7456E, AMT630A, TFT, and ExpressLRS interconnects |
 | [Bench build guide](docs/build-guide.md) | staged assembly sequence and stop conditions |
 | [Firmware](docs/firmware.md) | ESP32-S3 target setup and RivetTX OSD configuration |
 | [Bring-up checklist](docs/bring-up.md) | electrical, control, PAL/NTSC, failure-recovery, and endurance tests |
 | [Architecture](docs/architecture.md) | task boundaries, character presentation, and video path |
 | [ESP32-S3 decision](docs/decisions/0001-esp32-s3.md) | why OpenPocket standardizes on the S3 |
+| [AMT630A display decision](docs/decisions/0002-amt630a-snow-screen.md) | why the display stage uses a snow-screen AMT630A board |
 | [Hardware sources](hardware/README.md) | scope and release policy for future KiCad and production files |
 
 ## Project status
@@ -164,8 +171,9 @@ until a specific ESP32-S3 module and reviewed schematic are selected. See the
 RivetTX already contains the 30×16 OpenPocket menus and the physical AT7456E
 backend, including host-side PAL, NTSC, navigation, warning, delta-update,
 glyph-upload, video-loss, standard-change, and SPI-failure tests. RX5808 target
-hardware, the final GPIO assignment, the reference schematic, PCB, power
-system, and complete composite-video HIL evidence remain open engineering work.
+hardware, the exact AMT630A PCB/panel revision, the final GPIO assignment, the
+reference schematic, PCB, power system, and complete composite-video HIL
+evidence remain open engineering work.
 
 No schematic, PCB, enclosure, or battery design is currently released as
 production-ready. The hardware directory will become the authoritative source

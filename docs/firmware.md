@@ -45,8 +45,13 @@ idf.py flash monitor
 - SPI and character-NVM work runs outside control, CRSF, and telemetry.
 - SSD1306 and AT7456E presentation backends never start together.
 
+The AMT630A snow-screen board is an autonomous composite-to-TFT stage. It does
+not require an ESP32 driver in the first hardware revision. Its onboard OSD is
+used only for display setup; RivetTX continues to render every OpenPocket menu
+through the AT7456E.
+
 ## Firmware boundary
 
-The AT7456E backend is implemented. The physical RX5808 target driver and the
-final OpenPocket pin assignment remain open until the exact module and
-reference schematic have been reviewed.
+The AT7456E backend is implemented. The physical RX5808 target driver, exact
+AMT630A board/panel pair, and final OpenPocket pin assignment remain open until
+the selected modules and reference schematic have been reviewed.

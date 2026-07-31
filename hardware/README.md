@@ -4,6 +4,7 @@ This directory will become the authoritative source for:
 
 - KiCad schematic and PCB files
 - controlled BOM with manufacturer part numbers
+- exact AMT630A snow-screen board, flash revision, and matched TFT panel
 - Gerber, drill, and pick-and-place files
 - mechanical drawings and enclosure interfaces
 - test points and fixture documentation
