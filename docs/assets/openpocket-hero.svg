@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1120" height="320" viewBox="0 0 1120 320" role="img" aria-labelledby="title desc">
   <title id="title">OpenPocket</title>
-  <desc id="desc">An ESP32-S3 handheld FPV controller with analog video and OpenPocket OSD</desc>
+  <desc id="desc">An ESP32-S3 handheld FPV controller with analog video, OpenPocket OSD, and an AMT630A display</desc>
   <defs>
     <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#080f1d"/>
@@ -55,7 +55,7 @@
     <text x="0" y="72" fill="#f8fafc" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800">OpenPocket</text>
     <rect x="2" y="91" width="510" height="5" rx="2.5" fill="url(#accent)"/>
     <text x="2" y="139" fill="#c4cede" font-family="Arial, Helvetica, sans-serif" font-size="24">Control, analog FPV, and OSD in one handheld.</text>
-    <text x="2" y="171" fill="#c4cede" font-family="Arial, Helvetica, sans-serif" font-size="24">ESP32-S3 · RivetTX · RX5808 · AT7456E</text>
+    <text x="2" y="171" fill="#c4cede" font-family="Arial, Helvetica, sans-serif" font-size="22">ESP32-S3 · RX5808 · AT7456E · AMT630A</text>
 
     <g transform="translate(2 201)" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">
       <rect width="112" height="34" rx="17" fill="#14263b" stroke="#38bdf8" stroke-opacity=".65"/>

@@ -8,7 +8,7 @@ photographs, and the firmware commit with the test report.
 - [ ] Every supply rail is correct both unloaded and loaded.
 - [ ] No ESP32 GPIO is exposed to more than 3.3 V.
 - [ ] Current limiting, a fuse, and local bulk capacitance are present.
-- [ ] LCD startup, ELRS transmission, and video lock cause no brownout.
+- [ ] AMT630A/backlight startup, ELRS transmission, and video lock cause no brownout.
 - [ ] AT7456E clock and SPI mode 0 have been checked with a logic analyzer.
 - [ ] The composite path has exactly one correct 75 Ω termination.
 
@@ -29,12 +29,16 @@ photographs, and the firmware commit with the test report.
 - [ ] PAL-to-NTSC and NTSC-to-PAL changes recover without a reboot.
 - [ ] Video loss shows a warning and recovery causes a clean redraw.
 - [ ] An absent or disconnected AT7456E leaves control responsive and safe.
+- [ ] Lost or weak video produces snow, never a persistent blue/black fallback.
+- [ ] Loss-to-snow and snow-to-picture recovery times are measured and accepted.
+- [ ] PAL and NTSC both fill the intended TFT area without wrong scaling.
+- [ ] The AMT630A board adds no unacceptable camera-to-photon latency.
 
 ## Endurance
 
 - [ ] At least two hours of simultaneous control, telemetry, and video.
 - [ ] Repeated power cycles and controlled brownout injection.
-- [ ] Thermal check at the maximum selected RF and LCD load.
+- [ ] Thermal check at the maximum selected RF, AMT630A, and backlight load.
 - [ ] No character-NVM upload on every boot.
 - [ ] No control deadlines missed by SPI, logging, USB, or UI activity.
 

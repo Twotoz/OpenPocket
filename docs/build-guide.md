@@ -23,16 +23,22 @@
 
 ## 4. Test composite video without the OSD
 
-1. Power the RX5808 and LCD according to their own specifications.
-2. Temporarily connect RX5808 VIDEO OUT to LCD CVBS IN through the required
-   coupling network.
-3. Verify PAL and NTSC, noise floor, sync, and the single 75 Ω termination.
-4. Remove the temporary direct connection afterward.
+1. Connect the matched TFT panel to the unpowered AMT630A snow-screen board,
+   then inspect FFC orientation and locking.
+2. Power the RX5808, AMT630A board, and backlight according to their exact
+   specifications.
+3. Temporarily connect RX5808 VIDEO OUT to the selected AMT630A CVBS input
+   through the required coupling network.
+4. Verify PAL and NTSC, noise floor, sync, and the single 75 Ω termination.
+5. Remove the video transmitter or tune away from it. The display must show
+   live snow instead of switching to a solid blue or black screen.
+6. Measure loss-to-snow and recovery-to-picture timing, then remove the
+   temporary direct connection.
 
 ## 5. Insert the AT7456E
 
 1. Connect `RX5808 VIDEO OUT -> AT7456E VIN`.
-2. Connect `AT7456E VOUT -> LCD CVBS IN`.
+2. Connect `AT7456E VOUT -> AMT630A CVBS IN`.
 3. Connect level-shifted SCLK, MOSI, MISO, CS, and optional RESET.
 4. Flash the OpenPocket profile and verify the interface in PAL and NTSC.
 5. Remove the antenna or video source. Video loss must be reported while
