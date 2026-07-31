@@ -1,0 +1,60 @@
+{
+  "compiler": "SDCC : mcs51/z80/z180/r2k/r3ka/gbz80/tlcs90/ez80_z80/ds390/TININative/ds400/hc08/s08/stm8/pdk13/pdk14/pdk15 4.0.0 #11528 (Linux)",
+  "compiler_sha256": "e3bcf0f85b2242e2c0cb07bd41d567d17b110692790d6bb1054bb47916bb46f9",
+  "cvbs_input": "CVBS1 after AT7456E",
+  "license": "MIT",
+  "no_signal_policy": "TCON free-runs; blue substitution disabled; decoder resync pulse",
+  "output_binary": "build/amt630a-openpocket-er-tft050a3-2.bin",
+  "output_sha256": "9bd55356861bfe61b36313e531aaae6bde8b2071384f008d3534367b3695aff9",
+  "output_size": 65536,
+  "panel": "EastRising ER-TFT050A3-2 no-touch",
+  "panel_timing": {
+    "active_height": 272,
+    "active_width": 480,
+    "backlight_current_ma": 40,
+    "backlight_max_voltage_v": 19.2,
+    "backlight_topology": "2P6S",
+    "backlight_typical_voltage_v": 18.0,
+    "controller": "ILI6480",
+    "dclk_sample_edge": "rising",
+    "de_polarity": "active-high",
+    "disp_active": "high",
+    "horizontal_back_porch": 39,
+    "horizontal_front_porch": 5,
+    "horizontal_sync_width": 1,
+    "horizontal_total": 525,
+    "hsync_polarity": "active-low",
+    "interface": "RGB888",
+    "logic_voltage_v": 3.3,
+    "panel": "EastRising ER-TFT050A3-2 no-touch",
+    "pixel_clock_hz": 9000000,
+    "power_down_sequence": [
+      "disable backlight",
+      "deassert DISP",
+      "wait 2 frames",
+      "stop RGB clocks",
+      "remove PANEL_3V3"
+    ],
+    "power_up_sequence": [
+      "assert DISP low and keep backlight off",
+      "apply PANEL_3V3",
+      "wait 20 ms",
+      "start DCLK/RGB/DE/HSYNC/VSYNC",
+      "wait 10 valid frames",
+      "assert DISP high",
+      "enable backlight after controller-ready"
+    ],
+    "refresh_hz": 59.5238095238,
+    "rgb_order": "RGB",
+    "vertical_back_porch": 7,
+    "vertical_front_porch": 8,
+    "vertical_sync_width": 1,
+    "vertical_total": 288,
+    "vsync_polarity": "active-low"
+  },
+  "source_commit": "022ae0675bab46574653a931dd4ec5a65950ba3b",
+  "standards": [
+    "PAL",
+    "NTSC"
+  ]
+}
