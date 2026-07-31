@@ -1,0 +1,13 @@
+# KiCad generated files
+*-backups/
+*.bak
+*.bck
+*.lck
+*.kicad_prl
+*.kicad_sch-bak
+
+# Local build and editor files
+build/
+.DS_Store
+*.swp
+*~
