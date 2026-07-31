@@ -1,13 +1,13 @@
-# Hardwarebestanden
+# Hardware sources
 
-Deze map wordt de bron voor:
+This directory will become the authoritative source for:
 
-- KiCad-schema en PCB
-- gecontroleerde BOM met fabrikantonderdeelnummers
-- Gerbers, drill- en pick-and-placebestanden
-- mechanische tekeningen en behuizingsinterfaces
-- testpunten en fixture-documentatie
+- KiCad schematic and PCB files
+- controlled BOM with manufacturer part numbers
+- Gerber, drill, and pick-and-place files
+- mechanical drawings and enclosure interfaces
+- test points and fixture documentation
 
-Er zijn nog geen vrijgegeven productiebestanden. Gebruik de documentatie in
-`docs/` uitsluitend voor een stroombegrensd tafelprototype totdat het schema
-en de PCB een formele review hebben doorlopen.
+No production files have been released yet. Use the material in `docs/` only
+for a current-limited bench prototype until the schematic and PCB have passed
+formal review.

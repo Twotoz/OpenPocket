@@ -1,15 +1,15 @@
-# Bijdragen
+# Contributing
 
-Issues en pull requests zijn welkom voor schema-review, meetresultaten,
-firmware-integratie, BOM-correcties en documentatie.
+Issues and pull requests are welcome for schematic review, measurements,
+firmware integration, BOM corrections, and documentation.
 
-Vermeld bij hardwarebevindingen altijd:
+Hardware findings must always include:
 
-- exacte module- en PCB-revisie
-- voedingsspanning en stroomlimiet
-- firmwarecommit en configuratie
-- meetapparatuur en meetpunt
-- PAL/NTSC-bron en LCD-model waar relevant
+- the exact module and PCB revision
+- supply voltage and current limit
+- firmware commit and configuration
+- test equipment and measurement point
+- PAL/NTSC source and LCD model where relevant
 
-Publiceer geen onbevestigde pinnummers als universeel. Markeer aannames en
-voeg een foto, schema of datasheetverwijzing toe.
+Do not publish an unverified pin number as universal. Mark assumptions clearly
+and include a photograph, schematic, or primary datasheet reference.

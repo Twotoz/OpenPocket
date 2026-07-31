@@ -1,11 +1,11 @@
-# RivetTX-firmware voor OpenPocket
+# RivetTX firmware for OpenPocket
 
-OpenPocket gebruikt de `main`-branch van
+OpenPocket uses the `main` branch of
 [Twotoz/RivetTX](https://github.com/Twotoz/RivetTX).
 
-## Bouwen
+## Build
 
-Installeer en activeer ESP-IDF 5.5.2:
+Install and activate ESP-IDF 5.5.2:
 
 ```bash
 git clone https://github.com/Twotoz/RivetTX.git
@@ -14,7 +14,7 @@ idf.py set-target esp32s3
 idf.py menuconfig
 ```
 
-Ga in menuconfig naar:
+Open this menu:
 
 ```text
 Component config
@@ -27,26 +27,26 @@ Component config
     └── AT7456E active-low reset GPIO
 ```
 
-Stel daarna CRSF, gimbals, knoppen, schakelaars, encoder, trims, batterij-ADC
-en buzzer in volgens de eigen pintabel. De OSD-pinnen hebben bewust geen
-universele standaardwaarde.
+Configure CRSF, gimbals, buttons, switches, encoder, trims, battery ADC, and
+buzzer from the pin table for your board. The OSD pins intentionally have no
+universal defaults.
 
 ```bash
 idf.py build
 idf.py flash monitor
 ```
 
-## Verwacht gedrag
+## Expected behavior
 
-- PAL gebruikt alle 30×16 tekencellen.
-- Belangrijke inhoud blijft binnen 30×13 voor NTSC.
-- Alleen gewijzigde tekens worden naar de AT7456E geschreven.
-- Videoverlies en PAL/NTSC-wissels veroorzaken een veilige redraw.
-- SPI- en teken-NVM-werk draait buiten control, CRSF en telemetrie.
-- De SSD1306 en AT7456E worden nooit tegelijk als presentatie gestart.
+- PAL uses all 30×16 character cells.
+- Essential content stays within 30×13 for NTSC.
+- Only changed cells are written to the AT7456E.
+- Video loss and PAL/NTSC changes trigger a safe redraw.
+- SPI and character-NVM work runs outside control, CRSF, and telemetry.
+- SSD1306 and AT7456E presentation backends never start together.
 
-## Firmwaregrens
+## Firmware boundary
 
-De AT7456E-backend is geïmplementeerd. Een concrete RX5808-hardwaredriver en
-de definitieve OpenPocket-pintoewijzing worden pas vastgezet nadat de exacte
-module en het referentieschema zijn gereviewd.
+The AT7456E backend is implemented. The physical RX5808 target driver and the
+final OpenPocket pin assignment remain open until the exact module and
+reference schematic have been reviewed.
