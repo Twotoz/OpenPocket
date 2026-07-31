@@ -1,14 +1,15 @@
 # OpenPocket Revision A — Engineering Prototype
 
-Revision A is a 55 mm × 45 mm, four-layer, all-in-one transmitter board based
+Revision A is a 90 mm × 60 mm, four-layer, all-in-one transmitter board based
 on the ESP32-S3-MINI-1U-N8. The intended assembled signal path is:
 
 ```text
-5.8 GHz antenna -> RX5808 -> AT7456E -> AMT630A -> 40-pin AT050TN33 V.1
+5.8 GHz antenna -> RX5808 -> AT7456E -> AMT630A -> 40-pin ER-TFT050A3-2
 ```
 
-Composite video never leaves the PCB. PCBWay installs all normal electronics
-and manually installs the selected shielded RX5808 module. The user installs
+Composite video never leaves the PCB. JLCPCB Standard PCBA is the primary
+assembly target, with pre-order and consigned-RX5808 variants; the design is
+vendor-neutral. The user installs
 only the TFT panel, controls, one wired protected 1S battery connection,
 antennas, a pre-flashed ExpressLRS nano receiver, and the enclosure.
 
@@ -19,21 +20,15 @@ release script intentionally refuses to generate Gerbers or a manufacturing
 ZIP until every blocking item in `release-status.json` is resolved with a
 reviewed source artifact.
 
-The current blockers are safety-critical:
-
-1. the exact Innolux AT050TN33 V.1 datasheet and a mechanical pin-1 check are
-   not present in the repository;
-2. no commercially redistributable, source-built AMT630A firmware with clear
-   provenance has been approved;
-3. the exact RX5808 20120322-style consigned module, drawing, SPI modification,
-   and assembly sample have not been selected and inspected.
-
-PCBWay sourcing/consignment confirmation and first-article HIL remain required
-after those inputs are resolved. Software tests are not hardware validation.
+The present generated KiCad draft still has ERC errors, DRC errors and
+unrouted nets. It is therefore not a fabrication/order package. The source-
+built AMT630A firmware and circuit research may be reviewed independently, but
+they do not waive schematic, layout, Gerber and first-article gates. Software
+tests are not hardware validation.
 
 ## Design constraints
 
-- 55 mm × 45 mm target outline; 60 mm × 48 mm is the absolute maximum.
+- 90 mm × 60 mm fixed outline.
 - Four layers, 1.0 mm finished thickness, 1 oz copper, ENIG.
 - L1 components/critical signals, uninterrupted L2 ground, L3 power/slow
   signals, L4 secondary components/routing.
@@ -42,6 +37,8 @@ after those inputs are resolved. Software tests are not hardware validation.
   path between RX5808 and AMT630A.
 - Backlight switching and power converters stay outside the analog/RF region.
 - Separate ESP32, ELRS 2.4 GHz, and RX5808 5.8 GHz antenna regions.
+- Dedicated user-accessible push-push microSD at 1-bit/20 MHz maximum, with
+  switched power and enclosure finger/eject clearance.
 - Board marking: `OpenPocket Rev A` and `Engineering Prototype`.
 
 ## Contents
@@ -49,6 +46,7 @@ after those inputs are resolved. Software tests are not hardware validation.
 | File | Purpose |
 |---|---|
 | `gpio-map.md` | authoritative ESP32 and expander allocation |
+| `microsd.md` | SDMMC circuit, socket audit, limits and acceptance tests |
 | `wiring.md` | internal and user-installed connections |
 | `power-budget.md` | preliminary worst-case and thermal calculations |
 | `bom.csv` | controlled component selection and verification state |
@@ -59,6 +57,5 @@ after those inputs are resolved. Software tests are not hardware validation.
 | `pcbway-notes.md` | stack-up, assembly, inspection, and substitution rules |
 | `tools/release_gate.py` | refuses an unsafe manufacturing release |
 
-KiCad manufacturing sources, fabrication outputs, and a versioned release ZIP
-must only be added after the missing primary data has been reviewed. An empty
-or guessed schematic would be more dangerous than an explicit release block.
+Fabrication outputs and a versioned release ZIP must only be generated after
+the KiCad sources pass review, ERC, DRC and independent Gerber inspection.

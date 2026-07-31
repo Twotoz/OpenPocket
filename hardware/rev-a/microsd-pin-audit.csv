@@ -1,0 +1,10 @@
+pin,function,net,pad_x_mm,pad_y_mm,card_present_logic,source_evidence
+1,DAT2,SD_DAT2,30.075,3.950,n/a,"SOFNG TF-001A-P3 drawing, vertical-view land pattern, P1-P8 at 0.80 mm pitch"
+2,DAT3,SD_DAT3,30.875,3.950,n/a,"SOFNG TF-001A-P3 drawing, vertical-view land pattern, P1-P8 at 0.80 mm pitch"
+3,CMD,SD_CMD,31.675,3.950,n/a,"SOFNG TF-001A-P3 drawing, vertical-view land pattern, P1-P8 at 0.80 mm pitch"
+4,VDD,3V3_SD,32.475,3.950,n/a,"SOFNG TF-001A-P3 drawing, vertical-view land pattern, P1-P8 at 0.80 mm pitch"
+5,CLK,SD_CLK,33.275,3.950,n/a,"SOFNG TF-001A-P3 drawing, vertical-view land pattern, P1-P8 at 0.80 mm pitch"
+6,VSS,GND,34.075,3.950,n/a,"SOFNG TF-001A-P3 drawing, vertical-view land pattern, P1-P8 at 0.80 mm pitch"
+7,DAT0,SD_D0,34.875,3.950,n/a,"SOFNG TF-001A-P3 drawing, vertical-view land pattern, P1-P8 at 0.80 mm pitch"
+8,DAT1,SD_DAT1,35.675,3.950,n/a,"SOFNG TF-001A-P3 drawing, vertical-view land pattern, P1-P8 at 0.80 mm pitch"
+9,CARD_DETECT,SD_CARD_DETECT,35.085,14.400,low=fully inserted,SOFNG TF-001A-P3 normally-open CD-to-ground switch drawing

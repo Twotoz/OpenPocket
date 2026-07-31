@@ -18,20 +18,27 @@ USB CDC. Every object contains `fixture`, `serial`, `firmware_commit`, `test`,
    active. ARM/CH5 must remain low.
 6. Enable each switched 5 V domain separately and measure rise time, steady
    voltage, inrush, and off leakage.
-7. Identify, erase, program, read back, and SHA-256 verify W25X05 while AMT630A
+7. With no card installed, verify active-high card detect and `3V3_SD` below
+   0.20 V. Insert the fixture FAT32 card, require detect below 0.30 V after
+   80 ms, rail 3.135–3.465 V with less than 100 mV excursion, then read/write/
+   readback a 512-byte pseudorandom block at 400 kHz and 20 MHz. Remove it
+   during a bounded logging run and require zero control or CRSF deadline
+   misses. The JSON tests are `sd_detect`, `sd_power`, `sd_rw`, and
+   `sd_hot_remove`.
+8. Identify, erase, program, read back, and SHA-256 verify W25X05 while AMT630A
    reset is asserted and the isolated bus belongs to ESP32. Release ownership
    before AMT630A reset.
-8. Verify AT7456E SPI identity/activity, reset, custom glyph upload, PAL/NTSC
+9. Verify AT7456E SPI identity/activity, reset, custom glyph upload, PAL/NTSC
    status, and independent sync-loss reporting.
-9. Tune RX5808 through all 48 table entries. Record exact RTC6715 frames, RSSI
+10. Tune RX5808 through all 48 table entries. Record exact RTC6715 frames, RSSI
    ADC baseline, and video output at TP_VRX_VIDEO. Cancel a scan during dwell
    and verify the saved channel is restored.
-10. Apply fixture PAL and NTSC composite sources through the NORMAL chain.
+11. Apply fixture PAL and NTSC composite sources through the NORMAL chain.
     Verify TP_OSD_VIDEO, OSD overlay, AMT630A automatic recovery, snow/no-blue
     behavior, panel timings, and colour bars.
-11. Ramp backlight PWM while measuring VLED+, total LED current, switch-node
+12. Ramp backlight PWM while measuring VLED+, total LED current, switch-node
     waveform, inductor/diode temperature, and default-off restart.
-12. Attach a protected fixture cell and NTC. Verify conservative charge current,
+13. Attach a protected fixture cell and NTC. Verify conservative charge current,
     thermal/current reduction, gauge voltage/SOC, operation while charging,
     USB-only operation, and low-battery shutdown.
 
