@@ -52,7 +52,7 @@
     "vertical_total": 288,
     "vsync_polarity": "active-low"
   },
-  "source_commit": "022ae0675bab46574653a931dd4ec5a65950ba3b",
+  "source_commit": "55cb2fef92c1a0b15babd5e17086ecba0823b962",
   "standards": [
     "PAL",
     "NTSC"
