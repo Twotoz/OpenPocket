@@ -1,42 +1,42 @@
-# Bring-up en acceptatietests
+# Bring-up and acceptance tests
 
-Vink deze lijst af per fysieke revisie en bewaar meetresultaten, foto's en
-firmwarecommit bij het testrapport.
+Complete this checklist for every physical revision. Keep measurements,
+photographs, and the firmware commit with the test report.
 
-## Elektrisch
+## Electrical
 
-- [ ] Iedere voedingsrail klopt onbelast en belast.
-- [ ] Geen ESP32-GPIO ziet meer dan 3,3V.
-- [ ] Stroomlimiet, zekering en lokale bulkcapaciteit zijn aanwezig.
-- [ ] Geen brownout bij LCD-start, ELRS-zenden of video-lock.
-- [ ] AT7456E-clock en SPI mode 0 zijn met een logic analyzer gecontroleerd.
-- [ ] Composietpad heeft precies één correcte 75Ω-belasting.
+- [ ] Every supply rail is correct both unloaded and loaded.
+- [ ] No ESP32 GPIO is exposed to more than 3.3 V.
+- [ ] Current limiting, a fuse, and local bulk capacitance are present.
+- [ ] LCD startup, ELRS transmission, and video lock cause no brownout.
+- [ ] AT7456E clock and SPI mode 0 have been checked with a logic analyzer.
+- [ ] The composite path has exactly one correct 75 Ω termination.
 
-## Bediening en RF
+## Controls and RF
 
-- [ ] Alle gimbals zijn gekalibreerd en bewegen in de juiste richting.
-- [ ] CH5 is laag bij boot, fout, moduleverlies en onderhoud.
-- [ ] ARM en AUX gebruiken uitsluitend hun toegewezen schakelaars.
-- [ ] CRSF blijft op 250Hz doorlopen tijdens OSD-redraw en menugebruik.
-- [ ] ExpressLRS bind, model-ID, telemetrie en failsafe zijn gecontroleerd.
+- [ ] All gimbals are calibrated and move in the correct direction.
+- [ ] CH5 is low at boot, during faults, after module loss, and in maintenance.
+- [ ] ARM and AUX functions use only their assigned switches.
+- [ ] CRSF continues at 250 Hz during OSD redraw and menu use.
+- [ ] ExpressLRS binding, model ID, telemetry, and failsafe are verified.
 
-## Video en OSD
+## Video and OSD
 
-- [ ] PAL-lock toont alle 30×16 cellen zonder afgesneden randen.
-- [ ] NTSC-lock toont alle essentiële informatie binnen rijen 0–12.
-- [ ] Menu, selectie, editmodus en waarschuwingen zijn leesbaar.
-- [ ] Een enkele tekenwijziging veroorzaakt geen volledige redraw.
-- [ ] PAL↔NTSC-wissel herstelt zonder reboot.
-- [ ] Videoverlies toont een waarschuwing en videoherstel tekent opnieuw.
-- [ ] Losse of ontbrekende AT7456E houdt de zender veilig en responsief.
+- [ ] PAL lock shows all 30×16 cells without clipped edges.
+- [ ] NTSC lock keeps all essential information inside rows 0–12.
+- [ ] Menus, selection, edit mode, and warnings are readable.
+- [ ] A one-character change does not trigger a full-screen redraw.
+- [ ] PAL-to-NTSC and NTSC-to-PAL changes recover without a reboot.
+- [ ] Video loss shows a warning and recovery causes a clean redraw.
+- [ ] An absent or disconnected AT7456E leaves control responsive and safe.
 
-## Duurtest
+## Endurance
 
-- [ ] Minimaal twee uur gelijktijdige control, telemetrie en video.
-- [ ] Herhaalde power-cycles en brownout-injectie.
-- [ ] Thermische controle bij maximale gekozen RF- en LCD-belasting.
-- [ ] Geen teken-NVM-upload bij iedere boot.
-- [ ] Geen control-deadlines gemist door SPI, logging, USB of UI.
+- [ ] At least two hours of simultaneous control, telemetry, and video.
+- [ ] Repeated power cycles and controlled brownout injection.
+- [ ] Thermal check at the maximum selected RF and LCD load.
+- [ ] No character-NVM upload on every boot.
+- [ ] No control deadlines missed by SPI, logging, USB, or UI activity.
 
-Een geslaagde tafeltest is geen toestemming om met gemonteerde propellers te
-testen. Voer daarna afzonderlijke voertuig-, bereik- en failsafetests uit.
+A successful bench test is not permission to test with fitted propellers.
+Perform separate vehicle, range, and failsafe tests afterward.
