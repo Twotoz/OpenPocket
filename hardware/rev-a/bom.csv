@@ -1,0 +1,28 @@
+Reference,Quantity,Manufacturer,MPN,Description,Package,Assembly,Verification state,Notes
+U1,1,Espressif,ESP32-S3-MINI-1U-N8,ESP32-S3 module with 8MB flash and U.FL,15.4x15.4mm module,PCBWay,selected,No PSRAM; external antenna
+U2,1,Texas Instruments,BQ25895RTWR,1-cell charger and power path,WQFN-24,PCBWay,selected,1A maximum firmware policy; thermal validation open
+U3,1,Texas Instruments,BQ2970 variant TBD,1-cell battery protection,SOT-23-6,PCBWay,blocked,Exact suffix depends on selected cell thresholds
+Q1,1,TBD,TBD,Back-to-back battery protection MOSFET,TBD,PCBWay,blocked,Select with U3 and 5A cell
+U4,1,Analog Devices,MAX17048G+T10,1-cell fuel gauge,TDFN-8,PCBWay,selected,ALERT to ESP32
+U5,1,Texas Instruments,TPS63070RNMR,3.3V buck-boost,VQFN-15,PCBWay,selected,Logic rail; loop and thermal review required
+U6,1,Texas Instruments,TPS61088RHLR,5V boost,VQFN-20,PCBWay,selected,2A continuous design target
+U7-U9,3,Texas Instruments,TPS22918DBVR,5V load switch,SOT-23-5,PCBWay,selected,VIDEO DISPLAY ELRS domains
+U10,1,Texas Instruments,TPS7A2033PDQNR,Low-noise display 3.3V LDO,X2SON-4,PCBWay,selected,Confirm AMT plus panel logic current
+U11,1,Zhongkewei,AT7456E,Character OSD,TSSOP-28-EP,PCBWay,selected,LCSC C82351; exposed pad grounded
+U12-U13,2,Texas Instruments,SN74AHCT125PWR,3.3V-to-5V level translation,TSSOP-14,PCBWay,selected,Unused inputs must not float
+U14,1,TBD,TBD,Guaranteed 5V-to-3.3V MISO translator,TBD,PCBWay,blocked,Select after SPI timing review
+U15,1,Actions Micro,AMT630A,Composite TFT controller,LQFP-64,PCBWay,selected,Pinout and sourcing evidence required
+U16,1,Winbond,W25X05CLSNIG,512Kbit AMT630A SPI flash,SOIC-8,PCBWay,selected,LCSC C2641187
+U17,1,TBD,TBD,Break-before-make quad SPI bus switch,TBD,PCBWay,blocked,Must prevent simultaneous AMT/ESP drive
+U18,1,Texas Instruments,TPS61165DBVR,White LED boost,SOT-23-6,PCBWay,selected,40mA total target; default off
+U19-U20,2,Texas Instruments,TCA9535PWR,16-bit I2C GPIO expander,TSSOP-24,PCBWay,selected,Slow control inputs only
+J1,1,Hirose,FH12-40S-0.5SH(55),40-position bottom-contact TFT ZIF,SMD,PCBWay,blocked,Footprint and pin 1 require exact panel datasheet
+J2,1,TBD,TBD,USB-C USB2 receptacle,Mid-mount SMD,PCBWay,blocked,Mechanical selection pending enclosure review
+MOD1,1,Consigned,RX5808 20120322-style,Shielded SPI-capable 5.8GHz receiver,28x23mm 12-pad module,PCBWay manual,blocked,Exact supplier drawing and sample required
+Y1,1,TBD,27.000MHz crystal,AT7456E crystal,SMD,PCBWay,blocked,Choose from verified AT7456E load specification
+Y2,1,TBD,27.000MHz crystal,AMT630A crystal,SMD,PCBWay,blocked,Choose from verified AMT630A load specification
+L_BL,1,TBD,TBD,TPS61165 power inductor,SMD,PCBWay,blocked,Current saturation and EMI review required
+D_BL,1,TBD,TBD,Backlight Schottky diode,SMD,PCBWay,blocked,Voltage/current/thermal margin required
+R_BL,1,TBD,4.99R 1%,Backlight current sense,0603,PCBWay,preliminary,Confirm panel current and FB tolerance
+F1,1,TBD,TBD,USB VBUS resettable fuse,SMD,PCBWay,blocked,Coordinate with charger input limit
+ESD1,1,TBD,TBD,Low-capacitance USB D+/D- ESD array,SMD,PCBWay,blocked,USB2 eye and IEC rating review
