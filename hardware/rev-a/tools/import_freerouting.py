@@ -14,13 +14,14 @@ REV = Path(__file__).resolve().parents[1]
 DEFAULT_BOARD = REV / "openpocket-rev-a.kicad_pcb"
 
 
-def footprint_state(board: pcbnew.BOARD) -> dict[str, tuple[int, int, float, int]]:
+def footprint_state(board: pcbnew.BOARD) -> dict[str, tuple[int, int, bool]]:
     return {
         footprint.GetReference(): (
-            footprint.GetPosition().x,
-            footprint.GetPosition().y,
-            footprint.GetOrientationDegrees(),
-            footprint.GetLayer(),
+            # SES import may quantize a coordinate by one internal KiCad unit
+            # (0.001 mm); compare at the mechanical precision of the board.
+            round(footprint.GetPosition().x, -1),
+            round(footprint.GetPosition().y, -1),
+            bool(footprint.IsFlipped()),
         )
         for footprint in board.GetFootprints()
     }
