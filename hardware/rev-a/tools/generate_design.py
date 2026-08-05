@@ -190,6 +190,18 @@ def generate_custom_footprints() -> None:
         '  (fp_rect (start -1 -0.55) (end 1 0.55) (stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd"))',
         '  (pad "1" smd roundrect (at -0.5 0) (size 0.55 0.6) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.2))',
         '  (pad "2" smd roundrect (at 0.5 0) (size 0.55 0.6) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.2))'])
+    write("0603", [
+        '  (fp_rect (start -1.4 -0.8) (end 1.4 0.8) (stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd"))',
+        '  (pad "1" smd roundrect (at -0.75 0) (size 0.85 0.90) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.2))',
+        '  (pad "2" smd roundrect (at 0.75 0) (size 0.85 0.90) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.2))'])
+    write("SMD-D10", [
+        '  (fp_rect (start -5.4 -5.4) (end 5.4 5.4) (stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd"))',
+        '  (fp_circle (center 0 0) (end 5 0) (stroke (width 0.10) (type default)) (fill none) (layer "F.Fab"))',
+        '  (fp_text user "+" (at -6.1 0) (layer "F.SilkS") (effects (font (size 1 1) (thickness 0.15))))',
+        '  (pad "1" smd roundrect (at -4.35 0) (size 4.4 1.9) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.13))',
+        '  (pad "2" smd roundrect (at 4.35 0) (size 4.4 1.9) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.13))'])
+    write("Fiducial_1mm_Mask2mm", [
+        '  (pad "" smd circle (at 0 0) (size 1 1) (layers "F.Cu" "F.Mask") (solder_mask_margin 0.5))'])
     write("SMD-7.5x7.5", [
         '  (fp_rect (start -3.75 -3.75) (end 3.75 3.75) (stroke (width 0.1) (type default)) (fill none) (layer "F.Fab"))',
         '  (fp_rect (start -4 -4) (end 4 4) (stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd"))',
@@ -501,6 +513,8 @@ def passive(ref,value,mpn,lcsc,package,n1,n2,x,y,dnp=False):
                   "Samsung Electro-Mechanics" if mpn.startswith("CL") else
                   "HRE" if mpn.startswith("CGA") else
                   "Panasonic" if mpn.startswith("EEE") else
+                  "Lelon" if mpn.startswith("VZH") else
+                  "Fenghua Advanced" if mpn.startswith("0603B") else
                   "Uniroyal Electronics")
     add(ref,value,manufacturer,
         mpn,lcsc,package,[("1",n1),("2",n2)],x,y,dnp=dnp)
@@ -565,8 +579,8 @@ resistors=[
  ("R59","33","RC0402FR-0733RL","C138002","RX_DATA_MCU","RX_DATA"),
  ("R60","33","RC0402FR-0733RL","C138002","RX_LE_MCU","RX_LE"),
  ("R61","33","RC0402FR-0733RL","C138002","RX_CLK_MCU","RX_CLK"),
- ("R62","5.1M","RC0402FR-075M1L","C137956","PROT_DOUT","BAT_CELL_NEG"),
- ("R63","5.1M","RC0402FR-075M1L","C137956","PROT_COUT",G),
+ ("R62","5.1M","0402WGF5104TCE","C270595","PROT_DOUT","BAT_CELL_NEG"),
+ ("R63","5.1M","0402WGF5104TCE","C270595","PROT_COUT",G),
  ("R64","1k","RC0402FR-071KL","C106235","TP_OSD_HSYNC","5V_VIDEO_FILT"),
  ("R65","1k","RC0402FR-071KL","C106235","TP_OSD_VSYNC","5V_VIDEO_FILT"),
  ("R66","100k","RC0402FR-07100KL","C60491","OSD_CS_3V3","3V3_LOGIC"),
@@ -613,7 +627,7 @@ caps=[
  ("C3","10u","CL21A106KAYNNNE","C15850","0805","SYS_SWITCHED",G),
  ("C4","100n","CL05B104KO5NNNC","C1525","0402","5V_VIDEO_FILT",G),
  ("C5","10u","CL21A106KAYNNNE","C15850","0805","5V_VIDEO_FILT",G),
- ("C6","470u","EEEFK1A471P","C178530","SMD-D10","5V_VIDEO_FILT",G),
+ ("C6","470u","VZH471M1ATR-1008","C249929","SMD-D10","5V_VIDEO_FILT",G),
  ("C7","100n","CL05B104KO5NNNC","C1525","0402","VRX_VIDEO_TO_OSD","VRX_VIDEO_COUPLED"),
  ("C8","22n","CL05B223KB5NNNC","C337699","0402","AMT_CVBS_PRE","AMT_CVBS1"),
  ("C9","100n","CL05B104KO5NNNC","C1525","0402","DISPLAY_3V3_D",G),
@@ -632,9 +646,9 @@ caps=[
  ("C24","100n","CL05B104KO5NNNC","C1525","0402","3V3_SD",G),
  ("C25","10u","CL21A106KAYNNNE","C15850","0805","3V3_SD",G),
  ("C26","47u","CL31A476MPHNNNE","C96123","1206","3V3_SD",G),
- ("C27","1n","CL05B102KB5NNNC","C1523","0402","3V3_SD_CT",G),
+ ("C27","1n","CL05B102KB5NNNC","C14442","0402","3V3_SD_CT",G),
  ("C28","10u 25V","CGA0805X7R106K250MT","C6119932","0805","PMID",G),
- ("C29","4.7u 10V","CGA0603X7R475K100JT","C6119877","0603","REGN",G),
+ ("C29","4.7u 10V","0603B475K100NT","C108342","0603","REGN",G),
  ("C30","47n 50V","CC0402KRX7R9BB473","C272875","0402","CHG_BTST","CHG_SW"),
  ("C31","10u 25V","CGA0805X7R106K250MT","C6119932","0805","BAT_PROTECTED",G),
  ("C32","22u 10V","CGA0805X7R226M100MT","C23692981","0805","SYS_ALWAYS",G),
@@ -658,7 +672,7 @@ caps=[
  ("C50","22u 10V","CGA0805X7R226M100MT","C23692981","0805","SYS_SWITCHED_5V",G),
  ("C51","10u","CL21A106KAYNNNE","C15850","0805","5V_DISPLAY",G),
  ("C52","22u 10V","CGA0805X7R226M100MT","C23692981","0805","DISPLAY_3V3",G),
- ("C53","4.7u 10V","CGA0603X7R475K100JT","C6119877","0603","5V_DISPLAY",G),
+ ("C53","4.7u 10V","0603B475K100NT","C108342","0603","5V_DISPLAY",G),
  ("C54","220n","CC0402KRX7R8BB224","C723566","0402","BL_COMP",G),
  ("C55","1u 50V","CC0805KKX7R9BB105","C91185","0805","BL_LED_A",G),
  ("C56","1u 50V","CC0805KKX7R9BB105","C91185","0805","BL_LED_A",G),
@@ -864,6 +878,16 @@ def apply_placement() -> None:
     put("TP45", 62, 20, "B")
     put("TP46", 64, 20, "B")
 
+    # Put one local 100 nF/bulk capacitor directly below each flagged IC.
+    # Short through-via stubs are preferable to the centimetre-scale loops in
+    # the initial floorplan and keep the top-side escape channels available.
+    put("C70", 45, 15, "B")   # U15 AMT boot flash
+    put("C71", 52, 15, "B")   # U16 AMT flash mux
+    put("C1", 68, 11, "B")    # U18 GPIO expander
+    put("C53", 80, 32, "B")   # U17 backlight boost input
+    put("C67", 3, 49, "B")    # U3 cell protector sense supply
+    put("C4", 59, 52, "B")    # U7 video load-switch output
+
     # Remaining configuration parts and factory pads live on L4.  Their pack
     # starts to the right of the RX5808 shield/inspection rectangle.
     remaining = [part.ref for part in P
@@ -956,10 +980,13 @@ def make_fp(board, part, nets):
                 item.SetLayer(pcbnew.B_Fab)
         if part.side == "B":
             fp.Flip(fp.GetPosition(), False)
+        fp.SetDNP(part.dnp)
+        fp.SetExcludedFromBOM(part.dnp)
         return fp
     fp=pcbnew.FOOTPRINT(board); fp.SetReference(part.ref); fp.SetValue(part.value)
     fp.Reference().SetVisible(True); fp.Value().SetVisible(False)
-    fp.Reference().SetLayer(pcbnew.B_Fab if part.side == "B" else pcbnew.F_Fab)
+    # Create on the front; Flip() below moves bottom-side fields to B.Fab.
+    fp.Reference().SetLayer(pcbnew.F_Fab)
     fp.Reference().SetTextSize(pcbnew.VECTOR2I_MM(0.65, 0.65))
     lib_id=pcbnew.LIB_ID()
     lib_id.SetLibNickname(pcbnew.UTF8("OpenPocket"))
@@ -1019,6 +1046,8 @@ def make_fp(board, part, nets):
         if part.side=="B": layer_id=pcbnew.B_Fab
         rect=pcbnew.PCB_SHAPE(fp); rect.SetShape(pcbnew.SHAPE_T_RECT)
         rect.SetStart(pcbnew.VECTOR2I_MM(part.x-width/2,part.y-height/2)); rect.SetEnd(pcbnew.VECTOR2I_MM(part.x+width/2,part.y+height/2)); rect.SetLayer(layer_id); rect.SetWidth(pcbnew.FromMM(0.05)); fp.Add(rect)
+    fp.SetDNP(part.dnp)
+    fp.SetExcludedFromBOM(part.dnp)
     board.Add(fp); return fp
 
 
@@ -1166,6 +1195,65 @@ def configure_project_netclasses(project: pathlib.Path) -> None:
     net_settings.setdefault("meta", {})["version"] = 4
     project.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
 
+
+def add_fiducial(board: pcbnew.BOARD, reference: str, x: float, y: float,
+                  side: str) -> None:
+    """Add a 1 mm copper / 2 mm mask assembly fiducial."""
+    fp = pcbnew.FOOTPRINT(board)
+    fp.SetReference(reference)
+    fp.SetValue("Fiducial_1mm_Mask2mm")
+    fp.Reference().SetVisible(False)
+    fp.Value().SetVisible(False)
+    fp.SetAttributes(pcbnew.FP_SMD | pcbnew.FP_EXCLUDE_FROM_BOM |
+                     pcbnew.FP_EXCLUDE_FROM_POS_FILES)
+    lib_id = pcbnew.LIB_ID()
+    lib_id.SetLibNickname(pcbnew.UTF8("OpenPocket"))
+    lib_id.SetLibItemName(pcbnew.UTF8("Fiducial_1mm_Mask2mm"))
+    fp.SetFPID(lib_id)
+    fp.SetPosition(pcbnew.VECTOR2I_MM(x, y))
+    layer = pcbnew.B_Cu if side == "B" else pcbnew.F_Cu
+    fp.SetLayer(layer)
+    pad = pcbnew.PAD(fp)
+    pad.SetNumber("")
+    pad.SetShape(pcbnew.PAD_SHAPE_CIRCLE)
+    pad.SetAttribute(pcbnew.PAD_ATTRIB_SMD)
+    pad.SetSize(pcbnew.VECTOR2I_MM(1.0, 1.0))
+    pad.SetPosition(pcbnew.VECTOR2I_MM(x, y))
+    pad.SetLocalSolderMaskMargin(pcbnew.FromMM(0.5))
+    layers = pcbnew.LSET()
+    layers.AddLayer(layer)
+    layers.AddLayer(pcbnew.B_Mask if side == "B" else pcbnew.F_Mask)
+    pad.SetLayerSet(layers)
+    fp.Add(pad)
+    board.Add(fp)
+
+
+def add_exposed_pad_thermal_vias(board: pcbnew.BOARD, nets: dict) -> None:
+    """Add tented, footprint-embedded thermal vias to exposed ground pads."""
+    patterns = {
+        "U2": ("25", (-0.8, 0.0, 0.8), (-0.8, 0.0, 0.8)),
+        "U11": ("29", (-2.2, 0.0, 2.2), (-0.75, 0.0, 0.75)),
+        "U21": ("9", (-0.8, 0.0, 0.8), (-0.6, 0.0, 0.6)),
+    }
+    footprints = {fp.GetReference(): fp for fp in board.GetFootprints()}
+    for reference, (pad_number, x_offsets, y_offsets) in patterns.items():
+        footprint = footprints[reference]
+        center = footprint.GetPosition()
+        for x_offset in x_offsets:
+            for y_offset in y_offsets:
+                via = pcbnew.PAD(footprint)
+                via.SetNumber(pad_number)
+                via.SetShape(pcbnew.PAD_SHAPE_CIRCLE)
+                via.SetAttribute(pcbnew.PAD_ATTRIB_PTH)
+                via.SetSize(pcbnew.VECTOR2I_MM(0.45, 0.45))
+                via.SetDrillSize(pcbnew.VECTOR2I_MM(0.20, 0.20))
+                via.SetLayerSet(pcbnew.LSET.AllCuMask())
+                via.SetPosition(pcbnew.VECTOR2I(
+                    center.x + pcbnew.FromMM(x_offset),
+                    center.y + pcbnew.FromMM(y_offset)))
+                via.SetNet(nets[G])
+                footprint.Add(via)
+
 def generate_board():
     # pcbnew assigns UUIDs while objects and library footprints are added.
     # A fixed generator seed makes repeated source generation byte-stable;
@@ -1177,6 +1265,12 @@ def generate_board():
     nets=ensure_nets(b)
     for part in P: make_fp(b,part,nets)
     legalize_small_parts(b)
+    for reference, x, y, side in [
+            ("FID1", 5, 24, "F"), ("FID2", 76, 17, "F"),
+            ("FID3", 85, 51, "F"), ("FID4", 5, 8, "B"),
+            ("FID5", 86, 9, "B"), ("FID6", 85, 51, "B")]:
+        add_fiducial(b, reference, x, y, side)
+    add_exposed_pad_thermal_vias(b, nets)
     for a,c in [((0,0),(90,0)),((90,0),(90,60)),((90,60),(0,60)),((0,60),(0,0))]:
         s=pcbnew.PCB_SHAPE(b); s.SetShape(pcbnew.SHAPE_T_SEGMENT); s.SetStart(pcbnew.VECTOR2I_MM(*a)); s.SetEnd(pcbnew.VECTOR2I_MM(*c)); s.SetLayer(pcbnew.Edge_Cuts); s.SetWidth(pcbnew.FromMM(.1)); b.Add(s)
     # Continuous L2 ground plane.
@@ -1253,6 +1347,19 @@ def schematic_groups():
         groups.setdefault(lib_id,[]).append((i,part))
     return list(groups.items())
 
+
+def set_sourcing_properties(component, part: Part) -> None:
+    """Keep production sourcing data in the KiCad schematic source of truth."""
+    component.add_properties({
+        "MPN": part.mpn,
+        "Manufacturer": part.manufacturer,
+        "LCSC": part.lcsc,
+        "DNP": "yes" if part.dnp else "no",
+        "BOM Comments": part.notes,
+    }, hidden=True)
+    component.in_bom = not part.dnp
+    component.on_board = True
+
 def schematic_init():
     import os
     import kicad_sch_api as ksa
@@ -1286,6 +1393,7 @@ def schematic_group(group_index):
             sch.components.add(lib_id,part.ref,part.value,position=(x,y),
                                footprint=footprint_id(part))
     for _,part in items:
+        set_sourcing_properties(sch.components.get(part.ref), part)
         for pin_number,_,net in pin_items(part):
             if net not in ("NC",""):
                 sch.add_label(net,pin=(part.ref,pin_number))
@@ -1311,6 +1419,7 @@ def schematic():
                                footprint=footprint_id(part))
     for part in P:
         component=sch.components.get(part.ref)
+        set_sourcing_properties(component, part)
         component_x=float(component.position.x)
         for pin_number,_,net in pin_items(part):
             pos=sch.get_component_pin_position(part.ref,pin_number)

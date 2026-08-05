@@ -117,9 +117,9 @@ def main() -> int:
         errors.append("AMT_TESTS: " + test.stdout[-1000:])
 
     required = {
-        "gerbers/openpocket-rev-a-F_Cu.gbr",
-        "gerbers/openpocket-rev-a-In1_Cu.g2",
-        "gerbers/openpocket-rev-a-In2_Cu.g3",
+        "gerbers/openpocket-rev-a-F_Cu.gtl",
+        "gerbers/openpocket-rev-a-GND.g1",
+        "gerbers/openpocket-rev-a-PWR_SIG.g2",
         "gerbers/openpocket-rev-a-B_Cu.gbl",
         "assembly/bom-jlcpcb.csv",
         "assembly/cpl-jlcpcb.csv",

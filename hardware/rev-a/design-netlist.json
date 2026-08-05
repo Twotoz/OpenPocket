@@ -160,7 +160,7 @@
     }
   },
   "C29": {
-    "mpn": "CGA0603X7R475K100JT",
+    "mpn": "0603B475K100NT",
     "package": "0603",
     "pins": {
       "1": "REGN",
@@ -376,7 +376,7 @@
     }
   },
   "C53": {
-    "mpn": "CGA0603X7R475K100JT",
+    "mpn": "0603B475K100NT",
     "package": "0603",
     "pins": {
       "1": "5V_DISPLAY",
@@ -432,7 +432,7 @@
     }
   },
   "C6": {
-    "mpn": "EEEFK1A471P",
+    "mpn": "VZH471M1ATR-1008",
     "package": "SMD-D10",
     "pins": {
       "1": "5V_VIDEO_FILT",
@@ -1533,7 +1533,7 @@
     }
   },
   "R62": {
-    "mpn": "RC0402FR-075M1L",
+    "mpn": "0402WGF5104TCE",
     "package": "0402",
     "pins": {
       "1": "PROT_DOUT",
@@ -1541,7 +1541,7 @@
     }
   },
   "R63": {
-    "mpn": "RC0402FR-075M1L",
+    "mpn": "0402WGF5104TCE",
     "package": "0402",
     "pins": {
       "1": "PROT_COUT",

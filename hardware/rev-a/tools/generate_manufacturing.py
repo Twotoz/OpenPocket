@@ -93,7 +93,7 @@ def main() -> int:
         "--exclude-dnp", str(BOARD))
     run("kicad-cli", "pcb", "export", "step", "-o",
         str(OUT / "drawings" / "openpocket-rev-a.step"), "--force",
-        "--no-dnp", "--include-tracks", "--include-pads", "--include-zones",
+        "--board-only", "--include-tracks", "--include-pads", "--include-zones",
         str(BOARD))
     run("kicad-cli", "sch", "export", "pdf", "-o",
         str(OUT / "drawings" / "openpocket-rev-a-schematic.pdf"),
@@ -112,8 +112,8 @@ def main() -> int:
     for side in ("top", "bottom"):
         run("kicad-cli", "pcb", "render", "-o",
             str(OUT / "inspection" / f"openpocket-rev-a-{side}.png"),
-            "--side", side, "--width", "2400", "--height", "1600",
-            "--quality", "high", str(BOARD))
+            "--side", side, "--width", "1600", "--height", "1067",
+            "--quality", "basic", str(BOARD))
 
     for name in ("bom-generic.csv", "bom-jlcpcb.csv", "cpl-generic.csv",
                  "cpl-jlcpcb.csv", "dnp.csv", "consigned-parts.csv",
@@ -125,7 +125,7 @@ def main() -> int:
     for name in ("README.md", "gpio-map.md", "microsd.md", "wiring.md",
                  "power-budget.md", "routing-constraints.md",
                  "factory-test.md", "pcbway-notes.md", "jlcpcb-notes.md",
-                 "first-power-up.md"):
+                 "first-power-up.md", "production-readiness.md"):
         copy(REV / name, OUT / "documentation" / name)
     for name in ("LICENSE", "README.md", "registers.md", "panel-timing.json",
                  "build-manifest.json"):
