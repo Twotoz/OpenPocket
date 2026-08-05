@@ -9,11 +9,14 @@ authoritative fail-closed release control.
 
 ## Release decision
 
-Revision A is not production-ready. The PCB contains no routed tracks and
-KiCad reports 499 unconnected items across 233 routed nets. The attempted
-automated route still had 304 open connections after its first pass and did
-not produce a reviewable session, so no partial route was accepted into the
-design.
+Revision A is not production-ready. The PCB now contains a deterministic L2
+ground fanout (221 local stubs and 116 through vias), but no signal route has
+been accepted. KiCad still reaches its 499-item unconnected-report limit. The
+first improved-floorplan route reduced Freerouting's 752 incomplete
+connections to 272, but incorrectly used L2 for signals. After the ground
+fanout and an explicit L2 power-plane constraint, the next route started at
+531 incompletes but exceeded the review host's memory before writing a
+session. No partial autoroute was accepted into the design.
 
 Do not upload the generated Gerbers to a fabricator until routing, impedance,
 mechanical, independent schematic/layout, custom-part, and first-article gates
@@ -24,10 +27,11 @@ are closed.
 | Check | Result | Evidence / disposition |
 |---|---:|---|
 | KiCad 9 ERC | 0 errors, 0 warnings | kicad-cli sch erc |
-| KiCad 9 geometric DRC | 0 violations | Connectivity separately fails with 499 unconnected items |
+| KiCad 9 geometric DRC | 0 errors, 1 warning | One location-less F.Cu copper-sliver warning; connectivity separately reaches the 499-item report limit |
 | PCB stack | 4 copper layers, 1.0 mm, 90 x 60 mm | KiCad PCB source and Gerber job data |
 | Assembly fiducials | 3 top, 3 bottom | 1.0 mm copper / 2.0 mm mask opening |
 | Exposed-pad thermal vias | U2: 9, U11: 9, U21: 9 | 0.45/0.20 mm tented, footprint-embedded vias to GND |
+| L2 ground fanout | 221 stubs, 116 board vias, 0 open GND items | Persisted L2 fill; no signal copper is permitted on L2 |
 | BOM completeness | 229 populated components, 95 populated line items | Every populated line has manufacturer, MPN, LCSC code, and package |
 | BOM/CPL population set | exact match | DNP entries are excluded from assembly placement |
 | LCSC snapshot | 85 exact matches with stock; 2 custom codes unresolved | 87 unique non-CONS codes checked against the LCSC/JLC search API |
@@ -41,14 +45,14 @@ assembly instructions; current API lookup did not return either code.
 
 ## Analyzer results and limits
 
-- Full PCB analysis: 241 findings — 234 errors, 2 warnings, and 5 information
+- Full PCB analysis: 370 findings — 234 errors, 18 warnings, and 118 information
   items. Of the errors, 233 are the unrouted-net findings; the remaining
   board-edge finding is the intentional edge-mounted microSD connector and
   still requires enclosure/mechanical sign-off.
-- EMC pre-compliance analysis: score 89.5/100, with 0 errors and 9 warnings.
-  The remaining warnings concern ground-via stitching and heuristic switching
+- EMC pre-compliance analysis: score 79.0/100, with 0 errors and 19 warnings.
+  The warnings concern decoupling-via proximity and heuristic switching
   regulator/filter estimates. The report has low trust because extracted
-  datasheet coverage is absent and the board is not routed.
+  datasheet coverage is absent and 233 signal nets are not routed.
 - Gerber analysis: 0 errors and 1 alignment warning. Copper/edge extents differ
   while routing copper is absent, so this is not a fabrication approval.
 - Schematic analysis: 5 heuristic voltage-domain errors and 27 warnings.

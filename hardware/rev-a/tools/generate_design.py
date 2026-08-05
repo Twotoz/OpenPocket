@@ -8,6 +8,8 @@ import json
 import math
 import pathlib
 import re
+import subprocess
+import sys
 from dataclasses import dataclass, field
 
 import pcbnew
@@ -797,23 +799,27 @@ def apply_placement() -> None:
             put(ref, x + (index % cols) * dx,
                 y + (index // cols) * dy, side)
 
-    # External interfaces and primary ICs.
+    # External interfaces and primary ICs.  The controls connector J9 spans
+    # most of the lower edge, so its two GPIO expanders belong directly above
+    # it.  Keeping them at the upper edge (as in the first seed) forced more
+    # than thirty control nets to cross the entire board and made the design
+    # needlessly hostile to both manual and automatic routing.
     fixed = {
         "U1": (14, 14, "F"), "J2": (52, 3.5, "F"),
         "U2": (15, 49, "F"), "U3": (3, 49, "F"),
         "Q1": (6, 52, "F"), "U4": (23, 49, "F"),
-        "U20": (29, 50, "F"), "U5": (38, 50, "F"),
-        "U6": (50, 50, "F"), "U7": (59, 52, "F"),
-        "U8": (68, 52, "F"), "U9": (74, 52, "F"),
-        "U10": (81, 50, "F"), "MOD1": (16, 33, "B"),
+        "U20": (28, 51, "F"), "U5": (33, 43, "F"),
+        "U6": (45, 45.5, "F"), "U7": (57, 43, "F"),
+        "U8": (67, 45, "F"), "U9": (76, 51, "F"),
+        "U10": (79, 42, "F"), "MOD1": (16, 33, "B"),
         "U11": (31, 32, "F"), "U12": (25, 20, "F"),
         "U13": (31, 21, "F"), "U14": (46, 30, "F"),
         "U15": (45, 15, "F"), "U16": (52, 15, "F"),
         "J1": (67.5, 30, "F"), "U17": (80, 32, "F"),
-        "U18": (68, 11, "F"), "U19": (76, 11, "F"),
+        "U18": (35, 52, "F"), "U19": (62, 52, "F"),
         "BZ1": (85, 7, "F"), "Q2": (79, 5, "B"),
         "D2": (79, 9, "B"), "U21": (78, 18, "B"),
-        "J4": (82.5, 18, "F"), "U22": (22, 8, "B"),
+        "J4": (82.5, 18, "F"), "U22": (38, 18, "B"),
         "J12": (32, 8.5, "F"), "ESD1": (57, 12, "F"),
         "ESD2": (41, 7, "F"),
         "ESD3": (41, 9.5, "F"), "J3": (5.5, 57.8, "F"),
@@ -823,9 +829,9 @@ def apply_placement() -> None:
         "J11": (4.5, 37, "F"), "J13": (86, 30, "F"),
         "ESD4": (73, 55, "F"), "F1": (45, 5, "F"),
         "TVS1": (45, 8, "F"), "JP1": (40, 36, "F"),
-        "Y1": (34, 42, "F"), "Y2": (36, 21, "F"),
-        "L1": (24, 53, "F"), "L2": (38, 45.5, "F"),
-        "L3": (58, 47, "F"), "L4": (81, 35, "F"),
+        "Y1": (30.5, 38.5, "F"), "Y2": (36, 21, "F"),
+        "L1": (24, 54, "F"), "L2": (27, 45, "F"),
+        "L4": (81, 35, "F"),
         "L5": (78, 45, "F"), "D1": (86, 39, "F"),
         "FB1": (27, 38, "F"), "FB2": (47, 41, "F"),
         "FB3": (51, 41, "F"), "FB4": (55, 41, "F"),
@@ -833,12 +839,15 @@ def apply_placement() -> None:
     for ref, position in fixed.items():
         put(ref, *position)
     put("J2", 52, 5.4, "F", 90)
+    # Put the 5-V boost switch-node pad on the U6-facing side of L3.
+    put("L3", 52, 48.5, "F", 180)
 
     # L1 critical support networks.
     grid(["R30", "R31", "R32", "R33", "R34", "R35"],
          43, 5, 2, 1.6, 1.6)
     grid(["R36", "R37", "R38", "R39", "C24", "C25", "C26", "C27"],
          26, 5, 4, 2.0, 2.0, "B")
+    put("C27", 41, 17, "B")
     grid(["R42", "R43", "R44", "R45", "R46", "R47",
           "C28", "C29", "C30", "C31", "C32", "C33", "C34"],
          8.5, 42.5, 5, 2.5, 2.2)
@@ -858,8 +867,11 @@ def apply_placement() -> None:
     grid(["R10", "R11", "R12", "R53", "C8"], 40, 27, 1, 2.0, 1.7)
     grid(["R18", "C15", "C16"], 34, 18, 3, 1.8, 1.7)
     put("R58", 57, 40, "F")
+    # AMT supply/boot parts fit beneath the centre of the LQFP body.  Keep
+    # them away from the perimeter lead rows so their ground/signal vias do
+    # not collide with opposite-side pads.
     grid(["R13", "C9", "C10", "C11", "C12", "C68", "C69", "C70",
-          "C71", "C72", "C73"], 39, 25, 4, 2.0, 2.0, "B")
+          "C71", "C72", "C73"], 42, 27, 4, 2.0, 2.0, "B")
     grid(["R9", "C53", "C54", "C55", "C56"], 78, 38.5, 3, 2.2, 1.8)
     grid(["R6", "R7", "C17"], 80, 4, 3, 1.7, 1.7)
     grid(["R8", "R16", "C20", "C21"], 75, 21, 4, 2.0, 1.8, "B")
@@ -867,10 +879,14 @@ def apply_placement() -> None:
     grid(["R59", "R60", "R61"], 25, 20, 3, 1.8, 1.8)
     grid(["R64", "R65", "R66", "R67", "R68", "R69"],
          28, 25, 3, 1.8, 1.6, "B")
+    # Cell-protection gate resistors must sit with U3/Q1.  In the initial
+    # catch-all bottom grid they ended up at the opposite board edge.
+    grid(["R62", "R63"], 9, 50, 1, 1.8, 2.0, "B")
     put("R103", 38, 30, "F")
     put("R104", 18, 18, "F")
     grid(["R95", "R96", "R97", "R98", "C78", "C79", "C80", "C81"],
          20, 11, 4, 1.8, 1.8, "B")
+    put("C79", 3, 16, "B")
     grid(["R99", "R100"], 20, 19, 2, 1.8, 1.8, "B")
     grid(["R101", "C82", "R102", "C83"], 80, 3, 2, 1.8, 1.8, "B")
     grid(["C74", "C75", "C76"], 70, 47, 3, 3.0, 2.5, "B")
@@ -884,9 +900,18 @@ def apply_placement() -> None:
     put("C70", 45, 15, "B")   # U15 AMT boot flash
     put("C71", 52, 15, "B")   # U16 AMT flash mux
     put("C1", 68, 11, "B")    # U18 GPIO expander
-    put("C53", 80, 32, "B")   # U17 backlight boost input
+    put("C53", 83, 27, "B")   # U17 backlight boost input
     put("C67", 3, 49, "B")    # U3 cell protector sense supply
     put("C4", 59, 52, "B")    # U7 video load-switch output
+
+    # Control pull-ups/filters are placed on L4 immediately below their
+    # expanders.  This creates short via escapes to J9 and removes the dense
+    # top-to-bottom ratsnest that defeated the first routing attempt.
+    grid(["R70", "R73", "R74", "R75", "R76", "R77", "R78", "R79",
+          "R80", "R81", "R82", "R83", "R84", "R85", "R86", "R87",
+          "R88"], 31, 47, 6, 2.0, 1.6, "B")
+    grid(["R89", "R90", "R91", "R92", "R93", "R94"],
+         50, 47, 3, 2.0, 1.6, "B")
 
     # Remaining configuration parts and factory pads live on L4.  Their pack
     # starts to the right of the RX5808 shield/inspection rectangle.
@@ -1254,6 +1279,211 @@ def add_exposed_pad_thermal_vias(board: pcbnew.BOARD, nets: dict) -> None:
                 via.SetNet(nets[G])
                 footprint.Add(via)
 
+
+def configure_plane_connections(board: pcbnew.BOARD) -> None:
+    """Use solid L2 ground connections for high-current edge connectors."""
+    for reference in ("J3", "J6"):
+        footprint = board.FindFootprintByReference(reference)
+        for pad in footprint.Pads():
+            if (pad.GetNetname() == G and
+                    pad.GetAttribute() == pcbnew.PAD_ATTRIB_PTH):
+                pad.SetLocalZoneConnection(pcbnew.ZONE_CONNECTION_FULL)
+
+
+def add_ground_fanout(board: pcbnew.BOARD, nets: dict) -> None:
+    """Give every outer-layer SMD ground pad a short, tented L2 escape.
+
+    A continuous inner ground plane is only useful when the outer-layer pads
+    can actually reach it.  Leaving this to the autorouter produced hundreds
+    of long ground detours and even signal tracks on the intended plane.  The
+    deterministic local fanout below keeps L2 free of signal routing and makes
+    each ground connection explicit before bulk routing starts.
+    """
+    ground = nets[G]
+    rule_by_class = {name: rules for name, rules in NET_CLASS_RULES}
+    default_clearance = rule_by_class["Default"]["clearance"]
+    net_clearance = {
+        net: rule_by_class[class_name]["clearance"]
+        for class_name, members in NET_CLASS_MEMBERS.items()
+        for net in members
+    }
+    pads = [pad for fp in board.GetFootprints() for pad in fp.Pads()]
+    through = [pad for pad in pads
+               if pad.GetAttribute() in (pcbnew.PAD_ATTRIB_PTH,
+                                         pcbnew.PAD_ATTRIB_NPTH)]
+    occupied_vias: list[tuple[float, float]] = [
+        (pad.GetPosition().x / 1_000_000, pad.GetPosition().y / 1_000_000)
+        for pad in through
+    ]
+    ground_access: list[tuple[float, float]] = [
+        (pad.GetPosition().x / 1_000_000, pad.GetPosition().y / 1_000_000)
+        for pad in through if pad.GetNetname() == G
+    ]
+
+    def bbox_mm(pad: pcbnew.PAD) -> tuple[float, float, float, float]:
+        box = pad.GetBoundingBox()
+        return (box.GetLeft() / 1_000_000, box.GetTop() / 1_000_000,
+                box.GetRight() / 1_000_000, box.GetBottom() / 1_000_000)
+
+    def copper_layer(pad: pcbnew.PAD) -> int:
+        return (pcbnew.B_Cu if
+                pad.GetParentFootprint().GetLayer() == pcbnew.B_Cu else
+                pcbnew.F_Cu)
+
+    obstacles = [(pad, bbox_mm(pad)) for pad in pads]
+
+    def point_clear(x: float, y: float, own: pcbnew.PAD) -> bool:
+        if not (0.65 <= x <= 89.35 and 0.65 <= y <= 59.35):
+            return False
+        if any(math.hypot(x - vx, y - vy) < 0.65
+               for vx, vy in occupied_vias):
+            return False
+        for other, (left, top, right, bottom) in obstacles:
+            if other is own or other.GetNetname() == G:
+                continue
+            clearance = (0.225 + max(0.10, net_clearance.get(
+                other.GetNetname(), default_clearance)) + 0.02)
+            if (left - clearance <= x <= right + clearance and
+                    top - clearance <= y <= bottom + clearance):
+                return False
+        return True
+
+    def segment_clear(x1: float, y1: float, x2: float, y2: float,
+                      own: pcbnew.PAD) -> bool:
+        # Sampling is conservative enough for the sub-2-mm straight stubs and
+        # avoids inventing a second geometry engine beside KiCad's DRC.
+        length = math.hypot(x2 - x1, y2 - y1)
+        samples = max(2, math.ceil(length / 0.10))
+        for index in range(1, samples + 1):
+            scale = index / samples
+            x = x1 + (x2 - x1) * scale
+            y = y1 + (y2 - y1) * scale
+            for other, (left, top, right, bottom) in obstacles:
+                if other is own or other.GetNetname() == G:
+                    continue
+                if not other.IsOnLayer(copper_layer(own)):
+                    continue
+                clearance = (0.10 + max(0.10, net_clearance.get(
+                    other.GetNetname(), default_clearance)) + 0.02)
+                if (left - clearance <= x <= right + clearance and
+                        top - clearance <= y <= bottom + clearance):
+                    return False
+        return True
+
+    smd_ground = [pad for pad in pads
+                  if pad.GetNetname() == G and
+                  pad.GetAttribute() == pcbnew.PAD_ATTRIB_SMD]
+    smd_ground.sort(key=lambda pad: (
+        pad.GetParentFootprint().GetReference(), str(pad.GetNumber()),
+        pad.GetPosition().x, pad.GetPosition().y))
+    missing: list[str] = []
+    for pad in smd_ground:
+        pad_box = pad.GetBoundingBox()
+        if any(other.GetNetname() == G and
+               other.GetAttribute() == pcbnew.PAD_ATTRIB_PTH and
+               pad_box.Intersects(other.GetBoundingBox())
+               for other in through):
+            continue
+        position = pad.GetPosition()
+        x0, y0 = position.x / 1_000_000, position.y / 1_000_000
+        footprint = pad.GetParentFootprint()
+        # Adjacent ground pins may share a nearby via or grounded through-pad;
+        # this is especially useful for consecutive LQFP supply pins.
+        existing = next(((x, y) for x, y in
+                         sorted(ground_access,
+                                key=lambda point: math.hypot(
+                                    point[0] - x0, point[1] - y0))
+                         if math.hypot(x - x0, y - y0) <= 4.00 and
+                         segment_clear(x0, y0, x, y, pad)), None)
+        if existing is not None:
+            track = pcbnew.PCB_TRACK(board)
+            track.SetStart(position)
+            track.SetEnd(pcbnew.VECTOR2I_MM(*existing))
+            track.SetWidth(pcbnew.FromMM(0.20))
+            track.SetLayer(copper_layer(pad))
+            track.SetNet(ground)
+            board.Add(track)
+            continue
+        center = footprint.GetPosition()
+        dx, dy = x0 - center.x / 1_000_000, y0 - center.y / 1_000_000
+        if abs(dx) >= abs(dy):
+            outward = (1 if dx >= 0 else -1, 0)
+        else:
+            outward = (0, 1 if dy >= 0 else -1)
+        directions = [outward, (1, 0), (-1, 0), (0, 1), (0, -1),
+                      (1, 1), (-1, 1), (1, -1), (-1, -1)]
+        # The two large coax ground lands intentionally use a centred
+        # stitching via; moving outward would put J10.2 beyond the board edge.
+        candidate = ((x0, y0, None) if
+                     footprint.GetReference() == "J10" else None)
+        for distance in (0.75, 0.95, 1.20, 1.50, 1.85, 2.25, 2.80,
+                         3.50):
+            if candidate:
+                break
+            for ux, uy in directions:
+                norm = math.hypot(ux, uy)
+                x = x0 + distance * ux / norm
+                y = y0 + distance * uy / norm
+                if (point_clear(x, y, pad) and
+                        segment_clear(x0, y0, x, y, pad)):
+                    candidate = (x, y, None)
+                    break
+            if candidate:
+                break
+        # Fine-pitch perimeter pads often cannot accept a via on their centre
+        # line because the via annulus would touch both neighbouring pads.
+        # Escape radially first, then move tangentially outside the lead row.
+        if candidate is None:
+            ox, oy = outward
+            tangents = ((-oy, ox), (oy, -ox))
+            for radial in (0.80, 1.00, 1.25, 1.55):
+                waypoint = (x0 + radial * ox, y0 + radial * oy)
+                if not segment_clear(x0, y0, *waypoint, pad):
+                    continue
+                for tangent in (0.60, 0.85, 1.10, 1.40):
+                    for tx, ty in tangents:
+                        x = waypoint[0] + tangent * tx
+                        y = waypoint[1] + tangent * ty
+                        if (point_clear(x, y, pad) and
+                                segment_clear(*waypoint, x, y, pad)):
+                            candidate = (x, y, waypoint)
+                            break
+                    if candidate:
+                        break
+                if candidate:
+                    break
+        if candidate is None:
+            missing.append(
+                f"{footprint.GetReference()}.{pad.GetNumber()}")
+            continue
+        x, y, waypoint = candidate
+        via = pcbnew.PCB_VIA(board)
+        via.SetPosition(pcbnew.VECTOR2I_MM(x, y))
+        via.SetWidth(pcbnew.FromMM(0.45))
+        via.SetDrill(pcbnew.FromMM(0.20))
+        via.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu)
+        via.SetNet(ground)
+        via.SetFrontTentingMode(pcbnew.TENTING_MODE_TENTED)
+        via.SetBackTentingMode(pcbnew.TENTING_MODE_TENTED)
+        board.Add(via)
+        occupied_vias.append((x, y))
+        ground_access.append((x, y))
+        points = [(x0, y0)]
+        if waypoint is not None:
+            points.append(waypoint)
+        points.append((x, y))
+        for start, end in zip(points, points[1:]):
+            track = pcbnew.PCB_TRACK(board)
+            track.SetStart(pcbnew.VECTOR2I_MM(*start))
+            track.SetEnd(pcbnew.VECTOR2I_MM(*end))
+            track.SetWidth(pcbnew.FromMM(0.20))
+            track.SetLayer(copper_layer(pad))
+            track.SetNet(ground)
+            board.Add(track)
+    if missing:
+        raise RuntimeError(
+            "no legal ground fanout via for " + ", ".join(missing))
+
 def generate_board():
     # pcbnew assigns UUIDs while objects and library footprints are added.
     # A fixed generator seed makes repeated source generation byte-stable;
@@ -1265,12 +1495,14 @@ def generate_board():
     nets=ensure_nets(b)
     for part in P: make_fp(b,part,nets)
     legalize_small_parts(b)
+    configure_plane_connections(b)
     for reference, x, y, side in [
             ("FID1", 5, 24, "F"), ("FID2", 76, 17, "F"),
             ("FID3", 85, 51, "F"), ("FID4", 5, 8, "B"),
             ("FID5", 86, 9, "B"), ("FID6", 85, 51, "B")]:
         add_fiducial(b, reference, x, y, side)
     add_exposed_pad_thermal_vias(b, nets)
+    add_ground_fanout(b, nets)
     for a,c in [((0,0),(90,0)),((90,0),(90,60)),((90,60),(0,60)),((0,60),(0,0))]:
         s=pcbnew.PCB_SHAPE(b); s.SetShape(pcbnew.SHAPE_T_SEGMENT); s.SetStart(pcbnew.VECTOR2I_MM(*a)); s.SetEnd(pcbnew.VECTOR2I_MM(*c)); s.SetLayer(pcbnew.Edge_Cuts); s.SetWidth(pcbnew.FromMM(.1)); b.Add(s)
     # Continuous L2 ground plane.
@@ -1291,8 +1523,6 @@ def generate_board():
         rect.SetLayer(pcbnew.User_2); rect.SetWidth(pcbnew.FromMM(0.15)); b.Add(rect)
         label=pcbnew.PCB_TEXT(b); label.SetText(name); label.SetPosition(pcbnew.VECTOR2I_MM(start[0],max(0.4,start[1]+0.5))); label.SetLayer(pcbnew.User_2); label.SetTextSize(pcbnew.VECTOR2I_MM(0.65,0.65)); b.Add(label)
     title=pcbnew.PCB_TEXT(b); title.SetText("OpenPocket Rev A\nEngineering Prototype"); title.SetPosition(pcbnew.VECTOR2I_MM(60,30)); title.SetLayer(pcbnew.B_SilkS); title.SetMirrored(True); title.SetTextSize(pcbnew.VECTOR2I_MM(0.8,0.8)); b.Add(title)
-    # KiCad fills zones during DRC/plot; keeping generation headless avoids a
-    # known pcbnew 9.0 SWIG crash in ZONE_FILLER without a GUI frame.
     pcbnew.SaveBoard(str(BOARD),b)
     # The 0.4-mm AMT630A pitch is designed to JLC's 0.10-mm copper rule.
     board_text=BOARD.read_text()
@@ -1310,6 +1540,23 @@ def generate_board():
         if not pcbnew.ImportSpecctraSES(routed, str(ROUTING)):
             raise RuntimeError(f"cannot import routing session {ROUTING}")
         pcbnew.SaveBoard(str(BOARD), routed)
+    # ZONE_FILLER is unstable on a board freshly created through KiCad 9's
+    # SWIG API, but reliable after reloading the saved file in a clean process.
+    # Keep that isolation explicit so generated boards always store valid L2
+    # copper and DRC/Specctra never treat GND as an ordinary unrouted signal.
+    subprocess.run([sys.executable, str(__file__), "--stage", "fill"],
+                   check=True)
+
+
+def fill_board() -> None:
+    project = ROOT / "openpocket-rev-a.kicad_pro"
+    project_bytes = project.read_bytes()
+    board = pcbnew.LoadBoard(str(BOARD))
+    pcbnew.ZONE_FILLER(board).Fill(board.Zones())
+    pcbnew.SaveBoard(str(BOARD), board)
+    # Loading/saving a board can make pcbnew reorder netclasses in the
+    # project file.  Filling copper must not create a noisy semantic no-op.
+    project.write_bytes(project_bytes)
 
 def symbol_library():
     lines=['(kicad_symbol_lib (version 20231120) (generator openpocket)']
@@ -1551,7 +1798,7 @@ def tables():
 if __name__ == "__main__":
     import argparse
     parser=argparse.ArgumentParser()
-    parser.add_argument("--stage",choices=("all","lib","sch-init","sch-group","sch-connect-init","sch-connect-group","board","tables"),default="all")
+    parser.add_argument("--stage",choices=("all","lib","sch-init","sch-group","sch-connect-init","sch-connect-group","board","fill","tables"),default="all")
     parser.add_argument("--group",type=int)
     args=parser.parse_args()
     ROOT.mkdir(parents=True,exist_ok=True)
@@ -1564,5 +1811,6 @@ if __name__ == "__main__":
     elif args.stage=="sch-connect-init": schematic_connect_init()
     elif args.stage=="sch-connect-group": schematic_connect_group(args.group)
     if args.stage in ("all","board"): generate_board()
+    elif args.stage=="fill": fill_board()
     if args.stage in ("all","tables"): tables()
     print(f"generated stage={args.stage} parts={len(P)} groups={len(schematic_groups())}")

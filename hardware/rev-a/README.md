@@ -20,11 +20,12 @@ release script intentionally refuses to generate Gerbers or a manufacturing
 ZIP until every blocking item in `release-status.json` is resolved with a
 reviewed source artifact.
 
-The present generated KiCad draft still has ERC errors, DRC errors and
-unrouted nets. It is therefore not a fabrication/order package. The source-
-built AMT630A firmware and circuit research may be reviewed independently, but
-they do not waive schematic, layout, Gerber and first-article gates. Software
-tests are not hardware validation.
+The generated KiCad draft has a clean ERC and a completed L2 ground fanout,
+but signal routing and final DRC remain incomplete. It is therefore not a
+fabrication/order package. The source-built AMT630A firmware and circuit
+research may be reviewed independently, but they do not waive schematic,
+layout, Gerber and first-article gates. Software tests are not hardware
+validation.
 
 ## Design constraints
 
