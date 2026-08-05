@@ -1,0 +1,2791 @@
+{
+  "BZ1": {
+    "mpn": "YS-SBZ7525C05R30",
+    "package": "SMD-7.5x7.5",
+    "pins": {
+      "1": "BUZZER_5V",
+      "2": "BUZZER_LOW"
+    }
+  },
+  "C1": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "3V3_LOGIC",
+      "2": "GND"
+    }
+  },
+  "C10": {
+    "mpn": "CL10A475KP8NNNC",
+    "package": "0603",
+    "pins": {
+      "1": "AMT_CORE1",
+      "2": "GND"
+    }
+  },
+  "C11": {
+    "mpn": "CL10A475KP8NNNC",
+    "package": "0603",
+    "pins": {
+      "1": "AMT_CORE2",
+      "2": "GND"
+    }
+  },
+  "C12": {
+    "mpn": "CL10A475KP8NNNC",
+    "package": "0603",
+    "pins": {
+      "1": "AMT_CORE3",
+      "2": "GND"
+    }
+  },
+  "C15": {
+    "mpn": "CC0402JRNPO9BN330",
+    "package": "0402",
+    "pins": {
+      "1": "AMT_XTAL_OUT",
+      "2": "GND"
+    }
+  },
+  "C16": {
+    "mpn": "CC0402JRNPO9BN330",
+    "package": "0402",
+    "pins": {
+      "1": "AMT_XTAL_IN",
+      "2": "GND"
+    }
+  },
+  "C17": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "SYS_SWITCHED_5V",
+      "2": "GND"
+    }
+  },
+  "C18": {
+    "mpn": "CL21A106KAYNNNE",
+    "package": "0805",
+    "pins": {
+      "1": "SYS_SWITCHED_5V",
+      "2": "GND"
+    }
+  },
+  "C19": {
+    "mpn": "CL21A106KAYNNNE",
+    "package": "0805",
+    "pins": {
+      "1": "DISPLAY_3V3",
+      "2": "GND"
+    }
+  },
+  "C2": {
+    "mpn": "CL21A106KAYNNNE",
+    "package": "0805",
+    "pins": {
+      "1": "SYS_ALWAYS",
+      "2": "GND"
+    }
+  },
+  "C20": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "AUDIO_ENABLE",
+      "2": "GND"
+    }
+  },
+  "C21": {
+    "mpn": "CL21A106KAYNNNE",
+    "package": "0805",
+    "pins": {
+      "1": "SYS_SWITCHED_5V",
+      "2": "GND"
+    }
+  },
+  "C22": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "RX_RSSI",
+      "2": "GND"
+    }
+  },
+  "C23": {
+    "mpn": "CL05B103KB5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "MASTER_CT",
+      "2": "GND"
+    }
+  },
+  "C24": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "3V3_SD",
+      "2": "GND"
+    }
+  },
+  "C25": {
+    "mpn": "CL21A106KAYNNNE",
+    "package": "0805",
+    "pins": {
+      "1": "3V3_SD",
+      "2": "GND"
+    }
+  },
+  "C26": {
+    "mpn": "CL31A476MPHNNNE",
+    "package": "1206",
+    "pins": {
+      "1": "3V3_SD",
+      "2": "GND"
+    }
+  },
+  "C27": {
+    "mpn": "CL05B102KB5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "3V3_SD_CT",
+      "2": "GND"
+    }
+  },
+  "C28": {
+    "mpn": "CGA0805X7R106K250MT",
+    "package": "0805",
+    "pins": {
+      "1": "PMID",
+      "2": "GND"
+    }
+  },
+  "C29": {
+    "mpn": "CGA0603X7R475K100JT",
+    "package": "0603",
+    "pins": {
+      "1": "REGN",
+      "2": "GND"
+    }
+  },
+  "C3": {
+    "mpn": "CL21A106KAYNNNE",
+    "package": "0805",
+    "pins": {
+      "1": "SYS_SWITCHED",
+      "2": "GND"
+    }
+  },
+  "C30": {
+    "mpn": "CC0402KRX7R9BB473",
+    "package": "0402",
+    "pins": {
+      "1": "CHG_BTST",
+      "2": "CHG_SW"
+    }
+  },
+  "C31": {
+    "mpn": "CGA0805X7R106K250MT",
+    "package": "0805",
+    "pins": {
+      "1": "BAT_PROTECTED",
+      "2": "GND"
+    }
+  },
+  "C32": {
+    "mpn": "CGA0805X7R226M100MT",
+    "package": "0805",
+    "pins": {
+      "1": "SYS_ALWAYS",
+      "2": "GND"
+    }
+  },
+  "C33": {
+    "mpn": "CGA0805X7R226M100MT",
+    "package": "0805",
+    "pins": {
+      "1": "SYS_ALWAYS",
+      "2": "GND"
+    }
+  },
+  "C34": {
+    "mpn": "CGA0805X7R106K250MT",
+    "package": "0805",
+    "pins": {
+      "1": "VBUS_USB",
+      "2": "GND"
+    }
+  },
+  "C35": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "3V3_VAUX",
+      "2": "GND"
+    }
+  },
+  "C36": {
+    "mpn": "CL21A106KAYNNNE",
+    "package": "0805",
+    "pins": {
+      "1": "SYS_SWITCHED",
+      "2": "GND"
+    }
+  },
+  "C37": {
+    "mpn": "CL21A106KAYNNNE",
+    "package": "0805",
+    "pins": {
+      "1": "SYS_SWITCHED",
+      "2": "GND"
+    }
+  },
+  "C38": {
+    "mpn": "CGA0805X7R226M100MT",
+    "package": "0805",
+    "pins": {
+      "1": "3V3_LOGIC",
+      "2": "GND"
+    }
+  },
+  "C39": {
+    "mpn": "CGA0805X7R226M100MT",
+    "package": "0805",
+    "pins": {
+      "1": "3V3_LOGIC",
+      "2": "GND"
+    }
+  },
+  "C4": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "5V_VIDEO_FILT",
+      "2": "GND"
+    }
+  },
+  "C40": {
+    "mpn": "CL10A225KO8NNNC",
+    "package": "0603",
+    "pins": {
+      "1": "5V_VCC",
+      "2": "GND"
+    }
+  },
+  "C41": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "5V_BOOT",
+      "2": "L5V_SW"
+    }
+  },
+  "C42": {
+    "mpn": "CC0402KRX7R9BB473",
+    "package": "0402",
+    "pins": {
+      "1": "5V_SS",
+      "2": "GND"
+    }
+  },
+  "C43": {
+    "mpn": "CL05B472KB5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "5V_COMP_RC",
+      "2": "GND"
+    }
+  },
+  "C44": {
+    "mpn": "CL05B222KB5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "5V_COMP",
+      "2": "GND"
+    }
+  },
+  "C45": {
+    "mpn": "CGA0805X7R226M100MT",
+    "package": "0805",
+    "pins": {
+      "1": "SYS_SWITCHED",
+      "2": "GND"
+    }
+  },
+  "C46": {
+    "mpn": "CGA0805X7R226M100MT",
+    "package": "0805",
+    "pins": {
+      "1": "SYS_SWITCHED",
+      "2": "GND"
+    }
+  },
+  "C47": {
+    "mpn": "CGA0805X7R226M100MT",
+    "package": "0805",
+    "pins": {
+      "1": "SYS_SWITCHED_5V",
+      "2": "GND"
+    }
+  },
+  "C48": {
+    "mpn": "CGA0805X7R226M100MT",
+    "package": "0805",
+    "pins": {
+      "1": "SYS_SWITCHED_5V",
+      "2": "GND"
+    }
+  },
+  "C49": {
+    "mpn": "CGA0805X7R226M100MT",
+    "package": "0805",
+    "pins": {
+      "1": "SYS_SWITCHED_5V",
+      "2": "GND"
+    }
+  },
+  "C5": {
+    "mpn": "CL21A106KAYNNNE",
+    "package": "0805",
+    "pins": {
+      "1": "5V_VIDEO_FILT",
+      "2": "GND"
+    }
+  },
+  "C50": {
+    "mpn": "CGA0805X7R226M100MT",
+    "package": "0805",
+    "pins": {
+      "1": "SYS_SWITCHED_5V",
+      "2": "GND"
+    }
+  },
+  "C51": {
+    "mpn": "CL21A106KAYNNNE",
+    "package": "0805",
+    "pins": {
+      "1": "5V_DISPLAY",
+      "2": "GND"
+    }
+  },
+  "C52": {
+    "mpn": "CGA0805X7R226M100MT",
+    "package": "0805",
+    "pins": {
+      "1": "DISPLAY_3V3",
+      "2": "GND"
+    }
+  },
+  "C53": {
+    "mpn": "CGA0603X7R475K100JT",
+    "package": "0603",
+    "pins": {
+      "1": "5V_DISPLAY",
+      "2": "GND"
+    }
+  },
+  "C54": {
+    "mpn": "CC0402KRX7R8BB224",
+    "package": "0402",
+    "pins": {
+      "1": "BL_COMP",
+      "2": "GND"
+    }
+  },
+  "C55": {
+    "mpn": "CC0805KKX7R9BB105",
+    "package": "0805",
+    "pins": {
+      "1": "BL_LED_A",
+      "2": "GND"
+    }
+  },
+  "C56": {
+    "mpn": "CC0805KKX7R9BB105",
+    "package": "0805",
+    "pins": {
+      "1": "BL_LED_A",
+      "2": "GND"
+    }
+  },
+  "C57": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "5V_VIDEO_FILT",
+      "2": "GND"
+    }
+  },
+  "C58": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "5V_VIDEO_FILT",
+      "2": "GND"
+    }
+  },
+  "C59": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "5V_VIDEO_FILT",
+      "2": "GND"
+    }
+  },
+  "C6": {
+    "mpn": "EEEFK1A471P",
+    "package": "SMD-D10",
+    "pins": {
+      "1": "5V_VIDEO_FILT",
+      "2": "GND"
+    }
+  },
+  "C60": {
+    "mpn": "CL21A106KAYNNNE",
+    "package": "0805",
+    "pins": {
+      "1": "5V_VIDEO_FILT",
+      "2": "GND"
+    }
+  },
+  "C61": {
+    "mpn": "CGA0402X7R474K160GT",
+    "package": "0402",
+    "pins": {
+      "1": "GAUGE_CTG",
+      "2": "GND"
+    }
+  },
+  "C62": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "GAUGE_CELL",
+      "2": "GND"
+    }
+  },
+  "C63": {
+    "mpn": "CL05B472KB5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "USB_SHIELD",
+      "2": "GND"
+    }
+  },
+  "C64": {
+    "mpn": "CL05B102KB5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "5V_VIDEO_CT",
+      "2": "GND"
+    }
+  },
+  "C65": {
+    "mpn": "CL05B102KB5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "5V_DISPLAY_CT",
+      "2": "GND"
+    }
+  },
+  "C66": {
+    "mpn": "CL05B102KB5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "5V_ELRS_CT",
+      "2": "GND"
+    }
+  },
+  "C67": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "BAT_SENSE",
+      "2": "BAT_CELL_NEG"
+    }
+  },
+  "C68": {
+    "mpn": "CL05A105KA5NQNC",
+    "package": "0402",
+    "pins": {
+      "1": "AMT_VCOM",
+      "2": "GND"
+    }
+  },
+  "C69": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "DISPLAY_3V3_A",
+      "2": "GND"
+    }
+  },
+  "C7": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "VRX_VIDEO_TO_OSD",
+      "2": "VRX_VIDEO_COUPLED"
+    }
+  },
+  "C70": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "DISPLAY_3V3_D",
+      "2": "GND"
+    }
+  },
+  "C71": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "DISPLAY_3V3_D",
+      "2": "GND"
+    }
+  },
+  "C72": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "DISPLAY_3V3_D",
+      "2": "GND"
+    }
+  },
+  "C73": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "DISPLAY_3V3_A",
+      "2": "GND"
+    }
+  },
+  "C74": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "5V_ELRS",
+      "2": "GND"
+    }
+  },
+  "C75": {
+    "mpn": "CL21A106KAYNNNE",
+    "package": "0805",
+    "pins": {
+      "1": "5V_ELRS",
+      "2": "GND"
+    }
+  },
+  "C76": {
+    "mpn": "EEEFK1A221P",
+    "package": "SMD-D8",
+    "pins": {
+      "1": "5V_ELRS",
+      "2": "GND"
+    }
+  },
+  "C77": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "SYS_SWITCHED_5V",
+      "2": "GND"
+    }
+  },
+  "C78": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "GIMBAL_LX",
+      "2": "GND"
+    }
+  },
+  "C79": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "GIMBAL_LY",
+      "2": "GND"
+    }
+  },
+  "C8": {
+    "mpn": "CL05B223KB5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "AMT_CVBS_PRE",
+      "2": "AMT_CVBS1"
+    }
+  },
+  "C80": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "GIMBAL_RX",
+      "2": "GND"
+    }
+  },
+  "C81": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "GIMBAL_RY",
+      "2": "GND"
+    }
+  },
+  "C82": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "BUZZER_5V",
+      "2": "GND"
+    }
+  },
+  "C83": {
+    "mpn": "CL05B103KB5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "BUZZER_SNUB",
+      "2": "BUZZER_5V"
+    }
+  },
+  "C9": {
+    "mpn": "CL05B104KO5NNNC",
+    "package": "0402",
+    "pins": {
+      "1": "DISPLAY_3V3_D",
+      "2": "GND"
+    }
+  },
+  "D1": {
+    "mpn": "B240A-13-F",
+    "package": "SMA",
+    "pins": {
+      "1": "BL_LED_A",
+      "2": "BL_SW"
+    }
+  },
+  "D2": {
+    "mpn": "1N4148W",
+    "package": "SOD-123",
+    "pins": {
+      "1": "BUZZER_5V",
+      "2": "BUZZER_LOW"
+    }
+  },
+  "ESD1": {
+    "mpn": "TPD2EUSB30DRTR",
+    "package": "SOT-9X3-3",
+    "pins": {
+      "1": "USB_D+",
+      "2": "USB_D-",
+      "3": "GND"
+    }
+  },
+  "ESD2": {
+    "mpn": "TPD4E001DRLR",
+    "package": "SOT-563",
+    "pins": {
+      "1": "SD_CLK",
+      "2": "SD_CMD",
+      "3": "GND",
+      "4": "SD_D0",
+      "5": "SD_DAT1",
+      "6": "3V3_SD"
+    }
+  },
+  "ESD3": {
+    "mpn": "TPD4E001DRLR",
+    "package": "SOT-563",
+    "pins": {
+      "1": "SD_DAT2",
+      "2": "SD_DAT3",
+      "3": "GND",
+      "4": "NC",
+      "5": "NC",
+      "6": "3V3_SD"
+    }
+  },
+  "ESD4": {
+    "mpn": "TPD2EUSB30DRTR",
+    "package": "SOT-9X3-3",
+    "pins": {
+      "1": "CRSF_TX",
+      "2": "CRSF_RX",
+      "3": "GND"
+    }
+  },
+  "F1": {
+    "mpn": "1206L200PR",
+    "package": "1206",
+    "pins": {
+      "1": "VBUS_RAW",
+      "2": "VBUS_USB"
+    }
+  },
+  "FB1": {
+    "mpn": "BLM21PG221SN1D",
+    "package": "0805",
+    "pins": {
+      "1": "5V_VIDEO",
+      "2": "5V_VIDEO_FILT"
+    }
+  },
+  "FB2": {
+    "mpn": "BLM18AG601SN1D",
+    "package": "0603",
+    "pins": {
+      "1": "DISPLAY_3V3",
+      "2": "DISPLAY_3V3_A"
+    }
+  },
+  "FB3": {
+    "mpn": "BLM18AG601SN1D",
+    "package": "0603",
+    "pins": {
+      "1": "DISPLAY_3V3",
+      "2": "DISPLAY_3V3_D"
+    }
+  },
+  "FB4": {
+    "mpn": "BLM18AG601SN1D",
+    "package": "0603",
+    "pins": {
+      "1": "DISPLAY_3V3",
+      "2": "PANEL_3V3"
+    }
+  },
+  "J1": {
+    "mpn": "FH12-40S-0.5SH(55)",
+    "package": "FH12-40S-0.5SH(55)",
+    "pins": {
+      "1": "BL_LED_K",
+      "10": "LCD_R5",
+      "11": "LCD_R6",
+      "12": "LCD_R7",
+      "13": "LCD_G0",
+      "14": "LCD_G1",
+      "15": "LCD_G2",
+      "16": "LCD_G3",
+      "17": "LCD_G4",
+      "18": "LCD_G5",
+      "19": "LCD_G6",
+      "2": "BL_LED_A",
+      "20": "LCD_G7",
+      "21": "LCD_B0",
+      "22": "LCD_B1",
+      "23": "LCD_B2",
+      "24": "LCD_B3",
+      "25": "LCD_B4",
+      "26": "LCD_B5",
+      "27": "LCD_B6",
+      "28": "LCD_B7",
+      "29": "GND",
+      "3": "GND",
+      "30": "LCD_DCLK",
+      "31": "LCD_DISP",
+      "32": "LCD_HSYNC",
+      "33": "LCD_VSYNC",
+      "34": "LCD_DE",
+      "35": "NC",
+      "36": "GND",
+      "37": "NC",
+      "38": "NC",
+      "39": "NC",
+      "4": "PANEL_3V3",
+      "40": "NC",
+      "5": "LCD_R0",
+      "6": "LCD_R1",
+      "7": "LCD_R2",
+      "8": "LCD_R3",
+      "9": "LCD_R4"
+    }
+  },
+  "J10": {
+    "mpn": "COAX-SOLDER",
+    "package": "COAX-SOLDER",
+    "pins": {
+      "1": "RX_RF",
+      "2": "GND",
+      "3": "GND"
+    }
+  },
+  "J11": {
+    "mpn": "U.FL-R-SMT-1(10)",
+    "package": "U.FL",
+    "pins": {
+      "1": "RX_RF",
+      "2": "GND",
+      "3": "GND"
+    }
+  },
+  "J12": {
+    "mpn": "TF-001A-P3",
+    "package": "TF-001A-P3",
+    "pins": {
+      "1": "SD_DAT2",
+      "10": "GND",
+      "11": "GND",
+      "12": "GND",
+      "13": "GND",
+      "2": "SD_DAT3",
+      "3": "SD_CMD",
+      "4": "3V3_SD",
+      "5": "SD_CLK",
+      "6": "GND",
+      "7": "SD_D0",
+      "8": "SD_DAT1",
+      "9": "SD_CARD_DETECT"
+    }
+  },
+  "J13": {
+    "mpn": "SOLDER-PADS-2",
+    "package": "EDGE-PADS-2",
+    "pins": {
+      "1": "SPK+",
+      "2": "SPK-"
+    }
+  },
+  "J2": {
+    "mpn": "USB4105-GF-A",
+    "package": "USB4105-GF-A",
+    "pins": {
+      "1": "USB_SHIELD",
+      "A1": "GND",
+      "A12": "GND",
+      "A4": "VBUS_RAW",
+      "A5": "USB_CC1",
+      "A6": "USB_D+",
+      "A7": "USB_D-",
+      "A8": "NC",
+      "A9": "VBUS_RAW",
+      "B1": "GND",
+      "B12": "GND",
+      "B4": "VBUS_RAW",
+      "B5": "USB_CC2",
+      "B6": "USB_D+",
+      "B7": "USB_D-",
+      "B8": "NC",
+      "B9": "VBUS_RAW"
+    }
+  },
+  "J3": {
+    "mpn": "SOLDER-PADS-4",
+    "package": "EDGE-PADS-4",
+    "pins": {
+      "1": "BAT_RAW",
+      "2": "BAT_CELL_NEG",
+      "3": "BAT_NTC",
+      "4": "GND"
+    }
+  },
+  "J4": {
+    "mpn": "S2B-PH-SM4-TB(LF)(SN)",
+    "package": "JST-PH-2-SMD",
+    "pins": {
+      "1": "SPK+",
+      "2": "SPK-"
+    }
+  },
+  "J5": {
+    "mpn": "SOLDER-PADS-2",
+    "package": "EDGE-PADS-2",
+    "pins": {
+      "1": "SYS_ALWAYS",
+      "2": "PWR_SW_EN"
+    }
+  },
+  "J6": {
+    "mpn": "SOLDER-PADS-6",
+    "package": "EDGE-PADS-6",
+    "pins": {
+      "1": "5V_ELRS",
+      "2": "GND",
+      "3": "CRSF_TX",
+      "4": "CRSF_RX",
+      "5": "ELRS_BOOT",
+      "6": "ELRS_RESET"
+    }
+  },
+  "J7": {
+    "mpn": "SOLDER-PADS-4",
+    "package": "EDGE-PADS-4",
+    "pins": {
+      "1": "GIMBAL_LX_RAW",
+      "2": "GIMBAL_LY_RAW",
+      "3": "3V3_LOGIC",
+      "4": "GND"
+    }
+  },
+  "J8": {
+    "mpn": "SOLDER-PADS-4",
+    "package": "EDGE-PADS-4",
+    "pins": {
+      "1": "GIMBAL_RX_RAW",
+      "2": "GIMBAL_RY_RAW",
+      "3": "3V3_LOGIC",
+      "4": "GND"
+    }
+  },
+  "J9": {
+    "mpn": "SOLDER-PADS-22",
+    "package": "EDGE-PADS-22",
+    "pins": {
+      "1": "CTRL_0_0",
+      "10": "CTRL_0_9",
+      "11": "CTRL_0_10",
+      "12": "CTRL_0_11",
+      "13": "CTRL_0_12",
+      "14": "CTRL_0_13",
+      "15": "CTRL_0_14",
+      "16": "CTRL_0_15",
+      "17": "CTRL_1_0",
+      "18": "CTRL_1_1",
+      "19": "CTRL_1_2",
+      "2": "CTRL_0_1",
+      "20": "CTRL_1_3",
+      "21": "CTRL_1_4",
+      "22": "CTRL_1_5",
+      "3": "CTRL_0_2",
+      "4": "CTRL_0_3",
+      "5": "CTRL_0_4",
+      "6": "CTRL_0_5",
+      "7": "CTRL_0_6",
+      "8": "CTRL_0_7",
+      "9": "CTRL_0_8"
+    }
+  },
+  "JP1": {
+    "mpn": "SJ-DPDT",
+    "package": "SOLDER-JUMPER-6",
+    "pins": {
+      "1": "VRX_VIDEO_TO_OSD",
+      "2": "VRX_VIDEO_RAW",
+      "3": "NC",
+      "4": "OSD_VIDEO_RAW",
+      "5": "OSD_VIDEO_BYP",
+      "6": "VRX_VIDEO_RAW"
+    }
+  },
+  "L1": {
+    "mpn": "SWPA4030S2R2MT",
+    "package": "L-4x4",
+    "pins": {
+      "1": "CHG_SW",
+      "2": "SYS_ALWAYS"
+    }
+  },
+  "L2": {
+    "mpn": "SWPA4020S1R0MT",
+    "package": "L-4x4",
+    "pins": {
+      "1": "L3V3_A",
+      "2": "L3V3_B"
+    }
+  },
+  "L3": {
+    "mpn": "XAL6030-182MEC",
+    "package": "L-6.5x6.3",
+    "pins": {
+      "1": "SYS_SWITCHED",
+      "2": "L5V_SW"
+    }
+  },
+  "L4": {
+    "mpn": "SWPA4020S100MT",
+    "package": "L-4x4",
+    "pins": {
+      "1": "5V_DISPLAY",
+      "2": "BL_SW"
+    }
+  },
+  "L5": {
+    "mpn": "SWPA3015S2R2MT",
+    "package": "L-3x3",
+    "pins": {
+      "1": "DISP_SW",
+      "2": "DISPLAY_3V3"
+    }
+  },
+  "MOD1": {
+    "mpn": "RX5808 SPI-modified",
+    "package": "SMD-12_23.0X28.0X2.54P",
+    "pins": {
+      "1": "GND",
+      "10": "RX_AUDIO_TP",
+      "11": "VRX_VIDEO_RAW",
+      "12": "GND",
+      "2": "RX_RF",
+      "3": "GND",
+      "4": "RX_DATA",
+      "5": "RX_LE",
+      "6": "RX_CLK",
+      "7": "GND",
+      "8": "5V_VIDEO_FILT",
+      "9": "RX_RSSI_RAW"
+    }
+  },
+  "Q1": {
+    "mpn": "FS8205A",
+    "package": "SOT-23-6",
+    "pins": {
+      "1": "BAT_CELL_NEG",
+      "2": "BAT_NEG_SENSE",
+      "3": "GND",
+      "4": "PROT_COUT",
+      "5": "BAT_NEG_SENSE",
+      "6": "PROT_DOUT"
+    }
+  },
+  "Q2": {
+    "mpn": "AO3400A",
+    "package": "SOT-23",
+    "pins": {
+      "1": "BUZZER_GATE",
+      "2": "GND",
+      "3": "BUZZER_LOW"
+    }
+  },
+  "R1": {
+    "mpn": "RC0402FR-075K1L",
+    "package": "0402",
+    "pins": {
+      "1": "USB_CC1",
+      "2": "GND"
+    }
+  },
+  "R10": {
+    "mpn": "RC0603FR-0718RL",
+    "package": "0402",
+    "pins": {
+      "1": "OSD_VIDEO_BYP",
+      "2": "AMT_CVBS_PRE"
+    }
+  },
+  "R100": {
+    "mpn": "RC0402FR-0733RL",
+    "package": "0402",
+    "pins": {
+      "1": "CRSF_RX",
+      "2": "CRSF_RX_MCU"
+    }
+  },
+  "R101": {
+    "mpn": "RC0402FR-070RL",
+    "package": "0402",
+    "pins": {
+      "1": "SYS_SWITCHED_5V",
+      "2": "BUZZER_5V"
+    }
+  },
+  "R102": {
+    "mpn": "RC0402FR-07100RL",
+    "package": "0402",
+    "pins": {
+      "1": "BUZZER_LOW",
+      "2": "BUZZER_SNUB"
+    }
+  },
+  "R103": {
+    "mpn": "RC0603FR-0775RL",
+    "package": "0603",
+    "pins": {
+      "1": "VRX_VIDEO_TO_OSD",
+      "2": "GND"
+    }
+  },
+  "R104": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "ESP_BOOT",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R11": {
+    "mpn": "RC0603FR-0756RL",
+    "package": "0402",
+    "pins": {
+      "1": "AMT_CVBS1",
+      "2": "GND"
+    }
+  },
+  "R12": {
+    "mpn": "RC0402FR-07100KL",
+    "package": "0402",
+    "pins": {
+      "1": "OSD_CS_5V",
+      "2": "5V_VIDEO_FILT"
+    }
+  },
+  "R13": {
+    "mpn": "RC0402FR-07100KL",
+    "package": "0402",
+    "pins": {
+      "1": "AMT_RESET",
+      "2": "DISPLAY_3V3_D"
+    }
+  },
+  "R14": {
+    "mpn": "RC0402FR-072K2L",
+    "package": "0402",
+    "pins": {
+      "1": "I2C_SDA",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R15": {
+    "mpn": "RC0402FR-072K2L",
+    "package": "0402",
+    "pins": {
+      "1": "I2C_SCL",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R16": {
+    "mpn": "RC0402FR-07100KL",
+    "package": "0402",
+    "pins": {
+      "1": "AUDIO_ENABLE",
+      "2": "GND"
+    }
+  },
+  "R18": {
+    "mpn": "RC0402FR-071ML",
+    "package": "0402",
+    "pins": {
+      "1": "AMT_XTAL_OUT",
+      "2": "AMT_XTAL_IN"
+    }
+  },
+  "R2": {
+    "mpn": "RC0402FR-075K1L",
+    "package": "0402",
+    "pins": {
+      "1": "USB_CC2",
+      "2": "GND"
+    }
+  },
+  "R20": {
+    "mpn": "RC0402FR-07316KL",
+    "package": "0402",
+    "pins": {
+      "1": "SYS_SWITCHED_5V",
+      "2": "5V_FB"
+    }
+  },
+  "R21": {
+    "mpn": "RC0402FR-07100KL",
+    "package": "0402",
+    "pins": {
+      "1": "5V_FB",
+      "2": "GND"
+    }
+  },
+  "R22": {
+    "mpn": "RC0402FR-071ML",
+    "package": "0402",
+    "pins": {
+      "1": "3V3_LOGIC",
+      "2": "3V3_FB"
+    }
+  },
+  "R23": {
+    "mpn": "RC0402FR-07316KL",
+    "package": "0402",
+    "pins": {
+      "1": "3V3_FB",
+      "2": "GND"
+    }
+  },
+  "R24": {
+    "mpn": "RC0402FR-07150KL",
+    "package": "0402",
+    "pins": {
+      "1": "5V_ILIM",
+      "2": "GND"
+    }
+  },
+  "R25": {
+    "mpn": "RC0402FR-071KL",
+    "package": "0402",
+    "pins": {
+      "1": "RX_RSSI_RAW",
+      "2": "RX_RSSI_FILT"
+    }
+  },
+  "R26": {
+    "mpn": "RC0402FR-0712KL",
+    "package": "0402",
+    "pins": {
+      "1": "RX_RSSI_FILT",
+      "2": "RX_RSSI"
+    }
+  },
+  "R27": {
+    "mpn": "RC0402FR-0718KL",
+    "package": "0402",
+    "pins": {
+      "1": "RX_RSSI",
+      "2": "GND"
+    }
+  },
+  "R28": {
+    "mpn": "RC0402FR-0727RL",
+    "package": "0402",
+    "pins": {
+      "1": "USB_D-_MCU",
+      "2": "USB_D-"
+    }
+  },
+  "R29": {
+    "mpn": "RC0402FR-0727RL",
+    "package": "0402",
+    "pins": {
+      "1": "USB_D+_MCU",
+      "2": "USB_D+"
+    }
+  },
+  "R3": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "ESP_EN",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R30": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "SD_CMD",
+      "2": "3V3_SD"
+    }
+  },
+  "R31": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "SD_D0",
+      "2": "3V3_SD"
+    }
+  },
+  "R32": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "SD_DAT1",
+      "2": "3V3_SD"
+    }
+  },
+  "R33": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "SD_DAT2",
+      "2": "3V3_SD"
+    }
+  },
+  "R34": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "SD_DAT3",
+      "2": "3V3_SD"
+    }
+  },
+  "R35": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "SD_CARD_DETECT",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R36": {
+    "mpn": "RC0402FR-07100KL",
+    "package": "0402",
+    "pins": {
+      "1": "EN_3V3_SD",
+      "2": "GND"
+    }
+  },
+  "R37": {
+    "mpn": "RC0402FR-0727RL",
+    "package": "0402",
+    "pins": {
+      "1": "SD_CLK_MCU",
+      "2": "SD_CLK"
+    }
+  },
+  "R38": {
+    "mpn": "RC0402FR-0727RL",
+    "package": "0402",
+    "pins": {
+      "1": "SD_CMD_MCU",
+      "2": "SD_CMD"
+    }
+  },
+  "R39": {
+    "mpn": "RC0402FR-0727RL",
+    "package": "0402",
+    "pins": {
+      "1": "SD_D0_MCU",
+      "2": "SD_D0"
+    }
+  },
+  "R4": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "PWR_SW_EN",
+      "2": "GND"
+    }
+  },
+  "R40": {
+    "mpn": "RC0402FR-07100KL",
+    "package": "0402",
+    "pins": {
+      "1": "VBUS_USB",
+      "2": "VBUS_SENSE"
+    }
+  },
+  "R41": {
+    "mpn": "RC0402FR-07100KL",
+    "package": "0402",
+    "pins": {
+      "1": "VBUS_SENSE",
+      "2": "GND"
+    }
+  },
+  "R42": {
+    "mpn": "RC0402FR-07750RL",
+    "package": "0402",
+    "pins": {
+      "1": "CHG_ILIM",
+      "2": "GND"
+    }
+  },
+  "R43": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CHG_STAT",
+      "2": "REGN"
+    }
+  },
+  "R44": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CHG_QON",
+      "2": "REGN"
+    }
+  },
+  "R45": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CHG_DSEL",
+      "2": "REGN"
+    }
+  },
+  "R46": {
+    "mpn": "RC0402FR-075K23L",
+    "package": "0402",
+    "pins": {
+      "1": "REGN",
+      "2": "BAT_NTC"
+    }
+  },
+  "R47": {
+    "mpn": "RC0402FR-0730K1L",
+    "package": "0402",
+    "pins": {
+      "1": "BAT_NTC",
+      "2": "GND"
+    }
+  },
+  "R48": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "POWER_GOOD",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R49": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "3V3_PG",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R5": {
+    "mpn": "RC0402FR-07100KL",
+    "package": "0402",
+    "pins": {
+      "1": "AMT_FLASH_SEL",
+      "2": "GND"
+    }
+  },
+  "R50": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "DISPLAY_3V3_PG",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R51": {
+    "mpn": "RC0402FR-07330KL",
+    "package": "0402",
+    "pins": {
+      "1": "L5V_SW",
+      "2": "5V_FSW"
+    }
+  },
+  "R52": {
+    "mpn": "RC0402FR-0718K2L",
+    "package": "0402",
+    "pins": {
+      "1": "5V_COMP",
+      "2": "5V_COMP_RC"
+    }
+  },
+  "R53": {
+    "mpn": "RC0402FR-071KL",
+    "package": "0402",
+    "pins": {
+      "1": "OSD_LOS_5V",
+      "2": "5V_VIDEO_FILT"
+    }
+  },
+  "R54": {
+    "mpn": "RC0402FR-071ML",
+    "package": "0402",
+    "pins": {
+      "1": "USB_SHIELD",
+      "2": "GND"
+    }
+  },
+  "R55": {
+    "mpn": "RC0402FR-0710RL",
+    "package": "0402",
+    "pins": {
+      "1": "BAT_PROTECTED",
+      "2": "GAUGE_CELL"
+    }
+  },
+  "R56": {
+    "mpn": "0402WGF3300TCE",
+    "package": "0402",
+    "pins": {
+      "1": "BAT_RAW",
+      "2": "BAT_SENSE"
+    }
+  },
+  "R57": {
+    "mpn": "0402WGF2201TCE",
+    "package": "0402",
+    "pins": {
+      "1": "GND",
+      "2": "PACK_NEG_SENSE"
+    }
+  },
+  "R58": {
+    "mpn": "RC0402FR-0733RL",
+    "package": "0402",
+    "pins": {
+      "1": "LCD_DCLK_SRC",
+      "2": "LCD_DCLK"
+    }
+  },
+  "R59": {
+    "mpn": "RC0402FR-0733RL",
+    "package": "0402",
+    "pins": {
+      "1": "RX_DATA_MCU",
+      "2": "RX_DATA"
+    }
+  },
+  "R6": {
+    "mpn": "RC0402FR-07100RL",
+    "package": "0402",
+    "pins": {
+      "1": "BUZZER_PWM",
+      "2": "BUZZER_GATE"
+    }
+  },
+  "R60": {
+    "mpn": "RC0402FR-0733RL",
+    "package": "0402",
+    "pins": {
+      "1": "RX_LE_MCU",
+      "2": "RX_LE"
+    }
+  },
+  "R61": {
+    "mpn": "RC0402FR-0733RL",
+    "package": "0402",
+    "pins": {
+      "1": "RX_CLK_MCU",
+      "2": "RX_CLK"
+    }
+  },
+  "R62": {
+    "mpn": "RC0402FR-075M1L",
+    "package": "0402",
+    "pins": {
+      "1": "PROT_DOUT",
+      "2": "BAT_CELL_NEG"
+    }
+  },
+  "R63": {
+    "mpn": "RC0402FR-075M1L",
+    "package": "0402",
+    "pins": {
+      "1": "PROT_COUT",
+      "2": "GND"
+    }
+  },
+  "R64": {
+    "mpn": "RC0402FR-071KL",
+    "package": "0402",
+    "pins": {
+      "1": "TP_OSD_HSYNC",
+      "2": "5V_VIDEO_FILT"
+    }
+  },
+  "R65": {
+    "mpn": "RC0402FR-071KL",
+    "package": "0402",
+    "pins": {
+      "1": "TP_OSD_VSYNC",
+      "2": "5V_VIDEO_FILT"
+    }
+  },
+  "R66": {
+    "mpn": "RC0402FR-07100KL",
+    "package": "0402",
+    "pins": {
+      "1": "OSD_CS_3V3",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R67": {
+    "mpn": "RC0402FR-07100KL",
+    "package": "0402",
+    "pins": {
+      "1": "OSD_RESET_3V3",
+      "2": "GND"
+    }
+  },
+  "R68": {
+    "mpn": "RC0402FR-07100KL",
+    "package": "0402",
+    "pins": {
+      "1": "OSD_SCLK_3V3",
+      "2": "GND"
+    }
+  },
+  "R69": {
+    "mpn": "RC0402FR-07100KL",
+    "package": "0402",
+    "pins": {
+      "1": "OSD_MOSI_3V3",
+      "2": "GND"
+    }
+  },
+  "R7": {
+    "mpn": "RC0402FR-07100KL",
+    "package": "0402",
+    "pins": {
+      "1": "BUZZER_GATE",
+      "2": "GND"
+    }
+  },
+  "R70": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "EXP_INT",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R71": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CHARGER_INT",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R72": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "GAUGE_ALERT",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R73": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_0_0",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R74": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_0_1",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R75": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_0_2",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R76": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_0_3",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R77": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_0_4",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R78": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_0_5",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R79": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_0_6",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R8": {
+    "mpn": "RC0402FR-07100KL",
+    "package": "0402",
+    "pins": {
+      "1": "AUDIO_ENABLE",
+      "2": "GND"
+    }
+  },
+  "R80": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_0_7",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R81": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_0_8",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R82": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_0_9",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R83": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_0_10",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R84": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_0_11",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R85": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_0_12",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R86": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_0_13",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R87": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_0_14",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R88": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_0_15",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R89": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_1_0",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R9": {
+    "mpn": "RC0603FR-074R99L",
+    "package": "0402",
+    "pins": {
+      "1": "BL_LED_K",
+      "2": "GND"
+    }
+  },
+  "R90": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_1_1",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R91": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_1_2",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R92": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_1_3",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R93": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_1_4",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R94": {
+    "mpn": "RC0402FR-0710KL",
+    "package": "0402",
+    "pins": {
+      "1": "CTRL_1_5",
+      "2": "3V3_LOGIC"
+    }
+  },
+  "R95": {
+    "mpn": "RC0402FR-071KL",
+    "package": "0402",
+    "pins": {
+      "1": "GIMBAL_LX_RAW",
+      "2": "GIMBAL_LX"
+    }
+  },
+  "R96": {
+    "mpn": "RC0402FR-071KL",
+    "package": "0402",
+    "pins": {
+      "1": "GIMBAL_LY_RAW",
+      "2": "GIMBAL_LY"
+    }
+  },
+  "R97": {
+    "mpn": "RC0402FR-071KL",
+    "package": "0402",
+    "pins": {
+      "1": "GIMBAL_RX_RAW",
+      "2": "GIMBAL_RX"
+    }
+  },
+  "R98": {
+    "mpn": "RC0402FR-071KL",
+    "package": "0402",
+    "pins": {
+      "1": "GIMBAL_RY_RAW",
+      "2": "GIMBAL_RY"
+    }
+  },
+  "R99": {
+    "mpn": "RC0402FR-0733RL",
+    "package": "0402",
+    "pins": {
+      "1": "CRSF_TX_MCU",
+      "2": "CRSF_TX"
+    }
+  },
+  "TP1": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "3V3_SD"
+    }
+  },
+  "TP10": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "TP_AMT_P7"
+    }
+  },
+  "TP11": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "TP_AMT_P8"
+    }
+  },
+  "TP12": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "TP_AMT_P9"
+    }
+  },
+  "TP13": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "TP_AMT_DIAG"
+    }
+  },
+  "TP14": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "TP_AMT_UART1"
+    }
+  },
+  "TP15": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "TP_AMT_UART0"
+    }
+  },
+  "TP16": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "TP_AMT_PWM1"
+    }
+  },
+  "TP17": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "TP_AMT_PWM0"
+    }
+  },
+  "TP18": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "RX_AUDIO_TP"
+    }
+  },
+  "TP19": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "TP_OSD_CLK"
+    }
+  },
+  "TP2": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "SD_CLK"
+    }
+  },
+  "TP20": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "TP_OSD_HSYNC"
+    }
+  },
+  "TP21": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "TP_OSD_VSYNC"
+    }
+  },
+  "TP22": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "ELRS_BOOT"
+    }
+  },
+  "TP23": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "ELRS_RESET"
+    }
+  },
+  "TP24": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "SYS_ALWAYS"
+    }
+  },
+  "TP25": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "SYS_SWITCHED"
+    }
+  },
+  "TP26": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "POWER_GOOD"
+    }
+  },
+  "TP27": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "3V3_LOGIC"
+    }
+  },
+  "TP28": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "SYS_SWITCHED_5V"
+    }
+  },
+  "TP29": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "5V_VIDEO"
+    }
+  },
+  "TP3": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "SD_CMD"
+    }
+  },
+  "TP30": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "5V_DISPLAY"
+    }
+  },
+  "TP31": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "5V_ELRS"
+    }
+  },
+  "TP32": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "DISPLAY_3V3"
+    }
+  },
+  "TP33": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "PANEL_3V3"
+    }
+  },
+  "TP34": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "VBUS_USB"
+    }
+  },
+  "TP35": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "BAT_RAW"
+    }
+  },
+  "TP36": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "RX_RSSI_RAW"
+    }
+  },
+  "TP37": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "VRX_VIDEO_RAW"
+    }
+  },
+  "TP38": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "OSD_VIDEO_RAW"
+    }
+  },
+  "TP39": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "AMT_RESET"
+    }
+  },
+  "TP4": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "SD_D0"
+    }
+  },
+  "TP40": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "AMT_FLASH_CS"
+    }
+  },
+  "TP41": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "AMT_FLASH_CLK"
+    }
+  },
+  "TP42": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "AMT_FLASH_MOSI"
+    }
+  },
+  "TP43": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "AMT_FLASH_MISO"
+    }
+  },
+  "TP44": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "BUZZER_PWM"
+    }
+  },
+  "TP45": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "BUZZER_LOW"
+    }
+  },
+  "TP46": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "AUDIO_I2S_BCLK"
+    }
+  },
+  "TP47": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "AUDIO_I2S_WS"
+    }
+  },
+  "TP48": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "AUDIO_I2S_DATA"
+    }
+  },
+  "TP49": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "AUDIO_ENABLE"
+    }
+  },
+  "TP5": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "SD_CARD_DETECT"
+    }
+  },
+  "TP50": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "SPK+"
+    }
+  },
+  "TP51": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "SPK-"
+    }
+  },
+  "TP52": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "BL_LED_A"
+    }
+  },
+  "TP53": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "BL_LED_K"
+    }
+  },
+  "TP54": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "ESP_BOOT"
+    }
+  },
+  "TP55": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "ESP_EN"
+    }
+  },
+  "TP6": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "GND"
+    }
+  },
+  "TP7": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "TP_CVBS2"
+    }
+  },
+  "TP8": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "TP_CVBS3"
+    }
+  },
+  "TP9": {
+    "mpn": "PCB-TEST-PAD-1.0MM",
+    "package": "TEST-PAD-1.0MM",
+    "pins": {
+      "1": "TP_AMT_P6"
+    }
+  },
+  "TVS1": {
+    "mpn": "ESD5Z5.0T1G",
+    "package": "SOD-523",
+    "pins": {
+      "1": "VBUS_USB",
+      "2": "GND"
+    }
+  },
+  "U1": {
+    "mpn": "ESP32-S3-MINI-1U-N8",
+    "package": "ESP32-S3-MINI-1U",
+    "pins": {
+      "1": "GND",
+      "10": "AUDIO_ENABLE",
+      "11": "RX_DATA_MCU",
+      "12": "RX_LE_MCU",
+      "13": "RX_CLK_MCU",
+      "14": "EXP_INT",
+      "15": "OSD_SCLK_3V3",
+      "16": "OSD_MOSI_3V3",
+      "17": "OSD_MISO_3V3",
+      "18": "OSD_CS_3V3",
+      "19": "I2C_SDA",
+      "2": "GND",
+      "20": "I2C_SCL",
+      "21": "CRSF_TX_MCU",
+      "22": "CRSF_RX_MCU",
+      "23": "USB_D-_MCU",
+      "24": "USB_D+_MCU",
+      "25": "OSD_RESET_3V3",
+      "26": "AMT_FLASH_CS_ESP",
+      "27": "BACKLIGHT_PWM",
+      "28": "AMT_FLASH_CLK_ESP",
+      "29": "AMT_FLASH_MOSI_ESP",
+      "3": "3V3_LOGIC",
+      "30": "VBUS_SENSE",
+      "31": "BUZZER_PWM",
+      "32": "AMT_FLASH_SEL",
+      "33": "AMT_FLASH_MISO_ESP",
+      "34": "AMT_RESET",
+      "35": "AUDIO_I2S_BCLK",
+      "36": "SD_CLK_MCU",
+      "37": "SD_CMD_MCU",
+      "38": "SD_D0_MCU",
+      "39": "CHARGER_INT",
+      "4": "ESP_BOOT",
+      "40": "GAUGE_ALERT",
+      "41": "AUDIO_I2S_WS",
+      "42": "GND",
+      "43": "GND",
+      "44": "AUDIO_I2S_DATA",
+      "45": "ESP_EN",
+      "46": "GND",
+      "47": "GND",
+      "48": "GND",
+      "49": "GND",
+      "5": "GIMBAL_LX",
+      "50": "GND",
+      "51": "GND",
+      "52": "GND",
+      "53": "GND",
+      "54": "GND",
+      "55": "GND",
+      "56": "GND",
+      "57": "GND",
+      "58": "GND",
+      "59": "GND",
+      "6": "GIMBAL_LY",
+      "60": "GND",
+      "61": "GND",
+      "62": "GND",
+      "63": "GND",
+      "64": "GND",
+      "65": "GND",
+      "7": "GIMBAL_RX",
+      "8": "GIMBAL_RY",
+      "9": "RX_RSSI"
+    }
+  },
+  "U10": {
+    "mpn": "TPS62162DSGR",
+    "package": "WSON-8-EP",
+    "pins": {
+      "1": "GND",
+      "2": "5V_DISPLAY",
+      "3": "5V_DISPLAY",
+      "4": "GND",
+      "5": "GND",
+      "6": "DISPLAY_3V3",
+      "7": "DISP_SW",
+      "8": "DISPLAY_3V3_PG",
+      "9": "GND"
+    }
+  },
+  "U11": {
+    "mpn": "AT7456E",
+    "package": "TSSOP-28-EP",
+    "pins": {
+      "1": "NC",
+      "10": "OSD_SCLK_5V",
+      "11": "OSD_MISO_5V",
+      "12": "OSD_LOS_5V",
+      "13": "NC",
+      "14": "NC",
+      "15": "NC",
+      "16": "NC",
+      "17": "TP_OSD_VSYNC",
+      "18": "TP_OSD_HSYNC",
+      "19": "OSD_RESET_5V",
+      "2": "NC",
+      "20": "GND",
+      "21": "5V_VIDEO_FILT",
+      "22": "VRX_VIDEO_COUPLED",
+      "23": "GND",
+      "24": "5V_VIDEO_FILT",
+      "25": "OSD_VIDEO_RAW",
+      "26": "OSD_VIDEO_RAW",
+      "27": "NC",
+      "28": "NC",
+      "29": "GND",
+      "3": "5V_VIDEO_FILT",
+      "4": "GND",
+      "5": "OSD_XTAL_IN",
+      "6": "OSD_XTAL_OUT",
+      "7": "TP_OSD_CLK",
+      "8": "OSD_CS_5V",
+      "9": "OSD_MOSI_5V"
+    }
+  },
+  "U12": {
+    "mpn": "SN74AHCT125PWR",
+    "package": "TSSOP-14",
+    "pins": {
+      "1": "GND",
+      "10": "GND",
+      "11": "OSD_RESET_5V",
+      "12": "OSD_RESET_3V3",
+      "13": "GND",
+      "14": "5V_VIDEO_FILT",
+      "2": "OSD_SCLK_3V3",
+      "3": "OSD_SCLK_5V",
+      "4": "GND",
+      "5": "OSD_MOSI_3V3",
+      "6": "OSD_MOSI_5V",
+      "7": "GND",
+      "8": "OSD_CS_5V",
+      "9": "OSD_CS_3V3"
+    }
+  },
+  "U13": {
+    "mpn": "SN74LVC1T45DCKR",
+    "package": "SC70-6",
+    "pins": {
+      "1": "3V3_LOGIC",
+      "2": "GND",
+      "3": "OSD_MISO_3V3",
+      "4": "OSD_MISO_5V",
+      "5": "GND",
+      "6": "5V_VIDEO_FILT"
+    }
+  },
+  "U14": {
+    "mpn": "AMT630A",
+    "package": "LQFP-64_14x14_P0.4",
+    "pins": {
+      "1": "AMT_CVBS1",
+      "10": "DISPLAY_3V3_D",
+      "11": "AMT_CORE1",
+      "12": "GND",
+      "13": "GND",
+      "14": "AMT_XTAL_OUT",
+      "15": "AMT_XTAL_IN",
+      "16": "DISPLAY_3V3_A",
+      "17": "AMT_FLASH_CS",
+      "18": "AMT_FLASH_MOSI",
+      "19": "AMT_FLASH_MISO",
+      "2": "TP_CVBS2",
+      "20": "AMT_FLASH_CLK",
+      "21": "DISPLAY_3V3_D",
+      "22": "AMT_CORE2",
+      "23": "GND",
+      "24": "LCD_R0",
+      "25": "LCD_R1",
+      "26": "LCD_R2",
+      "27": "LCD_R3",
+      "28": "LCD_R4",
+      "29": "LCD_R5",
+      "3": "TP_CVBS3",
+      "30": "LCD_R6",
+      "31": "LCD_R7",
+      "32": "LCD_G0",
+      "33": "LCD_G1",
+      "34": "LCD_G2",
+      "35": "LCD_G3",
+      "36": "LCD_G4",
+      "37": "LCD_G5",
+      "38": "LCD_G6",
+      "39": "LCD_G7",
+      "4": "AMT_VCOM",
+      "40": "DISPLAY_3V3_D",
+      "41": "AMT_CORE3",
+      "42": "GND",
+      "43": "LCD_B0",
+      "44": "LCD_B1",
+      "45": "LCD_B2",
+      "46": "LCD_B3",
+      "47": "LCD_B4",
+      "48": "LCD_B5",
+      "49": "LCD_B6",
+      "5": "GND",
+      "50": "LCD_B7",
+      "51": "LCD_DCLK_SRC",
+      "52": "LCD_DE",
+      "53": "LCD_HSYNC",
+      "54": "LCD_VSYNC",
+      "55": "TP_AMT_PWM0",
+      "56": "TP_AMT_PWM1",
+      "57": "TP_AMT_UART0",
+      "58": "TP_AMT_UART1",
+      "59": "TP_AMT_DIAG",
+      "6": "TP_AMT_P6",
+      "60": "I2C_SDA",
+      "61": "I2C_SCL",
+      "62": "DISPLAY_3V3_D",
+      "63": "AMT_RESET",
+      "64": "DISPLAY_3V3_A",
+      "7": "TP_AMT_P7",
+      "8": "TP_AMT_P8",
+      "9": "TP_AMT_P9"
+    }
+  },
+  "U15": {
+    "mpn": "W25X05CLSNIG",
+    "package": "SOIC-8",
+    "pins": {
+      "1": "AMT_FLASH_C",
+      "2": "AMT_FLASH_C_MISO",
+      "3": "DISPLAY_3V3_D",
+      "4": "GND",
+      "5": "AMT_FLASH_C_MOSI",
+      "6": "AMT_FLASH_C_CLK",
+      "7": "DISPLAY_3V3_D",
+      "8": "DISPLAY_3V3_D"
+    }
+  },
+  "U16": {
+    "mpn": "SN74CB3Q3257PWR",
+    "package": "TSSOP-16",
+    "pins": {
+      "1": "AMT_FLASH_SEL",
+      "10": "AMT_FLASH_MOSI_ESP",
+      "11": "AMT_FLASH_MOSI",
+      "12": "AMT_FLASH_C_MISO",
+      "13": "AMT_FLASH_MISO_ESP",
+      "14": "AMT_FLASH_MISO",
+      "15": "GND",
+      "16": "DISPLAY_3V3_D",
+      "2": "AMT_FLASH_CS",
+      "3": "AMT_FLASH_CS_ESP",
+      "4": "AMT_FLASH_C",
+      "5": "AMT_FLASH_CLK",
+      "6": "AMT_FLASH_CLK_ESP",
+      "7": "AMT_FLASH_C_CLK",
+      "8": "GND",
+      "9": "AMT_FLASH_C_MOSI"
+    }
+  },
+  "U17": {
+    "mpn": "TPS61165DRVR",
+    "package": "WSON-6-EP",
+    "pins": {
+      "1": "BL_LED_K",
+      "2": "BL_COMP",
+      "3": "GND",
+      "4": "BL_SW",
+      "5": "BACKLIGHT_PWM",
+      "6": "5V_DISPLAY",
+      "7": "GND"
+    }
+  },
+  "U18": {
+    "mpn": "TCA9535PWR",
+    "package": "TSSOP-24",
+    "pins": {
+      "1": "EXP_INT",
+      "10": "CTRL_0_6",
+      "11": "CTRL_0_7",
+      "12": "GND",
+      "13": "CTRL_0_8",
+      "14": "CTRL_0_9",
+      "15": "CTRL_0_10",
+      "16": "CTRL_0_11",
+      "17": "CTRL_0_12",
+      "18": "CTRL_0_13",
+      "19": "CTRL_0_14",
+      "2": "GND",
+      "20": "CTRL_0_15",
+      "21": "GND",
+      "22": "I2C_SCL",
+      "23": "I2C_SDA",
+      "24": "3V3_LOGIC",
+      "3": "GND",
+      "4": "CTRL_0_0",
+      "5": "CTRL_0_1",
+      "6": "CTRL_0_2",
+      "7": "CTRL_0_3",
+      "8": "CTRL_0_4",
+      "9": "CTRL_0_5"
+    }
+  },
+  "U19": {
+    "mpn": "TCA9535PWR",
+    "package": "TSSOP-24",
+    "pins": {
+      "1": "EXP_INT",
+      "10": "SD_CARD_DETECT",
+      "11": "EN_3V3_SD",
+      "12": "GND",
+      "13": "EN_5V_VIDEO",
+      "14": "EN_5V_DISPLAY",
+      "15": "EN_5V_ELRS",
+      "16": "LCD_DISP",
+      "17": "NC",
+      "18": "NC",
+      "19": "NC",
+      "2": "GND",
+      "20": "NC",
+      "21": "3V3_LOGIC",
+      "22": "I2C_SCL",
+      "23": "I2C_SDA",
+      "24": "3V3_LOGIC",
+      "3": "GND",
+      "4": "CTRL_1_0",
+      "5": "CTRL_1_1",
+      "6": "CTRL_1_2",
+      "7": "CTRL_1_3",
+      "8": "CTRL_1_4",
+      "9": "CTRL_1_5"
+    }
+  },
+  "U2": {
+    "mpn": "BQ25895RTWR",
+    "package": "WQFN-24-EP",
+    "pins": {
+      "1": "VBUS_USB",
+      "10": "CHG_ILIM",
+      "11": "BAT_NTC",
+      "12": "CHG_QON",
+      "13": "BAT_PROTECTED",
+      "14": "BAT_PROTECTED",
+      "15": "SYS_ALWAYS",
+      "16": "SYS_ALWAYS",
+      "17": "GND",
+      "18": "GND",
+      "19": "CHG_SW",
+      "2": "NC",
+      "20": "CHG_SW",
+      "21": "CHG_BTST",
+      "22": "REGN",
+      "23": "PMID",
+      "24": "CHG_DSEL",
+      "25": "GND",
+      "3": "NC",
+      "4": "CHG_STAT",
+      "5": "I2C_SCL",
+      "6": "I2C_SDA",
+      "7": "CHARGER_INT",
+      "8": "GND",
+      "9": "GND"
+    }
+  },
+  "U20": {
+    "mpn": "TPS22992SRXNR",
+    "package": "WQFN-8",
+    "pins": {
+      "1": "SYS_ALWAYS",
+      "2": "SYS_ALWAYS",
+      "3": "POWER_GOOD",
+      "4": "GND",
+      "5": "GND",
+      "6": "SYS_SWITCHED",
+      "7": "MASTER_CT",
+      "8": "PWR_SW_EN"
+    }
+  },
+  "U21": {
+    "mpn": "NS4168",
+    "package": "ESOP-8-EP",
+    "pins": {
+      "1": "AUDIO_ENABLE",
+      "2": "AUDIO_I2S_WS",
+      "3": "AUDIO_I2S_BCLK",
+      "4": "AUDIO_I2S_DATA",
+      "5": "SPK-",
+      "6": "SYS_SWITCHED_5V",
+      "7": "GND",
+      "8": "SPK+",
+      "9": "GND"
+    }
+  },
+  "U22": {
+    "mpn": "TPS22918DBVR",
+    "package": "SOT-23-6",
+    "pins": {
+      "1": "3V3_LOGIC",
+      "2": "GND",
+      "3": "EN_3V3_SD",
+      "4": "3V3_SD_CT",
+      "5": "GND",
+      "6": "3V3_SD"
+    }
+  },
+  "U3": {
+    "mpn": "BQ29700DSER",
+    "package": "WSON-6",
+    "pins": {
+      "1": "NC",
+      "2": "PROT_COUT",
+      "3": "PROT_DOUT",
+      "4": "BAT_CELL_NEG",
+      "5": "BAT_SENSE",
+      "6": "PACK_NEG_SENSE"
+    }
+  },
+  "U4": {
+    "mpn": "MAX17048G+T10",
+    "package": "TDFN-8-EP",
+    "pins": {
+      "1": "GAUGE_CTG",
+      "2": "GAUGE_CELL",
+      "3": "BAT_PROTECTED",
+      "4": "GND",
+      "5": "GAUGE_ALERT",
+      "6": "GND",
+      "7": "I2C_SCL",
+      "8": "I2C_SDA",
+      "9": "GND"
+    }
+  },
+  "U5": {
+    "mpn": "TPS63070RNMR",
+    "package": "VQFN-15",
+    "pins": {
+      "1": "GND",
+      "10": "GND",
+      "11": "L3V3_A",
+      "12": "SYS_SWITCHED",
+      "13": "SYS_SWITCHED",
+      "14": "SYS_SWITCHED",
+      "15": "GND",
+      "2": "3V3_PG",
+      "3": "3V3_VAUX",
+      "4": "GND",
+      "5": "3V3_FB",
+      "6": "GND",
+      "7": "3V3_LOGIC",
+      "8": "3V3_LOGIC",
+      "9": "L3V3_B"
+    }
+  },
+  "U6": {
+    "mpn": "TPS61088RHLR",
+    "package": "VQFN-20-EP",
+    "pins": {
+      "1": "5V_VCC",
+      "10": "5V_SS",
+      "11": "GND",
+      "12": "GND",
+      "13": "GND",
+      "14": "SYS_SWITCHED_5V",
+      "15": "SYS_SWITCHED_5V",
+      "16": "SYS_SWITCHED_5V",
+      "17": "5V_FB",
+      "18": "5V_COMP",
+      "19": "5V_ILIM",
+      "2": "SYS_SWITCHED",
+      "20": "GND",
+      "21": "GND",
+      "3": "5V_FSW",
+      "4": "L5V_SW",
+      "5": "L5V_SW",
+      "6": "L5V_SW",
+      "7": "L5V_SW",
+      "8": "5V_BOOT",
+      "9": "SYS_SWITCHED"
+    }
+  },
+  "U7": {
+    "mpn": "TPS22918DBVR",
+    "package": "SOT-23-6",
+    "pins": {
+      "1": "SYS_SWITCHED_5V",
+      "2": "GND",
+      "3": "EN_5V_VIDEO",
+      "4": "5V_VIDEO_CT",
+      "5": "GND",
+      "6": "5V_VIDEO"
+    }
+  },
+  "U8": {
+    "mpn": "TPS22918DBVR",
+    "package": "SOT-23-6",
+    "pins": {
+      "1": "SYS_SWITCHED_5V",
+      "2": "GND",
+      "3": "EN_5V_DISPLAY",
+      "4": "5V_DISPLAY_CT",
+      "5": "GND",
+      "6": "5V_DISPLAY"
+    }
+  },
+  "U9": {
+    "mpn": "TPS22918DBVR",
+    "package": "SOT-23-6",
+    "pins": {
+      "1": "SYS_SWITCHED_5V",
+      "2": "GND",
+      "3": "EN_5V_ELRS",
+      "4": "5V_ELRS_CT",
+      "5": "GND",
+      "6": "5V_ELRS"
+    }
+  },
+  "Y1": {
+    "mpn": "ABM8-27.000MHZ-B2-T",
+    "package": "ABM8",
+    "pins": {
+      "1": "OSD_XTAL_OUT",
+      "2": "GND",
+      "3": "OSD_XTAL_IN",
+      "4": "GND"
+    }
+  },
+  "Y2": {
+    "mpn": "ABM8-27.000MHZ-B2-T",
+    "package": "ABM8",
+    "pins": {
+      "1": "AMT_XTAL_OUT",
+      "2": "GND",
+      "3": "AMT_XTAL_IN",
+      "4": "GND"
+    }
+  }
+}

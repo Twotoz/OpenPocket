@@ -1,0 +1,4 @@
+(fp_lib_table (version 7)
+  (lib (name "OpenPocket")(type "KiCad")(uri "${KIPRJMOD}/openpocket-rev-a.pretty")(options "")(descr "Reviewed custom Rev-A footprints"))
+  (lib (name "openpocket-easyeda")(type "KiCad")(uri "${KIPRJMOD}/easyeda/openpocket-easyeda.pretty")(options "")(descr "Audited JLC source footprints"))
+)

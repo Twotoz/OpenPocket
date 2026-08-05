@@ -11,7 +11,7 @@ travel are mechanical keep-outs.
 | Item | Selection / limit |
 |---|---|
 | Socket | SOFNG TF-001A-P3, 14.55 × 15.80 × 1.9 mm maximum envelope, normally-open card switch |
-| Power switch | `U22` TPS22918DBVR, JLC `C206222`, VIN=`3V3_LOGIC`, VOUT=`3V3_SD` |
+| Power switch | `U22` TPS22918DBVR, JLC/LCSC `C131941`, VIN=`3V3_LOGIC`, VOUT=`3V3_SD` |
 | Card transient allowance | 300 mA minimum |
 | Local capacitance | `C24` 100 nF 10 V 0402 + `C25` 10 µF 25 V 0805 + optional `C26` 47 µF 10 V 1206 |
 | SD pull-ups | 10 kΩ to `3V3_SD` on CMD and DAT0/DAT1/DAT2/DAT3 |

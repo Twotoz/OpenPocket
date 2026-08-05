@@ -1,12 +1,15 @@
 # Revision-A GPIO allocation
 
 Target module: ESP32-S3-MINI-1U-N8, 8 MiB flash, no PSRAM. GPIO19/20 are native
-USB. GPIO0 is retained as a boot/recovery strap. GPIO45 and GPIO46 drive only
-high-impedance I2S inputs after boot. Analog controls
+USB. GPIO0 is retained as a boot/recovery strap and is available at an ENIG
+factory test point; ESP_EN/RESET is exposed the same way. The attached NS4168
+I2S inputs are high impedance while GPIO45/GPIO46 strap levels are sampled,
+then become ordinary I2S outputs after boot. Analog controls
 and RX5808 RSSI use ADC1 only.
 
 | GPIO | Direction | Function | Electrical notes |
 |---:|---|---|---|
+| 0 | input/strap | ESP boot/recovery | external 10 kΩ pull-up; accessible ENIG test pad |
 | 1 | input | left gimbal X | ADC1, 3.3 V maximum, RC filter |
 | 2 | input | left gimbal Y | ADC1, 3.3 V maximum, RC filter |
 | 3 | input | right gimbal X | ADC1, 3.3 V maximum, RC filter |
@@ -48,7 +51,7 @@ and RX5808 RSSI use ADC1 only.
 
 ## TCA9535 control allocation
 
-Both expanders are PCBWay-installed on the board I2C bus. Inputs are active
+Both expanders are assembler-installed on the board I2C bus. Inputs are active
 low with external pull-ups. Their I2C reads occur in `board_io_task`; the 250 Hz
 control task consumes only the cached atomic snapshot.
 
@@ -67,7 +70,8 @@ control task consumes only the cached atomic snapshot.
 | 24 | `5V_VIDEO` enable, active high, external pull-down |
 | 25 | `5V_DISPLAY` enable, active high, external pull-down |
 | 26 | `5V_ELRS` enable, active high, external pull-down |
-| 27–31 | spare test capacity |
+| 27 | TFT `DISP`, active high; held low until AMT630A timing is ready |
+| 28–31 | spare test capacity |
 
 The matching firmware defaults are maintained in RivetTX
 `sdkconfig.openpocket-rev-a.defaults`. Pin duplication, invalid outputs, and

@@ -49,6 +49,7 @@ tests are not hardware validation.
 | `microsd.md` | SDMMC circuit, socket audit, limits and acceptance tests |
 | `wiring.md` | internal and user-installed connections |
 | `power-budget.md` | preliminary worst-case and thermal calculations |
+| `routing-constraints.md` | KiCad netclasses, widths, vias and routing order |
 | `bom.csv` | controlled component selection and verification state |
 | `dnp.csv` | optional/DNP items |
 | `consigned-parts.csv` | RX5808 manual-assembly requirement |
