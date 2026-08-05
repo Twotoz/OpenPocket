@@ -16,6 +16,12 @@
 </p>
 
 <p align="center">
+  <img src="docs/assets/openpocket-pcb-placement.png" alt="OpenPocket Revision-A 115 by 72 mm PCB component-placement preview without signal traces" width="90%">
+</p>
+
+<p align="center"><em>Revision-A component-placement preview — signal routing intentionally omitted.</em></p>
+
+<p align="center">
   <a href="#why-openpocket">Why OpenPocket</a> ·
   <a href="#architecture">Architecture</a> ·
   <a href="#hardware">Hardware</a> ·

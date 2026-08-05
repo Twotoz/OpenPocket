@@ -2,11 +2,11 @@
 
 Product marking: **OpenPocket Rev A — Engineering Prototype**.
 
-- PCB: 90.00 mm × 60.00 mm, four layers, 1.0 mm finished thickness, 1 oz on
+- PCB: 115.00 mm × 72.00 mm, eight layers, 1.0 mm finished thickness, 1 oz on
   every copper layer, ENIG, green solder mask unless the quote specifies
   another colour.
-- L2 is the uninterrupted ground reference. Do not alter the stack-up or
-  substitute a split plane. Request JLC's controlled-impedance review for
+- L2 and L7 are uninterrupted ground references. Do not substitute split
+  planes. Request JLC's controlled-impedance review for
   native USB and the short 50 Ω RX5808 antenna feed before order approval.
 - Assembly service: Standard PCBA, both sides. No substitutions are permitted
   for power ICs, AT7456E, AMT630A, translators, crystals, display connector,

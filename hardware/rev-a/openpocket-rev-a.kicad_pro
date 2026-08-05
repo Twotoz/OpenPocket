@@ -575,7 +575,7 @@
         "pattern": "BAT_CELL_NEG"
       },
       {
-        "netclass": "HighCurrent",
+        "netclass": "PowerLogic",
         "pattern": "BAT_NEG_SENSE"
       },
       {
@@ -803,7 +803,7 @@
         "pattern": "OSD_VIDEO_RAW"
       },
       {
-        "netclass": "HighCurrent",
+        "netclass": "PowerLogic",
         "pattern": "PACK_NEG_SENSE"
       },
       {

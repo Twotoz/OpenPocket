@@ -72,7 +72,7 @@ shield, and verify DATA/LE/CLK tuning. This is never an end-user modification.
 Place 100 nF, 10 uF, and 330–470 uF low-ESR bulk capacitance after the local
 ferrite/LC filter. Keep RSSI and video short and referenced to uninterrupted
 ground. Common digital, analog-video, and module grounds join through the
-continuous L2 plane; do not create a floating video ground.
+continuous L2/L7 planes; do not create a floating video ground.
 
 ## User-installed connections
 
@@ -82,8 +82,11 @@ continuous L2 plane; do not create a floating video ground.
   labeled edge groups and strain-relief holes.
 - Solder welded battery leads to BAT+ and BAT-. Connect a compatible 10 k NTC
   to NTC/NTC_GND. Never solder directly to an 18650 cell can.
-- Install separate 5.8 GHz RX5808, 2.4 GHz ELRS, and ESP32 Wi-Fi antennas in
-  their marked RF regions.
+- Press a 50-ohm U.FL/MHF1-to-SMA-female bulkhead cable vertically onto the
+  bottom-side J11 receptacle. Fasten the SMA bulkhead to the enclosure before
+  attaching the 5.8 GHz antenna; never let cable strain reach J11. Match SMA
+  versus RP-SMA to the selected antenna. Install the separate 2.4 GHz ELRS and
+  ESP32 Wi-Fi antennas in their marked RF regions.
 - Connect a pre-flashed ExpressLRS nano receiver using four normal wires:
   ELRS_5V, ELRS_GND, ELRS_RX, ELRS_TX. From the ESP32 perspective GPIO17 TX
   connects to receiver RX; receiver TX connects to GPIO18 RX. ELRS_BOOT and

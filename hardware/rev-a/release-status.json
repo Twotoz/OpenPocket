@@ -2,7 +2,7 @@
   "product": "OpenPocket Rev A",
   "classification": "Engineering Prototype",
   "manufacturing_release_allowed": false,
-  "board_target_mm": [90, 60],
+  "board_target_mm": [115, 72],
   "blockers": [
     {
       "id": "PANEL_MECHANICAL_AUDIT",

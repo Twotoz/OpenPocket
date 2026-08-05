@@ -23,6 +23,9 @@ EASYEDA_LIBRARY = ROOT / "easyeda" / "openpocket-easyeda.kicad_sym"
 EASYEDA_FOOTPRINTS = ROOT / "easyeda" / "openpocket-easyeda.pretty"
 CUSTOM_FOOTPRINTS = ROOT / "openpocket-rev-a.pretty"
 
+BOARD_WIDTH = 115.0
+BOARD_HEIGHT = 72.0
+
 @dataclass
 class Part:
     ref: str
@@ -115,12 +118,11 @@ NET_CLASS_MEMBERS = {
         "3V3_LOGIC", "3V3_SD", "5V_VCC", "AMT_CORE1", "AMT_CORE2",
         "AMT_CORE3", "BUZZER_5V", "BUZZER_LOW", "DISPLAY_3V3",
         "DISPLAY_3V3_A", "DISPLAY_3V3_D", "PANEL_3V3", "REGN", "SPK+",
-        "SPK-",
+        "SPK-", "BAT_NEG_SENSE", "PACK_NEG_SENSE",
     },
     "Power": {"5V_DISPLAY", "5V_ELRS", "5V_VIDEO", "5V_VIDEO_FILT"},
     "HighCurrent": {
-        "BAT_CELL_NEG", "BAT_NEG_SENSE", "BAT_PROTECTED", "BAT_RAW",
-        "PACK_NEG_SENSE", "PMID", "SYS_ALWAYS", "SYS_SWITCHED",
+        "BAT_CELL_NEG", "BAT_PROTECTED", "BAT_RAW", "PMID", "SYS_ALWAYS", "SYS_SWITCHED",
         "SYS_SWITCHED_5V", "VBUS_RAW", "VBUS_USB",
     },
     "SwitchNode": {"BL_SW", "CHG_SW", "DISP_SW", "L3V3_A", "L3V3_B",
@@ -503,11 +505,9 @@ add("J9","controls","OpenPocket","SOLDER-PADS-22","CONS","EDGE-PADS-22",
     [(f"C{i}",f"CTRL_0_{i}") for i in range(16)] +
     [(f"C{16+i}",f"CTRL_1_{i}") for i in range(6)],45,55,
     dnp=True,notes="integral solder pads; user-wired, not an assembly item")
-add("J10","RX antenna coax","OpenPocket","COAX-SOLDER","CONS","COAX-SOLDER",
-    [("RF","RX_RF"),("GND",G),("GND",G)],2,20,
-    dnp=True,notes="integral coax solder pads; user-wired")
-add("J11","optional U.FL","Hirose","U.FL-R-SMT-1(10)","C88374","U.FL",
-    [("RF","RX_RF"),("GND",G),("GND",G)],5,16,dnp=True)
+add("J11","5.8 GHz antenna U.FL","Hirose","U.FL-R-SMT-1(10)","C88374","U.FL",
+    [("RF","RX_RF"),("GND",G),("GND",G)],5,16,
+    notes="populate on bottom; accepts U.FL/MHF1 plug vertically; secure cable to enclosure")
 
 # Passives. Exact MPN families are frozen; the supplier column identifies JLC.
 def passive(ref,value,mpn,lcsc,package,n1,n2,x,y,dnp=False):
@@ -811,34 +811,40 @@ def apply_placement() -> None:
         "U20": (28, 51, "F"), "U5": (33, 43, "F"),
         "U6": (45, 45.5, "F"), "U7": (57, 43, "F"),
         "U8": (67, 45, "F"), "U9": (76, 51, "F"),
-        "U10": (79, 42, "F"), "MOD1": (16, 33, "B"),
-        "U11": (31, 32, "F"), "U12": (25, 20, "F"),
-        "U13": (31, 21, "F"), "U14": (46, 30, "F"),
-        "U15": (45, 15, "F"), "U16": (52, 15, "F"),
-        "J1": (67.5, 30, "F"), "U17": (80, 32, "F"),
+        # Rotate before the bottom-side flip so the ANT pad faces the optional
+        # coax/U.FL launches at the left edge (final PCB orientation 0 deg).
+        "U10": (79, 42, "F"), "MOD1": (16, 40, "B", 180),
+        "U11": (80, 30, "F"), "U12": (48, 17, "F"),
+        "U13": (55, 17, "F"), "U14": (60, 30, "F"),
+        "U15": (70, 13, "F"), "U16": (77, 13, "F"),
+        "J1": (29.75, 26, "F"), "U17": (104, 35, "F"),
         "U18": (35, 52, "F"), "U19": (62, 52, "F"),
         "BZ1": (85, 7, "F"), "Q2": (79, 5, "B"),
         "D2": (79, 9, "B"), "U21": (78, 18, "B"),
-        "J4": (82.5, 18, "F"), "U22": (38, 18, "B"),
-        "J12": (32, 8.5, "F"), "ESD1": (57, 12, "F"),
+        "J4": (90, 24, "F"), "U22": (38, 18, "B"),
+        "J12": (101, 8.5, "F"), "ESD1": (57, 12, "F"),
         "ESD2": (41, 7, "F"),
-        "ESD3": (41, 9.5, "F"), "J3": (5.5, 57.8, "F"),
-        "J5": (13, 57.8, "F"), "J6": (82, 57.8, "F"),
+        "ESD3": (41, 9.5, "F"), "J3": (5.5, 69.8, "F"),
+        "J5": (13, 69.8, "F"), "J6": (107, 69.8, "F"),
         "J7": (6, 4, "F"), "J8": (16, 4, "F"),
-        "J9": (44, 57.8, "F"), "J10": (5.0, 42, "F"),
-        "J11": (4.5, 37, "F"), "J13": (86, 30, "F"),
+        # Bottom-side U.FL sits just outside the RX5808 body, allowing a short
+        # via-free 5.8-GHz feed to the module ANT pad.
+        "J9": (56.5, 69.8, "F"), "J11": (4.5, 25.0, "B", 180),
+        "J13": (111, 36, "F"),
         "ESD4": (73, 55, "F"), "F1": (45, 5, "F"),
-        "TVS1": (45, 8, "F"), "JP1": (40, 36, "F"),
-        "Y1": (30.5, 38.5, "F"), "Y2": (36, 21, "F"),
+        "TVS1": (45, 8, "F"), "JP1": (44, 35, "F"),
+        "Y1": (80, 39, "F"), "Y2": (70, 40, "F"),
         "L1": (24, 54, "F"), "L2": (27, 45, "F"),
-        "L4": (81, 35, "F"),
+        "L4": (104, 41, "F"),
         "L5": (78, 45, "F"), "D1": (86, 39, "F"),
-        "FB1": (27, 38, "F"), "FB2": (47, 41, "F"),
-        "FB3": (51, 41, "F"), "FB4": (55, 41, "F"),
+        "FB1": (27, 38, "F"), "FB2": (56, 41, "F"),
+        "FB3": (60, 41, "F"), "FB4": (64, 41, "F"),
     }
     for ref, position in fixed.items():
         put(ref, *position)
-    put("J2", 52, 5.4, "F", 90)
+    # J1's cable opening faces the lower board edge; pin 1 is X=20.00 mm.
+    put("J1", 29.75, 26, "F", 180)
+    put("J2", 57.5, 5.4, "F", 90)
     # Put the 5-V boost switch-node pad on the U6-facing side of L3.
     put("L3", 52, 48.5, "F", 180)
 
@@ -862,7 +868,7 @@ def apply_placement() -> None:
     grid(["R50", "C51", "C52", "C64", "C65", "C66"],
          72, 43, 3, 2.0, 2.0)
     grid(["R25", "R26", "R27", "C22", "C4", "C5", "C7",
-          "C57", "C58", "C59", "C60"], 25, 23, 2, 2.0, 2.0)
+          "C57", "C58", "C59", "C60"], 20, 58, 3, 2.0, 2.0)
     put("C6", 36, 40, "B")
     grid(["R10", "R11", "R12", "R53", "C8"], 40, 27, 1, 2.0, 1.7)
     grid(["R18", "C15", "C16"], 34, 18, 3, 1.8, 1.7)
@@ -876,13 +882,13 @@ def apply_placement() -> None:
     grid(["R6", "R7", "C17"], 80, 4, 3, 1.7, 1.7)
     grid(["R8", "R16", "C20", "C21"], 75, 21, 4, 2.0, 1.8, "B")
     grid(["R14", "R15"], 64, 16, 2, 2.0, 1.8)
-    grid(["R59", "R60", "R61"], 25, 20, 3, 1.8, 1.8)
+    grid(["R59", "R60", "R61"], 45, 20, 3, 1.8, 1.8)
     grid(["R64", "R65", "R66", "R67", "R68", "R69"],
          28, 25, 3, 1.8, 1.6, "B")
     # Cell-protection gate resistors must sit with U3/Q1.  In the initial
     # catch-all bottom grid they ended up at the opposite board edge.
     grid(["R62", "R63"], 9, 50, 1, 1.8, 2.0, "B")
-    put("R103", 38, 30, "F")
+    put("R103", 46, 30, "F")
     put("R104", 18, 18, "F")
     grid(["R95", "R96", "R97", "R98", "C78", "C79", "C80", "C81"],
          20, 11, 4, 1.8, 1.8, "B")
@@ -897,8 +903,8 @@ def apply_placement() -> None:
     # Put one local 100 nF/bulk capacitor directly below each flagged IC.
     # Short through-via stubs are preferable to the centimetre-scale loops in
     # the initial floorplan and keep the top-side escape channels available.
-    put("C70", 45, 15, "B")   # U15 AMT boot flash
-    put("C71", 52, 15, "B")   # U16 AMT flash mux
+    put("C70", 70, 13, "B")   # U15 AMT boot flash
+    put("C71", 77, 13, "B")   # U16 AMT flash mux
     put("C1", 68, 11, "B")    # U18 GPIO expander
     put("C53", 83, 27, "B")   # U17 backlight boost input
     put("C67", 3, 49, "B")    # U3 cell protector sense supply
@@ -1149,9 +1155,9 @@ def legalize_small_parts(board: pcbnew.BOARD) -> None:
             fp.SetPosition(candidate)
             boxes = [box(fp, side) for side in sides]
             if any(bb.GetLeft() < pcbnew.FromMM(1.0) or
-                   bb.GetRight() > pcbnew.FromMM(89.0) or
+                   bb.GetRight() > pcbnew.FromMM(BOARD_WIDTH - 1.0) or
                    bb.GetTop() < pcbnew.FromMM(1.0) or
-                   bb.GetBottom() > pcbnew.FromMM(59.0) for bb in boxes):
+                   bb.GetBottom() > pcbnew.FromMM(BOARD_HEIGHT - 1.0) for bb in boxes):
                 continue
             if any(bb.Intersects(other) for side, bb in zip(sides, boxes)
                    for other in occupied[side]):
@@ -1333,7 +1339,8 @@ def add_ground_fanout(board: pcbnew.BOARD, nets: dict) -> None:
     obstacles = [(pad, bbox_mm(pad)) for pad in pads]
 
     def point_clear(x: float, y: float, own: pcbnew.PAD) -> bool:
-        if not (0.65 <= x <= 89.35 and 0.65 <= y <= 59.35):
+        if not (0.65 <= x <= BOARD_WIDTH - 0.65 and
+                0.65 <= y <= BOARD_HEIGHT - 0.65):
             return False
         if any(math.hypot(x - vx, y - vy) < 0.65
                for vx, vy in occupied_vias):
@@ -1370,6 +1377,33 @@ def add_ground_fanout(board: pcbnew.BOARD, nets: dict) -> None:
                     return False
         return True
 
+    def junction_clear(x0: float, y0: float, x: float, y: float,
+                       layer: int) -> bool:
+        """Reject acute shared-via branches that form copper slivers."""
+        new_x, new_y = x0 - x, y0 - y
+        new_length = math.hypot(new_x, new_y)
+        for item in board.GetTracks():
+            if isinstance(item, pcbnew.PCB_VIA) or item.GetLayer() != layer:
+                continue
+            start, end = item.GetStart(), item.GetEnd()
+            sx, sy = start.x / 1_000_000, start.y / 1_000_000
+            ex, ey = end.x / 1_000_000, end.y / 1_000_000
+            if math.hypot(sx - x, sy - y) < 0.001:
+                other_x, other_y = ex - x, ey - y
+            elif math.hypot(ex - x, ey - y) < 0.001:
+                other_x, other_y = sx - x, sy - y
+            else:
+                continue
+            other_length = math.hypot(other_x, other_y)
+            if not new_length or not other_length:
+                continue
+            cosine = max(-1.0, min(1.0,
+                (new_x * other_x + new_y * other_y) /
+                (new_length * other_length)))
+            if math.degrees(math.acos(cosine)) < 30.0:
+                return False
+        return True
+
     smd_ground = [pad for pad in pads
                   if pad.GetNetname() == G and
                   pad.GetAttribute() == pcbnew.PAD_ATTRIB_SMD]
@@ -1389,12 +1423,16 @@ def add_ground_fanout(board: pcbnew.BOARD, nets: dict) -> None:
         footprint = pad.GetParentFootprint()
         # Adjacent ground pins may share a nearby via or grounded through-pad;
         # this is especially useful for consecutive LQFP supply pins.
-        existing = next(((x, y) for x, y in
-                         sorted(ground_access,
-                                key=lambda point: math.hypot(
-                                    point[0] - x0, point[1] - y0))
-                         if math.hypot(x - x0, y - y0) <= 4.00 and
-                         segment_clear(x0, y0, x, y, pad)), None)
+        reachable = [(x, y) for x, y in
+                     sorted(ground_access,
+                            key=lambda point: math.hypot(
+                                point[0] - x0, point[1] - y0))
+                     if math.hypot(x - x0, y - y0) <= 4.00 and
+                     segment_clear(x0, y0, x, y, pad)]
+        existing = next(((x, y) for x, y in reachable
+                         if junction_clear(x0, y0, x, y,
+                                           copper_layer(pad))), None)
+        fallback_existing = reachable[0] if reachable else None
         if existing is not None:
             track = pcbnew.PCB_TRACK(board)
             track.SetStart(position)
@@ -1412,10 +1450,7 @@ def add_ground_fanout(board: pcbnew.BOARD, nets: dict) -> None:
             outward = (0, 1 if dy >= 0 else -1)
         directions = [outward, (1, 0), (-1, 0), (0, 1), (0, -1),
                       (1, 1), (-1, 1), (1, -1), (-1, -1)]
-        # The two large coax ground lands intentionally use a centred
-        # stitching via; moving outward would put J10.2 beyond the board edge.
-        candidate = ((x0, y0, None) if
-                     footprint.GetReference() == "J10" else None)
+        candidate = None
         for distance in (0.75, 0.95, 1.20, 1.50, 1.85, 2.25, 2.80,
                          3.50):
             if candidate:
@@ -1453,6 +1488,18 @@ def add_ground_fanout(board: pcbnew.BOARD, nets: dict) -> None:
                 if candidate:
                     break
         if candidate is None:
+            # Fine-pitch pads can be boxed in by neighbouring lands.  Reuse
+            # the nearest reachable ground access only when no independent
+            # via is geometrically possible.
+            if fallback_existing is not None:
+                track = pcbnew.PCB_TRACK(board)
+                track.SetStart(position)
+                track.SetEnd(pcbnew.VECTOR2I_MM(*fallback_existing))
+                track.SetWidth(pcbnew.FromMM(0.20))
+                track.SetLayer(copper_layer(pad))
+                track.SetNet(ground)
+                board.Add(track)
+                continue
             missing.append(
                 f"{footprint.GetReference()}.{pad.GetNumber()}")
             continue
@@ -1489,29 +1536,44 @@ def generate_board():
     # A fixed generator seed makes repeated source generation byte-stable;
     # the electrical/mechanical identity is already defined by this script.
     pcbnew.KIID.SeedGenerator(0x4F504B54)
-    b=pcbnew.BOARD(); b.GetDesignSettings().SetCopperLayerCount(4)
-    b.SetLayerName(pcbnew.F_Cu,"F.Cu"); b.SetLayerName(pcbnew.In1_Cu,"GND"); b.SetLayerName(pcbnew.In2_Cu,"PWR_SIG"); b.SetLayerName(pcbnew.B_Cu,"B.Cu")
+    b=pcbnew.BOARD(); b.GetDesignSettings().SetCopperLayerCount(8)
+    b.SetLayerName(pcbnew.F_Cu, "F.Cu")
+    b.SetLayerName(pcbnew.In1_Cu, "GND1")
+    b.SetLayerName(pcbnew.In2_Cu, "SIG1")
+    b.SetLayerName(pcbnew.In3_Cu, "SIG2")
+    b.SetLayerName(pcbnew.In4_Cu, "SIG3")
+    b.SetLayerName(pcbnew.In5_Cu, "SIG4")
+    b.SetLayerName(pcbnew.In6_Cu, "GND2")
+    b.SetLayerName(pcbnew.B_Cu, "B.Cu")
     ds=b.GetDesignSettings(); ds.m_MinClearance=pcbnew.FromMM(0.10); ds.m_TrackMinWidth=pcbnew.FromMM(0.12); ds.m_ViasMinSize=pcbnew.FromMM(0.45); ds.m_MinThroughDrill=pcbnew.FromMM(0.20); ds.m_SolderMaskMinWidth=pcbnew.FromMM(0.0)
     nets=ensure_nets(b)
     for part in P: make_fp(b,part,nets)
     legalize_small_parts(b)
     configure_plane_connections(b)
     for reference, x, y, side in [
-            ("FID1", 5, 24, "F"), ("FID2", 76, 17, "F"),
-            ("FID3", 85, 51, "F"), ("FID4", 5, 8, "B"),
-            ("FID5", 86, 9, "B"), ("FID6", 85, 51, "B")]:
+            ("FID1", 5, 24, "F"), ("FID2", 105, 18, "F"),
+            ("FID3", 109, 64, "F"), ("FID4", 5, 8, "B"),
+            ("FID5", 109, 9, "B"), ("FID6", 109, 64, "B")]:
         add_fiducial(b, reference, x, y, side)
     add_exposed_pad_thermal_vias(b, nets)
     add_ground_fanout(b, nets)
-    for a,c in [((0,0),(90,0)),((90,0),(90,60)),((90,60),(0,60)),((0,60),(0,0))]:
+    for a,c in [((0, 0), (BOARD_WIDTH, 0)),
+                ((BOARD_WIDTH, 0), (BOARD_WIDTH, BOARD_HEIGHT)),
+                ((BOARD_WIDTH, BOARD_HEIGHT), (0, BOARD_HEIGHT)),
+                ((0, BOARD_HEIGHT), (0, 0))]:
         s=pcbnew.PCB_SHAPE(b); s.SetShape(pcbnew.SHAPE_T_SEGMENT); s.SetStart(pcbnew.VECTOR2I_MM(*a)); s.SetEnd(pcbnew.VECTOR2I_MM(*c)); s.SetLayer(pcbnew.Edge_Cuts); s.SetWidth(pcbnew.FromMM(.1)); b.Add(s)
-    # Continuous L2 ground plane.
-    z=pcbnew.ZONE(b); z.SetLayer(pcbnew.In1_Cu); z.SetNet(nets[G]); z.SetLocalClearance(pcbnew.FromMM(.2)); z.SetMinThickness(pcbnew.FromMM(.15));
-    out=z.Outline(); out.NewOutline()
-    for x,y in [(0.25,0.25),(89.75,0.25),(89.75,59.75),(0.25,59.75)]: out.Append(pcbnew.FromMM(x),pcbnew.FromMM(y))
-    b.Add(z)
+    # Continuous L2/L7 ground-reference planes. Signal routing is forbidden
+    # on both by the critical-routing audit.
+    for plane in (pcbnew.In1_Cu, pcbnew.In6_Cu):
+        z=pcbnew.ZONE(b); z.SetLayer(plane); z.SetNet(nets[G]); z.SetLocalClearance(pcbnew.FromMM(.2)); z.SetMinThickness(pcbnew.FromMM(.15));
+        out=z.Outline(); out.NewOutline()
+        for x,y in [(0.25, 0.25), (BOARD_WIDTH - 0.25, 0.25),
+                    (BOARD_WIDTH - 0.25, BOARD_HEIGHT - 0.25),
+                    (0.25, BOARD_HEIGHT - 0.25)]:
+            out.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
+        b.Add(z)
     # Mechanical panel/flex/acoustic keep-outs.
-    for layer,text,x,y in [(pcbnew.User_1,"ER-TFT050A3-2 PANEL 120.7 x 75.8",66,4),(pcbnew.User_2,"FPC EXITS RIGHT / BEND KEEP-OUT",74,30),(pcbnew.User_2,"BUZZER ACOUSTIC OPENING",84,9),(pcbnew.User_2,"SPEAKER / TWISTED PAIR",84,22),(pcbnew.User_2,"MICROSD INSERT / PUSH-PUSH EJECT UP",32,1),(pcbnew.User_2,"MICROSD FINGER + EJECT KEEP-OUT",32,4)]:
+    for layer,text,x,y in [(pcbnew.User_1,"ER-TFT050A3-2 PANEL 120.7 x 75.8",66,4),(pcbnew.User_2,"J1 FPC INSERTS FROM BOTTOM / BEND KEEP-OUT",29.75,33),(pcbnew.User_2,"BUZZER ACOUSTIC OPENING",84,9),(pcbnew.User_2,"SPEAKER / TWISTED PAIR",84,22),(pcbnew.User_2,"MICROSD INSERT / PUSH-PUSH EJECT UP",101,1),(pcbnew.User_2,"MICROSD FINGER + EJECT KEEP-OUT",101,4)]:
         t=pcbnew.PCB_TEXT(b); t.SetText(text); t.SetPosition(pcbnew.VECTOR2I_MM(x,y)); t.SetLayer(layer); t.SetTextSize(pcbnew.VECTOR2I_MM(1,1)); b.Add(t)
     # microSD 11 x 15 mm card body: locked and 3.12-mm farther out at eject.
     for name,start,end in [
@@ -1530,6 +1592,7 @@ def generate_board():
     board_text=board_text.replace("(clearance 0.2)",
                                   "(clearance 0.1)", 1)
     BOARD.write_text(board_text)
+    apply_stackup_metadata()
     project=ROOT/"openpocket-rev-a.kicad_pro"
     configure_project_netclasses(project)
     # The reviewed Specctra session is versioned so the routed result can be
@@ -1542,10 +1605,74 @@ def generate_board():
         pcbnew.SaveBoard(str(BOARD), routed)
     # ZONE_FILLER is unstable on a board freshly created through KiCad 9's
     # SWIG API, but reliable after reloading the saved file in a clean process.
-    # Keep that isolation explicit so generated boards always store valid L2
-    # copper and DRC/Specctra never treat GND as an ordinary unrouted signal.
+    # Keep that isolation explicit so generated boards always store valid
+    # L2/L7 copper and DRC/Specctra never treat GND as an ordinary unrouted
+    # signal.
     subprocess.run([sys.executable, str(__file__), "--stage", "fill"],
                    check=True)
+
+
+def apply_stackup_metadata() -> None:
+    board_text = BOARD.read_text()
+    if "\n\t\t(stackup\n" in board_text:
+        return
+    stackup = '''\t\t(stackup
+\t\t\t(layer "F.SilkS" (type "Top Silk Screen") (color "White"))
+\t\t\t(layer "F.Paste" (type "Top Solder Paste"))
+\t\t\t(layer "F.Mask" (type "Top Solder Mask") (color "Green") (thickness 0.01))
+\t\t\t(layer "F.Cu" (type "copper") (thickness 0.035))
+\t\t\t(layer "dielectric 1" (type "prepreg") (thickness 0.100) (material "FR4") (epsilon_r 4.2) (loss_tangent 0.02))
+\t\t\t(layer "In1.Cu" (type "copper") (thickness 0.035))
+\t\t\t(layer "dielectric 2" (type "core") (thickness 0.100) (material "FR4") (epsilon_r 4.2) (loss_tangent 0.02))
+\t\t\t(layer "In2.Cu" (type "copper") (thickness 0.035))
+\t\t\t(layer "dielectric 3" (type "prepreg") (thickness 0.100) (material "FR4") (epsilon_r 4.2) (loss_tangent 0.02))
+\t\t\t(layer "In3.Cu" (type "copper") (thickness 0.035))
+\t\t\t(layer "dielectric 4" (type "core") (thickness 0.100) (material "FR4") (epsilon_r 4.2) (loss_tangent 0.02))
+\t\t\t(layer "In4.Cu" (type "copper") (thickness 0.035))
+\t\t\t(layer "dielectric 5" (type "prepreg") (thickness 0.100) (material "FR4") (epsilon_r 4.2) (loss_tangent 0.02))
+\t\t\t(layer "In5.Cu" (type "copper") (thickness 0.035))
+\t\t\t(layer "dielectric 6" (type "core") (thickness 0.100) (material "FR4") (epsilon_r 4.2) (loss_tangent 0.02))
+\t\t\t(layer "In6.Cu" (type "copper") (thickness 0.035))
+\t\t\t(layer "dielectric 7" (type "prepreg") (thickness 0.100) (material "FR4") (epsilon_r 4.2) (loss_tangent 0.02))
+\t\t\t(layer "B.Cu" (type "copper") (thickness 0.035))
+\t\t\t(layer "B.Mask" (type "Bottom Solder Mask") (color "Green") (thickness 0.01))
+\t\t\t(layer "B.Paste" (type "Bottom Solder Paste"))
+\t\t\t(layer "B.SilkS" (type "Bottom Silk Screen") (color "White"))
+\t\t\t(copper_finish "ENIG")
+\t\t\t(dielectric_constraints no)
+\t\t)\n'''
+    marker = "\t(setup\n"
+    if marker not in board_text:
+        raise RuntimeError("cannot locate KiCad setup block for stack-up")
+    BOARD.write_text(board_text.replace(marker, marker + stackup, 1))
+
+
+def sync_footprint_metadata() -> None:
+    board = pcbnew.LoadBoard(str(BOARD))
+    footprints = {fp.GetReference(): fp for fp in board.GetFootprints()}
+    for part in P:
+        footprint = footprints.get(part.ref)
+        if footprint is None:
+            raise RuntimeError(f"{part.ref}: missing from generated PCB")
+        fp_id = footprint_id(part)
+        nickname, item = fp_id.split(":", 1)
+        library_path = (EASYEDA_FOOTPRINTS if
+                        nickname == "openpocket-easyeda" else
+                        CUSTOM_FOOTPRINTS)
+        if ((nickname == "openpocket-easyeda") or
+                (nickname == "OpenPocket" and
+                 (library_path / f"{item}.kicad_mod").exists())):
+            # These footprints are deliberately modified after load, so keep
+            # them detached from library-comparison DRC while retaining the
+            # reviewed item name.
+            nickname = ""
+        lib_id = pcbnew.LIB_ID()
+        lib_id.SetLibNickname(pcbnew.UTF8(nickname))
+        lib_id.SetLibItemName(pcbnew.UTF8(item))
+        footprint.SetFPID(lib_id)
+        footprint.SetDNP(part.dnp)
+        footprint.SetExcludedFromBOM(part.dnp)
+    pcbnew.SaveBoard(str(BOARD), board)
 
 
 def fill_board() -> None:
@@ -1621,32 +1748,38 @@ def schematic_init():
         '  (lib (name "OpenPocket")(type "KiCad")(uri "${KIPRJMOD}/openpocket-rev-a.pretty")(options "")(descr "Reviewed custom Rev-A footprints"))\n'
         '  (lib (name "openpocket-easyeda")(type "KiCad")(uri "${KIPRJMOD}/easyeda/openpocket-easyeda.pretty")(options "")(descr "Audited JLC source footprints"))\n'
         ')\n')
+    # create_schematic() may reopen an existing file instead of replacing it;
+    # explicitly start from an empty generated source for deterministic staged
+    # regeneration.
+    SCHEMATIC.unlink(missing_ok=True)
     previous=os.getcwd(); os.chdir(ROOT)
     sch=ksa.create_schematic("OpenPocket Rev A Engineering Prototype")
     sch.add_text("OpenPocket Rev A — Engineering Prototype",(20,8),size=2.0)
     sch.save(SCHEMATIC)
     os.chdir(previous)
 
-def schematic_group(group_index):
+def schematic_group(group_index, group_count=1):
     import os
     import kicad_sch_api as ksa
     previous=os.getcwd(); os.chdir(ROOT)
     sch=ksa.load_schematic(SCHEMATIC)
     sch.library.add_library_path(LIBRARY)
-    lib_id,items=schematic_groups()[group_index]
+    selected=schematic_groups()[group_index:group_index+group_count]
     with sch.components.batch_mode():
-        for i,part in items:
-            x=25+(i%6)*38; y=20+(i//6)*35
-            sch.components.add(lib_id,part.ref,part.value,position=(x,y),
-                               footprint=footprint_id(part))
-    for _,part in items:
-        set_sourcing_properties(sch.components.get(part.ref), part)
-        for pin_number,_,net in pin_items(part):
-            if net not in ("NC",""):
-                sch.add_label(net,pin=(part.ref,pin_number))
-            else:
-                sch.add_label(f"NC_{part.ref}_{pin_number}",
-                              pin=(part.ref,pin_number))
+        for lib_id,items in selected:
+            for i,part in items:
+                x=25+(i%6)*38; y=20+(i//6)*35
+                sch.components.add(lib_id,part.ref,part.value,position=(x,y),
+                                   footprint=footprint_id(part))
+    for _,items in selected:
+        for _,part in items:
+            set_sourcing_properties(sch.components.get(part.ref), part)
+            for pin_number,_,net in pin_items(part):
+                if net not in ("NC",""):
+                    sch.add_label(net,pin=(part.ref,pin_number))
+                else:
+                    sch.add_label(f"NC_{part.ref}_{pin_number}",
+                                  pin=(part.ref,pin_number))
     sch.save(SCHEMATIC)
     os.chdir(previous)
 
@@ -1687,43 +1820,45 @@ def schematic_connect_init():
     sch.labels.clear(); sch.wires.clear(); sch.no_connects.clear()
     sch.save(SCHEMATIC)
 
-def schematic_connect_group(group_index):
+def schematic_connect_group(group_index, group_count=1):
     import kicad_sch_api as ksa
     sch=ksa.load_schematic(SCHEMATIC)
     sch.library.add_library_path(LIBRARY)
-    _,items=schematic_groups()[group_index]
-    for _,part in items:
-        component=sch.components.get(part.ref)
-        component_x=float(component.position.x)
-        for pin_number,_,net in pin_items(part):
-            pos=sch.get_component_pin_position(part.ref,pin_number)
-            if net in ("NC",""):
-                sch.no_connects.add(pos)
-                continue
-            # Every generated symbol has pins on its left and right edges.
-            # Extend the wire away from the body before placing the label.
-            direction=-1 if float(pos.x)<component_x else 1
-            end=(pos.x+direction*2.54,pos.y)
-            sch.add_wire(pos,end)
-            sch.add_label(net,position=end,rotation=0 if direction<0 else 180)
+    selected=schematic_groups()[group_index:group_index+group_count]
+    for _,items in selected:
+        for _,part in items:
+            component=sch.components.get(part.ref)
+            component_x=float(component.position.x)
+            for pin_number,_,net in pin_items(part):
+                pos=sch.get_component_pin_position(part.ref,pin_number)
+                if net in ("NC",""):
+                    sch.no_connects.add(pos)
+                    continue
+                # Every generated symbol has pins on its left and right edges.
+                # Extend the wire away from the body before placing the label.
+                direction=-1 if float(pos.x)<component_x else 1
+                end=(pos.x+direction*2.54,pos.y)
+                sch.add_wire(pos,end)
+                sch.add_label(net,position=end,rotation=0 if direction<0 else 180)
     sch.save(SCHEMATIC)
 
 def tables():
     # Pick-and-place coordinates come from the actual legalized board rather
     # than the preferred floorplan. This keeps independently regenerated CPL
     # files aligned with the PCB.
-    if BOARD.exists():
-        board=pcbnew.LoadBoard(str(BOARD))
-        board_parts={fp.GetReference(): fp for fp in board.GetFootprints()}
-        for part in P:
-            fp=board_parts.get(part.ref)
-            if fp is None:
-                raise RuntimeError(f"{part.ref}: missing from generated PCB")
-            position=fp.GetPosition()
-            part.x=position.x / 1_000_000
-            part.y=position.y / 1_000_000
-            part.side="B" if fp.GetLayer() == pcbnew.B_Cu else "F"
-            part.rotation=fp.GetOrientationDegrees()
+    if not BOARD.exists():
+        raise RuntimeError("generated PCB is required before generating tables")
+    board=pcbnew.LoadBoard(str(BOARD))
+    board_parts={fp.GetReference(): fp for fp in board.GetFootprints()}
+    for part in P:
+        fp=board_parts.get(part.ref)
+        if fp is None:
+            raise RuntimeError(f"{part.ref}: missing from generated PCB")
+        position=fp.GetPosition()
+        part.x=position.x / 1_000_000
+        part.y=position.y / 1_000_000
+        part.side="B" if fp.GetLayer() == pcbnew.B_Cu else "F"
+        part.rotation=fp.GetOrientationDegrees()
     fields=["Designator","Value","Manufacturer","MPN","LCSC","Package","Qty","DNP","Notes"]
     for filename in ["bom.csv","bom-jlcpcb.csv","bom-generic.csv"]:
         with (ROOT/filename).open('w',newline='') as f:
@@ -1773,33 +1908,40 @@ def tables():
     with (ROOT/"rx5808-pin-audit.csv").open('w',newline='') as f:
         fields=["pin","function","net","pad_x_mm","pad_y_mm","evidence"]
         w=csv.DictWriter(f,fieldnames=fields,lineterminator="\n"); w.writeheader()
+        rx_footprint=board_parts[rx.ref]
+        rx_pads={pad.GetNumber(): pad for pad in rx_footprint.Pads()}
         for index,(function,net) in enumerate(rx.pins):
-            side=-1 if index<6 else 1; local=index if index<6 else 11-index
+            pad=rx_pads[str(index+1)]; position=pad.GetPosition()
             w.writerow(dict(pin=index+1,function=function,net=net,
-                pad_x_mm=f"{rx.x+side*11.9:.3f}",
-                pad_y_mm=f"{rx.y+(local-2.5)*2.54:.3f}",
+                pad_x_mm=f"{pcbnew.ToMM(position.x):.3f}",
+                pad_y_mm=f"{pcbnew.ToMM(position.y):.3f}",
                 evidence="C2908157 EasyEDA footprint; 28x23 mm module geometry; published 12-pad order"))
     sd=next(part for part in P if part.ref=="J12")
-    signal_x=[-1.925,-1.125,-0.325,0.475,1.275,2.075,2.875,3.675]
     with (ROOT/"microsd-pin-audit.csv").open('w',newline='') as f:
         fields=["pin","function","net","pad_x_mm","pad_y_mm",
                 "card_present_logic","source_evidence"]
         w=csv.DictWriter(f,fieldnames=fields,lineterminator="\n"); w.writeheader()
+        sd_footprint=board_parts[sd.ref]
+        sd_pads={pad.GetNumber(): pad for pad in sd_footprint.Pads()}
         for index,(function,net) in enumerate(sd.pins[:8]):
+            position=sd_pads[str(index+1)].GetPosition()
             w.writerow(dict(pin=index+1,function=function,net=net,
-                pad_x_mm=f"{sd.x+signal_x[index]:.3f}",
-                pad_y_mm=f"{sd.y-4.05:.3f}",card_present_logic="n/a",
+                pad_x_mm=f"{pcbnew.ToMM(position.x):.3f}",
+                pad_y_mm=f"{pcbnew.ToMM(position.y):.3f}",card_present_logic="n/a",
                 source_evidence="SOFNG TF-001A-P3 drawing, vertical-view land pattern, P1-P8 at 0.80 mm pitch"))
+        position=sd_pads["9"].GetPosition()
         w.writerow(dict(pin=9,function="CARD_DETECT",net="SD_CARD_DETECT",
-            pad_x_mm=f"{sd.x+3.085:.3f}",pad_y_mm=f"{sd.y+6.40:.3f}",
+            pad_x_mm=f"{pcbnew.ToMM(position.x):.3f}",
+            pad_y_mm=f"{pcbnew.ToMM(position.y):.3f}",
             card_present_logic="low=fully inserted",
             source_evidence="SOFNG TF-001A-P3 normally-open CD-to-ground switch drawing"))
 
 if __name__ == "__main__":
     import argparse
     parser=argparse.ArgumentParser()
-    parser.add_argument("--stage",choices=("all","lib","sch-init","sch-group","sch-connect-init","sch-connect-group","board","fill","tables"),default="all")
+    parser.add_argument("--stage",choices=("all","lib","sch-init","sch-group","sch-connect-init","sch-connect-group","board","fill","stackup","metadata","netclasses","tables"),default="all")
     parser.add_argument("--group",type=int)
+    parser.add_argument("--group-count",type=int,default=1)
     args=parser.parse_args()
     ROOT.mkdir(parents=True,exist_ok=True)
     if args.stage in ("all","lib"):
@@ -1807,10 +1949,14 @@ if __name__ == "__main__":
         symbol_library()
     if args.stage=="all": schematic()
     elif args.stage=="sch-init": schematic_init()
-    elif args.stage=="sch-group": schematic_group(args.group)
+    elif args.stage=="sch-group": schematic_group(args.group,args.group_count)
     elif args.stage=="sch-connect-init": schematic_connect_init()
-    elif args.stage=="sch-connect-group": schematic_connect_group(args.group)
+    elif args.stage=="sch-connect-group": schematic_connect_group(args.group,args.group_count)
     if args.stage in ("all","board"): generate_board()
     elif args.stage=="fill": fill_board()
+    elif args.stage=="stackup": apply_stackup_metadata()
+    elif args.stage=="metadata": sync_footprint_metadata()
+    elif args.stage=="netclasses": configure_project_netclasses(
+        ROOT/"openpocket-rev-a.kicad_pro")
     if args.stage in ("all","tables"): tables()
     print(f"generated stage={args.stage} parts={len(P)} groups={len(schematic_groups())}")

@@ -799,15 +799,6 @@
       "9": "LCD_R4"
     }
   },
-  "J10": {
-    "mpn": "COAX-SOLDER",
-    "package": "COAX-SOLDER",
-    "pins": {
-      "1": "RX_RF",
-      "2": "GND",
-      "3": "GND"
-    }
-  },
   "J11": {
     "mpn": "U.FL-R-SMT-1(10)",
     "package": "U.FL",

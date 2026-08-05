@@ -80,9 +80,22 @@ def main() -> int:
                       "documentation", "inspection"):
         (OUT / directory).mkdir(parents=True, exist_ok=True)
 
+    run("kicad-cli", "sch", "erc", "-o",
+        str(OUT / "inspection" / "openpocket-rev-a-erc.rpt"),
+        "--severity-all", "--exit-code-violations", str(SCHEMATIC))
+    run("kicad-cli", "pcb", "drc", "-o",
+        str(OUT / "inspection" / "openpocket-rev-a-drc.rpt"),
+        "--all-track-errors", "--severity-all",
+        "--exit-code-violations", str(BOARD))
+    run(sys.executable, str(REV / "tools" / "netlist_audit.py"),
+        "--schematic", str(SCHEMATIC), "--board", str(BOARD), "--json",
+        str(OUT / "inspection" / "openpocket-rev-a-netlist-audit.json"))
+    run(sys.executable, str(REV / "tools" / "routing_audit.py"), str(BOARD),
+        "--json", str(OUT / "inspection" / "openpocket-rev-a-routing-audit.json"))
+
     run("kicad-cli", "pcb", "export", "gerbers", "-o",
         str(OUT / "gerbers"), "-l",
-        "F.Cu,In1.Cu,In2.Cu,B.Cu,F.Mask,B.Mask,F.Paste,B.Paste,F.Silkscreen,B.Silkscreen,Edge.Cuts",
+        "F.Cu,GND1,SIG1,SIG2,SIG3,SIG4,GND2,B.Cu,F.Mask,B.Mask,F.Paste,B.Paste,F.Silkscreen,B.Silkscreen,Edge.Cuts",
         "--subtract-soldermask", str(BOARD))
     run("kicad-cli", "pcb", "export", "drill", "-o",
         str(OUT / "gerbers"), "--format", "excellon", "--generate-map",
@@ -124,6 +137,7 @@ def main() -> int:
 
     for name in ("README.md", "gpio-map.md", "microsd.md", "wiring.md",
                  "power-budget.md", "routing-constraints.md",
+                 "stackup.md",
                  "factory-test.md", "pcbway-notes.md", "jlcpcb-notes.md",
                  "first-power-up.md", "production-readiness.md"):
         copy(REV / name, OUT / "documentation" / name)

@@ -9,14 +9,12 @@ authoritative fail-closed release control.
 
 ## Release decision
 
-Revision A is not production-ready. The PCB now contains a deterministic L2
-ground fanout (221 local stubs and 116 through vias), but no signal route has
-been accepted. KiCad still reaches its 499-item unconnected-report limit. The
-first improved-floorplan route reduced Freerouting's 752 incomplete
-connections to 272, but incorrectly used L2 for signals. After the ground
-fanout and an explicit L2 power-plane constraint, the next route started at
-531 incompletes but exceeded the review host's memory before writing a
-session. No partial autoroute was accepted into the design.
+Revision A is not yet production-ready. The current 115 x 72 mm eight-layer
+PCB contains deterministic L2/L7 ground fanout, but the new signal route has
+not yet been accepted. KiCad still reaches its 499-item unconnected-report
+limit on this clean routing seed. L2 and L7 are explicit uninterrupted ground
+planes; F.Cu, SIG1-SIG4, and B.Cu are available for routing. Earlier four- and
+six-layer experiments were not imported.
 
 Do not upload the generated Gerbers to a fabricator until routing, impedance,
 mechanical, independent schematic/layout, custom-part, and first-article gates
@@ -28,10 +26,10 @@ are closed.
 |---|---:|---|
 | KiCad 9 ERC | 0 errors, 0 warnings | kicad-cli sch erc |
 | KiCad 9 geometric DRC | 0 errors, 1 warning | One location-less F.Cu copper-sliver warning; connectivity separately reaches the 499-item report limit |
-| PCB stack | 4 copper layers, 1.0 mm, 90 x 60 mm | KiCad PCB source and Gerber job data |
+| PCB stack | 8 copper layers, 1.0 mm, 115 x 72 mm | KiCad PCB source and Gerber job data |
 | Assembly fiducials | 3 top, 3 bottom | 1.0 mm copper / 2.0 mm mask opening |
 | Exposed-pad thermal vias | U2: 9, U11: 9, U21: 9 | 0.45/0.20 mm tented, footprint-embedded vias to GND |
-| L2 ground fanout | 221 stubs, 116 board vias, 0 open GND items | Persisted L2 fill; no signal copper is permitted on L2 |
+| L2/L7 ground fanout | stored pad fanout plus two plane fills, 0 open GND items | No signal copper is permitted on L2/L7 |
 | BOM completeness | 229 populated components, 95 populated line items | Every populated line has manufacturer, MPN, LCSC code, and package |
 | BOM/CPL population set | exact match | DNP entries are excluded from assembly placement |
 | LCSC snapshot | 85 exact matches with stock; 2 custom codes unresolved | 87 unique non-CONS codes checked against the LCSC/JLC search API |

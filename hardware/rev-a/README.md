@@ -1,6 +1,6 @@
 # OpenPocket Revision A — Engineering Prototype
 
-Revision A is a 90 mm × 60 mm, four-layer, all-in-one transmitter board based
+Revision A is a 115 mm × 72 mm, eight-layer, all-in-one transmitter board based
 on the ESP32-S3-MINI-1U-N8. The intended assembled signal path is:
 
 ```text
@@ -29,11 +29,12 @@ validation.
 
 ## Design constraints
 
-- 90 mm × 60 mm fixed outline.
-- Four layers, 1.0 mm finished thickness, 1 oz copper, ENIG.
-- L1 components/critical signals, uninterrupted L2 ground, L3 power/slow
-  signals, L4 secondary components/routing.
-- RX5808 on L4 with shield, solder-joint, antenna and inspection clearances.
+- 115 mm × 72 mm fixed outline.
+- Eight layers, 1.0 mm finished thickness, 1 oz copper, ENIG.
+- L1/L8 components and critical routing, uninterrupted L2/L7 ground, and six
+  available routing layers for signals and width-controlled power routes.
+- RX5808 on the bottom side with shield, solder-joint, antenna and inspection
+  clearances; J11 U.FL/MHF1 is also bottom-side for a via-free 5.8 GHz feed.
 - AMT630A next to the edge-mounted TFT connector; AT7456E on the short analog
   path between RX5808 and AMT630A.
 - Backlight switching and power converters stay outside the analog/RF region.
@@ -51,6 +52,7 @@ validation.
 | `wiring.md` | internal and user-installed connections |
 | `power-budget.md` | preliminary worst-case and thermal calculations |
 | `routing-constraints.md` | KiCad netclasses, widths, vias and routing order |
+| `stackup.md` | nominal 1.0 mm eight-layer construction and impedance sign-off gate |
 | `bom.csv` | controlled component selection and verification state |
 | `dnp.csv` | optional/DNP items |
 | `consigned-parts.csv` | RX5808 manual-assembly requirement |
