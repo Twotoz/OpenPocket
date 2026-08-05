@@ -16,10 +16,11 @@
 </p>
 
 <p align="center">
-  <img src="docs/assets/openpocket-pcb-placement.png" alt="OpenPocket Revision-A 115 by 72 mm PCB component-placement preview without signal traces" width="90%">
+  <img src="docs/assets/openpocket-pcb-placement-top.png" alt="OpenPocket Revision-A top-side component placement without board text or signal traces" width="90%">
+  <img src="docs/assets/openpocket-pcb-placement-bottom.png" alt="OpenPocket Revision-A bottom-side component placement without board text or signal traces" width="90%">
 </p>
 
-<p align="center"><em>Revision-A component-placement preview — signal routing intentionally omitted.</em></p>
+<p align="center"><em>Revision-A top and bottom placement previews — production-board text and signal routing intentionally omitted.</em></p>
 
 <p align="center">
   <a href="#why-openpocket">Why OpenPocket</a> ·

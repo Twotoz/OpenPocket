@@ -817,7 +817,9 @@ def apply_placement() -> None:
         "U11": (80, 30, "F"), "U12": (48, 17, "F"),
         "U13": (55, 17, "F"), "U14": (60, 30, "F"),
         "U15": (70, 13, "F"), "U16": (77, 13, "F"),
-        "J1": (29.75, 26, "F"), "U17": (104, 35, "F"),
+        # Horizontal display FFC; keep the connector body ~10 mm above the
+        # bottom edge so the cable can be inserted from below.
+        "J1": (29.75, 62, "F"), "U17": (104, 35, "F"),
         "U18": (35, 52, "F"), "U19": (62, 52, "F"),
         "BZ1": (85, 7, "F"), "Q2": (79, 5, "B"),
         "D2": (79, 9, "B"), "U21": (78, 18, "B"),
@@ -843,7 +845,7 @@ def apply_placement() -> None:
     for ref, position in fixed.items():
         put(ref, *position)
     # J1's cable opening faces the lower board edge; pin 1 is X=20.00 mm.
-    put("J1", 29.75, 26, "F", 180)
+    put("J1", 29.75, 62, "F", 180)
     put("J2", 57.5, 5.4, "F", 90)
     # Put the 5-V boost switch-node pad on the U6-facing side of L3.
     put("L3", 52, 48.5, "F", 180)
@@ -1572,9 +1574,6 @@ def generate_board():
                     (0.25, BOARD_HEIGHT - 0.25)]:
             out.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
         b.Add(z)
-    # Mechanical panel/flex/acoustic keep-outs.
-    for layer,text,x,y in [(pcbnew.User_1,"ER-TFT050A3-2 PANEL 120.7 x 75.8",66,4),(pcbnew.User_2,"J1 FPC INSERTS FROM BOTTOM / BEND KEEP-OUT",29.75,33),(pcbnew.User_2,"BUZZER ACOUSTIC OPENING",84,9),(pcbnew.User_2,"SPEAKER / TWISTED PAIR",84,22),(pcbnew.User_2,"MICROSD INSERT / PUSH-PUSH EJECT UP",101,1),(pcbnew.User_2,"MICROSD FINGER + EJECT KEEP-OUT",101,4)]:
-        t=pcbnew.PCB_TEXT(b); t.SetText(text); t.SetPosition(pcbnew.VECTOR2I_MM(x,y)); t.SetLayer(layer); t.SetTextSize(pcbnew.VECTOR2I_MM(1,1)); b.Add(t)
     # microSD 11 x 15 mm card body: locked and 3.12-mm farther out at eject.
     for name,start,end in [
         ("MICROSD CARD LOCKED",(26.5,0.2),(37.5,15.2)),
@@ -1583,8 +1582,7 @@ def generate_board():
         rect=pcbnew.PCB_SHAPE(b); rect.SetShape(pcbnew.SHAPE_T_RECT)
         rect.SetStart(pcbnew.VECTOR2I_MM(*start)); rect.SetEnd(pcbnew.VECTOR2I_MM(*end))
         rect.SetLayer(pcbnew.User_2); rect.SetWidth(pcbnew.FromMM(0.15)); b.Add(rect)
-        label=pcbnew.PCB_TEXT(b); label.SetText(name); label.SetPosition(pcbnew.VECTOR2I_MM(start[0],max(0.4,start[1]+0.5))); label.SetLayer(pcbnew.User_2); label.SetTextSize(pcbnew.VECTOR2I_MM(0.65,0.65)); b.Add(label)
-    title=pcbnew.PCB_TEXT(b); title.SetText("OpenPocket Rev A\nEngineering Prototype"); title.SetPosition(pcbnew.VECTOR2I_MM(60,30)); title.SetLayer(pcbnew.B_SilkS); title.SetMirrored(True); title.SetTextSize(pcbnew.VECTOR2I_MM(0.8,0.8)); b.Add(title)
+        # Keep the mechanical outlines unlabeled on the production board.
     pcbnew.SaveBoard(str(BOARD),b)
     # The 0.4-mm AMT630A pitch is designed to JLC's 0.10-mm copper rule.
     board_text=BOARD.read_text()
