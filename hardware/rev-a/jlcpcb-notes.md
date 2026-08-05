@@ -30,6 +30,9 @@ Product marking: **OpenPocket Rev A — Engineering Prototype**.
   JSON. Ship only a unit whose mandatory summary record is `passed:true`.
 - J1 is a bottom-contact FH12-40S-0.5SH(55). Inspect pin 1, actuator operation,
   FPC insertion direction and absence of solder bridges at 20× magnification.
+- Populate J11 (Hirose U.FL-R-SMT-1(10)) on the bottom side. Inspect its centre
+  contact and ground tabs at magnification; J10 intentionally does not exist,
+  because a second antenna branch would form a 5.8 GHz stub.
 - Keep RX5808, ESP32 U.FL/coax, ELRS and buzzer/speaker acoustic regions free of
   labels, fixture clamps, adhesive and packing material.
 

@@ -94,6 +94,13 @@ def audit(board_path: Path) -> tuple[dict[str, object], list[str]]:
     rf = report["groups"]["rf"]["RX_RF"]
     if rf["length_mm"] > 15.0:
         errors.append(f"RF_LENGTH_RX_RF: {rf['length_mm']:.3f} mm exceeds 15.000 mm")
+    if rf["segment_count"] and rf["layers"] != ["B.Cu"]:
+        errors.append(f"RF_LAYER_RX_RF: expected B.Cu only, found {rf['layers']}")
+
+    for net, row in report["groups"]["crystal"].items():
+        if row["length_mm"] > 10.0:
+            errors.append(
+                f"CRYSTAL_LENGTH_{net}: {row['length_mm']:.3f} mm exceeds 10.000 mm")
 
     for side in ("", "_MCU"):
         positive = report["groups"]["usb"][f"USB_D+{side}"]

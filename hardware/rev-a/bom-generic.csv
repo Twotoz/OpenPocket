@@ -49,7 +49,7 @@ ESD4,ELRS UART ESD,Texas Instruments,TPD2EUSB30DRTR,C97502,SOT-9X3-3,1,no,
 J7,left gimbal,OpenPocket,SOLDER-PADS-4,CONS,EDGE-PADS-4,1,yes,"integral solder pads; user-wired, not an assembly item"
 J8,right gimbal,OpenPocket,SOLDER-PADS-4,CONS,EDGE-PADS-4,1,yes,"integral solder pads; user-wired, not an assembly item"
 J9,controls,OpenPocket,SOLDER-PADS-22,CONS,EDGE-PADS-22,1,yes,"integral solder pads; user-wired, not an assembly item"
-J11,5.8 GHz antenna U.FL,Hirose,U.FL-R-SMT-1(10),C88374,U.FL,1,no,populate on bottom; accepts U.FL/MHF1 plug vertically; secure cable to enclosure
+J11,5.8 GHz antenna U.FL,Hirose,U.FL-R-SMT-1(10),C88373,U.FL,1,no,populate on bottom; accepts U.FL/MHF1 plug vertically; secure cable to enclosure
 R1,5.1k,Yageo,RC0402FR-075K1L,C105872,0402,1,no,
 R2,5.1k,Yageo,RC0402FR-075K1L,C105872,0402,1,no,
 R3,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,

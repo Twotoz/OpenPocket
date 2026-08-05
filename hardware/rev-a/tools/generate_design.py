@@ -505,7 +505,7 @@ add("J9","controls","OpenPocket","SOLDER-PADS-22","CONS","EDGE-PADS-22",
     [(f"C{i}",f"CTRL_0_{i}") for i in range(16)] +
     [(f"C{16+i}",f"CTRL_1_{i}") for i in range(6)],45,55,
     dnp=True,notes="integral solder pads; user-wired, not an assembly item")
-add("J11","5.8 GHz antenna U.FL","Hirose","U.FL-R-SMT-1(10)","C88374","U.FL",
+add("J11","5.8 GHz antenna U.FL","Hirose","U.FL-R-SMT-1(10)","C88373","U.FL",
     [("RF","RX_RF"),("GND",G),("GND",G)],5,16,
     notes="populate on bottom; accepts U.FL/MHF1 plug vertically; secure cable to enclosure")
 
@@ -1593,6 +1593,7 @@ def generate_board():
                                   "(clearance 0.1)", 1)
     BOARD.write_text(board_text)
     apply_stackup_metadata()
+    sync_footprint_metadata()
     project=ROOT/"openpocket-rev-a.kicad_pro"
     configure_project_netclasses(project)
     # The reviewed Specctra session is versioned so the routed result can be
@@ -1672,6 +1673,8 @@ def sync_footprint_metadata() -> None:
         footprint.SetFPID(lib_id)
         footprint.SetDNP(part.dnp)
         footprint.SetExcludedFromBOM(part.dnp)
+        if footprint.HasFieldByName("LCSC Part"):
+            footprint.GetFieldByName("LCSC Part").SetText(part.lcsc)
     pcbnew.SaveBoard(str(BOARD), board)
 
 
