@@ -14,17 +14,31 @@ REV = Path(__file__).resolve().parents[1]
 DEFAULT_BOARD = REV / "openpocket-rev-a.kicad_pcb"
 
 
-def footprint_state(board: pcbnew.BOARD) -> dict[str, tuple[int, int, bool]]:
+def footprint_state(board: pcbnew.BOARD) -> dict[str, tuple[int, int, float, bool]]:
     return {
         footprint.GetReference(): (
-            # SES import may quantize a coordinate by one internal KiCad unit
-            # (0.001 mm); compare at the mechanical precision of the board.
-            round(footprint.GetPosition().x, -1),
-            round(footprint.GetPosition().y, -1),
+            footprint.GetPosition().x,
+            footprint.GetPosition().y,
+            float(footprint.GetOrientationDegrees()),
             bool(footprint.IsFlipped()),
         )
         for footprint in board.GetFootprints()
     }
+
+
+def restore_footprint_state(
+    board: pcbnew.BOARD,
+    state: dict[str, tuple[int, int, float, bool]],
+) -> None:
+    footprints = {fp.GetReference(): fp for fp in board.GetFootprints()}
+    if set(footprints) != set(state):
+        raise SystemExit("SES import changed the footprint set")
+    for reference, (x, y, orientation, flipped) in state.items():
+        footprint = footprints[reference]
+        if bool(footprint.IsFlipped()) != flipped:
+            footprint.Flip(footprint.GetPosition(), False)
+        footprint.SetPosition(pcbnew.VECTOR2I(x, y))
+        footprint.SetOrientationDegrees(orientation)
 
 
 def outline_state(board: pcbnew.BOARD) -> tuple[int, int, int, int]:
@@ -49,10 +63,16 @@ def main() -> int:
     if imported is False:
         raise SystemExit("KiCad rejected the Freerouting session")
 
+    # Specctra sessions use 10 um coordinates and can round footprint placement.
+    # Restore the exact KiCad placement before filling zones and validating the
+    # result.  This preserves fixed connectors and rotations byte-for-byte at
+    # KiCad's internal coordinate precision while keeping the imported route.
+    restore_footprint_state(board, before_footprints)
+
     filler = pcbnew.ZONE_FILLER(board)
     filler.Fill(board.Zones())
     if footprint_state(board) != before_footprints:
-        raise SystemExit("SES import changed footprint placement")
+        raise SystemExit("failed to restore footprint placement after SES import")
     if outline_state(board) != before_outline:
         raise SystemExit("SES import changed the board outline")
     if board.GetCopperLayerCount() != before_layers:
