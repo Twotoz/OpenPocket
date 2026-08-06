@@ -47,6 +47,30 @@ if source.count(old_generator) != 1:
     raise SystemExit("cannot patch generate_design.py path")
 source = source.replace(old_generator, new_generator, 1)
 
+# Do not pre-place hundreds of through-GND vias before signal routing. The
+# production fanout algorithm can fail in a dense cluster and, even when it
+# succeeds, consumes channels on every signal layer. Ground stitching is a
+# post-route operation for this feasibility run.
+old_fanout = f'''    generator = import_ground_fanout(
+        Path(r"{generator_path}")
+    )
+    net_objects = {{}}
+    for fp in board.GetFootprints():
+        for pad in fp.Pads():
+            name = pad.GetNetname()
+            if name and name not in net_objects:
+                net_objects[name] = pad.GetNet()
+    generator.configure_plane_connections(board)
+    generator.add_ground_fanout(board, net_objects)
+
+'''
+new_fanout = '''    # Ground fanout intentionally deferred until after signal routing.
+
+'''
+if source.count(old_fanout) != 1:
+    raise SystemExit("cannot defer pre-route ground fanout")
+source = source.replace(old_fanout, new_fanout, 1)
+
 with tempfile.TemporaryDirectory(prefix="openpocket-placement-") as temp:
     patched = Path(temp) / "autoroute_placement_test.py"
     patched.write_text(source, encoding="utf-8")
