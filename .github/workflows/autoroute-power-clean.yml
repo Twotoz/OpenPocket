@@ -1,0 +1,92 @@
+name: Autoroute power clean
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ai/autoroute-placement-test]
+    paths: ['.github/workflows/autoroute-power-clean.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  route:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install KiCad and Java
+        run: |
+          sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends kicad
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25'
+      - name: Download verified router
+        run: |
+          curl --fail --location --retry 5 --output freerouting.jar \
+            https://github.com/freerouting/freerouting/releases/download/v2.2.4/freerouting-2.2.4.jar
+          echo 'f5ed374182900ccc78e473518bbb9f6b869f4a07159495f663a76f52bb10523b  freerouting.jar' | sha256sum --check
+      - name: Place board
+        run: |
+          mkdir -p out/power-clean
+          python3 hardware/rev-a/tools/run_autoroute_placement_test.py \
+            --input hardware/rev-a/openpocket-rev-a.kicad_pcb \
+            --output out/power-clean/placed.kicad_pcb \
+            --variant u14_90 \
+            --report out/power-clean/placement.json
+      - name: Prepare clean power DSN
+        run: |
+          python3 hardware/rev-a/tools/export_freerouting.py \
+            --board out/power-clean/placed.kicad_pcb \
+            --output out/power-clean/full.dsn
+          python3 hardware/rev-a/tools/prepare_autoroute_stage.py \
+            --input out/power-clean/full.dsn \
+            --output out/power-clean/power.dsn \
+            --include-classes HighCurrent,Power,PowerLogic,SwitchNode,BacklightHV \
+            --empty-nets GND \
+            --remove-plane-nets GND \
+            --class-rule 'HighCurrent=250,200,Via[0-7]_500:250_um' \
+            --class-rule 'Power=250,150,Via[0-7]_500:250_um' \
+            --class-rule 'PowerLogic=200,150,Via[0-7]_450:200_um' \
+            --class-rule 'SwitchNode=250,200,Via[0-7]_500:250_um' \
+            --class-rule 'BacklightHV=250,200,Via[0-7]_500:250_um'
+      - name: Route power
+        run: |
+          java -Xms1g -Xmx12g -jar freerouting.jar \
+            -de out/power-clean/power.dsn \
+            -do out/power-clean/power.ses \
+            -mp 30 -mt 0 \
+            2>&1 | tee out/power-clean/freerouting.log
+          test -s out/power-clean/power.ses
+      - name: Import and validate
+        run: |
+          python3 hardware/rev-a/tools/import_freerouting.py \
+            out/power-clean/power.ses \
+            --board out/power-clean/placed.kicad_pcb \
+            --output out/power-clean/power-routed.kicad_pcb \
+            2>&1 | tee out/power-clean/import.log
+          kicad-cli pcb drc \
+            --output out/power-clean/drc.rpt \
+            --severity-all --all-track-errors \
+            out/power-clean/power-routed.kicad_pcb || true
+          python3 - <<'PY'
+          import collections, json, pathlib, re
+          root=pathlib.Path('out/power-clean')
+          text=(root/'drc.rpt').read_text(errors='replace')
+          counts=collections.Counter(re.findall(r'^\[([^\]]+)\]:',text,re.M))
+          log=(root/'freerouting.log').read_text(errors='replace')
+          score=re.findall(r'final score: .*?\((\d+) unrouted\)',log)
+          result={'drc_counts':dict(counts),'router_unrouted':int(score[-1]) if score else None}
+          (root/'summary.json').write_text(json.dumps(result,indent=2)+'\n')
+          print(json.dumps(result,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: autoroute-power-clean
+          path: out/power-clean/
+          if-no-files-found: error
+          retention-days: 14
