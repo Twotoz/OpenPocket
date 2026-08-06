@@ -72,7 +72,6 @@ jobs:
             -de "$root/power.dsn" \
             -do "$root/power.ses" \
             -mp 20 -mt 0 \
-            --router.automatic_neckdown=true \
             2>&1 | tee "$root/freerouting.log"
           test -s "$root/power.ses"
       - name: Import partial route and identify remaining items
