@@ -1,0 +1,26 @@
+name: Export Freerouting tool
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ai/autoroute-placement-test]
+    paths: ['.github/workflows/export-freerouting-tool.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Download verified Freerouting 2.2.4
+        run: |
+          curl --fail --location --retry 5 --output freerouting-2.2.4.jar \
+            https://github.com/freerouting/freerouting/releases/download/v2.2.4/freerouting-2.2.4.jar
+          echo 'f5ed374182900ccc78e473518bbb9f6b869f4a07159495f663a76f52bb10523b  freerouting-2.2.4.jar' | sha256sum --check
+      - uses: actions/upload-artifact@v4
+        with:
+          name: freerouting-2.2.4-tool
+          path: freerouting-2.2.4.jar
+          if-no-files-found: error
+          retention-days: 1
