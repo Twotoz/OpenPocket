@@ -26,17 +26,26 @@ pcbnew.SaveBoard(str(stripped), board)
 if not stripped.is_file() or stripped.stat().st_size == 0:
     raise SystemExit("failed to write stripped board")
 
-# Patch one placement target without mutating the production test harness:
-# JP1 is a wide video bypass jumper and does not fit at the graph-ideal point.
-# Its reviewed current position is mechanically legal and remains adjacent to
-# the U11/U14 analog-video chain.
-source_path = Path(__file__).with_name("autoroute_placement_test.py")
+# Patch test-only placement details without mutating the production harness.
+source_path = Path(__file__).with_name("autoroute_placement_test.py").resolve()
+generator_path = Path(__file__).with_name("generate_design.py").resolve()
 source = source_path.read_text(encoding="utf-8")
-old = '    "JP1": (31.0, 43.0),\n'
-new = '    "JP1": (44.0, 35.0),\n'
-if source.count(old) != 1:
+
+# JP1 is a wide video bypass jumper and does not fit at the graph-ideal point.
+# Its reviewed current position remains adjacent to the U11/U14 video chain.
+old_jp1 = '    "JP1": (31.0, 43.0),\n'
+new_jp1 = '    "JP1": (44.0, 35.0),\n'
+if source.count(old_jp1) != 1:
     raise SystemExit("cannot patch JP1 placement target")
-source = source.replace(old, new, 1)
+source = source.replace(old_jp1, new_jp1, 1)
+
+# The copied script runs from /tmp, so make the generator import point back to
+# the real repository instead of resolving relative to the temporary script.
+old_generator = '        Path(__file__).resolve().parent / "generate_design.py"\n'
+new_generator = f'        Path(r"{generator_path}")\n'
+if source.count(old_generator) != 1:
+    raise SystemExit("cannot patch generate_design.py path")
+source = source.replace(old_generator, new_generator, 1)
 
 with tempfile.TemporaryDirectory(prefix="openpocket-placement-") as temp:
     patched = Path(temp) / "autoroute_placement_test.py"
