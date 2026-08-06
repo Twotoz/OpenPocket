@@ -61,27 +61,56 @@ jobs:
             -mp 30 -mt 0 \
             2>&1 | tee out/power-clean/freerouting.log
           test -s out/power-clean/power.ses
-      - name: Import and validate
+      - name: Import and complete local escapes
         run: |
           python3 hardware/rev-a/tools/import_freerouting.py \
             out/power-clean/power.ses \
             --board out/power-clean/placed.kicad_pcb \
             --output out/power-clean/power-routed.kicad_pcb \
             2>&1 | tee out/power-clean/import.log
+          python3 .github/scripts/complete_power_connections.py \
+            --input out/power-clean/power-routed.kicad_pcb \
+            --output out/power-clean/power-complete.kicad_pcb
+      - name: Validate clean power stage
+        run: |
           kicad-cli pcb drc \
             --output out/power-clean/drc.rpt \
             --severity-all --all-track-errors \
-            out/power-clean/power-routed.kicad_pcb || true
+            out/power-clean/power-complete.kicad_pcb || true
           python3 - <<'PY'
           import collections, json, pathlib, re
           root=pathlib.Path('out/power-clean')
           text=(root/'drc.rpt').read_text(errors='replace')
           counts=collections.Counter(re.findall(r'^\[([^\]]+)\]:',text,re.M))
+          power_classes={'HighCurrent','Power','PowerLogic','SwitchNode','BacklightHV'}
+          # Derive power net names from the exported DSN class declarations.
+          dsn=(root/'full.dsn').read_text(errors='replace')
+          power_nets=set()
+          for name in power_classes:
+              match=re.search(r'\(class '+re.escape(name)+r' (.*?)\(circuit',dsn,re.S)
+              if match:
+                  power_nets.update(token.strip('"') for token in re.findall(r'"[^"]+"|\S+',match.group(1)))
+          incomplete=[]
+          for block in re.findall(r'\[unconnected_items\]:.*?(?=\n\[|\n\*\*|\Z)',text,re.S):
+              nets=set(re.findall(r'\[([^\]]+)\]',block))
+              if nets & power_nets:
+                  incomplete.append(sorted(nets & power_nets))
           log=(root/'freerouting.log').read_text(errors='replace')
           score=re.findall(r'final score: .*?\((\d+) unrouted\)',log)
-          result={'drc_counts':dict(counts),'router_unrouted':int(score[-1]) if score else None}
+          result={
+              'drc_counts':dict(counts),
+              'router_unrouted_before_local_completion':int(score[-1]) if score else None,
+              'power_unconnected_after_completion':incomplete,
+          }
           (root/'summary.json').write_text(json.dumps(result,indent=2)+'\n')
           print(json.dumps(result,indent=2))
+          if incomplete:
+              raise SystemExit('power stage still has unconnected items')
+          if counts.get('shorting_items',0) or counts.get('hole_clearance',0):
+              raise SystemExit('power completion introduced shorts or hole-clearance errors')
+          # One known baseline RF connector clearance remains unrelated to power.
+          if counts.get('clearance',0) > 1:
+              raise SystemExit('power routing introduced clearance errors')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
