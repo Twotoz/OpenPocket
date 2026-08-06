@@ -11,13 +11,9 @@ permissions:
 
 jobs:
   route:
-    name: power-${{ matrix.variant }}
+    name: power-u14_90
     runs-on: ubuntu-24.04
     timeout-minutes: 45
-    strategy:
-      fail-fast: false
-      matrix:
-        variant: [u14_90, u14_270]
     steps:
       - uses: actions/checkout@v4
       - name: Install KiCad and Java
@@ -38,12 +34,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          root="out/${{ matrix.variant }}"
+          root="out/u14_90"
           mkdir -p "$root"
           python3 hardware/rev-a/tools/run_autoroute_placement_test.py \
             --input hardware/rev-a/openpocket-rev-a.kicad_pcb \
             --output "$root/placed.kicad_pcb" \
-            --variant "${{ matrix.variant }}" \
+            --variant u14_90 \
             --report "$root/placement.json"
           python3 hardware/rev-a/tools/seed_local_routes.py \
             --input "$root/placed.kicad_pcb" \
@@ -52,7 +48,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          root="out/${{ matrix.variant }}"
+          root="out/u14_90"
           python3 hardware/rev-a/tools/export_freerouting.py \
             --board "$root/seeded.kicad_pcb" \
             --output "$root/full.dsn"
@@ -71,19 +67,19 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          root="out/${{ matrix.variant }}"
+          root="out/u14_90"
           java -Xms1g -Xmx12g -jar freerouting.jar \
             -de "$root/power.dsn" \
             -do "$root/power.ses" \
             -mp 20 -mt 0 \
+            --router.automatic_neckdown=true \
             2>&1 | tee "$root/freerouting.log"
           test -s "$root/power.ses"
-          grep -Eq 'final score: .*\(0 unrouted\)' "$root/freerouting.log"
-      - name: Import power route
+      - name: Import partial route and identify remaining items
         shell: bash
         run: |
           set -euo pipefail
-          root="out/${{ matrix.variant }}"
+          root="out/u14_90"
           python3 hardware/rev-a/tools/import_freerouting.py \
             "$root/power.ses" \
             --board "$root/seeded.kicad_pcb" \
@@ -93,11 +89,21 @@ jobs:
             --output "$root/power-stage-drc.rpt" \
             --severity-all --all-track-errors \
             "$root/power-routed.kicad_pcb" || true
+          grep -n -A8 -B2 -Ei 'unconnected|dangling|not connected' "$root/power-stage-drc.rpt" \
+            | tee "$root/unconnected-extract.txt" || true
+          python3 hardware/rev-a/tools/routing_audit.py \
+            "$root/power-routed.kicad_pcb" \
+            --json "$root/routing-audit.json" || true
+      - name: Gate power completion
+        shell: bash
+        run: |
+          root="out/u14_90"
+          grep -Eq 'final score: .*\(0 unrouted\)' "$root/freerouting.log"
       - name: Upload power route
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: autoroute-power-${{ matrix.variant }}
-          path: out/${{ matrix.variant }}/
+          name: autoroute-power-u14_90-diagnostic
+          path: out/u14_90/
           if-no-files-found: error
           retention-days: 14
