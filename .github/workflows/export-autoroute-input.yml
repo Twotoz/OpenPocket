@@ -1,0 +1,44 @@
+name: Export autoroute input
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ai/autoroute-placement-test]
+    paths: ['.github/workflows/export-autoroute-input.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    name: export-${{ matrix.variant }}
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [u14_90, u14_270]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install KiCad 9
+        run: |
+          sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends kicad
+      - name: Generate DSN
+        run: |
+          root="out/${{ matrix.variant }}"
+          mkdir -p "$root"
+          python3 hardware/rev-a/tools/run_autoroute_placement_test.py \
+            --input hardware/rev-a/openpocket-rev-a.kicad_pcb \
+            --output "$root/placed.kicad_pcb" \
+            --variant "${{ matrix.variant }}" \
+            --report "$root/placement.json"
+          python3 hardware/rev-a/tools/export_freerouting.py \
+            --board "$root/placed.kicad_pcb" \
+            --output "$root/board.dsn"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: autoroute-input-${{ matrix.variant }}
+          path: out/${{ matrix.variant }}/
+          if-no-files-found: error
+          retention-days: 14
