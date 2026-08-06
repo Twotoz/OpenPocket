@@ -1,0 +1,72 @@
+name: Autoroute diagnostic
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ai/autoroute-placement-test]
+    paths: ['.github/workflows/autoroute-diagnostic.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  route:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        run: |
+          sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends kicad
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25'
+      - name: Download router
+        run: |
+          curl --fail --location --retry 5 --output freerouting.jar \
+            https://github.com/freerouting/freerouting/releases/download/v2.2.4/freerouting-2.2.4.jar
+          echo 'f5ed374182900ccc78e473518bbb9f6b869f4a07159495f663a76f52bb10523b  freerouting.jar' | sha256sum --check
+      - name: Place and export
+        run: |
+          mkdir -p out/diag
+          python3 hardware/rev-a/tools/run_autoroute_placement_test.py \
+            --input hardware/rev-a/openpocket-rev-a.kicad_pcb \
+            --output out/diag/placed.kicad_pcb \
+            --variant u14_90 \
+            --report out/diag/placement.json
+          python3 hardware/rev-a/tools/export_freerouting.py \
+            --board out/diag/placed.kicad_pcb \
+            --output out/diag/board.dsn
+      - name: Route five passes
+        run: |
+          java -Xms1g -Xmx12g -jar freerouting.jar \
+            -de out/diag/board.dsn \
+            -do out/diag/board.ses \
+            -mp 5 -mt 0 \
+            2>&1 | tee out/diag/freerouting.log
+          test -s out/diag/board.ses
+      - name: Import snapshot
+        run: |
+          python3 hardware/rev-a/tools/import_freerouting.py \
+            out/diag/board.ses \
+            --board out/diag/placed.kicad_pcb \
+            --output out/diag/routed.kicad_pcb \
+            2>&1 | tee out/diag/import.log
+          kicad-cli pcb drc \
+            --output out/diag/drc.rpt \
+            --severity-all --all-track-errors \
+            out/diag/routed.kicad_pcb || true
+          python3 hardware/rev-a/tools/routing_audit.py \
+            out/diag/routed.kicad_pcb \
+            --json out/diag/routing-audit.json || true
+      - name: Upload diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: autoroute-diagnostic-u14-90
+          path: out/diag/
+          if-no-files-found: error
+          retention-days: 14
