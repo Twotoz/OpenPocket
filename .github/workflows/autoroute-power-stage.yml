@@ -1,0 +1,103 @@
+name: Autoroute power stage
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ai/autoroute-placement-test]
+    paths: ['.github/workflows/autoroute-power-stage.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  route:
+    name: power-${{ matrix.variant }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [u14_90, u14_270]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install KiCad and Java
+        run: |
+          sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends kicad
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25'
+      - name: Download verified router
+        run: |
+          curl --fail --location --retry 5 --output freerouting.jar \
+            https://github.com/freerouting/freerouting/releases/download/v2.2.4/freerouting-2.2.4.jar
+          echo 'f5ed374182900ccc78e473518bbb9f6b869f4a07159495f663a76f52bb10523b  freerouting.jar' | sha256sum --check
+      - name: Place and seed local escapes
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="out/${{ matrix.variant }}"
+          mkdir -p "$root"
+          python3 hardware/rev-a/tools/run_autoroute_placement_test.py \
+            --input hardware/rev-a/openpocket-rev-a.kicad_pcb \
+            --output "$root/placed.kicad_pcb" \
+            --variant "${{ matrix.variant }}" \
+            --report "$root/placement.json"
+          python3 hardware/rev-a/tools/seed_local_routes.py \
+            --input "$root/placed.kicad_pcb" \
+            --output "$root/seeded.kicad_pcb"
+      - name: Prepare power-only DSN
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="out/${{ matrix.variant }}"
+          python3 hardware/rev-a/tools/export_freerouting.py \
+            --board "$root/seeded.kicad_pcb" \
+            --output "$root/full.dsn"
+          python3 hardware/rev-a/tools/prepare_autoroute_stage.py \
+            --input "$root/full.dsn" \
+            --output "$root/power.dsn" \
+            --include-classes HighCurrent,Power,PowerLogic,SwitchNode,BacklightHV \
+            --empty-nets GND \
+            --remove-plane-nets GND \
+            --class-rule 'HighCurrent=500,150,Via[0-7]_600:300_um' \
+            --class-rule 'Power=400,120,Via[0-7]_600:300_um' \
+            --class-rule 'PowerLogic=250,120,Via[0-7]_500:250_um' \
+            --class-rule 'SwitchNode=400,150,Via[0-7]_600:300_um' \
+            --class-rule 'BacklightHV=250,150,Via[0-7]_500:250_um'
+      - name: Route power nets
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="out/${{ matrix.variant }}"
+          java -Xms1g -Xmx12g -jar freerouting.jar \
+            -de "$root/power.dsn" \
+            -do "$root/power.ses" \
+            -mp 20 -mt 0 \
+            2>&1 | tee "$root/freerouting.log"
+          test -s "$root/power.ses"
+          grep -Eq 'final score: .*\(0 unrouted\)' "$root/freerouting.log"
+      - name: Import power route
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="out/${{ matrix.variant }}"
+          python3 hardware/rev-a/tools/import_freerouting.py \
+            "$root/power.ses" \
+            --board "$root/seeded.kicad_pcb" \
+            --output "$root/power-routed.kicad_pcb" \
+            2>&1 | tee "$root/import.log"
+          kicad-cli pcb drc \
+            --output "$root/power-stage-drc.rpt" \
+            --severity-all --all-track-errors \
+            "$root/power-routed.kicad_pcb" || true
+      - name: Upload power route
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: autoroute-power-${{ matrix.variant }}
+          path: out/${{ matrix.variant }}/
+          if-no-files-found: error
+          retention-days: 14
