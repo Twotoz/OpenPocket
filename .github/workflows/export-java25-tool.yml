@@ -1,0 +1,29 @@
+name: Export Java 25 tool
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ai/autoroute-placement-test]
+    paths: ['.github/workflows/export-java25-tool.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25'
+      - name: Package runtime
+        run: |
+          java -version
+          tar -czf java25-linux-x64.tar.gz -C "$JAVA_HOME" .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: java25-linux-x64-tool
+          path: java25-linux-x64.tar.gz
+          if-no-files-found: error
+          retention-days: 1
