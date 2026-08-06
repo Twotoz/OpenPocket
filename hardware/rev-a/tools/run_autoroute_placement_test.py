@@ -1,38 +1,37 @@
 #!/usr/bin/env python3
-"""Run the placement harness with a KiCad-9 SWIG lifetime workaround."""
+"""Run placement in a fresh process after stripping existing tracks."""
 from __future__ import annotations
 
+import argparse
 from pathlib import Path
-import runpy
+import subprocess
 import sys
-import tempfile
 
-source_path = Path(__file__).with_name("autoroute_placement_test.py")
-source = source_path.read_text(encoding="utf-8")
-old = '''    for item in list(board.GetTracks()):
-        board.Remove(item)
+import pcbnew
 
-    occupied: dict[str, list[tuple[float, float, float, float]]] = {
-'''
-new = '''    for item in list(board.GetTracks()):
-        board.Remove(item)
+parser = argparse.ArgumentParser(add_help=False)
+parser.add_argument("--input", type=Path, required=True)
+parser.add_argument("--output", type=Path, required=True)
+known, remaining = parser.parse_known_args()
 
-    # KiCad 9 SWIG can invalidate previously obtained FOOTPRINT/PAD proxies
-    # after a large batch of board.Remove() calls.  Save and reload the stripped
-    # board, then rebuild every footprint proxy before continuing.
-    stripped = args.output.with_name(args.output.stem + "-stripped.kicad_pcb")
-    stripped.parent.mkdir(parents=True, exist_ok=True)
-    pcbnew.SaveBoard(str(stripped), board)
-    board = pcbnew.LoadBoard(str(stripped))
-    footprints = {fp.GetReference(): fp for fp in board.GetFootprints()}
+stripped = known.output.with_name(known.output.stem + "-stripped.kicad_pcb")
+stripped.parent.mkdir(parents=True, exist_ok=True)
+board = pcbnew.LoadBoard(str(known.input))
+if board is None:
+    raise SystemExit(f"cannot load {known.input}")
+for item in list(board.GetTracks()):
+    board.Remove(item)
+pcbnew.SaveBoard(str(stripped), board)
+if not stripped.is_file() or stripped.stat().st_size == 0:
+    raise SystemExit("failed to write stripped board")
 
-    occupied: dict[str, list[tuple[float, float, float, float]]] = {
-'''
-if source.count(old) != 1:
-    raise SystemExit("cannot apply KiCad-9 SWIG lifetime workaround")
-source = source.replace(old, new, 1)
-with tempfile.TemporaryDirectory(prefix="openpocket-placement-") as temp:
-    patched = Path(temp) / "autoroute_placement_test_patched.py"
-    patched.write_text(source, encoding="utf-8")
-    sys.path.insert(0, str(source_path.parent))
-    runpy.run_path(str(patched), run_name="__main__")
+# The actual placement harness now starts in a new interpreter.  This avoids
+# KiCad 9 SWIG references that become invalid after removing hundreds of tracks.
+command = [
+    sys.executable,
+    str(Path(__file__).with_name("autoroute_placement_test.py")),
+    "--input", str(stripped),
+    "--output", str(known.output),
+    *remaining,
+]
+raise SystemExit(subprocess.call(command))
