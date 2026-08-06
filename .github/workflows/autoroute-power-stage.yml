@@ -1,5 +1,6 @@
 name: Autoroute power stage
 
+# Re-run after updating the local power escape seeds.
 on:
   workflow_dispatch:
   push:
