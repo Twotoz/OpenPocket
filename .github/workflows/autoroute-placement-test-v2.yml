@@ -1,0 +1,172 @@
+name: Autoroute placement test v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ai/autoroute-placement-test]
+    paths:
+      - '.github/workflows/autoroute-placement-test-v2.yml'
+      - 'hardware/rev-a/**'
+
+permissions:
+  contents: read
+
+jobs:
+  autoroute:
+    name: ${{ matrix.variant }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [u14_90, u14_270]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install KiCad 9 and Java 25
+        run: |
+          sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends kicad
+          kicad-cli version
+          python3 - <<'PY'
+          import pcbnew
+          print('pcbnew', pcbnew.Version())
+          PY
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Download Freerouting 2.2.4
+        run: |
+          curl --fail --location --retry 5 --output freerouting.jar \
+            https://github.com/freerouting/freerouting/releases/download/v2.2.4/freerouting-2.2.4.jar
+          echo 'f5ed374182900ccc78e473518bbb9f6b869f4a07159495f663a76f52bb10523b  freerouting.jar' | sha256sum --check
+
+      - name: Generate corrected placement
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "out/${{ matrix.variant }}"
+          python3 hardware/rev-a/tools/run_autoroute_placement_test.py \
+            --input hardware/rev-a/openpocket-rev-a.kicad_pcb \
+            --output "out/${{ matrix.variant }}/placed.kicad_pcb" \
+            --variant "${{ matrix.variant }}" \
+            --report "out/${{ matrix.variant }}/placement.json" \
+            2>&1 | tee "out/${{ matrix.variant }}/placement.log"
+          test -s "out/${{ matrix.variant }}/placed.kicad_pcb"
+
+      - name: Export protected DSN
+        shell: bash
+        run: |
+          set -euo pipefail
+          kicad-cli pcb drc \
+            --output "out/${{ matrix.variant }}/pre-route-drc.rpt" \
+            --severity-all --all-track-errors \
+            "out/${{ matrix.variant }}/placed.kicad_pcb" || true
+          python3 hardware/rev-a/tools/export_freerouting.py \
+            --board "out/${{ matrix.variant }}/placed.kicad_pcb" \
+            --output "out/${{ matrix.variant }}/board.dsn"
+          python3 - "out/${{ matrix.variant }}/board.dsn" <<'PY'
+          from pathlib import Path
+          import sys
+          text = Path(sys.argv[1]).read_text()
+          for layer in ('GND1', 'GND2'):
+              marker = f'(layer {layer}\n      (type power)'
+              if marker not in text:
+                  raise SystemExit(f'{layer} is not protected as a power layer')
+          print('protected planes confirmed')
+          PY
+
+      - name: Run constrained Freerouting
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e
+          /usr/bin/time -v java -Xms1g -Xmx12g -jar freerouting.jar \
+            -de "out/${{ matrix.variant }}/board.dsn" \
+            -do "out/${{ matrix.variant }}/board.ses" \
+            2>&1 | tee "out/${{ matrix.variant }}/freerouting.log"
+          status=${PIPESTATUS[0]}
+          set -e
+          echo "$status" > "out/${{ matrix.variant }}/freerouting.exit"
+          test -s "out/${{ matrix.variant }}/board.ses"
+
+      - name: Import and audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 hardware/rev-a/tools/import_freerouting.py \
+            "out/${{ matrix.variant }}/board.ses" \
+            --board "out/${{ matrix.variant }}/placed.kicad_pcb" \
+            --output "out/${{ matrix.variant }}/routed.kicad_pcb" \
+            2>&1 | tee "out/${{ matrix.variant }}/import.log"
+
+          set +e
+          kicad-cli pcb drc \
+            --output "out/${{ matrix.variant }}/drc.rpt" \
+            --severity-all --all-track-errors \
+            "out/${{ matrix.variant }}/routed.kicad_pcb"
+          echo $? > "out/${{ matrix.variant }}/drc.exit"
+          python3 hardware/rev-a/tools/routing_audit.py \
+            "out/${{ matrix.variant }}/routed.kicad_pcb" \
+            --json "out/${{ matrix.variant }}/routing-audit.json"
+          echo $? > "out/${{ matrix.variant }}/routing-audit.exit"
+          set -e
+
+      - name: Gate on 100 percent routing
+        if: always()
+        shell: bash
+        run: |
+          python3 - "out/${{ matrix.variant }}" <<'PY'
+          import json, os, pathlib, re, sys
+          root = pathlib.Path(sys.argv[1])
+          drc = (root / 'drc.rpt').read_text(errors='replace') if (root / 'drc.rpt').exists() else ''
+          log = (root / 'freerouting.log').read_text(errors='replace') if (root / 'freerouting.log').exists() else ''
+          audit = json.loads((root / 'routing-audit.json').read_text()) if (root / 'routing-audit.json').exists() else {}
+
+          def first_int(patterns, text):
+              for pattern in patterns:
+                  match = re.search(pattern, text, re.I)
+                  if match:
+                      return int(match.group(1))
+              return None
+
+          unconnected = first_int([
+              r'Found\s+(\d+)\s+unconnected pads',
+              r'Unconnected items:\s*(\d+)',
+              r'Unconnected pads:\s*(\d+)',
+          ], drc)
+          violations = first_int([r'Found\s+(\d+)\s+DRC violations'], drc)
+          remaining = first_int([
+              r'(?:remaining|incomplete|unrouted)\s+(?:connection|trace|item)s?\s*[:=]?\s*(\d+)',
+              r'(\d+)\s+(?:connection|trace|item)s?\s+(?:remaining|unrouted)',
+          ], log)
+          illegal = [e for e in audit.get('errors', []) if e.startswith('SIGNALS_ON_GND_LAYER')]
+          summary = {
+              'variant': root.name,
+              'drc_violations': violations,
+              'unconnected_pads': unconnected,
+              'router_reported_remaining': remaining,
+              'routing_audit_errors': audit.get('errors', []),
+              'illegal_signal_plane_errors': illegal,
+              'fully_autorouted': violations == 0 and unconnected == 0 and not illegal,
+          }
+          (root / 'summary.json').write_text(json.dumps(summary, indent=2) + '\n')
+          print(json.dumps(summary, indent=2))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
+              f.write(f"## {root.name}\n\n```json\n{json.dumps(summary, indent=2)}\n```\n")
+          if not summary['fully_autorouted']:
+              raise SystemExit(1)
+          PY
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: autoroute-v2-${{ matrix.variant }}
+          path: out/${{ matrix.variant }}/
+          if-no-files-found: error
+          retention-days: 14
