@@ -1,0 +1,126 @@
+name: Autoroute placement fast
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ai/autoroute-placement-test]
+    paths:
+      - '.github/workflows/autoroute-placement-fast.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  autoroute:
+    name: fast-${{ matrix.variant }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [u14_90, u14_270]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install KiCad 9 and Java 25
+        run: |
+          sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends kicad
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Download Freerouting 2.2.4
+        run: |
+          curl --fail --location --retry 5 --output freerouting.jar \
+            https://github.com/freerouting/freerouting/releases/download/v2.2.4/freerouting-2.2.4.jar
+          echo 'f5ed374182900ccc78e473518bbb9f6b869f4a07159495f663a76f52bb10523b  freerouting.jar' | sha256sum --check
+
+      - name: Place and export
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="out/${{ matrix.variant }}"
+          mkdir -p "$root"
+          python3 hardware/rev-a/tools/run_autoroute_placement_test.py \
+            --input hardware/rev-a/openpocket-rev-a.kicad_pcb \
+            --output "$root/placed.kicad_pcb" \
+            --variant "${{ matrix.variant }}" \
+            --report "$root/placement.json" \
+            2>&1 | tee "$root/placement.log"
+          python3 hardware/rev-a/tools/export_freerouting.py \
+            --board "$root/placed.kicad_pcb" \
+            --output "$root/board.dsn"
+
+      - name: Route without post-optimization
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="out/${{ matrix.variant }}"
+          /usr/bin/time -v java -Xms1g -Xmx12g -jar freerouting.jar \
+            -de "$root/board.dsn" \
+            -do "$root/board.ses" \
+            -mp 100 -mt 0 \
+            2>&1 | tee "$root/freerouting.log"
+          test -s "$root/board.ses"
+
+      - name: Import and validate
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="out/${{ matrix.variant }}"
+          python3 hardware/rev-a/tools/import_freerouting.py \
+            "$root/board.ses" \
+            --board "$root/placed.kicad_pcb" \
+            --output "$root/routed.kicad_pcb" \
+            2>&1 | tee "$root/import.log"
+          kicad-cli pcb drc \
+            --output "$root/drc.rpt" \
+            --severity-all --all-track-errors \
+            "$root/routed.kicad_pcb" || true
+          python3 hardware/rev-a/tools/routing_audit.py \
+            "$root/routed.kicad_pcb" \
+            --json "$root/routing-audit.json" || true
+          python3 - "$root" <<'PY'
+          import json, pathlib, re, sys
+          root = pathlib.Path(sys.argv[1])
+          drc = (root / 'drc.rpt').read_text(errors='replace')
+          audit = json.loads((root / 'routing-audit.json').read_text())
+          def number(patterns):
+              for pattern in patterns:
+                  match = re.search(pattern, drc, re.I)
+                  if match:
+                      return int(match.group(1))
+              return None
+          unconnected = number([
+              r'Found\s+(\d+)\s+unconnected pads',
+              r'Unconnected items:\s*(\d+)',
+              r'Unconnected pads:\s*(\d+)',
+          ])
+          violations = number([r'Found\s+(\d+)\s+DRC violations'])
+          illegal = [e for e in audit.get('errors', []) if e.startswith('SIGNALS_ON_GND_LAYER')]
+          summary = {
+              'variant': root.name,
+              'unconnected_pads': unconnected,
+              'drc_violations': violations,
+              'illegal_signal_plane_errors': illegal,
+              'routing_audit_errors': audit.get('errors', []),
+              'routing_complete': unconnected == 0 and not illegal,
+          }
+          (root / 'summary.json').write_text(json.dumps(summary, indent=2) + '\n')
+          print(json.dumps(summary, indent=2))
+          if not summary['routing_complete']:
+              raise SystemExit(1)
+          PY
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: autoroute-fast-${{ matrix.variant }}
+          path: out/${{ matrix.variant }}/
+          if-no-files-found: error
+          retention-days: 14
