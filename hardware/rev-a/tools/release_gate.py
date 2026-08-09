@@ -64,10 +64,10 @@ def check_board_mechanics(errors: list[str]) -> None:
         position = connector.GetPosition()
         pin1 = next((pad for pad in connector.Pads() if pad.GetNumber() == "1"), None)
         if (not close_mm(pcbnew.ToMM(position.x), 29.75) or
-                not close_mm(pcbnew.ToMM(position.y), 26.00) or
+                not close_mm(pcbnew.ToMM(position.y), 62.00) or
                 not close_mm(connector.GetOrientationDegrees(), 180.0)):
             errors.append(
-                "J1_MECHANICAL: expected center (29.75, 26.00) mm at 180 degrees")
+                "J1_MECHANICAL: expected center (29.75, 62.00) mm at 180 degrees")
         if pin1 is None or not close_mm(pcbnew.ToMM(pin1.GetPosition().x), 20.00):
             errors.append("J1_PIN1_X: expected pin 1 at x=20.00 mm")
 
