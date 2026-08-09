@@ -76,8 +76,19 @@ continuous L2/L7 planes; do not create a floating video ground.
 
 ## User-installed connections
 
+The right-edge developer pads are optional: J14 provides exactly four wires,
+`OLED_GND`, `OLED_3V3`, `OLED_SDA`, and `OLED_SCL`, for an SSD1306/SH1106-class
+128x64 3.3 V I2C OLED. J15 provides `DEV_IO0`–`DEV_IO3` plus
+3V3/GND from U19. These are slow expansion signals, not high-speed ESP32
+GPIOs; keep attached wires short and away from the RX5808 antenna/video path.
+J16 provides two parallel `CTRL_GND` returns beside the long J9 controls pad
+row; use either one (or both for harness robustness) as the common return for
+buttons, switches, trims, and the encoder. J5 is different: it is the isolated
+two-wire master-switch contact and must not be tied to ground.
+
 - Insert the exact supported TFT flex into the edge ZIF connector.
-- Solder gimbals to labeled X/Y/3V3/GND groups.
+- Solder each gimbal's two three-wire axes to its labelled LX/LY (or RX/RY),
+  3V3, and GND pads; each connector therefore has six pads.
 - Solder switches, menu buttons, trims, encoder, and power switch to their
   labeled edge groups and strain-relief holes.
 - Solder welded battery leads to BAT+ and BAT-. Connect a compatible 10 k NTC

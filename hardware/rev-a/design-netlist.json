@@ -835,6 +835,36 @@
       "2": "SPK-"
     }
   },
+  "J14": {
+    "mpn": "DEV-PADS-4",
+    "package": "DEV-PADS-4",
+    "pins": {
+      "1": "GND",
+      "2": "3V3_LOGIC",
+      "3": "I2C_SDA",
+      "4": "I2C_SCL"
+    }
+  },
+  "J15": {
+    "mpn": "DEV-PADS-6",
+    "package": "DEV-PADS-6",
+    "pins": {
+      "1": "DEV_IO0",
+      "2": "DEV_IO1",
+      "3": "DEV_IO2",
+      "4": "DEV_IO3",
+      "5": "3V3_LOGIC",
+      "6": "GND"
+    }
+  },
+  "J16": {
+    "mpn": "SOLDER-PADS-2",
+    "package": "EDGE-PADS-2",
+    "pins": {
+      "1": "GND",
+      "2": "GND"
+    }
+  },
   "J2": {
     "mpn": "USB4105-GF-A",
     "package": "USB4105-GF-A",
@@ -897,23 +927,27 @@
     }
   },
   "J7": {
-    "mpn": "SOLDER-PADS-4",
-    "package": "EDGE-PADS-4",
+    "mpn": "SOLDER-PADS-6",
+    "package": "EDGE-PADS-6",
     "pins": {
       "1": "GIMBAL_LX_RAW",
-      "2": "GIMBAL_LY_RAW",
-      "3": "3V3_LOGIC",
-      "4": "GND"
+      "2": "3V3_LOGIC",
+      "3": "GND",
+      "4": "GIMBAL_LY_RAW",
+      "5": "3V3_LOGIC",
+      "6": "GND"
     }
   },
   "J8": {
-    "mpn": "SOLDER-PADS-4",
-    "package": "EDGE-PADS-4",
+    "mpn": "SOLDER-PADS-6",
+    "package": "EDGE-PADS-6",
     "pins": {
       "1": "GIMBAL_RX_RAW",
-      "2": "GIMBAL_RY_RAW",
-      "3": "3V3_LOGIC",
-      "4": "GND"
+      "2": "3V3_LOGIC",
+      "3": "GND",
+      "4": "GIMBAL_RY_RAW",
+      "5": "3V3_LOGIC",
+      "6": "GND"
     }
   },
   "J9": {
@@ -2558,11 +2592,11 @@
       "14": "EN_5V_DISPLAY",
       "15": "EN_5V_ELRS",
       "16": "LCD_DISP",
-      "17": "NC",
-      "18": "NC",
-      "19": "NC",
+      "17": "DEV_IO0",
+      "18": "DEV_IO1",
+      "19": "DEV_IO2",
       "2": "GND",
-      "20": "NC",
+      "20": "DEV_IO3",
       "21": "3V3_LOGIC",
       "22": "I2C_SCL",
       "23": "I2C_SDA",

@@ -32,6 +32,8 @@ D2,D_BUZZ buzzer flyback,LGE,1N4148W,C81598,SOD-123,1,no,
 U21,I2S speaker amplifier,Nsiway,NS4168,C910588,ESOP-8-EP,1,no,
 J4,speaker connector,JST,S2B-PH-SM4-TB(LF)(SN),C295747,JST-PH-2-SMD,1,no,
 J13,speaker solder pads,OpenPocket,SOLDER-PADS-2,CONS,EDGE-PADS-2,1,yes,integral differential speaker pads; neither pad is ground
+J14,SSD1306 128x64 OLED pads,OpenPocket,DEV-PADS-4,CONS,DEV-PADS-4,1,yes,four-wire SSD1306/SH1106 128x64 OLED; shared GPIO15/GPIO16 I2C bus
+J15,expander developer pads,OpenPocket,DEV-PADS-6,CONS,DEV-PADS-6,1,yes,hand-solder TCA9535 U19 slow-I/O access
 U22,3V3_SD load switch,Texas Instruments,TPS22918DBVR,C131941,SOT-23-6,1,no,
 J12,push-push microSD,SOFNG,TF-001A-P3,C3021282,TF-001A-P3,1,no,card detect active-low; card ejects toward top edge
 ESD2,microSD ESD array A,Texas Instruments,TPD4E001DRLR,C527516,SOT-563,1,no,
@@ -46,9 +48,10 @@ J3,battery/NTC,OpenPocket,SOLDER-PADS-4,CONS,EDGE-PADS-4,1,yes,"integral solder 
 J5,master switch,OpenPocket,SOLDER-PADS-2,CONS,EDGE-PADS-2,1,yes,"integral solder pads; user-wired, not an assembly item"
 J6,ELRS,OpenPocket,SOLDER-PADS-6,CONS,EDGE-PADS-6,1,yes,"integral solder pads; user-wired, not an assembly item"
 ESD4,ELRS UART ESD,Texas Instruments,TPD2EUSB30DRTR,C97502,SOT-9X3-3,1,no,
-J7,left gimbal,OpenPocket,SOLDER-PADS-4,CONS,EDGE-PADS-4,1,yes,"integral solder pads; user-wired, not an assembly item"
-J8,right gimbal,OpenPocket,SOLDER-PADS-4,CONS,EDGE-PADS-4,1,yes,"integral solder pads; user-wired, not an assembly item"
+J7,left gimbal,OpenPocket,SOLDER-PADS-6,CONS,EDGE-PADS-6,1,yes,"integral solder pads; user-wired, not an assembly item"
+J8,right gimbal,OpenPocket,SOLDER-PADS-6,CONS,EDGE-PADS-6,1,yes,"integral solder pads; user-wired, not an assembly item"
 J9,controls,OpenPocket,SOLDER-PADS-22,CONS,EDGE-PADS-22,1,yes,"integral solder pads; user-wired, not an assembly item"
+J16,controls ground pads,OpenPocket,SOLDER-PADS-2,CONS,EDGE-PADS-2,1,yes,two shared ground returns for J9 buttons/switches
 J11,5.8 GHz antenna U.FL,Hirose,U.FL-R-SMT-1(10),C88373,U.FL,1,no,populate on bottom; accepts U.FL/MHF1 plug vertically; secure cable to enclosure
 R1,5.1k,Yageo,RC0402FR-075K1L,C105872,0402,1,no,
 R2,5.1k,Yageo,RC0402FR-075K1L,C105872,0402,1,no,

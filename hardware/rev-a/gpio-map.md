@@ -76,3 +76,17 @@ control task consumes only the cached atomic snapshot.
 The matching firmware defaults are maintained in RivetTX
 `sdkconfig.openpocket-rev-a.defaults`. Pin duplication, invalid outputs, and
 RX5808 conflicts fail startup validation.
+
+## Developer access (issue #4)
+
+J14 is a small hand-solder pad group for an optional 3.3 V I2C OLED. `SDA` and
+`SCL` are the existing board bus on ESP32 GPIO15 and GPIO16; no new GPIO or bus
+is allocated. J15 exposes the four previously unused U19/TCA9535 outputs as
+`DEV_IO0` through `DEV_IO3`, intended only for slow buttons, LEDs, switches or
+sensors. Both groups include local `3V3` and `GND` pads and are labelled on
+F.SilkS.
+
+The long J9 controls row is signal-only; use either of the two adjacent J16
+`CTRL_GND` pads as the common return for external buttons and switches. The
+separate J5 master switch remains a two-wire dry contact and does not use that
+ground.
