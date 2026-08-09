@@ -63,7 +63,9 @@ NET_CLASS_RULES = [
     ("AnalogVideo", dict(clearance=0.15, track_width=0.25,
                          via_diameter=0.60, via_drill=0.30,
                          diff_pair_width=0.20, diff_pair_gap=0.20)),
-    ("RF_Preliminary", dict(clearance=0.30, track_width=0.25,
+    # U.FL-R-SMT-1(10) has a 0.25 mm RF-to-ground land gap; keep the
+    # preliminary RF rule aligned with that audited footprint geometry.
+    ("RF_Preliminary", dict(clearance=0.25, track_width=0.25,
                             via_diameter=0.60, via_drill=0.30,
                             diff_pair_width=0.20, diff_pair_gap=0.20)),
     ("PowerLogic", dict(clearance=0.15, track_width=0.40,
@@ -1553,7 +1555,7 @@ def generate_board():
     legalize_small_parts(b)
     configure_plane_connections(b)
     for reference, x, y, side in [
-            ("FID1", 5, 24, "F"), ("FID2", 105, 18, "F"),
+            ("FID1", 5, 20, "F"), ("FID2", 105, 18, "F"),
             ("FID3", 109, 64, "F"), ("FID4", 5, 8, "B"),
             ("FID5", 109, 9, "B"), ("FID6", 109, 64, "B")]:
         add_fiducial(b, reference, x, y, side)

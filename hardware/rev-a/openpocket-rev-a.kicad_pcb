@@ -29580,7 +29580,7 @@
 	(footprint "OpenPocket:Fiducial_1mm_Mask2mm"
 		(layer "F.Cu")
 		(uuid "dba409b1-d146-47da-babf-7d7c90de641e")
-		(at 5 24)
+		(at 5 20)
 		(property "Reference" "FID1"
 			(at 0 0 0)
 			(layer "F.SilkS")
