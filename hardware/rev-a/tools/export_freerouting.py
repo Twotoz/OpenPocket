@@ -17,6 +17,11 @@ def main() -> int:
     parser.add_argument("--board", type=Path,
                         default=REV / "openpocket-rev-a.kicad_pcb")
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--benchmark", action="store_true",
+        help=("omit the two reviewed battery seed routes from the DSN; "
+              "use only for a placement-routing benchmark, never for import"),
+    )
     args = parser.parse_args()
     board = pcbnew.LoadBoard(str(args.board))
     if board.GetCopperLayerCount() != 8:
@@ -31,9 +36,23 @@ def main() -> int:
         if text.count(old) != 1:
             raise SystemExit(f"cannot protect {name} in exported DSN")
         text = text.replace(old, new, 1)
+    if args.benchmark:
+        # FreeRouting 2.2.x has a null-polyline bug when it reopens the two
+        # branched, manually reviewed battery seed routes.  Keep them in the
+        # authoritative KiCad PCB; omit only their existing wire/via records
+        # from this disposable benchmark DSN so the router can measure the
+        # remaining placement quality.  The netlist itself is untouched, so
+        # BAT_RAW and BAT_CELL_NEG remain valid routing work for the tool.
+        seed_nets = ("BAT_RAW", "BAT_CELL_NEG")
+        text = "\n".join(
+            line for line in text.splitlines()
+            if not any(f"(net {net})" in line for net in seed_nets)
+        ) + "\n"
     args.output.write_text(text, encoding="utf-8")
     print(f"EXPORTED_DSN={args.output}")
     print("PROTECTED_PLANES=GND1,GND2")
+    if args.benchmark:
+        print("BENCHMARK_OMITTED_EXISTING_ROUTE_NETS=BAT_RAW,BAT_CELL_NEG")
     return 0
 
 
