@@ -1,17 +1,17 @@
 {
-  "board": "signal-only temporary copy; authoritative PCB untouched",
+  "board": "authoritative generated PCB",
+  "board_file": "openpocket-rev-a.kicad_pcb",
   "freerouting": "2.2.4",
   "layers": 8,
   "protected_planes": ["GND1", "GND2"],
-  "passes_requested": 50,
-  "timeout_seconds": 300,
-  "initial_incompletes": 324,
-  "initial_items": 518,
+  "passes_requested": 20,
+  "router_threads": 5,
+  "initial_incompletes": 546,
+  "initial_items": 781,
   "completed_incompletes": 0,
-  "remaining_at_timeout": 324,
-  "runtime_seconds": 300,
-  "peak_rss_bytes": 2980000000,
-  "status": "timed_out_during_pass_1",
+  "remaining_at_stop": 546,
+  "runtime_seconds": 118,
+  "status": "stuck_during_pass_1",
   "ses_imported": false,
-  "notes": "The benchmark was intentionally run on a temporary signal-only board. Freerouting spent the timeout in pass 1; no route was imported into the reviewed/generated PCB."
+  "notes": "Current uniform SMD control-pad placement. FreeRouting repeatedly entered pass 1 but found no accessible expansion doors for the dense shared power/control nets. Temporary routes were not imported into the authoritative PCB."
 }
