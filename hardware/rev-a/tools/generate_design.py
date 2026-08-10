@@ -2099,6 +2099,185 @@ def add_reviewed_logic_fanout(board: pcbnew.BOARD, nets: dict) -> None:
         board.Add(track)
 
 
+def add_3v3_plane_fanout(board: pcbnew.BOARD, nets: dict) -> None:
+    """Escape 3V3_LOGIC pads locally to the SIG4 distribution plane.
+
+    The previous ratsnest exposed 52 separate 3V3 branches to Freerouting,
+    which consumed the same corridors needed by RGB, USB and SDMMC.  Each
+    outer-layer SMD load now gets a short tented-via escape.  SIG4 is adjacent
+    to the uninterrupted L7 ground plane, so this also gives the logic rail a
+    controlled, low-inductance return without touching either ground plane.
+    """
+    net_name = "3V3_LOGIC"
+    net = nets[net_name]
+    pads = [pad for fp in board.GetFootprints() for pad in fp.Pads()]
+    items = list(board.GetTracks())
+    occupied = [
+        (item.GetPosition().x / 1_000_000,
+         item.GetPosition().y / 1_000_000)
+        for item in items if isinstance(item, pcbnew.PCB_VIA)
+    ]
+    occupied.extend(
+        (pad.GetPosition().x / 1_000_000,
+         pad.GetPosition().y / 1_000_000)
+        for pad in pads
+        if pad.GetAttribute() in (pcbnew.PAD_ATTRIB_PTH,
+                                  pcbnew.PAD_ATTRIB_NPTH)
+    )
+    access = [
+        (item.GetPosition().x / 1_000_000,
+         item.GetPosition().y / 1_000_000)
+        for item in items
+        if isinstance(item, pcbnew.PCB_VIA) and
+        item.GetNetname() == net_name
+    ]
+
+    def outer_layer(pad: pcbnew.PAD) -> int:
+        return (pcbnew.B_Cu if
+                pad.GetParentFootprint().GetLayer() == pcbnew.B_Cu else
+                pcbnew.F_Cu)
+
+    def bbox_mm(pad: pcbnew.PAD) -> tuple[float, float, float, float]:
+        box = pad.GetBoundingBox()
+        return tuple(value / 1_000_000 for value in
+                     (box.GetLeft(), box.GetTop(),
+                      box.GetRight(), box.GetBottom()))
+
+    obstacles = [(pad, bbox_mm(pad)) for pad in pads]
+
+    def point_clear(x: float, y: float, own: pcbnew.PAD) -> bool:
+        if not (0.80 < x < BOARD_WIDTH - 0.80 and
+                0.80 < y < BOARD_HEIGHT - 0.80):
+            return False
+        if any(math.hypot(x - vx, y - vy) < 0.62
+               for vx, vy in occupied):
+            return False
+        for other, (left, top, right, bottom) in obstacles:
+            if other is own or other.GetNetname() == net_name:
+                continue
+            if (left - 0.39 <= x <= right + 0.39 and
+                    top - 0.39 <= y <= bottom + 0.39):
+                return False
+        for item in items:
+            if (isinstance(item, pcbnew.PCB_VIA) or
+                    item.GetNetname() == net_name):
+                continue
+            box = item.GetBoundingBox()
+            if (box.GetLeft() / 1_000_000 - 0.35 <= x <=
+                    box.GetRight() / 1_000_000 + 0.35 and
+                    box.GetTop() / 1_000_000 - 0.35 <= y <=
+                    box.GetBottom() / 1_000_000 + 0.35):
+                return False
+        return True
+
+    def segment_clear(x1: float, y1: float, x2: float, y2: float,
+                      own: pcbnew.PAD,
+                      allowed_via: tuple[float, float] | None = None) -> bool:
+        length = math.hypot(x2 - x1, y2 - y1)
+        samples = max(2, math.ceil(length / 0.08))
+        for index in range(1, samples + 1):
+            scale = index / samples
+            x = x1 + (x2 - x1) * scale
+            y = y1 + (y2 - y1) * scale
+            if any(math.hypot(x - vx, y - vy) < 0.50
+                   for vx, vy in occupied
+                   if (allowed_via is None or
+                       math.hypot(vx - allowed_via[0],
+                                  vy - allowed_via[1]) > 0.001)):
+                return False
+            for other, (left, top, right, bottom) in obstacles:
+                if (other is own or other.GetNetname() == net_name or
+                        not other.IsOnLayer(outer_layer(own))):
+                    continue
+                if (left - 0.23 <= x <= right + 0.23 and
+                        top - 0.23 <= y <= bottom + 0.23):
+                    return False
+        return True
+
+    connected = 0
+    missing: list[str] = []
+    target_pads = [
+        pad for pad in pads
+        if pad.GetNetname() == net_name and
+        pad.GetAttribute() == pcbnew.PAD_ATTRIB_SMD
+    ]
+    target_pads.sort(key=lambda pad: (
+        pad.GetParentFootprint().GetReference(), str(pad.GetNumber())))
+    for pad in target_pads:
+        position = pad.GetPosition()
+        x0 = position.x / 1_000_000
+        y0 = position.y / 1_000_000
+        center = pad.GetParentFootprint().GetPosition()
+        dx = x0 - center.x / 1_000_000
+        dy = y0 - center.y / 1_000_000
+        if abs(dx) >= abs(dy):
+            outward = (1 if dx >= 0 else -1, 0)
+        else:
+            outward = (0, 1 if dy >= 0 else -1)
+        directions = [outward, (1, 0), (-1, 0), (0, 1), (0, -1),
+                      (1, 1), (-1, 1), (1, -1), (-1, -1)]
+        key = (pad.GetParentFootprint().GetReference(),
+               str(pad.GetNumber()))
+        # These two expander pull-ups sit inside a dense bottom-side fanout.
+        # Their reviewed exits use the only DRC-clean gaps beside the parts.
+        forced_candidates = {
+            ("R75", "2"): (35.20, 48.30),
+            ("R76", "2"): (35.93, 52.80),
+        }
+        candidate = forced_candidates.get(key)
+        if candidate is None:
+            for distance in (0.70, 0.90, 1.15, 1.45, 1.80, 2.20,
+                             2.80, 3.50):
+                for ux, uy in directions:
+                    norm = math.hypot(ux, uy)
+                    x = x0 + distance * ux / norm
+                    y = y0 + distance * uy / norm
+                    if (point_clear(x, y, pad) and
+                            segment_clear(x0, y0, x, y, pad)):
+                        candidate = (x, y)
+                        break
+                if candidate:
+                    break
+        if candidate is None:
+            reachable = sorted(
+                (math.hypot(x - x0, y - y0), x, y)
+                for x, y in access)
+            shared = next(((x, y) for distance, x, y in reachable
+                           if distance <= 3.50 and
+                           segment_clear(x0, y0, x, y, pad, (x, y))),
+                          None)
+            if shared is None:
+                missing.append(
+                    f"{pad.GetParentFootprint().GetReference()}."
+                    f"{pad.GetNumber()}")
+                continue
+            x, y = shared
+        else:
+            x, y = candidate
+            via = pcbnew.PCB_VIA(board)
+            via.SetPosition(pcbnew.VECTOR2I_MM(x, y))
+            via.SetWidth(pcbnew.FromMM(0.45))
+            via.SetDrill(pcbnew.FromMM(0.20))
+            via.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu)
+            via.SetNet(net)
+            via.SetFrontTentingMode(pcbnew.TENTING_MODE_TENTED)
+            via.SetBackTentingMode(pcbnew.TENTING_MODE_TENTED)
+            board.Add(via)
+            occupied.append((x, y))
+            access.append((x, y))
+        track = pcbnew.PCB_TRACK(board)
+        track.SetStart(position)
+        track.SetEnd(pcbnew.VECTOR2I_MM(x, y))
+        track.SetWidth(pcbnew.FromMM(0.20))
+        track.SetLayer(outer_layer(pad))
+        track.SetNet(net)
+        board.Add(track)
+        connected += 1
+    print(f"3V3 plane fanout connected {connected}/{len(target_pads)} pads")
+    if missing:
+        print("3V3 plane fanout deferred for " + ", ".join(missing))
+
+
 def add_reviewed_battery_fanout(board: pcbnew.BOARD, nets: dict) -> None:
     """Route the short, high-current battery-entry branches deterministically.
 
@@ -2191,6 +2370,7 @@ def generate_board():
     add_ground_fanout(b, nets)
     add_reviewed_logic_fanout(b, nets)
     add_reviewed_battery_fanout(b, nets)
+    add_3v3_plane_fanout(b, nets)
     for a,c in [((0, 0), (BOARD_WIDTH, 0)),
                 ((BOARD_WIDTH, 0), (BOARD_WIDTH, BOARD_HEIGHT)),
                 ((BOARD_WIDTH, BOARD_HEIGHT), (0, BOARD_HEIGHT)),
@@ -2206,6 +2386,20 @@ def generate_board():
                     (0.25, BOARD_HEIGHT - 0.25)]:
             out.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
         b.Add(z)
+    # Low-impedance logic distribution on SIG4.  L2/L7 remain uninterrupted
+    # GND; the remaining five copper routing layers stay available to signals.
+    logic_zone = pcbnew.ZONE(b)
+    logic_zone.SetLayer(pcbnew.In5_Cu)
+    logic_zone.SetNet(nets["3V3_LOGIC"])
+    logic_zone.SetLocalClearance(pcbnew.FromMM(0.20))
+    logic_zone.SetMinThickness(pcbnew.FromMM(0.15))
+    logic_outline = logic_zone.Outline()
+    logic_outline.NewOutline()
+    for x, y in [(0.50, 0.50), (BOARD_WIDTH - 0.50, 0.50),
+                 (BOARD_WIDTH - 0.50, BOARD_HEIGHT - 0.50),
+                 (0.50, BOARD_HEIGHT - 0.50)]:
+        logic_outline.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
+    b.Add(logic_zone)
     # microSD 11 x 15 mm card body: locked and 3.12-mm farther out at eject.
     for name,start,end in [
         ("MICROSD CARD LOCKED",(26.5,0.2),(37.5,15.2)),
