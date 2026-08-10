@@ -2099,17 +2099,19 @@ def add_reviewed_logic_fanout(board: pcbnew.BOARD, nets: dict) -> None:
         board.Add(track)
 
 
-def add_3v3_plane_fanout(board: pcbnew.BOARD, nets: dict) -> None:
-    """Escape 3V3_LOGIC pads locally to the SIG4 distribution plane.
+def add_power_plane_fanout(
+        board: pcbnew.BOARD, nets: dict, net_name: str,
+        forced_candidates: dict[tuple[str, str], tuple[float, float]] | None =
+        None) -> None:
+    """Escape a distributed power rail locally to its internal plane.
 
-    The previous ratsnest exposed 52 separate 3V3 branches to Freerouting,
-    which consumed the same corridors needed by RGB, USB and SDMMC.  Each
-    outer-layer SMD load now gets a short tented-via escape.  SIG4 is adjacent
-    to the uninterrupted L7 ground plane, so this also gives the logic rail a
-    controlled, low-inductance return without touching either ground plane.
+    The previous ratsnest exposed every shared supply branch to Freerouting,
+    consuming the same corridors needed by RGB, USB and SDMMC.  Each SMD load
+    gets a short tented-via escape instead.  Plane assignment is performed by
+    generate_board after the local escapes have been created.
     """
-    net_name = "3V3_LOGIC"
     net = nets[net_name]
+    forced_candidates = forced_candidates or {}
     pads = [pad for fp in board.GetFootprints() for pad in fp.Pads()]
     items = list(board.GetTracks())
     occupied = [
@@ -2220,10 +2222,6 @@ def add_3v3_plane_fanout(board: pcbnew.BOARD, nets: dict) -> None:
                str(pad.GetNumber()))
         # These two expander pull-ups sit inside a dense bottom-side fanout.
         # Their reviewed exits use the only DRC-clean gaps beside the parts.
-        forced_candidates = {
-            ("R75", "2"): (35.20, 48.30),
-            ("R76", "2"): (35.93, 52.80),
-        }
         candidate = forced_candidates.get(key)
         if candidate is None:
             for distance in (0.70, 0.90, 1.15, 1.45, 1.80, 2.20,
@@ -2273,9 +2271,10 @@ def add_3v3_plane_fanout(board: pcbnew.BOARD, nets: dict) -> None:
         track.SetNet(net)
         board.Add(track)
         connected += 1
-    print(f"3V3 plane fanout connected {connected}/{len(target_pads)} pads")
+    print(f"{net_name} plane fanout connected "
+          f"{connected}/{len(target_pads)} pads")
     if missing:
-        print("3V3 plane fanout deferred for " + ", ".join(missing))
+        print(f"{net_name} plane fanout deferred for " + ", ".join(missing))
 
 
 def add_reviewed_battery_fanout(board: pcbnew.BOARD, nets: dict) -> None:
@@ -2370,7 +2369,12 @@ def generate_board():
     add_ground_fanout(b, nets)
     add_reviewed_logic_fanout(b, nets)
     add_reviewed_battery_fanout(b, nets)
-    add_3v3_plane_fanout(b, nets)
+    add_power_plane_fanout(
+        b, nets, "3V3_LOGIC", {
+            ("R75", "2"): (35.20, 48.30),
+            ("R76", "2"): (35.93, 52.80),
+        })
+    add_power_plane_fanout(b, nets, "SYS_SWITCHED_5V")
     for a,c in [((0, 0), (BOARD_WIDTH, 0)),
                 ((BOARD_WIDTH, 0), (BOARD_WIDTH, BOARD_HEIGHT)),
                 ((BOARD_WIDTH, BOARD_HEIGHT), (0, BOARD_HEIGHT)),
@@ -2386,20 +2390,23 @@ def generate_board():
                     (0.25, BOARD_HEIGHT - 0.25)]:
             out.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
         b.Add(z)
-    # Low-impedance logic distribution on SIG4.  L2/L7 remain uninterrupted
-    # GND; the remaining five copper routing layers stay available to signals.
-    logic_zone = pcbnew.ZONE(b)
-    logic_zone.SetLayer(pcbnew.In5_Cu)
-    logic_zone.SetNet(nets["3V3_LOGIC"])
-    logic_zone.SetLocalClearance(pcbnew.FromMM(0.20))
-    logic_zone.SetMinThickness(pcbnew.FromMM(0.15))
-    logic_outline = logic_zone.Outline()
-    logic_outline.NewOutline()
-    for x, y in [(0.50, 0.50), (BOARD_WIDTH - 0.50, 0.50),
-                 (BOARD_WIDTH - 0.50, BOARD_HEIGHT - 0.50),
-                 (0.50, BOARD_HEIGHT - 0.50)]:
-        logic_outline.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
-    b.Add(logic_zone)
+    # Low-impedance 5V and 3V3 distribution adjacent to the uninterrupted
+    # L2/L7 references.  F/B plus SIG2/SIG3 remain available to signals.
+    for plane, net_name in (
+            (pcbnew.In2_Cu, "SYS_SWITCHED_5V"),
+            (pcbnew.In5_Cu, "3V3_LOGIC")):
+        power_zone = pcbnew.ZONE(b)
+        power_zone.SetLayer(plane)
+        power_zone.SetNet(nets[net_name])
+        power_zone.SetLocalClearance(pcbnew.FromMM(0.20))
+        power_zone.SetMinThickness(pcbnew.FromMM(0.15))
+        power_outline = power_zone.Outline()
+        power_outline.NewOutline()
+        for x, y in [(0.50, 0.50), (BOARD_WIDTH - 0.50, 0.50),
+                     (BOARD_WIDTH - 0.50, BOARD_HEIGHT - 0.50),
+                     (0.50, BOARD_HEIGHT - 0.50)]:
+            power_outline.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
+        b.Add(power_zone)
     # microSD 11 x 15 mm card body: locked and 3.12-mm farther out at eject.
     for name,start,end in [
         ("MICROSD CARD LOCKED",(26.5,0.2),(37.5,15.2)),
