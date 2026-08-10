@@ -2405,7 +2405,7 @@ def connect_power_access_mst(board: pcbnew.BOARD, nets: dict,
                               box.GetRight() / 1_000_000 + clearance,
                               box.GetBottom() / 1_000_000 + clearance))
 
-    grid = 0.50
+    grid = 0.25 if width <= 0.25 else 0.50
 
     def node(point: tuple[float, float]) -> tuple[int, int]:
         return (round(point[0] / grid), round(point[1] / grid))
