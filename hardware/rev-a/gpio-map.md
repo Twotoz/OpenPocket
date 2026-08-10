@@ -86,7 +86,8 @@ is allocated. J15 exposes the four previously unused U19/TCA9535 outputs as
 sensors. Both groups include local `3V3` and `GND` pads and are labelled on
 F.SilkS.
 
-The long J9 controls row is signal-only; use either of the two adjacent J16
-`CTRL_GND` pads as the common return for external buttons and switches. The
-separate J5 master switch remains a two-wire dry contact and does not use that
-ground.
+The control interface is not a signal-only strip. J9 and J18 on the left edge
+serve the menu and encoder; J19–J26 on the right edge serve ARM, AUX2–AUX4,
+and the trims. Every physical control group has a labelled adjacent `G` pad
+with its own local ground-plane return. The separate J5 master switch remains
+a two-wire dry contact and does not use ground.

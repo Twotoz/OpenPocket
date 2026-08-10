@@ -81,10 +81,15 @@ The right-edge developer pads are optional: J14 provides exactly four wires,
 128x64 3.3 V I2C OLED. J15 provides `DEV_IO0`–`DEV_IO3` plus
 3V3/GND from U19. These are slow expansion signals, not high-speed ESP32
 GPIOs; keep attached wires short and away from the RX5808 antenna/video path.
-J16 provides two parallel `CTRL_GND` returns beside the long J9 controls pad
-row; use either one (or both for harness robustness) as the common return for
-buttons, switches, trims, and the encoder. J5 is different: it is the isolated
-two-wire master-switch contact and must not be tied to ground.
+
+User controls are split into labelled, plated-through-hole groups rather than
+one generic controls strip. Every control group has its own adjacent `G` pad,
+which connects locally to the ground planes; do not substitute a remote shared
+ground pad. The left edge contains J9 (`G/UP`, `G/DN`, `G/ENT`, `G/BACK`) and
+J18 (`A/G/B`, `PRESS/G`) for the menu and encoder. The right edge contains J19
+(`G/ARM`), J20–J22 (`G/HI/LO` for AUX2–AUX4), and J23–J26 (`G/-/+` for the
+AIL, ELE, THR, and RUD trims). J5 is different: it is the isolated two-wire
+master-switch contact and must not be tied to ground.
 
 - Insert the exact supported TFT flex into the edge ZIF connector.
 - Solder each gimbal's two three-wire axes to its labelled LX/LY (or RX/RY),
