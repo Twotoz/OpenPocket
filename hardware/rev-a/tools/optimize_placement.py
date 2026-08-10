@@ -58,6 +58,9 @@ DEPENDENCIES = [
     ("U17", "D1", 7.0, 180.0),
     ("U2", "L1", 4.0, 420.0),
     ("J2", "U2", 14.0, 90.0),
+    ("U2", "U20", 28.0, 180.0),
+    ("U20", "U5", 8.0, 280.0),
+    ("U20", "U6", 11.0, 280.0),
     # Battery power is a high-current path, not an ordinary connector net.
     # Keep the charger balanced between the USB entry and the protected-cell
     # cluster so BAT_RAW/BAT_PROTECTED/BAT_NTC do not become long detours.
@@ -90,6 +93,7 @@ DECOUPLING = {
     "U15": ["C70"],
     "U16": ["C71"],
     "U17": ["C53", "C54", "C55", "C56"],
+    "U20": ["C2", "C3"],
     "U21": ["C17", "C18", "C20", "C21"],
     "U22": ["C24", "C25", "C26", "C27"],
 }
@@ -507,6 +511,14 @@ def optimize(board: pcbnew.BOARD, seeds: list[int], iterations: int,
             else:
                 restore(board, before)
         restore(board, baseline_states)
+    # Repair/legalization is allowed to create a valid search seed, but it is
+    # not itself evidence of an engineering improvement.  Never publish a
+    # changed manifest unless its complete objective is strictly better than
+    # the authoritative input placement.
+    if best_score >= baseline_score - 1e-6:
+        restore(board, baseline_states)
+        return (baseline_score, baseline_states, baseline_breakdown,
+                baseline_breakdown)
     restore(board, best_states)
     return best_score, best_states, best_breakdown, baseline_breakdown
 

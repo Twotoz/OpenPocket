@@ -2106,7 +2106,8 @@ def add_reviewed_logic_fanout(board: pcbnew.BOARD, nets: dict) -> None:
 def add_power_plane_fanout(
         board: pcbnew.BOARD, nets: dict, net_name: str,
         forced_candidates: dict[tuple[str, str], tuple[float, float]] | None =
-        None) -> None:
+        None,
+        region: tuple[float, float, float, float] | None = None) -> None:
     """Escape a distributed power rail locally to its internal plane.
 
     The previous ratsnest exposed every shared supply branch to Freerouting,
@@ -2202,11 +2203,18 @@ def add_power_plane_fanout(
 
     connected = 0
     missing: list[str] = []
-    target_pads = [
-        pad for pad in pads
-        if pad.GetNetname() == net_name and
-        pad.GetAttribute() == pcbnew.PAD_ATTRIB_SMD
-    ]
+    def in_region(pad: pcbnew.PAD) -> bool:
+        if region is None:
+            return True
+        x = pad.GetPosition().x / 1_000_000
+        y = pad.GetPosition().y / 1_000_000
+        left, top, right, bottom = region
+        return left <= x <= right and top <= y <= bottom
+
+    target_pads = [pad for pad in pads
+                   if pad.GetNetname() == net_name and
+                   pad.GetAttribute() == pcbnew.PAD_ATTRIB_SMD and
+                   in_region(pad)]
     target_pads.sort(key=lambda pad: (
         pad.GetParentFootprint().GetReference(), str(pad.GetNumber())))
     for pad in target_pads:
@@ -2380,6 +2388,10 @@ def generate_board():
         })
     add_power_plane_fanout(b, nets, "SYS_SWITCHED_5V")
     add_power_plane_fanout(b, nets, "5V_VIDEO_FILT")
+    add_power_plane_fanout(
+        b, nets, "DISPLAY_3V3_D", region=(41.0, 25.0, 57.0, 53.0))
+    add_power_plane_fanout(
+        b, nets, "3V3_SD", region=(82.0, 2.0, 105.0, 24.0))
     for a,c in [((0, 0), (BOARD_WIDTH, 0)),
                 ((BOARD_WIDTH, 0), (BOARD_WIDTH, BOARD_HEIGHT)),
                 ((BOARD_WIDTH, BOARD_HEIGHT), (0, BOARD_HEIGHT)),
@@ -2426,6 +2438,21 @@ def generate_board():
                  (48.0, 51.0), (5.5, 51.0)]:
         video_outline.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
     b.Add(video_zone)
+    for plane, net_name, bounds in (
+            (pcbnew.In4_Cu, "DISPLAY_3V3_D", (41.0, 25.0, 57.0, 53.0)),
+            (pcbnew.In3_Cu, "3V3_SD", (82.0, 2.0, 105.0, 24.0))):
+        left, top, right, bottom = bounds
+        island = pcbnew.ZONE(b)
+        island.SetLayer(plane)
+        island.SetNet(nets[net_name])
+        island.SetLocalClearance(pcbnew.FromMM(0.20))
+        island.SetMinThickness(pcbnew.FromMM(0.15))
+        outline = island.Outline()
+        outline.NewOutline()
+        for x, y in [(left, top), (right, top),
+                     (right, bottom), (left, bottom)]:
+            outline.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
+        b.Add(island)
     # microSD 11 x 15 mm card body: locked and 3.12-mm farther out at eject.
     for name,start,end in [
         ("MICROSD CARD LOCKED",(26.5,0.2),(37.5,15.2)),
