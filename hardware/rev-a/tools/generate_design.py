@@ -1188,6 +1188,35 @@ def apply_placement() -> None:
                 ("C32",58,21,"B",0)):
             put(ref, x, y, side, rotation)
         put("TVS1", 47.5, 18.5, "F", 0)
+        # Keep the TFT FFC escape corridor clear.  J1 is a bottom-insertion
+        # 0.5-mm-pitch connector; components directly behind its first 34
+        # signal pads prevent a legal fanout and make the autorouter fail at
+        # the connector.  These parts are support circuitry, so move them
+        # outside the x=20..40 mm escape window while preserving their local
+        # functional regions.
+        for ref, x, y, side, rotation in (
+                ("U4", 12, 53, "F", 0),
+                ("U20", 62, 62, "F", 0),
+                ("U17", 53, 60, "F", 0),
+                ("R25", 16, 52, "F", 0),
+                ("R26", 18, 52, "F", 0),
+                ("R27", 20, 52, "F", 0),
+                ("C22", 13, 55, "B", 0),
+                ("D1", 58, 56, "F", 0),
+                ("U10", 72, 54, "F", 0),
+                ("U8", 68, 62, "F", 0),
+                ("L4", 58, 66, "F", 0),
+                # Back-side boost support is also kept out of the via escape
+                # window; it remains immediately adjacent to the relocated
+                # U17/D1 island.
+                ("R86", 48, 53, "B", 0),
+                ("R87", 50, 53, "B", 0),
+                ("R88", 52, 53, "B", 0),
+                ("C55", 48, 55, "B", 0),
+                ("C56", 50, 55, "B", 0),
+                ("C54", 52, 55, "B", 0)):
+            if ref in by_ref:
+                put(ref, x, y, side, rotation)
 
 
 apply_placement()
