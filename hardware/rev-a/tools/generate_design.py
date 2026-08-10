@@ -179,10 +179,10 @@ def generate_custom_footprints() -> None:
     """Emit reviewed footprints for mechanical/custom, non-catalogue parts."""
     CUSTOM_FOOTPRINTS.mkdir(parents=True, exist_ok=True)
 
-    def write(name: str, body: list[str]) -> None:
+    def write(name: str, body: list[str], attr: str = "smd") -> None:
         header = [
             f'(footprint "{name}"', '  (version 20240108)',
-            '  (generator openpocket)', '  (layer "F.Cu")', '  (attr smd)',
+            '  (generator openpocket)', '  (layer "F.Cu")', f'  (attr {attr})',
             '  (property "Reference" "REF**" (at 0 -3 0) (layer "F.SilkS")',
             '    (effects (font (size 0.8 0.8) (thickness 0.12))))',
             f'  (property "Value" "{name}" (at 0 3 0) (layer "F.Fab")',
@@ -237,6 +237,46 @@ def generate_custom_footprints() -> None:
             '(size 1.80 1.80) (layers "F.Cu" "F.Paste" "F.Mask") '
             '(roundrect_rratio 0.20))')
     write("GROUND-EDGE-11", edge_ground)
+    # Physical user-control interfaces.  Each footprint is an edge-facing
+    # group: pad 1 is the outermost GND return, followed inward by its signal
+    # pad(s).  Plated through holes are used for wire strain relief.
+    def pth(number: int, x: float, y: float) -> str:
+        return (f'  (pad "{number}" thru_hole circle (at {x:.3f} {y:.3f}) '
+                '(size 1.80 1.80) (drill 0.90) (layers "*.Cu" "*.Mask"))')
+    def group(name: str, title: str, pads: list[tuple[str, float, float]],
+              width: float, height: float) -> None:
+        body = [f'  (fp_rect (start -0.9 -{height/2:.3f}) '
+                f'(end {width-0.9:.3f} {height/2:.3f}) '
+                '(stroke (width 0.15) (type default)) (fill none) (layer "F.SilkS"))',
+                f'  (fp_rect (start -1.0 -{height/2+0.35:.3f}) '
+                f'(end {width-0.8:.3f} {height/2+0.35:.3f}) '
+                '(stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd"))',
+                f'  (fp_text user "{title}" (at {(width-1.8)/2:.3f} {-height/2-1.2:.3f}) '
+                '(layer "F.SilkS") (effects (font (size 0.75 0.75) (thickness 0.12))))']
+        for number, label, x, y in pads:
+            body.append(pth(int(number), x, y))
+            body.append(f'  (fp_text user "{label}" (at {x:.3f} {y-1.35:.3f}) '
+                        '(layer "F.SilkS") (effects (font (size 0.65 0.65) (thickness 0.10))))')
+        write(name, body, attr="through_hole")
+    group("MENU-CONTROL-PADS", "LEFT / UI",
+          [("1","G",0,-4.5),("2","UP",2.8,-4.5),
+           ("3","G",0,-1.5),("4","DN",2.8,-1.5),
+           ("5","G",0,1.5),("6","ENT",2.8,1.5),
+           ("7","G",0,4.5),("8","BACK",2.8,4.5)], 6.0, 11.0)
+    group("ENCODER-CONTROL-PADS", "ENCODER",
+          [("1","A",0,-2.0),("2","G",2.8,-2.0),("3","B",5.6,-2.0),
+           ("4","PRESS",0,2.0),("5","G",2.8,2.0)], 7.4, 6.0)
+    group("ARM-CONTROL-PADS", "ARM",
+          [("1","G",0,0),("2","ARM",2.8,0)], 4.6, 2.8)
+    for name, title, hi, lo in (("AUX2-CONTROL-PADS","AUX2","AUX2_HI","AUX2_LO"),
+                                ("AUX3-CONTROL-PADS","AUX3","AUX3_HI","AUX3_LO"),
+                                ("AUX4-CONTROL-PADS","AUX4","AUX4_HI","AUX4_LO")):
+        group(name, title, [("1","G",0,0),("2","HI",2.8,0),("3","LO",5.6,0)], 7.4, 2.8)
+    for name, title, minus, plus in (("AIL-TRIM-PADS","AIL","AIL-","AIL+"),
+                                     ("ELE-TRIM-PADS","ELE","ELE-","ELE+"),
+                                     ("THR-TRIM-PADS","THR","THR-","THR+"),
+                                     ("RUD-TRIM-PADS","RUD","RUD-","RUD+")):
+        group(name, title, [("1","G",0,0),("2",minus,2.8,0),("3",plus,5.6,0)], 7.4, 2.8)
     # Large, hand-solderable ENIG pads for issue #4 developer access.  The
     # two-row arrangement keeps the footprint compact while leaving room for
     # an individual silkscreen label beside each pad.
@@ -548,26 +588,33 @@ add("J8","right gimbal","OpenPocket","SOLDER-PADS-6","CONS","EDGE-PADS-6",
     [("RX","GIMBAL_RX_RAW"),("RX_VCC","3V3_LOGIC"),("RX_GND",G),
      ("RY","GIMBAL_RY_RAW"),("RY_VCC","3V3_LOGIC"),("RY_GND",G)],87,55,
     dnp=True,notes="integral solder pads; user-wired, not an assembly item")
-add("J9","controls","OpenPocket","SOLDER-PADS-22","CONS","EDGE-PADS-22",
-    [("MENU_UP","CTRL_0_0"),("MENU_DOWN","CTRL_0_1"),
-     ("MENU_ENTER","CTRL_0_2"),("MENU_BACK","CTRL_0_3"),
-     ("ARM","CTRL_0_4"),
-     ("AUX2_HI","CTRL_0_5"),("AUX2_LO","CTRL_0_6"),
-     ("AUX3_HI","CTRL_0_7"),("AUX3_LO","CTRL_0_8"),
-     ("AUX4_HI","CTRL_0_9"),("AUX4_LO","CTRL_0_10"),
-     ("ENC_PRESS","CTRL_0_11"),
-     ("AIL-","CTRL_0_12"),("AIL+","CTRL_0_13"),
-     ("ELE-","CTRL_0_14"),("ELE+","CTRL_0_15"),
-     ("THR-","CTRL_1_0"),("THR+","CTRL_1_1"),
-     ("RUD-","CTRL_1_2"),("RUD+","CTRL_1_3"),
-     ("ENC_A","CTRL_1_4"),("ENC_B","CTRL_1_5")],45,55,
-    dnp=True,notes="integral solder pads; user-wired, not an assembly item")
-add("J16","left control ground pads","OpenPocket","GROUND-EDGE-11","CONS",
-    "GROUND-EDGE-11",[(f"GND{i+1}",G) for i in range(11)],4.0,51,
-    dnp=True,notes="eleven individual edge-accessible control ground returns")
-add("J17","right control ground pads","OpenPocket","GROUND-EDGE-11","CONS",
-    "GROUND-EDGE-11",[(f"GND{i+1}",G) for i in range(11)],111.0,51,
-    dnp=True,notes="eleven individual edge-accessible control ground returns")
+add("J9","menu/UI control pads","OpenPocket","MENU-CONTROL-PADS","CONS","MENU-CONTROL-PADS",
+    [("G_UP",G),("MENU_UP","CTRL_0_0"),("G_DN",G),("MENU_DOWN","CTRL_0_1"),
+     ("G_ENT",G),("MENU_ENTER","CTRL_0_2"),("G_BACK",G),("MENU_BACK","CTRL_0_3")],4,10,
+    dnp=True,notes="left-edge menu pads; each button has adjacent edge-side GND")
+add("J18","rotary encoder control pads","OpenPocket","ENCODER-CONTROL-PADS","CONS","ENCODER-CONTROL-PADS",
+    [("ENC_A","CTRL_1_4"),("G_ENC_A",G),("ENC_B","CTRL_1_5"),
+     ("ENC_PRESS","CTRL_0_11"),("G_ENC_PRESS",G)],4,48,
+    dnp=True,notes="left-edge encoder A/G/B plus press/G pads")
+add("J19","ARM switch pads","OpenPocket","ARM-CONTROL-PADS","CONS","ARM-CONTROL-PADS",
+    [("G_ARM",G),("ARM","CTRL_0_4")],111,10,"F",True,
+    notes="right-edge ARM switch; GND is the outermost pad",rotation=180)
+for ref, title, hi, lo, y, hi_net, lo_net in (("J20","AUX2","AUX2_HI","AUX2_LO",28,5,6),
+                                               ("J21","AUX3","AUX3_HI","AUX3_LO",32,7,8),
+                                               ("J22","AUX4","AUX4_HI","AUX4_LO",46,9,10)):
+    add(ref,f"{title} three-position switch pads","OpenPocket",f"{title}-CONTROL-PADS","CONS",f"AUX{title[-1]}-CONTROL-PADS",
+        [("G",G),("HI",f"CTRL_0_{hi_net}"),("LO",f"CTRL_0_{lo_net}")],111,y,"F",True,
+        notes=f"right-edge {title} group; edge-side GND between the signal escape points",rotation=180)
+for ref, title, minus, plus, n, side in (("J23","AIL","AIL-","AIL+",50,"F"),
+                                         ("J24","ELE","ELE-","ELE+",60,"F"),
+                                         ("J25","THR","THR-","THR+",34,"F"),
+                                         ("J26","RUD","RUD-","RUD+",44,"F")):
+    net_minus = {"AIL-":"CTRL_0_12","ELE-":"CTRL_0_14","THR-":"CTRL_1_0","RUD-":"CTRL_1_2"}[minus]
+    net_plus = {"AIL+":"CTRL_0_13","ELE+":"CTRL_0_15","THR+":"CTRL_1_1","RUD+":"CTRL_1_3"}[plus]
+    add(ref,f"{title} trim pads","OpenPocket",f"{title}-TRIM-PADS","CONS",f"{title}-TRIM-PADS",
+        [("G",G),("MINUS",net_minus),("PLUS",net_plus)],111,n,side,True,
+        notes=f"{title} three-wire trim group with adjacent edge-side GND",
+        rotation=0 if ref in {"J25", "J26"} else 180)
 add("J11","5.8 GHz antenna U.FL","Hirose","U.FL-R-SMT-1(10)","C88373","U.FL",
     [("RF","RX_RF"),("GND",G),("GND",G)],5,16,
     notes="populate on bottom; accepts U.FL/MHF1 plug vertically; secure cable to enclosure")
@@ -914,13 +961,18 @@ def apply_placement() -> None:
         # 90-degree rotation puts its two ground fingers above/below the
         # launch, avoiding the module RF pad while keeping the coax feed
         # short and on the same bottom side.
-        "J9": (56.5, 69.8, "F"), "J11": (40.0, 42.6, "B", 90),
-        "J13": (110, 36, "F"),
+        # Modular control groups are fixed to their enclosure-facing edges;
+        # only the surrounding expanders/support logic may be optimized.
+        "J9": (4.0, 14.0, "F"), "J18": (4.0, 50.0, "F"),
+        "J19": (111.0, 22.0, "F", 180),
+        "J20": (111.0, 28.0, "F", 180), "J21": (111.0, 32.0, "F", 180),
+        "J22": (111.0, 46.0, "F", 180), "J23": (111.0, 52.0, "F", 180),
+        "J24": (111.0, 60.0, "F", 180), "J25": (4.0, 57.0, "F"),
+        "J26": (4.0, 64.0, "F"), "J11": (40.0, 42.6, "B", 90),
+        "J13": (110, 40, "F"),
         # Developer pads are on the accessible right edge, clear of the
         # bottom-left RX5808/U.FL launch and the central analog-video island.
-        "J14": (101, 18, "F"), "J15": (101, 56, "F"),
-        "J16": (4.0, 51, "F"),
-        "J17": (111.0, 51, "F"),
+        "J14": (108, 18, "F"), "J15": (75, 68, "F"),
         "ESD4": (95, 65, "F"), "F1": (49, 14, "F"),
         "TVS1": (47.5, 18.5, "F"), "JP1": (37, 38, "F"),
         "Y1": (22, 35, "F"), "Y2": (33, 48, "F"),
@@ -1116,11 +1168,19 @@ def apply_placement() -> None:
                 raise RuntimeError(f"placement manifest entry incomplete: {ref}")
             put(ref, float(item["x_mm"]), float(item["y_mm"]),
                 str(item["side"]), float(item["rotation"]))
-        # These newly defined edge-ground headers are mechanical user
-        # interfaces, not optimizer candidates.  Reassert their generator
-        # coordinates even when an older manifest predates J17.
-        put("J16", 4.0, 51, "F", 0)
-        put("J17", 111.0, 51, "F", 0)
+        # Modular control groups are mechanical user interfaces, not
+        # optimizer candidates. Reassert their edge positions even when an
+        # older manifest still contains the former J9/J16/J17 strips.
+        for ref, x, y, side, rotation in (
+                ("J9",4,14,"F",0),("J18",4,50,"F",0),
+                ("J19",111,22,"F",180),("J20",111,28,"F",180),
+                ("J21",111,32,"F",180),("J22",111,46,"F",180),
+                ("J23",111,52,"F",180),("J24",111,60,"F",180),
+                ("J25",4,57,"F",0),("J26",4,64,"F",0),
+                ("J15",75,68,"F",0),
+                ("J14",108,18,"F",0),
+                ("J13",110,40,"F",0)):
+            put(ref, x, y, side, rotation)
         put("TVS1", 47.5, 18.5, "F", 0)
 
 
@@ -1287,18 +1347,10 @@ def add_developer_pad_labels(board: pcbnew.BOARD) -> None:
         "J6": ("ELRS 4-WIRE", ["5V", "GND", "RX", "TX"]),
         "J7": ("GIMBAL L", ["LX", "3V3", "GND", "LY", "3V3", "GND"]),
         "J8": ("GIMBAL R", ["RX", "3V3", "GND", "RY", "3V3", "GND"]),
-        "J9": ("CONTROLS", ["UP", "DN", "OK", "BACK", "ARM", "A2H", "A2L",
-                              "A3H", "A3L", "A4H", "A4L", "ENC_SW", "AIL-",
-                              "AIL+", "ELE-", "ELE+", "THR-", "THR+", "RUD-",
-                              "RUD+", "ENC_A", "ENC_B"]),
         "J11": ("5.8G U.FL", ["RF", "GND", "GND"]),
         "J13": ("SPEAKER", ["SPK+", "SPK-"]),
         "J14": ("OLED 128x64", ["GND", "3V3", "SDA", "SCL"]),
         "J15": ("DEV IO", ["IO0", "IO1", "IO2", "IO3", "3V3", "GND"]),
-        # The row itself is unambiguous; omit eleven repeated silk labels so
-        # the edge remains readable and the control legend stays clear.
-        "J16": ("CTRL GND LEFT", []),
-        "J17": ("CTRL GND RIGHT", []),
     }
     for ref, (heading, names) in labels.items():
         fp = next((item for item in board.GetFootprints()
@@ -1333,7 +1385,19 @@ def add_developer_pad_labels(board: pcbnew.BOARD) -> None:
             board.Add(text)
         title = pcbnew.PCB_TEXT(board)
         title.SetText(heading)
-        if pcbnew.ToMM(fp.GetPosition().x) < 8:
+        # The rotated U.FL has its RF/ground lands on a vertical axis. Keep
+        # the title outside the launch body so the three pad labels remain
+        # legible and do not overlap one another.
+        if ref == "J11":
+            title.SetPosition(pcbnew.VECTOR2I_MM(
+                pcbnew.ToMM(fp.GetPosition().x) + 7.0,
+                pcbnew.ToMM(fp.GetPosition().y) - 4.0))
+            title.SetTextAngle(pcbnew.EDA_ANGLE(90, pcbnew.DEGREES_T))
+        elif ref == "J17":
+            title.SetPosition(pcbnew.VECTOR2I_MM(
+                pcbnew.ToMM(fp.GetPosition().x) - 6.0,
+                pcbnew.ToMM(fp.GetPosition().y)))
+        elif pcbnew.ToMM(fp.GetPosition().x) < 8:
             title.SetPosition(pcbnew.VECTOR2I(fp.GetPosition().x + pcbnew.FromMM(8.0),
                                               fp.GetPosition().y))
         else:
@@ -1354,28 +1418,9 @@ def add_developer_pad_labels(board: pcbnew.BOARD) -> None:
     brand.SetTextThickness(pcbnew.FromMM(0.20))
     brand.SetHorizJustify(0)
     board.Add(brand)
-    # A readable wiring legend is placed in the open lower-side area.  The
-    # connector row keeps short identifiers; this table carries the exact
-    # function for every J9 control pad without crowding adjacent copper.
-    columns = [
-        ["J9 CONTROL MAP", "1 UP", "2 DN", "3 OK", "4 BACK", "5 ARM",
-         "6 A2-HI", "7 A2-LO", "8 A3-HI", "9 A3-LO", "10 A4-HI", "11 A4-LO"],
-        ["J16/J17 = CTRL_GND", "12 ENC_SW", "13 AIL-", "14 AIL+", "15 ELE-",
-         "16 ELE+", "17 THR-", "18 THR+", "19 RUD-", "20 RUD+", "21 ENC_A",
-         "22 ENC_B"],
-    ]
-    for column, lines in enumerate(columns):
-        for row, line in enumerate(lines):
-            legend = pcbnew.PCB_TEXT(board)
-            legend.SetText(line)
-            legend.SetPosition(pcbnew.VECTOR2I_MM(10.0 + column * 12.0,
-                                                   29.0 + row * 1.55))
-            legend.SetLayer(pcbnew.F_SilkS)
-            legend.SetMirrored(False)
-            legend.SetTextSize(pcbnew.VECTOR2I_MM(0.65, 0.65))
-            legend.SetTextThickness(pcbnew.FromMM(0.08))
-            legend.SetHorizJustify(-1)
-            board.Add(legend)
+    # Control-function labels now live inside each modular group footprint;
+    # avoid a detached numbered legend that can be mistaken for a separate
+    # connector or ground bank.
 
 
 def legalize_small_parts(board: pcbnew.BOARD) -> None:
@@ -1747,7 +1792,8 @@ def add_ground_fanout(board: pcbnew.BOARD, nets: dict) -> None:
         # hand-solder pads.
         if pad.GetParentFootprint().GetReference() in {
                 "J3", "J5", "J6", "J7", "J8", "J9", "J13", "J14",
-                "J15", "J16"}:
+                "J15", "J18", "J19", "J20", "J21", "J22", "J23",
+                "J24", "J25", "J26"}:
             continue
         pad_box = pad.GetBoundingBox()
         if any(other.GetNetname() == G and
@@ -1891,9 +1937,9 @@ def generate_board():
     legalize_small_parts(b)
     configure_plane_connections(b)
     for reference, x, y, side in [
-            ("FID1", 5, 20, "F"), ("FID2", 110, 22, "F"),
-            ("FID3", 109, 64, "F"), ("FID4", 5, 8, "B"),
-            ("FID5", 109, 9, "B"), ("FID6", 109, 64, "B")]:
+            ("FID1", 16, 20, "F"), ("FID2", 90, 22, "F"),
+            ("FID3", 100, 64, "F"), ("FID4", 16, 8, "B"),
+            ("FID5", 98, 9, "B"), ("FID6", 98, 64, "B")]:
         add_fiducial(b, reference, x, y, side)
     for reference, x, y in [("MH1", 4, 4), ("MH2", 111, 4),
                             ("MH3", 4, 68), ("MH4", 111, 68)]:

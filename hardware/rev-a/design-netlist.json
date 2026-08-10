@@ -857,38 +857,23 @@
       "6": "GND"
     }
   },
-  "J16": {
-    "mpn": "GROUND-EDGE-11",
-    "package": "GROUND-EDGE-11",
+  "J18": {
+    "mpn": "ENCODER-CONTROL-PADS",
+    "package": "ENCODER-CONTROL-PADS",
     "pins": {
-      "1": "GND",
-      "10": "GND",
-      "11": "GND",
+      "1": "CTRL_1_4",
       "2": "GND",
-      "3": "GND",
-      "4": "GND",
-      "5": "GND",
-      "6": "GND",
-      "7": "GND",
-      "8": "GND",
-      "9": "GND"
+      "3": "CTRL_1_5",
+      "4": "CTRL_0_11",
+      "5": "GND"
     }
   },
-  "J17": {
-    "mpn": "GROUND-EDGE-11",
-    "package": "GROUND-EDGE-11",
+  "J19": {
+    "mpn": "ARM-CONTROL-PADS",
+    "package": "ARM-CONTROL-PADS",
     "pins": {
       "1": "GND",
-      "10": "GND",
-      "11": "GND",
-      "2": "GND",
-      "3": "GND",
-      "4": "GND",
-      "5": "GND",
-      "6": "GND",
-      "7": "GND",
-      "8": "GND",
-      "9": "GND"
+      "2": "CTRL_0_4"
     }
   },
   "J2": {
@@ -912,6 +897,69 @@
       "B7": "USB_D-",
       "B8": "NC",
       "B9": "VBUS_RAW"
+    }
+  },
+  "J20": {
+    "mpn": "AUX2-CONTROL-PADS",
+    "package": "AUX2-CONTROL-PADS",
+    "pins": {
+      "1": "GND",
+      "2": "CTRL_0_5",
+      "3": "CTRL_0_6"
+    }
+  },
+  "J21": {
+    "mpn": "AUX3-CONTROL-PADS",
+    "package": "AUX3-CONTROL-PADS",
+    "pins": {
+      "1": "GND",
+      "2": "CTRL_0_7",
+      "3": "CTRL_0_8"
+    }
+  },
+  "J22": {
+    "mpn": "AUX4-CONTROL-PADS",
+    "package": "AUX4-CONTROL-PADS",
+    "pins": {
+      "1": "GND",
+      "2": "CTRL_0_9",
+      "3": "CTRL_0_10"
+    }
+  },
+  "J23": {
+    "mpn": "AIL-TRIM-PADS",
+    "package": "AIL-TRIM-PADS",
+    "pins": {
+      "1": "GND",
+      "2": "CTRL_0_12",
+      "3": "CTRL_0_13"
+    }
+  },
+  "J24": {
+    "mpn": "ELE-TRIM-PADS",
+    "package": "ELE-TRIM-PADS",
+    "pins": {
+      "1": "GND",
+      "2": "CTRL_0_14",
+      "3": "CTRL_0_15"
+    }
+  },
+  "J25": {
+    "mpn": "THR-TRIM-PADS",
+    "package": "THR-TRIM-PADS",
+    "pins": {
+      "1": "GND",
+      "2": "CTRL_1_0",
+      "3": "CTRL_1_1"
+    }
+  },
+  "J26": {
+    "mpn": "RUD-TRIM-PADS",
+    "package": "RUD-TRIM-PADS",
+    "pins": {
+      "1": "GND",
+      "2": "CTRL_1_2",
+      "3": "CTRL_1_3"
     }
   },
   "J3": {
@@ -975,31 +1023,17 @@
     }
   },
   "J9": {
-    "mpn": "SOLDER-PADS-22",
-    "package": "EDGE-PADS-22",
+    "mpn": "MENU-CONTROL-PADS",
+    "package": "MENU-CONTROL-PADS",
     "pins": {
-      "1": "CTRL_0_0",
-      "10": "CTRL_0_9",
-      "11": "CTRL_0_10",
-      "12": "CTRL_0_11",
-      "13": "CTRL_0_12",
-      "14": "CTRL_0_13",
-      "15": "CTRL_0_14",
-      "16": "CTRL_0_15",
-      "17": "CTRL_1_0",
-      "18": "CTRL_1_1",
-      "19": "CTRL_1_2",
-      "2": "CTRL_0_1",
-      "20": "CTRL_1_3",
-      "21": "CTRL_1_4",
-      "22": "CTRL_1_5",
-      "3": "CTRL_0_2",
-      "4": "CTRL_0_3",
-      "5": "CTRL_0_4",
-      "6": "CTRL_0_5",
-      "7": "CTRL_0_6",
-      "8": "CTRL_0_7",
-      "9": "CTRL_0_8"
+      "1": "GND",
+      "2": "CTRL_0_0",
+      "3": "GND",
+      "4": "CTRL_0_1",
+      "5": "GND",
+      "6": "CTRL_0_2",
+      "7": "GND",
+      "8": "CTRL_0_3"
     }
   },
   "JP1": {
