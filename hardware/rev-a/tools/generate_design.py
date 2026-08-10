@@ -2035,6 +2035,67 @@ def add_reviewed_signal_fanout(board: pcbnew.BOARD, nets: dict) -> None:
     via(right_via)
     track(pcbnew.F_Cu, right_via, (61.33, 34.13))
 
+
+def add_reviewed_battery_fanout(board: pcbnew.BOARD, nets: dict) -> None:
+    """Route the short, high-current battery-entry branches deterministically.
+
+    J3 is an edge SMD wire pad, while the protection parts are several layers
+    of dense control/decoupling placement away.  Leaving these first branches
+    to the generic router causes it to spend the opening pass trying to cross
+    the edge-control pads.  The reviewed SIG1 corridor stays clear of those
+    pads and the mounting-hole keepout; the remaining long charger branches
+    are intentionally left for the constrained router/manual review.
+    """
+    def add_track(net_name: str, layer: int,
+                  start: tuple[float, float], end: tuple[float, float],
+                  width: float = 0.40) -> None:
+        net = nets.get(net_name)
+        if net is None:
+            return
+        item = pcbnew.PCB_TRACK(board)
+        item.SetLayer(layer)
+        item.SetWidth(pcbnew.FromMM(width))
+        item.SetStart(pcbnew.VECTOR2I_MM(*start))
+        item.SetEnd(pcbnew.VECTOR2I_MM(*end))
+        item.SetNet(net)
+        board.Add(item)
+
+    def add_via(net_name: str, position: tuple[float, float]) -> None:
+        net = nets.get(net_name)
+        if net is None:
+            return
+        item = pcbnew.PCB_VIA(board)
+        item.SetPosition(pcbnew.VECTOR2I_MM(*position))
+        item.SetWidth(pcbnew.FromMM(0.45))
+        item.SetDrill(pcbnew.FromMM(0.20))
+        item.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu)
+        item.SetNet(net)
+        item.SetFrontTentingMode(pcbnew.TENTING_MODE_TENTED)
+        item.SetBackTentingMode(pcbnew.TENTING_MODE_TENTED)
+        board.Add(item)
+
+    # BAT_RAW: J3.1 -> R56.1, on SIG1 through the left-side corridor.  The
+    # dogleg at y=66.3 stays outside MH3 and the edge-control pads.
+    add_via("BAT_RAW", (7.8, 68.4))
+    add_via("BAT_RAW", (2.0, 43.2))
+    add_track("BAT_RAW", pcbnew.F_Cu, (7.8, 69.8), (7.8, 68.4), 0.30)
+    add_track("BAT_RAW", pcbnew.In2_Cu, (7.8, 68.4), (7.8, 66.3))
+    add_track("BAT_RAW", pcbnew.In2_Cu, (7.8, 66.3), (2.0, 66.3))
+    add_track("BAT_RAW", pcbnew.In2_Cu, (2.0, 66.3), (2.0, 43.2))
+    add_track("BAT_RAW", pcbnew.F_Cu, (2.0, 43.2), (1.57, 44.0), 0.30)
+
+    # BAT_CELL_NEG: J3.2 -> U3.4 -> Q1.1.  The through-via stubs keep the
+    # SMD pads on the accessible top side while SIG1 remains obstacle-free.
+    add_via("BAT_CELL_NEG", (10.6, 68.4))
+    add_via("BAT_CELL_NEG", (12.64, 63.4))
+    add_via("BAT_CELL_NEG", (16.35, 57.8))
+    add_track("BAT_CELL_NEG", pcbnew.F_Cu, (10.6, 69.8), (10.6, 68.4), 0.30)
+    add_track("BAT_CELL_NEG", pcbnew.In2_Cu, (10.6, 68.4), (10.6, 64.5))
+    add_track("BAT_CELL_NEG", pcbnew.In2_Cu, (10.6, 64.5), (12.64, 63.4))
+    add_track("BAT_CELL_NEG", pcbnew.F_Cu, (12.64, 63.4), (12.64, 62.5), 0.30)
+    add_track("BAT_CELL_NEG", pcbnew.In2_Cu, (12.64, 63.4), (16.35, 57.8))
+    add_track("BAT_CELL_NEG", pcbnew.F_Cu, (16.35, 57.8), (16.35, 56.95), 0.30)
+
 def generate_board():
     # pcbnew assigns UUIDs while objects and library footprints are added.
     # A fixed generator seed makes repeated source generation byte-stable;
@@ -2066,6 +2127,7 @@ def generate_board():
     add_exposed_pad_thermal_vias(b, nets)
     add_ground_fanout(b, nets)
     add_reviewed_signal_fanout(b, nets)
+    add_reviewed_battery_fanout(b, nets)
     for a,c in [((0, 0), (BOARD_WIDTH, 0)),
                 ((BOARD_WIDTH, 0), (BOARD_WIDTH, BOARD_HEIGHT)),
                 ((BOARD_WIDTH, BOARD_HEIGHT), (0, BOARD_HEIGHT)),

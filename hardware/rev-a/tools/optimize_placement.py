@@ -58,6 +58,12 @@ DEPENDENCIES = [
     ("U17", "D1", 7.0, 180.0),
     ("U2", "L1", 4.0, 420.0),
     ("J2", "U2", 14.0, 90.0),
+    # Battery power is a high-current path, not an ordinary connector net.
+    # Keep the charger balanced between the USB entry and the protected-cell
+    # cluster so BAT_RAW/BAT_PROTECTED/BAT_NTC do not become long detours.
+    ("J3", "U2", 32.0, 300.0),
+    ("U3", "U2", 18.0, 220.0),
+    ("Q1", "U2", 18.0, 180.0),
     ("J12", "U22", 18.0, 70.0),
     ("J12", "ESD2", 7.0, 260.0),
     ("J12", "ESD3", 7.0, 260.0),
