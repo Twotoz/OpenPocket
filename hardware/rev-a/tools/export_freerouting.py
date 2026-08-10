@@ -12,6 +12,31 @@ import pcbnew
 REV = Path(__file__).resolve().parents[1]
 
 
+def _remove_blocks(text: str, needle: str) -> str:
+    """Remove balanced Specctra blocks whose opening line contains *needle*."""
+    while True:
+        start = text.find(needle)
+        if start < 0:
+            return text
+        line_start = text.rfind("\n", 0, start) + 1
+        depth = 0
+        end = None
+        for index in range(line_start, len(text)):
+            char = text[index]
+            if char == "(":
+                depth += 1
+            elif char == ")":
+                depth -= 1
+                if depth == 0:
+                    end = index + 1
+                    break
+        if end is None:
+            raise SystemExit(f"cannot remove unterminated DSN block {needle!r}")
+        if end < len(text) and text[end] == "\n":
+            end += 1
+        text = text[:line_start] + text[end:]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--board", type=Path,
@@ -48,11 +73,24 @@ def main() -> int:
             line for line in text.splitlines()
             if not any(f"(net {net})" in line for net in seed_nets)
         ) + "\n"
+        # The reviewed GND1/GND2 planes are already present in the
+        # authoritative PCB.  They must not be treated as a giant
+        # autoroutable Specctra network: doing so makes Freerouting spend most
+        # of each pass recursively scoring the plane geometry and obscures the
+        # signal-placement benchmark.  This disposable DSN therefore omits
+        # only the GND network, its route records, and the two plane blocks.
+        text = _remove_blocks(text, "    (net GND\n")
+        text = _remove_blocks(text, "    (plane GND ")
+        text = "\n".join(
+            line for line in text.splitlines()
+            if "(net GND)" not in line
+        ) + "\n"
     args.output.write_text(text, encoding="utf-8")
     print(f"EXPORTED_DSN={args.output}")
     print("PROTECTED_PLANES=GND1,GND2")
     if args.benchmark:
         print("BENCHMARK_OMITTED_EXISTING_ROUTE_NETS=BAT_RAW,BAT_CELL_NEG")
+        print("BENCHMARK_OMITTED_GND_PLANES_AND_NET=GND,GND1,GND2")
     return 0
 
 

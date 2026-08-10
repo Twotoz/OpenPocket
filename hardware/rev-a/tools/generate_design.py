@@ -2405,21 +2405,14 @@ def connect_power_access_mst(board: pcbnew.BOARD, nets: dict,
                               box.GetRight() / 1_000_000 + clearance,
                               box.GetBottom() / 1_000_000 + clearance))
 
-    grid = 0.25 if width <= 0.25 else 0.50
-
-    def node(point: tuple[float, float]) -> tuple[int, int]:
-        return (round(point[0] / grid), round(point[1] / grid))
-
-    def location(key: tuple[int, int]) -> tuple[float, float]:
-        return (key[0] * grid, key[1] * grid)
-
-    def blocked(key: tuple[int, int]) -> bool:
-        x, y = location(key)
-        if not (0.90 <= x <= BOARD_WIDTH - 0.90 and
-                0.90 <= y <= BOARD_HEIGHT - 0.90):
-            return True
-        return any(left <= x <= right and top <= y <= bottom
-                   for left, top, right, bottom in obstacles)
+    if width <= 0.15:
+        grids = (0.125, 0.10, 0.05)
+    elif width <= 0.25:
+        grids = (0.25, 0.125, 0.10, 0.05)
+    elif width <= 0.50:
+        grids = (0.50, 0.25, 0.125)
+    else:
+        grids = (0.50, 0.25)
 
     def segment_clear(start: tuple[float, float],
                       end: tuple[float, float]) -> bool:
@@ -2434,54 +2427,78 @@ def connect_power_access_mst(board: pcbnew.BOARD, nets: dict,
                 return False
         return True
 
-    def endpoint_node(point: tuple[float, float]) -> tuple[int, int] | None:
-        base = node(point)
-        candidates = sorted(
-            ((dx * dx + dy * dy, (base[0] + dx, base[1] + dy))
-             for dx in range(-4, 5) for dy in range(-4, 5)),
-            key=lambda item: item[0])
-        return next((candidate for _, candidate in candidates
-                     if not blocked(candidate) and
-                     segment_clear(point, location(candidate))), None)
-
     def find_path(start_point: tuple[float, float],
                   end_point: tuple[float, float]) -> list[tuple[float, float]] | None:
-        start = endpoint_node(start_point)
-        end = endpoint_node(end_point)
-        if start is None or end is None:
-            return None
-        queue: list[tuple[float, float, tuple[int, int]]] = [
-            (math.dist(start, end), 0.0, start)]
-        previous: dict[tuple[int, int], tuple[int, int] | None] = {start: None}
-        cost = {start: 0.0}
-        while queue:
-            _, current_cost, current = heapq.heappop(queue)
-            if current == end:
-                break
-            if current_cost != cost.get(current):
+        path = None
+        for grid in grids:
+            def node(point: tuple[float, float]) -> tuple[int, int]:
+                return (round(point[0] / grid), round(point[1] / grid))
+
+            def location(key: tuple[int, int]) -> tuple[float, float]:
+                return (key[0] * grid, key[1] * grid)
+
+            def blocked(key: tuple[int, int]) -> bool:
+                x, y = location(key)
+                if not (0.90 <= x <= BOARD_WIDTH - 0.90 and
+                        0.90 <= y <= BOARD_HEIGHT - 0.90):
+                    return True
+                return any(left <= x <= right and top <= y <= bottom
+                           for left, top, right, bottom in obstacles)
+
+            def endpoint_node(
+                    point: tuple[float, float]) -> tuple[int, int] | None:
+                base = node(point)
+                radius = max(4, math.ceil(2.0 / grid))
+                candidates = sorted(
+                    ((dx * dx + dy * dy,
+                      (base[0] + dx, base[1] + dy))
+                     for dx in range(-radius, radius + 1)
+                     for dy in range(-radius, radius + 1)),
+                    key=lambda item: item[0])
+                return next((candidate for _, candidate in candidates
+                             if not blocked(candidate) and
+                             segment_clear(point, location(candidate))), None)
+
+            start = endpoint_node(start_point)
+            end = endpoint_node(end_point)
+            if start is None or end is None:
                 continue
-            for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                neighbour = (current[0] + dx, current[1] + dy)
-                if blocked(neighbour):
+            queue: list[tuple[float, float, tuple[int, int]]] = [
+                (math.dist(start, end), 0.0, start)]
+            previous: dict[tuple[int, int], tuple[int, int] | None] = {
+                start: None}
+            cost = {start: 0.0}
+            while queue:
+                _, current_cost, current = heapq.heappop(queue)
+                if current == end:
+                    break
+                if current_cost != cost.get(current):
                     continue
-                candidate = current_cost + 1.0
-                if candidate >= cost.get(neighbour, float("inf")):
-                    continue
-                cost[neighbour] = candidate
-                previous[neighbour] = current
-                priority = candidate + math.dist(neighbour, end)
-                heapq.heappush(queue, (priority, candidate, neighbour))
-        if end not in previous:
+                for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                    neighbour = (current[0] + dx, current[1] + dy)
+                    if blocked(neighbour):
+                        continue
+                    candidate = current_cost + 1.0
+                    if candidate >= cost.get(neighbour, float("inf")):
+                        continue
+                    cost[neighbour] = candidate
+                    previous[neighbour] = current
+                    priority = candidate + math.dist(neighbour, end)
+                    heapq.heappush(queue, (priority, candidate, neighbour))
+            if end not in previous:
+                continue
+            keys = []
+            current: tuple[int, int] | None = end
+            while current is not None:
+                keys.append(current)
+                current = previous[current]
+            keys.reverse()
+            path = [start_point]
+            path.extend(location(key) for key in keys)
+            path.append(end_point)
+            break
+        if path is None:
             return None
-        keys = []
-        current: tuple[int, int] | None = end
-        while current is not None:
-            keys.append(current)
-            current = previous[current]
-        keys.reverse()
-        path = [start_point]
-        path.extend(location(key) for key in keys)
-        path.append(end_point)
         simplified = [path[0]]
         for index in range(1, len(path) - 1):
             a, b, c = simplified[-1], path[index], path[index + 1]
