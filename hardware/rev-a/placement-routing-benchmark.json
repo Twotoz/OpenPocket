@@ -6,12 +6,12 @@
   "protected_planes": ["GND1", "GND2"],
   "passes_requested": 20,
   "router_threads": 5,
-  "initial_incompletes": 563,
-  "initial_items": 798,
+  "initial_incompletes": 562,
+  "initial_items": 797,
   "completed_incompletes": 0,
-  "remaining_at_stop": 563,
-  "runtime_seconds": 136,
+  "remaining_at_stop": 562,
+  "runtime_seconds": 83,
   "status": "stuck_during_pass_1",
   "ses_imported": false,
-  "notes": "Optimizer-selected legal placement (18.218% lower placement objective than the hand-tuned baseline). FreeRouting entered pass 1 but found no accessible expansion doors for the dense shared power/control nets. Temporary routes were not imported into the authoritative PCB; the initial routing item count was worse than the prior hand-tuned 546/781 benchmark and must be reviewed before release."
+  "notes": "Authoritative hand-tuned placement retained because its routing benchmark is marginally better than the optimizer candidate (562/797 versus 563/798 after the RF legalizer fix). FreeRouting entered pass 1 but found no accessible expansion doors for the dense shared power/control nets. The optimizer candidate is preserved separately for future work; no temporary routes were imported."
 }
