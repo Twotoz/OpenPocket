@@ -102,6 +102,6 @@ unrouted items and a failing DRC connectivity check.
 
 Current local tools confirm a clean schematic ERC (0 errors, 0 warnings) and
 confirm that PCB DRC/release-gate checks remain blocked. The AMT firmware
-binary cannot currently be rebuilt in this environment because `sdcc` is not
-installed, and the ignored manufacturing package is therefore absent. No
-fabrication ZIP has been approved or published.
+binary was rebuilt with SDCC 4.2.0 and its five firmware tests pass. The
+ignored manufacturing package is absent because the PCB release gate remains
+blocked. No fabrication ZIP has been approved or published.
