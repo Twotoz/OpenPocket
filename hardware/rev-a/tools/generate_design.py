@@ -1214,7 +1214,24 @@ def apply_placement() -> None:
                 ("R88", 52, 53, "B", 0),
                 ("C55", 48, 55, "B", 0),
                 ("C56", 50, 55, "B", 0),
-                ("C54", 52, 55, "B", 0)):
+                ("C54", 52, 55, "B", 0),
+                # Keep a clear fanout lane above the AMT630A's 0.4-mm
+                # perimeter pads.  These small support parts stay on the
+                # same logical video/clock island but no longer box in the
+                # through-via escape candidates used by the router.
+                ("R53", 36, 35, "B", 0),
+                ("R58", 36, 37, "B", 0),
+                ("R12", 35, 39, "B", 0),
+                ("R11", 39, 34, "B", 0),
+                ("C60", 40, 32, "B", 0),
+                ("R77", 38, 43, "B", 0),
+                ("C11", 50, 46, "B", 0),
+                ("FB3", 52, 35, "F", 0),
+                # Clear both sides of the AMT flash-mux escape.  C70/C71
+                # remain local decouplers but no longer sit under the
+                # fine-pitch C-MISO/C-MOSI/C-CLK perimeter pads.
+                ("C70", 51, 33, "B", 0),
+                ("C71", 66, 36, "B", 0)):
             if ref in by_ref:
                 put(ref, x, y, side, rotation)
 
