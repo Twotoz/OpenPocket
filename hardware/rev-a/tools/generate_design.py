@@ -1442,7 +1442,14 @@ def add_developer_pad_labels(board: pcbnew.BOARD) -> None:
             text.SetText(name)
             # Keep labels inside the board outline, at least 0.8 mm clear of
             # the exposed pad. Rotate edge labels so long names do not merge.
-            if pcbnew.ToMM(pos.y) > BOARD_HEIGHT - 5:
+            if ref in {"J3", "J6"}:
+                # These bottom-edge power headers sit beside the left/right
+                # control groups and fiducials.  A compact, inboard legend
+                # avoids both while staying paired with the solder pads.
+                text.SetPosition(pcbnew.VECTOR2I(pos.x, pos.y - pcbnew.FromMM(3.0)))
+                text.SetTextAngle(pcbnew.EDA_ANGLE(90, pcbnew.DEGREES_T))
+                text.SetTextSize(pcbnew.VECTOR2I_MM(0.55, 0.55))
+            elif pcbnew.ToMM(pos.y) > BOARD_HEIGHT - 5:
                 text.SetPosition(pcbnew.VECTOR2I(pos.x, pos.y - pcbnew.FromMM(6.0)))
                 text.SetTextAngle(pcbnew.EDA_ANGLE(90, pcbnew.DEGREES_T))
             elif pcbnew.ToMM(pos.y) < 5:
@@ -1466,6 +1473,11 @@ def add_developer_pad_labels(board: pcbnew.BOARD) -> None:
             text.SetTextThickness(pcbnew.FromMM(0.08))
             text.SetHorizJustify(0)  # KiCad SWIG enum: centered
             board.Add(text)
+        # The individual U.FL RF/GND and developer-pad legends already state
+        # the interface unambiguously.  A second title cannot clear adjacent
+        # copper in these deliberately dense service regions.
+        if ref in {"J11", "J15"}:
+            continue
         title = pcbnew.PCB_TEXT(board)
         title.SetText(heading)
         # The rotated U.FL has its RF/ground lands on a vertical axis. Keep
@@ -1474,8 +1486,16 @@ def add_developer_pad_labels(board: pcbnew.BOARD) -> None:
         if ref == "J11":
             title.SetPosition(pcbnew.VECTOR2I_MM(
                 pcbnew.ToMM(fp.GetPosition().x) + 7.0,
-                pcbnew.ToMM(fp.GetPosition().y) - 4.0))
+                pcbnew.ToMM(fp.GetPosition().y) + 7.0))
             title.SetTextAngle(pcbnew.EDA_ANGLE(90, pcbnew.DEGREES_T))
+            title.SetLayer(pcbnew.B_SilkS)
+            title.SetMirrored(True)
+        elif ref == "J5":
+            title.SetPosition(pcbnew.VECTOR2I_MM(25.0, 56.0))
+        elif ref == "J6":
+            title.SetPosition(pcbnew.VECTOR2I_MM(101.0, 56.0))
+        elif ref == "J15":
+            title.SetPosition(pcbnew.VECTOR2I_MM(75.0, 54.0))
         elif ref == "J17":
             title.SetPosition(pcbnew.VECTOR2I_MM(
                 pcbnew.ToMM(fp.GetPosition().x) - 6.0,
@@ -1488,8 +1508,9 @@ def add_developer_pad_labels(board: pcbnew.BOARD) -> None:
                        if pcbnew.ToMM(center_y) < 5 else
                        fp.GetPosition().y - pcbnew.FromMM(10.0))
             title.SetPosition(pcbnew.VECTOR2I(fp.GetPosition().x, title_y))
-        title.SetLayer(pcbnew.F_SilkS)
-        title.SetMirrored(False)
+        if ref != "J11":
+            title.SetLayer(pcbnew.F_SilkS)
+            title.SetMirrored(False)
         title.SetTextSize(pcbnew.VECTOR2I_MM(0.8, 0.8))
         title.SetTextThickness(pcbnew.FromMM(0.10))
         title.SetHorizJustify(0)  # KiCad SWIG enum: centered
@@ -2015,53 +2036,6 @@ def add_ground_fanout(board: pcbnew.BOARD, nets: dict) -> None:
         print("ground fanout deferred for " + ", ".join(missing))
 
 
-def add_reviewed_signal_fanout(board: pcbnew.BOARD, nets: dict) -> None:
-    """Seed the one reviewed AMT flash escape that needs a deterministic lane.
-
-    U15/U16 are both fine-pitch top-side packages.  The C-MISO connection has
-    no legal direct top-layer path through the mux pins, while the generic
-    router repeatedly fails before it can open the surrounding maze.  This
-    four-segment escape uses SIG2 and two through-vias; its coordinates are
-    tied to the authoritative placement above and are validated by KiCad DRC
-    after zone refill.  Keep this list intentionally small: it is a reviewed
-    seed, not an unsafe autoroute import.
-    """
-    net = nets.get("AMT_FLASH_C_MISO")
-    if net is None:
-        return
-
-    def track(layer: int, start: tuple[float, float], end: tuple[float, float]) -> None:
-        item = pcbnew.PCB_TRACK(board)
-        item.SetLayer(layer)
-        item.SetWidth(pcbnew.FromMM(0.12))
-        item.SetStart(pcbnew.VECTOR2I_MM(*start))
-        item.SetEnd(pcbnew.VECTOR2I_MM(*end))
-        item.SetNet(net)
-        board.Add(item)
-
-    def via(position: tuple[float, float]) -> None:
-        item = pcbnew.PCB_VIA(board)
-        item.SetPosition(pcbnew.VECTOR2I_MM(*position))
-        item.SetWidth(pcbnew.FromMM(0.45))
-        item.SetDrill(pcbnew.FromMM(0.20))
-        item.SetNet(net)
-        item.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu)
-        board.Add(item)
-
-    # U15 pad 2 (54.87,37.10) -> U16 pad 12 (61.33,34.13).
-    # The SIG2 lane at y=28 stays clear of the AMT packages and the ESP
-    # backside fanout; the vias are outside the adjacent U15/U16 pads.
-    left_via = (54.87, 38.40)
-    right_via = (61.33, 30.00)
-    via(left_via)
-    track(pcbnew.F_Cu, (54.87, 37.10), left_via)
-    track(pcbnew.In3_Cu, left_via, (54.87, 25.50))
-    track(pcbnew.In3_Cu, (54.87, 25.50), (61.33, 25.50))
-    track(pcbnew.In3_Cu, (61.33, 25.50), right_via)
-    via(right_via)
-    track(pcbnew.F_Cu, right_via, (61.33, 34.13))
-
-
 def add_reviewed_battery_fanout(board: pcbnew.BOARD, nets: dict) -> None:
     """Route the short, high-current battery-entry branches deterministically.
 
@@ -2152,7 +2126,6 @@ def generate_board():
         add_mounting_hole(b, reference, x, y, 2.0)
     add_exposed_pad_thermal_vias(b, nets)
     add_ground_fanout(b, nets)
-    add_reviewed_signal_fanout(b, nets)
     add_reviewed_battery_fanout(b, nets)
     for a,c in [((0, 0), (BOARD_WIDTH, 0)),
                 ((BOARD_WIDTH, 0), (BOARD_WIDTH, BOARD_HEIGHT)),
