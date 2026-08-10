@@ -1174,6 +1174,7 @@ def apply_placement() -> None:
         # optimizer candidates. Reassert their edge positions even when an
         # older manifest still contains the former J9/J16/J17 strips.
         for ref, x, y, side, rotation in (
+                ("U1",65,31,"B",0),
                 ("J9",4,14,"F",0),("J18",4,50,"F",0),
                 ("J19",111,22,"F",180),("J20",111,28,"F",180),
                 ("J21",111,32,"F",180),("J22",111,46,"F",180),
@@ -2023,9 +2024,9 @@ def add_reviewed_signal_fanout(board: pcbnew.BOARD, nets: dict) -> None:
     right_via = (61.33, 30.00)
     via(left_via)
     track(pcbnew.F_Cu, (54.87, 37.10), left_via)
-    track(pcbnew.In3_Cu, left_via, (54.87, 28.00))
-    track(pcbnew.In3_Cu, (54.87, 28.00), (61.33, 28.00))
-    track(pcbnew.In3_Cu, (61.33, 28.00), right_via)
+    track(pcbnew.In3_Cu, left_via, (54.87, 25.50))
+    track(pcbnew.In3_Cu, (54.87, 25.50), (61.33, 25.50))
+    track(pcbnew.In3_Cu, (61.33, 25.50), right_via)
     via(right_via)
     track(pcbnew.F_Cu, right_via, (61.33, 34.13))
 
