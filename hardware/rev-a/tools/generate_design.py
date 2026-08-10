@@ -1204,7 +1204,11 @@ def apply_placement() -> None:
         # functional regions.
         for ref, x, y, side, rotation in (
                 ("U4", 12, 53, "F", 0),
-                ("U20", 62, 62, "F", 0),
+                # Master load-switch between charger and both converter
+                # islands; its input/output bulk capacitors move with it.
+                ("U20", 68, 49, "F", 0),
+                ("C2", 66, 52, "F", 0),
+                ("C3", 69, 52, "F", 0),
                 ("U17", 53, 60, "F", 0),
                 ("R25", 16, 52, "F", 0),
                 ("R26", 18, 52, "F", 0),
