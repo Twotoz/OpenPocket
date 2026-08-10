@@ -91,3 +91,17 @@ python3 hardware/rev-a/tools/release_gate.py
 
 The second command must remain blocked until all evidence above is attached
 and every release-status gate is explicitly resolved.
+
+## Current verification — 2026-08-10
+
+The assembly placement exports were resynchronised from the reviewed KiCad PCB
+source. `cpl-jlcpcb.csv` and `cpl-generic.csv` now match every populated
+footprint's X/Y position, side, and rotation. This resolves a stale derived
+data issue; it does not close `LAYOUT_REVIEW` because the board still has
+unrouted items and a failing DRC connectivity check.
+
+Current local tools confirm a clean schematic ERC (0 errors, 0 warnings) and
+confirm that PCB DRC/release-gate checks remain blocked. The AMT firmware
+binary cannot currently be rebuilt in this environment because `sdcc` is not
+installed, and the ignored manufacturing package is therefore absent. No
+fabrication ZIP has been approved or published.
