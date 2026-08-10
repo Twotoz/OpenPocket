@@ -198,8 +198,15 @@ def pad_conflicts(board: pcbnew.BOARD) -> int:
     return conflicts
 
 
-def legal(board: pcbnew.BOARD, movable: set[str]) -> bool:
-    if pad_conflicts(board):
+def legal(board: pcbnew.BOARD, movable: set[str], *, check_pads: bool = True) -> bool:
+    """Check placement legality.
+
+    Full pad-intersection checking is deliberately retained for baseline and
+    final candidates.  During annealing, courtyard/body rejection is an
+    effective fast filter; running the quadratic pad check for every random
+    nudge made even a modest multi-seed search impractically slow.
+    """
+    if check_pads and pad_conflicts(board):
         return False
     boxes = footprint_boxes(board)
     fixed = [boxes[r] for r in boxes
@@ -445,16 +452,17 @@ def targeted_relax(board: pcbnew.BOARD, movable: set[str]) -> None:
         best = (before, None)
         for dx, dy in offsets:
             fp.SetPosition(pcbnew.VECTOR2I_MM(ox + dx, oy + dy))
-            if legal(board, movable):
+            if legal(board, movable, check_pads=False):
                 value = objective(board)[0]
-                if value < best[0]:
+                if value < best[0] and legal(board, movable):
                     best = (value, snapshot(board, {dependent}))
         restore(board, old)
         if best[1] is not None:
             restore(board, best[1])
 
 
-def optimize(board: pcbnew.BOARD, seeds: list[int], iterations: int) -> tuple[float, dict[str, State], dict[str, float], dict[str, float]]:
+def optimize(board: pcbnew.BOARD, seeds: list[int], iterations: int,
+             *, targeted: bool = False) -> tuple[float, dict[str, State], dict[str, float], dict[str, float]]:
     refs = {fp.GetReference() for fp in board.GetFootprints()
             if fp.GetReference() not in LOCKED and
             not fp.GetReference().startswith("TP")}
@@ -464,11 +472,14 @@ def optimize(board: pcbnew.BOARD, seeds: list[int], iterations: int) -> tuple[fl
     best_score = float("inf")
     best_states: dict[str, State] = {}
     best_breakdown: dict[str, float] = {}
-    # Repair and targeted dependency relaxation are seed-independent.  Do
-    # them once, then let each RNG seed explore the same legal basin.
+    # Repair is seed-independent.  Targeted dependency relaxation is useful
+    # as an explicit diagnostic stage, but is intentionally opt-in: evaluating
+    # every dependency against every radial offset repeatedly computes the
+    # full crossings matrix and otherwise starves the actual annealing search.
     restore(board, baseline_states)
     repair_placement(board, movable)
-    targeted_relax(board, movable)
+    if targeted:
+        targeted_relax(board, movable)
     legal_baseline_states = snapshot(board, refs)
     for seed in seeds:
         restore(board, legal_baseline_states)
@@ -483,7 +494,7 @@ def optimize(board: pcbnew.BOARD, seeds: list[int], iterations: int) -> tuple[fl
             before = snapshot(board, {fp.GetReference()})
             step = max(0.35, 8.0 * (1.0 - iteration / iterations))
             apply_random_move(board, fp, rng, step)
-            if not legal(board, movable):
+            if not legal(board, movable, check_pads=False):
                 restore(board, before)
                 continue
             candidate, breakdown = objective(board)
@@ -491,7 +502,7 @@ def optimize(board: pcbnew.BOARD, seeds: list[int], iterations: int) -> tuple[fl
             if delta <= 0 or rng.random() < math.exp(-delta / max(temperature, 1e-9)):
                 current = candidate
                 temperature *= 0.9992
-                if candidate < best_score:
+                if candidate < best_score and legal(board, movable):
                     best_score, best_states, best_breakdown = candidate, snapshot(board, refs), breakdown
             else:
                 restore(board, before)
@@ -520,10 +531,13 @@ def main() -> int:
     parser.add_argument("--report", type=Path, default=REPORT)
     parser.add_argument("--iterations", type=int, default=2200)
     parser.add_argument("--seeds", type=int, nargs="+", default=[11, 23, 47, 71])
+    parser.add_argument("--targeted-relax", action="store_true",
+                        help="run the expensive dependency-only diagnostic stage before annealing")
     args = parser.parse_args()
     board = pcbnew.LoadBoard(str(args.board))
     base_score, base_breakdown = objective(board)
-    best_score, states, best_breakdown, _ = optimize(board, args.seeds, args.iterations)
+    best_score, states, best_breakdown, _ = optimize(
+        board, args.seeds, args.iterations, targeted=args.targeted_relax)
     if not legal(board, {fp.GetReference() for fp in board.GetFootprints()
                          if fp.GetReference() not in LOCKED and
                          not fp.GetReference().startswith("TP")}):
