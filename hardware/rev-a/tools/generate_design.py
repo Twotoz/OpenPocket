@@ -853,33 +853,37 @@ def apply_placement() -> None:
     # than thirty control nets to cross the entire board and made the design
     # needlessly hostile to both manual and automatic routing.
     fixed = {
-        "U1": (14, 14, "F"), "J2": (52, 3.5, "F"),
-        "U2": (15, 49, "F"), "U3": (3, 49, "F"),
-        "Q1": (6, 52, "F"), "U4": (23, 49, "F"),
-        "U20": (28, 51, "F"),
+        # The ESP is bottom-side and central, outside the RF/video keepout.
+        "U1": (70, 31, "B"), "J2": (57.5, 5.4, "F"),
+        # Battery entry is a tight chain from the lower-left pads into the
+        # charger/protection parts; it no longer shares the display corridor.
+        "U2": (57, 15, "F"), "U3": (12, 62, "F"),
+        "Q1": (15, 56, "F"), "U4": (20, 55, "F"),
+        "U20": (29, 58, "F"),
         # Split the two high-current converter islands.  U5 belongs with the
         # 3V3 logic/battery side; U6 and L3 belong with the 5V boost output.
         # Keeping them in one horizontal row made SYS_SWITCHED and the 5V
         # switch node compete with the display/control fan-out.
-        "U5": (34, 39, "F"),
-        "U6": (45, 45.5, "F"), "U7": (57, 43, "F"),
-        "U8": (67, 45, "F"), "U9": (76, 51, "F"),
+        "U5": (64, 43, "F"),
+        "U6": (78, 46, "F"), "U7": (20, 40, "F"),
+        "U8": (66, 57, "F"), "U9": (89, 63, "F"),
         # Rotate before the bottom-side flip so the ANT pad faces the optional
         # coax/U.FL launches at the left edge (final PCB orientation 0 deg).
-        "U10": (79, 42, "F"), "MOD1": (16, 40, "B", 180),
-        "U11": (80, 30, "F"), "U12": (48, 17, "F"),
-        "U13": (55, 17, "F"), "U14": (60, 30, "F"),
-        "U15": (70, 13, "F"), "U16": (77, 13, "F"),
+        "U10": (60, 55, "F"), "MOD1": (22, 35, "B", 180),
+        # Continuous video chain: RX5808 -> AT7456E -> AMT630A -> FFC.
+        "U11": (29, 35, "F"), "U12": (20, 29, "F"),
+        "U13": (34, 29, "F"), "U14": (44, 49, "F"),
+        "U15": (54, 49, "F"), "U16": (60, 49, "F"),
         # Horizontal display FFC; keep the connector body ~10 mm above the
         # bottom edge so the cable can be inserted from below.
-        "J1": (29.75, 62, "F"), "U17": (104, 35, "F"),
-        "U18": (35, 52, "F"), "U19": (62, 52, "F"),
+        "J1": (29.75, 62, "F"), "U17": (34, 58, "F"),
+        "U18": (49, 61, "B"), "U19": (64, 61, "B"),
         "BZ1": (85, 7, "F"), "Q2": (79, 5, "B"),
         "D2": (79, 9, "B"), "U21": (78, 18, "B"),
-        "J4": (90, 24, "F"), "U22": (38, 18, "B"),
-        "J12": (101, 8.5, "F"), "ESD1": (57, 12, "F"),
-        "ESD2": (41, 7, "F"),
-        "ESD3": (41, 9.5, "F"),
+        "J4": (100, 28, "F"), "U22": (87, 18, "B"),
+        "J12": (101, 8.5, "F"), "ESD1": (52, 9, "F"),
+        "ESD2": (94, 21, "F"),
+        "ESD3": (99, 22, "F"),
         # Keep user-wired pad groups separated from the corner mounting holes.
         "J3": (12, 69.8, "F"), "J5": (25, 69.8, "F"),
         "J6": (101, 69.8, "F"),
@@ -891,20 +895,20 @@ def apply_placement() -> None:
         # via-free 5.8-GHz feed to the module ANT pad.
         # RF coax launch on the back, directly above the RX5808 module so
         # the 5.8 GHz feed remains short and avoids crossing the board.
-        "J9": (56.5, 69.8, "F"), "J11": (16.0, 29.0, "B", 180),
-        "J13": (111, 36, "F"),
+        "J9": (56.5, 69.8, "F"), "J11": (15.0, 29.0, "B", 180),
+        "J13": (110, 36, "F"),
         # Developer pads are on the accessible right edge, clear of the
         # bottom-left RX5808/U.FL launch and the central analog-video island.
         "J14": (101, 18, "F"), "J15": (101, 56, "F"),
         "J16": (88, 69.8, "F"),
-        "ESD4": (73, 55, "F"), "F1": (45, 5, "F"),
-        "TVS1": (45, 8, "F"), "JP1": (44, 35, "F"),
-        "Y1": (80, 39, "F"), "Y2": (70, 40, "F"),
-        "L1": (24, 54, "F"), "L2": (27, 45, "F"),
-        "L4": (104, 41, "F"),
-        "L5": (78, 45, "F"), "D1": (86, 39, "F"),
-        "FB1": (27, 38, "F"), "FB2": (56, 41, "F"),
-        "FB3": (60, 41, "F"), "FB4": (64, 41, "F"),
+        "ESD4": (95, 65, "F"), "F1": (49, 14, "F"),
+        "TVS1": (49, 18, "F"), "JP1": (37, 38, "F"),
+        "Y1": (22, 35, "F"), "Y2": (33, 48, "F"),
+        "L1": (64, 15, "F"), "L2": (59, 43, "F"),
+        "L4": (51, 66, "F"),
+        "L5": (74, 60, "F"), "D1": (44, 66, "F"),
+        "FB1": (26, 43, "F"), "FB2": (33, 45, "F"),
+        "FB3": (50, 40, "F"), "FB4": (54, 58, "F"),
     }
     for ref, position in fixed.items():
         put(ref, *position)
@@ -912,7 +916,7 @@ def apply_placement() -> None:
     put("J1", 29.75, 62, "F", 180)
     put("J2", 57.5, 5.4, "F", 90)
     # Put the 5-V boost switch-node pad on the U6-facing side of L3.
-    put("L3", 52, 48.5, "F", 180)
+    put("L3", 88, 49, "F", 180)
     # ESP_EN is a local strap; do not leave its pull-up in the top generic
     # resistor bank 30 mm away from U1.
     put("R3", 24, 8, "B")
@@ -978,6 +982,83 @@ def apply_placement() -> None:
     put("C53", 83, 27, "B")   # U17 backlight boost input
     put("C67", 3, 49, "B")    # U3 cell protector sense supply
     put("C4", 59, 52, "B")    # U7 video load-switch output
+
+    # Critical support placement audit: these parts are deliberately
+    # re-assigned after the legacy packing grids so moving an IC cannot leave
+    # its decoupler, crystal loop or switch node stranded at the old seed.
+    # AMT630A local island (U14 at 44,49).
+    put("Y2", 33, 48, "F")
+    put("R18", 39.5, 49, "B")
+    put("C15", 39.5, 47, "B")
+    put("C16", 39.5, 51, "B")
+    for ref, pos in {
+        "C9": (40, 53), "C10": (42, 54), "C11": (46, 54),
+        "C12": (48, 53), "C68": (40, 55), "C69": (42, 56),
+        "C70": (53, 53), "C71": (56, 53), "C72": (59, 53),
+        "C73": (61, 55), "U15": (56, 35), "U16": (61, 37),
+        "R5": (57, 47), "R13": (50, 47),
+    }.items():
+        if ref in by_ref:
+            put(ref, *pos, "B" if ref.startswith(("R", "C")) else "F")
+
+    # AT7456E local island and short crystal loop.
+    put("Y1", 22, 35, "F")
+    for ref, pos in {"C4": (26, 39), "C5": (28, 40), "C6": (34, 40),
+                     "C57": (25, 32), "C58": (27, 32), "C59": (30, 32),
+                     "C60": (32, 32), "R10": (32, 38), "R11": (34, 38),
+                     "R12": (32, 34), "R53": (35, 33), "R58": (35, 37),
+                     "R59": (20, 36), "R60": (21, 34), "R61": (22, 32)}.items():
+        if ref in by_ref:
+            put(ref, *pos, "B")
+
+    # USB/charger entry island; all high-current support remains within a
+    # few millimetres of U2 and the USB-C edge connector.
+    for ref, pos in {"C28": (49, 11), "C29": (52, 14), "C30": (51, 16),
+                     "C31": (53, 22), "C32": (57, 22), "C33": (61, 20),
+                     "C34": (53, 10), "R40": (53, 18), "R41": (55, 18),
+                     "R42": (52, 18), "R43": (54, 20), "R44": (56, 20),
+                     "R45": (58, 20), "R46": (60, 20), "R47": (62, 20)}.items():
+        if ref in by_ref:
+            put(ref, *pos, "B")
+
+    # Compact 3V3 and 5V converter islands.
+    for ref, pos in {"C35": (62, 47), "C36": (62, 50), "C37": (66, 50),
+                     "C38": (68, 47), "C39": (71, 47), "R22": (68, 42),
+                     "R23": (71, 42), "R48": (70, 44), "R49": (73, 44),
+                     "C40": (75, 42), "C41": (80, 42), "C42": (75, 50),
+                     "C43": (82, 43), "C44": (82, 45), "C45": (72, 52),
+                     "C46": (76, 53), "C47": (82, 52), "C48": (85, 52),
+                     "C49": (88, 52), "C50": (91, 52), "R20": (84, 44),
+                     "R21": (87, 44), "R24": (84, 47), "R51": (85, 49),
+                     "R52": (87, 49)}.items():
+        if ref in by_ref:
+            put(ref, *pos, "B")
+
+    # Backlight loop is adjacent to J1's LED pins; the boosted rail does not
+    # cross the analog/RF area.
+    for ref, pos in {"C51": (50, 57), "C53": (41, 54), "C54": (43, 61),
+                     "C55": (46, 62), "C56": (49, 62), "C64": (53, 57),
+                     "C65": (56, 57), "R9": (42, 61)}.items():
+        if ref in by_ref:
+            put(ref, *pos, "B")
+
+    # SD and ELRS entry protection is at the connector, not at the source IC.
+    for ref, pos in {"R30": (96, 5), "R31": (98, 5), "R32": (100, 5),
+                     "R33": (96, 12), "R34": (98, 12), "R35": (100, 12),
+                     "R36": (88, 13), "R37": (82, 10), "R38": (84, 10),
+                     "R39": (86, 10), "C24": (88, 15), "C25": (90, 15),
+                     "C26": (93, 15), "C27": (85, 15), "C74": (91, 64),
+                     "C75": (94, 64), "C66": (92, 66)}.items():
+        if ref in by_ref:
+            put(ref, *pos, "B")
+
+    # Gimbal ADC filters stay beside the ESP ADC side; control pull-ups remain
+    # behind the two expanders near J9.
+    for ref, pos in {"R95": (66, 35), "R96": (68, 35), "R97": (70, 35),
+                     "R98": (72, 35), "C78": (66, 37), "C79": (68, 37),
+                     "C80": (70, 37), "C81": (72, 37), "C1": (73, 28)}.items():
+        if ref in by_ref:
+            put(ref, *pos, "B")
 
     # Control pull-ups/filters are placed on L4 immediately below their
     # expanders.  This creates short via escapes to J9 and removes the dense
