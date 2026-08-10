@@ -1181,7 +1181,11 @@ def apply_placement() -> None:
                 ("J25",4,57,"F",0),("J26",4,64,"F",0),
                 ("J15",75,68,"F",0),
                 ("J14",108,18,"F",0),
-                ("J13",110,40,"F",0)):
+                ("J13",110,40,"F",0),
+                # Keep the charger PMID/BAT support caps beside U2 but not
+                # under its exposed GND paddle or rear solder mask opening.
+                ("C28",52,11,"B",0),("C31",52,19,"B",0),
+                ("C32",58,21,"B",0)):
             put(ref, x, y, side, rotation)
         put("TVS1", 47.5, 18.5, "F", 0)
 
@@ -1472,6 +1476,20 @@ def legalize_small_parts(board: pcbnew.BOARD) -> None:
             continue
         for side in side_keys(fp):
             occupied[side].append(box(fp, side))
+
+    # Reserve the inspected RF module and U.FL launch as real placement
+    # keepouts.  Their pad bounding boxes are intentionally smaller than the
+    # shield/cable clearance, so treating only pads as occupied let passives
+    # drift into the RF courtyard and made the placement optimizer reject its
+    # own best state.
+    for ref in ("MOD1", "J11"):
+        fp = footprints.get(ref)
+        if fp is None:
+            continue
+        for side in side_keys(fp):
+            rf_box = box(fp, side)
+            rf_box.Inflate(pcbnew.FromMM(2.0))
+            occupied[side].append(rf_box)
 
     # Large capacitors are placed before 0402 parts, then test pads fill the
     # remaining gaps.  This makes the result deterministic across KiCad runs.
