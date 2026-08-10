@@ -1982,6 +1982,53 @@ def add_ground_fanout(board: pcbnew.BOARD, nets: dict) -> None:
         # these optional deterministic fanouts.
         print("ground fanout deferred for " + ", ".join(missing))
 
+
+def add_reviewed_signal_fanout(board: pcbnew.BOARD, nets: dict) -> None:
+    """Seed the one reviewed AMT flash escape that needs a deterministic lane.
+
+    U15/U16 are both fine-pitch top-side packages.  The C-MISO connection has
+    no legal direct top-layer path through the mux pins, while the generic
+    router repeatedly fails before it can open the surrounding maze.  This
+    four-segment escape uses SIG2 and two through-vias; its coordinates are
+    tied to the authoritative placement above and are validated by KiCad DRC
+    after zone refill.  Keep this list intentionally small: it is a reviewed
+    seed, not an unsafe autoroute import.
+    """
+    net = nets.get("AMT_FLASH_C_MISO")
+    if net is None:
+        return
+
+    def track(layer: int, start: tuple[float, float], end: tuple[float, float]) -> None:
+        item = pcbnew.PCB_TRACK(board)
+        item.SetLayer(layer)
+        item.SetWidth(pcbnew.FromMM(0.12))
+        item.SetStart(pcbnew.VECTOR2I_MM(*start))
+        item.SetEnd(pcbnew.VECTOR2I_MM(*end))
+        item.SetNet(net)
+        board.Add(item)
+
+    def via(position: tuple[float, float]) -> None:
+        item = pcbnew.PCB_VIA(board)
+        item.SetPosition(pcbnew.VECTOR2I_MM(*position))
+        item.SetWidth(pcbnew.FromMM(0.45))
+        item.SetDrill(pcbnew.FromMM(0.20))
+        item.SetNet(net)
+        item.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu)
+        board.Add(item)
+
+    # U15 pad 2 (54.87,37.10) -> U16 pad 12 (61.33,34.13).
+    # The SIG2 lane at y=28 stays clear of the AMT packages and the ESP
+    # backside fanout; the vias are outside the adjacent U15/U16 pads.
+    left_via = (54.87, 38.40)
+    right_via = (61.33, 30.00)
+    via(left_via)
+    track(pcbnew.F_Cu, (54.87, 37.10), left_via)
+    track(pcbnew.In3_Cu, left_via, (54.87, 28.00))
+    track(pcbnew.In3_Cu, (54.87, 28.00), (61.33, 28.00))
+    track(pcbnew.In3_Cu, (61.33, 28.00), right_via)
+    via(right_via)
+    track(pcbnew.F_Cu, right_via, (61.33, 34.13))
+
 def generate_board():
     # pcbnew assigns UUIDs while objects and library footprints are added.
     # A fixed generator seed makes repeated source generation byte-stable;
@@ -2012,6 +2059,7 @@ def generate_board():
         add_mounting_hole(b, reference, x, y, 2.0)
     add_exposed_pad_thermal_vias(b, nets)
     add_ground_fanout(b, nets)
+    add_reviewed_signal_fanout(b, nets)
     for a,c in [((0, 0), (BOARD_WIDTH, 0)),
                 ((BOARD_WIDTH, 0), (BOARD_WIDTH, BOARD_HEIGHT)),
                 ((BOARD_WIDTH, BOARD_HEIGHT), (0, BOARD_HEIGHT)),
