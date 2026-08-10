@@ -2065,6 +2065,39 @@ def add_reviewed_logic_fanout(board: pcbnew.BOARD, nets: dict) -> None:
         track.SetNet(net)
         board.Add(track)
 
+    # Continue the output branch to the second local bulk capacitor.  The
+    # direct back-copper jog is blocked by C36's ground pad, so this reviewed
+    # escape drops into In2_Cu and returns on the back side beside C38.
+    via_a = pcbnew.PCB_VIA(board)
+    via_a.SetPosition(pcbnew.VECTOR2I_MM(66.5, 47.5))
+    via_a.SetWidth(pcbnew.FromMM(0.55))
+    via_a.SetDrill(pcbnew.FromMM(0.25))
+    via_a.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu)
+    via_a.SetNet(net)
+    via_a.SetFrontTentingMode(pcbnew.TENTING_MODE_TENTED)
+    via_a.SetBackTentingMode(pcbnew.TENTING_MODE_TENTED)
+    board.Add(via_a)
+    via_b = pcbnew.PCB_VIA(board)
+    via_b.SetPosition(pcbnew.VECTOR2I_MM(62.0, 48.5))
+    via_b.SetWidth(pcbnew.FromMM(0.55))
+    via_b.SetDrill(pcbnew.FromMM(0.25))
+    via_b.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu)
+    via_b.SetNet(net)
+    via_b.SetFrontTentingMode(pcbnew.TENTING_MODE_TENTED)
+    via_b.SetBackTentingMode(pcbnew.TENTING_MODE_TENTED)
+    board.Add(via_b)
+    for layer, start, end in (
+            (pcbnew.B_Cu, (67.035, 46.035), (66.5, 47.5)),
+            (pcbnew.In2_Cu, (66.5, 47.5), (62.0, 48.5)),
+            (pcbnew.B_Cu, (62.0, 48.5), (63.0, 49.0))):
+        track = pcbnew.PCB_TRACK(board)
+        track.SetLayer(layer)
+        track.SetWidth(pcbnew.FromMM(0.40))
+        track.SetStart(pcbnew.VECTOR2I_MM(*start))
+        track.SetEnd(pcbnew.VECTOR2I_MM(*end))
+        track.SetNet(net)
+        board.Add(track)
+
 
 def add_reviewed_battery_fanout(board: pcbnew.BOARD, nets: dict) -> None:
     """Route the short, high-current battery-entry branches deterministically.
