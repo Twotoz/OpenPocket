@@ -2036,6 +2036,36 @@ def add_ground_fanout(board: pcbnew.BOARD, nets: dict) -> None:
         print("ground fanout deferred for " + ", ".join(missing))
 
 
+def add_reviewed_logic_fanout(board: pcbnew.BOARD, nets: dict) -> None:
+    """Route the U5 3V3 output directly into its nearest bulk capacitor.
+
+    This is a reviewed local supply branch, not an autorouter import.  The
+    through-via sits outside U5's exposed-pad courtyard, and the short B.Cu
+    branch terminates at C39's 22-uF output capacitor.
+    """
+    net = nets["3V3_LOGIC"]
+
+    via = pcbnew.PCB_VIA(board)
+    via.SetPosition(pcbnew.VECTOR2I_MM(67.0, 42.0))
+    via.SetWidth(pcbnew.FromMM(0.55))
+    via.SetDrill(pcbnew.FromMM(0.25))
+    via.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu)
+    via.SetNet(net)
+    via.SetFrontTentingMode(pcbnew.TENTING_MODE_TENTED)
+    via.SetBackTentingMode(pcbnew.TENTING_MODE_TENTED)
+    board.Add(via)
+    for layer, start, end in (
+            (pcbnew.F_Cu, (65.4, 42.54), (67.0, 42.0)),
+            (pcbnew.B_Cu, (67.0, 42.0), (67.035, 46.035))):
+        track = pcbnew.PCB_TRACK(board)
+        track.SetLayer(layer)
+        track.SetWidth(pcbnew.FromMM(0.40))
+        track.SetStart(pcbnew.VECTOR2I_MM(*start))
+        track.SetEnd(pcbnew.VECTOR2I_MM(*end))
+        track.SetNet(net)
+        board.Add(track)
+
+
 def add_reviewed_battery_fanout(board: pcbnew.BOARD, nets: dict) -> None:
     """Route the short, high-current battery-entry branches deterministically.
 
@@ -2126,6 +2156,7 @@ def generate_board():
         add_mounting_hole(b, reference, x, y, 2.0)
     add_exposed_pad_thermal_vias(b, nets)
     add_ground_fanout(b, nets)
+    add_reviewed_logic_fanout(b, nets)
     add_reviewed_battery_fanout(b, nets)
     for a,c in [((0, 0), (BOARD_WIDTH, 0)),
                 ((BOARD_WIDTH, 0), (BOARD_WIDTH, BOARD_HEIGHT)),
