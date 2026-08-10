@@ -239,10 +239,12 @@ def generate_custom_footprints() -> None:
     write("GROUND-EDGE-11", edge_ground)
     # Physical user-control interfaces.  Each footprint is an edge-facing
     # group: pad 1 is the outermost GND return, followed inward by its signal
-    # pad(s).  Plated through holes are used for wire strain relief.
+    # pad(s).  Use the same 2 mm SMD land style as the existing edge headers
+    # so the bare PCB has one consistent hand-solder pad language.
     def pth(number: int, x: float, y: float) -> str:
-        return (f'  (pad "{number}" thru_hole circle (at {x:.3f} {y:.3f}) '
-                '(size 1.80 1.80) (drill 0.90) (layers "*.Cu" "*.Mask"))')
+        return (f'  (pad "{number}" smd roundrect (at {x:.3f} {y:.3f}) '
+                '(size 2.00 2.00) (layers "F.Cu" "F.Paste" "F.Mask") '
+                '(roundrect_rratio 0.20))')
     def group(name: str, title: str, pads: list[tuple[str, float, float]],
               width: float, height: float) -> None:
         body = [f'  (fp_rect (start -0.9 -{height/2:.3f}) '
@@ -257,7 +259,7 @@ def generate_custom_footprints() -> None:
             body.append(pth(int(number), x, y))
             body.append(f'  (fp_text user "{label}" (at {x:.3f} {y-1.35:.3f}) '
                         '(layer "F.SilkS") (effects (font (size 0.65 0.65) (thickness 0.10))))')
-        write(name, body, attr="through_hole")
+        write(name, body, attr="smd")
     group("MENU-CONTROL-PADS", "LEFT / UI",
           [("1","G",0,-4.5),("2","UP",2.8,-4.5),
            ("3","G",0,-1.5),("4","DN",2.8,-1.5),
