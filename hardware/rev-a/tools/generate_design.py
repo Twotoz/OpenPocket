@@ -1210,6 +1210,8 @@ def apply_placement() -> None:
                 ("C2", 66, 52, "F", 0),
                 ("C3", 69, 52, "F", 0),
                 ("U17", 53, 60, "F", 0),
+                ("C53", 55.5, 62.5, "F", 0),
+                ("C51", 69.5, 65, "F", 0),
                 ("R25", 16, 52, "F", 0),
                 ("R26", 18, 52, "F", 0),
                 ("R27", 20, 52, "F", 0),
@@ -2392,6 +2394,10 @@ def generate_board():
         b, nets, "DISPLAY_3V3_D", region=(41.0, 25.0, 57.0, 53.0))
     add_power_plane_fanout(
         b, nets, "3V3_SD", region=(82.0, 2.0, 105.0, 24.0))
+    add_power_plane_fanout(
+        b, nets, "5V_DISPLAY", region=(49.5, 48.0, 76.0, 68.5))
+    add_power_plane_fanout(
+        b, nets, "DISPLAY_3V3", region=(49.5, 31.0, 77.0, 64.0))
     for a,c in [((0, 0), (BOARD_WIDTH, 0)),
                 ((BOARD_WIDTH, 0), (BOARD_WIDTH, BOARD_HEIGHT)),
                 ((BOARD_WIDTH, BOARD_HEIGHT), (0, BOARD_HEIGHT)),
@@ -2440,7 +2446,8 @@ def generate_board():
     b.Add(video_zone)
     for plane, net_name, bounds in (
             (pcbnew.In4_Cu, "DISPLAY_3V3_D", (41.0, 25.0, 57.0, 53.0)),
-            (pcbnew.In3_Cu, "3V3_SD", (82.0, 2.0, 105.0, 24.0))):
+            (pcbnew.In3_Cu, "3V3_SD", (82.0, 2.0, 105.0, 24.0)),
+            (pcbnew.In3_Cu, "DISPLAY_3V3", (49.5, 31.0, 77.0, 64.0))):
         left, top, right, bottom = bounds
         island = pcbnew.ZONE(b)
         island.SetLayer(plane)
@@ -2453,6 +2460,17 @@ def generate_board():
                      (right, bottom), (left, bottom)]:
             outline.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
         b.Add(island)
+    display_5v_zone = pcbnew.ZONE(b)
+    display_5v_zone.SetLayer(pcbnew.In4_Cu)
+    display_5v_zone.SetNet(nets["5V_DISPLAY"])
+    display_5v_zone.SetLocalClearance(pcbnew.FromMM(0.20))
+    display_5v_zone.SetMinThickness(pcbnew.FromMM(0.15))
+    display_5v_outline = display_5v_zone.Outline()
+    display_5v_outline.NewOutline()
+    for x, y in [(57.5, 48.0), (76.0, 48.0), (76.0, 68.5),
+                 (49.5, 68.5), (49.5, 54.0), (57.5, 54.0)]:
+        display_5v_outline.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
+    b.Add(display_5v_zone)
     # microSD 11 x 15 mm card body: locked and 3.12-mm farther out at eject.
     for name,start,end in [
         ("MICROSD CARD LOCKED",(26.5,0.2),(37.5,15.2)),
