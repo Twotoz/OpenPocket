@@ -46,7 +46,7 @@ TP5,SD_CARD_DETECT test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,y
 TP6,GND test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
 J3,battery/NTC,OpenPocket,SOLDER-PADS-4,CONS,EDGE-PADS-4,1,yes,"integral solder pads; user-wired, not an assembly item"
 J5,master switch,OpenPocket,SOLDER-PADS-2,CONS,EDGE-PADS-2,1,yes,"integral solder pads; user-wired, not an assembly item"
-J6,ELRS,OpenPocket,SOLDER-PADS-6,CONS,EDGE-PADS-6,1,yes,"integral solder pads; user-wired, not an assembly item"
+J6,ELRS,OpenPocket,SOLDER-PADS-4,CONS,EDGE-PADS-4,1,yes,four-wire ELRS UART/power pads; BOOT and RESET remain internal debug nets
 ESD4,ELRS UART ESD,Texas Instruments,TPD2EUSB30DRTR,C97502,SOT-9X3-3,1,no,
 J7,left gimbal,OpenPocket,SOLDER-PADS-6,CONS,EDGE-PADS-6,1,yes,"integral solder pads; user-wired, not an assembly item"
 J8,right gimbal,OpenPocket,SOLDER-PADS-6,CONS,EDGE-PADS-6,1,yes,"integral solder pads; user-wired, not an assembly item"

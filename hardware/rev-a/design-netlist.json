@@ -915,15 +915,13 @@
     }
   },
   "J6": {
-    "mpn": "SOLDER-PADS-6",
-    "package": "EDGE-PADS-6",
+    "mpn": "SOLDER-PADS-4",
+    "package": "EDGE-PADS-4",
     "pins": {
       "1": "5V_ELRS",
       "2": "GND",
       "3": "CRSF_TX",
-      "4": "CRSF_RX",
-      "5": "ELRS_BOOT",
-      "6": "ELRS_RESET"
+      "4": "CRSF_RX"
     }
   },
   "J7": {

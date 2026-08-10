@@ -22,6 +22,7 @@ LIBRARY = ROOT / "openpocket-rev-a.kicad_sym"
 EASYEDA_LIBRARY = ROOT / "easyeda" / "openpocket-easyeda.kicad_sym"
 EASYEDA_FOOTPRINTS = ROOT / "easyeda" / "openpocket-easyeda.pretty"
 CUSTOM_FOOTPRINTS = ROOT / "openpocket-rev-a.pretty"
+PLACEMENT_MANIFEST = ROOT / "placement-optimized.json"
 
 BOARD_WIDTH = 115.0
 BOARD_HEIGHT = 72.0
@@ -1075,6 +1076,27 @@ def apply_placement() -> None:
                  if (part.ref.startswith(("R", "C", "TP")) and
                      part.ref not in assigned)]
     grid(remaining, 31, 2, 24, 2.35, 2.15, "B")
+
+    # The deterministic optimizer is an optional, versioned refinement of
+    # this seed floorplan.  It is consumed here (rather than patching a PCB
+    # after generation) so the generator remains authoritative and every
+    # board/CPL/BOM regeneration uses the same placement manifest.
+    if PLACEMENT_MANIFEST.is_file():
+        data = json.loads(PLACEMENT_MANIFEST.read_text(encoding="utf-8"))
+        placements = data.get("placements", {})
+        if not isinstance(placements, dict):
+            raise RuntimeError("placement-optimized.json: placements must be an object")
+        for ref, item in placements.items():
+            if ref not in by_ref:
+                # Fiducials/mounting features are added directly during board
+                # generation and are not members of the schematic Part list.
+                # The optimizer may still record them as locked mechanical
+                # context; leave those generator-owned features untouched.
+                continue
+            if not all(key in item for key in ("x_mm", "y_mm", "side", "rotation")):
+                raise RuntimeError(f"placement manifest entry incomplete: {ref}")
+            put(ref, float(item["x_mm"]), float(item["y_mm"]),
+                str(item["side"]), float(item["rotation"]))
 
 
 apply_placement()
