@@ -1179,7 +1179,9 @@ def apply_placement() -> None:
                 # ESP-facing edges upward so U1 fanout does not cross the
                 # entire FFC corridor.
                 ("U18",53,55,"B",0),("U19",66,55,"B",0),
-                ("U16",66,37,"F",0),
+                # Keep the AMT flash mux outside the ESP32 backside body;
+                # U15/U16 remain a compact flash island left of the ESP.
+                ("U16",48,27,"F",0),
                 ("J9",4,14,"F",0),("J18",4,50,"F",0),
                 ("J19",111,22,"F",180),("J20",111,28,"F",180),
                 ("J21",111,32,"F",180),("J22",111,46,"F",180),
@@ -1237,7 +1239,7 @@ def apply_placement() -> None:
                 # remain local decouplers but no longer sit under the
                 # fine-pitch C-MISO/C-MOSI/C-CLK perimeter pads.
                 ("C70", 51, 33, "B", 0),
-                ("C71", 66, 36, "B", 0),
+                ("C71", 53, 30, "B", 0),
                 # ESP32-S3-MINI-1U fanout moat.  These passives/testpoints
                 # were previously inside the bottom-side module projection,
                 # blocking every perimeter escape even though the generic
