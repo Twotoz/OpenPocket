@@ -34,7 +34,7 @@ WIDTH, HEIGHT = 115.0, 72.0
 # way around.  MOD1/J11 are also locked to preserve the reviewed RF launch.
 LOCKED = {
     "J1", "J2", "J3", "J4", "J5", "J6", "J7", "J8", "J9", "J11",
-    "J12", "J13", "J14", "J15", "J16", "MOD1", "MH1", "MH2", "MH3", "MH4",
+    "J12", "J13", "J14", "J15", "J16", "J17", "MOD1", "MH1", "MH2", "MH3", "MH4",
 }
 BOTTOM_ELIGIBLE = {"U1", "U18", "U19", "U21", "U22"}
 

@@ -3,7 +3,7 @@ U1,70.000mm,31.000mm,Bottom,0.0
 J2,57.500mm,5.400mm,Top,90.0
 ESD1,52.000mm,9.000mm,Top,0.0
 F1,49.000mm,14.000mm,Top,0.0
-TVS1,49.000mm,18.000mm,Top,0.0
+TVS1,47.500mm,18.500mm,Top,0.0
 U2,57.000mm,15.000mm,Top,0.0
 U3,12.000mm,62.000mm,Top,0.0
 Q1,15.000mm,56.000mm,Top,0.0
@@ -90,8 +90,8 @@ R52,87.000mm,49.000mm,Bottom,0.0
 R53,42.000mm,38.000mm,Bottom,0.0
 R54,53.000mm,3.500mm,Bottom,0.0
 R55,21.000mm,44.000mm,Top,0.0
-R56,2.000mm,44.000mm,Top,0.0
-R57,4.000mm,44.000mm,Top,0.0
+R56,6.500mm,39.500mm,Top,0.0
+R57,6.500mm,41.500mm,Top,0.0
 R58,39.000mm,42.500mm,Bottom,0.0
 R59,6.500mm,49.500mm,Bottom,0.0
 R60,8.000mm,21.000mm,Bottom,0.0

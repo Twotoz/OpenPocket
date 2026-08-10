@@ -858,11 +858,37 @@
     }
   },
   "J16": {
-    "mpn": "SOLDER-PADS-2",
-    "package": "EDGE-PADS-2",
+    "mpn": "GROUND-EDGE-11",
+    "package": "GROUND-EDGE-11",
     "pins": {
       "1": "GND",
-      "2": "GND"
+      "10": "GND",
+      "11": "GND",
+      "2": "GND",
+      "3": "GND",
+      "4": "GND",
+      "5": "GND",
+      "6": "GND",
+      "7": "GND",
+      "8": "GND",
+      "9": "GND"
+    }
+  },
+  "J17": {
+    "mpn": "GROUND-EDGE-11",
+    "package": "GROUND-EDGE-11",
+    "pins": {
+      "1": "GND",
+      "10": "GND",
+      "11": "GND",
+      "2": "GND",
+      "3": "GND",
+      "4": "GND",
+      "5": "GND",
+      "6": "GND",
+      "7": "GND",
+      "8": "GND",
+      "9": "GND"
     }
   },
   "J2": {

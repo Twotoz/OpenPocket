@@ -226,6 +226,17 @@ def generate_custom_footprints() -> None:
                 f'(size {pad_size:.2f} {pad_size:.2f}) (layers "F.Cu" "F.Paste" "F.Mask") '
                 '(roundrect_rratio 0.20))')
         write(f"EDGE-PADS-{count}", pads)
+    # Eleven individual ground lands per side provide one return option for
+    # each half of the 22 control wires.  Keeping these rows at the board
+    # edges leaves the central signal-routing corridors unobstructed.
+    edge_ground = []
+    for i in range(11):
+        y = (i - 5) * 2.20
+        edge_ground.append(
+            f'  (pad "{i+1}" smd roundrect (at 0 {y:.3f}) '
+            '(size 1.80 1.80) (layers "F.Cu" "F.Paste" "F.Mask") '
+            '(roundrect_rratio 0.20))')
+    write("GROUND-EDGE-11", edge_ground)
     # Large, hand-solderable ENIG pads for issue #4 developer access.  The
     # two-row arrangement keeps the footprint compact while leaving room for
     # an individual silkscreen label beside each pad.
@@ -551,9 +562,12 @@ add("J9","controls","OpenPocket","SOLDER-PADS-22","CONS","EDGE-PADS-22",
      ("RUD-","CTRL_1_2"),("RUD+","CTRL_1_3"),
      ("ENC_A","CTRL_1_4"),("ENC_B","CTRL_1_5")],45,55,
     dnp=True,notes="integral solder pads; user-wired, not an assembly item")
-add("J16","controls ground pads","OpenPocket","SOLDER-PADS-2","CONS",
-    "EDGE-PADS-2",[("GND1",G),("GND2",G)],89,56,
-    dnp=True,notes="two shared ground returns for J9 buttons/switches")
+add("J16","left control ground pads","OpenPocket","GROUND-EDGE-11","CONS",
+    "GROUND-EDGE-11",[(f"GND{i+1}",G) for i in range(11)],4.0,51,
+    dnp=True,notes="eleven individual edge-accessible control ground returns")
+add("J17","right control ground pads","OpenPocket","GROUND-EDGE-11","CONS",
+    "GROUND-EDGE-11",[(f"GND{i+1}",G) for i in range(11)],111.0,51,
+    dnp=True,notes="eleven individual edge-accessible control ground returns")
 add("J11","5.8 GHz antenna U.FL","Hirose","U.FL-R-SMT-1(10)","C88373","U.FL",
     [("RF","RX_RF"),("GND",G),("GND",G)],5,16,
     notes="populate on bottom; accepts U.FL/MHF1 plug vertically; secure cable to enclosure")
@@ -901,9 +915,10 @@ def apply_placement() -> None:
         # Developer pads are on the accessible right edge, clear of the
         # bottom-left RX5808/U.FL launch and the central analog-video island.
         "J14": (101, 18, "F"), "J15": (101, 56, "F"),
-        "J16": (88, 69.8, "F"),
+        "J16": (4.0, 51, "F"),
+        "J17": (111.0, 51, "F"),
         "ESD4": (95, 65, "F"), "F1": (49, 14, "F"),
-        "TVS1": (49, 18, "F"), "JP1": (37, 38, "F"),
+        "TVS1": (47.5, 18.5, "F"), "JP1": (37, 38, "F"),
         "Y1": (22, 35, "F"), "Y2": (33, 48, "F"),
         "L1": (64, 15, "F"), "L2": (59, 43, "F"),
         "L4": (51, 66, "F"),
@@ -1097,6 +1112,12 @@ def apply_placement() -> None:
                 raise RuntimeError(f"placement manifest entry incomplete: {ref}")
             put(ref, float(item["x_mm"]), float(item["y_mm"]),
                 str(item["side"]), float(item["rotation"]))
+        # These newly defined edge-ground headers are mechanical user
+        # interfaces, not optimizer candidates.  Reassert their generator
+        # coordinates even when an older manifest predates J17.
+        put("J16", 4.0, 51, "F", 0)
+        put("J17", 111.0, 51, "F", 0)
+        put("TVS1", 47.5, 18.5, "F", 0)
 
 
 apply_placement()
@@ -1270,7 +1291,10 @@ def add_developer_pad_labels(board: pcbnew.BOARD) -> None:
         "J13": ("SPEAKER", ["SPK+", "SPK-"]),
         "J14": ("OLED 128x64", ["GND", "3V3", "SDA", "SCL"]),
         "J15": ("DEV IO", ["IO0", "IO1", "IO2", "IO3", "3V3", "GND"]),
-        "J16": ("CTRL GND", ["GND", "GND"]),
+        # The row itself is unambiguous; omit eleven repeated silk labels so
+        # the edge remains readable and the control legend stays clear.
+        "J16": ("CTRL GND LEFT", []),
+        "J17": ("CTRL GND RIGHT", []),
     }
     for ref, (heading, names) in labels.items():
         fp = next((item for item in board.GetFootprints()
@@ -1332,7 +1356,7 @@ def add_developer_pad_labels(board: pcbnew.BOARD) -> None:
     columns = [
         ["J9 CONTROL MAP", "1 UP", "2 DN", "3 OK", "4 BACK", "5 ARM",
          "6 A2-HI", "7 A2-LO", "8 A3-HI", "9 A3-LO", "10 A4-HI", "11 A4-LO"],
-        ["J16 = CTRL_GND", "12 ENC_SW", "13 AIL-", "14 AIL+", "15 ELE-",
+        ["J16/J17 = CTRL_GND", "12 ENC_SW", "13 AIL-", "14 AIL+", "15 ELE-",
          "16 ELE+", "17 THR-", "18 THR+", "19 RUD-", "20 RUD+", "21 ENC_A",
          "22 ENC_B"],
     ]
