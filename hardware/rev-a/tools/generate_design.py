@@ -1237,7 +1237,25 @@ def apply_placement() -> None:
                 # remain local decouplers but no longer sit under the
                 # fine-pitch C-MISO/C-MOSI/C-CLK perimeter pads.
                 ("C70", 51, 33, "B", 0),
-                ("C71", 66, 36, "B", 0)):
+                ("C71", 66, 36, "B", 0),
+                # ESP32-S3-MINI-1U fanout moat.  These passives/testpoints
+                # were previously inside the bottom-side module projection,
+                # blocking every perimeter escape even though the generic
+                # courtyard check did not flag them.  Keep C1 local but
+                # outside the module body; move non-critical filters and
+                # testpoints beyond the 4-mm routing corridor.
+                ("C1", 76, 30, "B", 0),
+                ("C32", 54, 21, "B", 0),
+                ("R45", 55, 18, "B", 0),
+                ("R46", 58.5, 18.5, "B", 0),
+                ("R47", 60.5, 18.5, "B", 0),
+                ("C78", 74, 44, "B", 0),
+                ("C79", 77, 44, "B", 0),
+                ("C80", 80, 44, "B", 0),
+                ("C81", 83, 44, "B", 0),
+                ("TP44", 80, 26, "F", 0),
+                ("TP45", 83, 26, "F", 0),
+                ("TP46", 86, 26, "F", 0)):
             if ref in by_ref:
                 put(ref, x, y, side, rotation)
 
