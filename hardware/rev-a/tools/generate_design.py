@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import csv
 import functools
+import heapq
 import json
 import math
 import pathlib
@@ -2351,6 +2352,175 @@ def add_reviewed_battery_fanout(board: pcbnew.BOARD, nets: dict) -> None:
     add_track("BAT_CELL_NEG", pcbnew.In2_Cu, (12.64, 63.4), (16.35, 57.8))
     add_track("BAT_CELL_NEG", pcbnew.F_Cu, (16.35, 57.8), (16.35, 56.95), 0.30)
 
+
+def connect_power_access_mst(board: pcbnew.BOARD, nets: dict,
+                             net_name: str, layer: int,
+                             width: float = 0.60) -> None:
+    """Join power anchors with an obstacle-aware internal routing tree."""
+    net = nets[net_name]
+    points: list[tuple[float, float]] = []
+    for item in board.GetTracks():
+        if isinstance(item, pcbnew.PCB_VIA) and item.GetNetname() == net_name:
+            position = item.GetPosition()
+            points.append((position.x / 1_000_000,
+                           position.y / 1_000_000))
+    for fp in board.GetFootprints():
+        for pad in fp.Pads():
+            if (pad.GetNetname() == net_name and
+                    pad.GetAttribute() == pcbnew.PAD_ATTRIB_PTH):
+                position = pad.GetPosition()
+                points.append((position.x / 1_000_000,
+                               position.y / 1_000_000))
+    points = list(dict.fromkeys(points))
+    if len(points) < 2:
+        return
+
+    clearance = 0.22 + width / 2
+    obstacles: list[tuple[float, float, float, float]] = []
+    for item in board.GetTracks():
+        if item.GetNetname() == net_name:
+            continue
+        if isinstance(item, pcbnew.PCB_VIA):
+            position = item.GetPosition()
+            radius = item.GetWidth(layer) / 2 / 1_000_000 + clearance
+            x = position.x / 1_000_000
+            y = position.y / 1_000_000
+            obstacles.append((x - radius, y - radius,
+                              x + radius, y + radius))
+        elif item.GetLayer() == layer:
+            box = item.GetBoundingBox()
+            obstacles.append((box.GetLeft() / 1_000_000 - clearance,
+                              box.GetTop() / 1_000_000 - clearance,
+                              box.GetRight() / 1_000_000 + clearance,
+                              box.GetBottom() / 1_000_000 + clearance))
+    for fp in board.GetFootprints():
+        for pad in fp.Pads():
+            if (pad.GetNetname() == net_name or
+                    pad.GetAttribute() not in
+                    (pcbnew.PAD_ATTRIB_PTH, pcbnew.PAD_ATTRIB_NPTH)):
+                continue
+            box = pad.GetBoundingBox()
+            obstacles.append((box.GetLeft() / 1_000_000 - clearance,
+                              box.GetTop() / 1_000_000 - clearance,
+                              box.GetRight() / 1_000_000 + clearance,
+                              box.GetBottom() / 1_000_000 + clearance))
+
+    grid = 0.50
+
+    def node(point: tuple[float, float]) -> tuple[int, int]:
+        return (round(point[0] / grid), round(point[1] / grid))
+
+    def location(key: tuple[int, int]) -> tuple[float, float]:
+        return (key[0] * grid, key[1] * grid)
+
+    def blocked(key: tuple[int, int]) -> bool:
+        x, y = location(key)
+        if not (0.90 <= x <= BOARD_WIDTH - 0.90 and
+                0.90 <= y <= BOARD_HEIGHT - 0.90):
+            return True
+        return any(left <= x <= right and top <= y <= bottom
+                   for left, top, right, bottom in obstacles)
+
+    def segment_clear(start: tuple[float, float],
+                      end: tuple[float, float]) -> bool:
+        distance = math.dist(start, end)
+        samples = max(2, math.ceil(distance / 0.08))
+        for index in range(1, samples + 1):
+            fraction = index / samples
+            x = start[0] + (end[0] - start[0]) * fraction
+            y = start[1] + (end[1] - start[1]) * fraction
+            if any(left <= x <= right and top <= y <= bottom
+                   for left, top, right, bottom in obstacles):
+                return False
+        return True
+
+    def endpoint_node(point: tuple[float, float]) -> tuple[int, int] | None:
+        base = node(point)
+        candidates = sorted(
+            ((dx * dx + dy * dy, (base[0] + dx, base[1] + dy))
+             for dx in range(-4, 5) for dy in range(-4, 5)),
+            key=lambda item: item[0])
+        return next((candidate for _, candidate in candidates
+                     if not blocked(candidate) and
+                     segment_clear(point, location(candidate))), None)
+
+    def find_path(start_point: tuple[float, float],
+                  end_point: tuple[float, float]) -> list[tuple[float, float]] | None:
+        start = endpoint_node(start_point)
+        end = endpoint_node(end_point)
+        if start is None or end is None:
+            return None
+        queue: list[tuple[float, float, tuple[int, int]]] = [
+            (math.dist(start, end), 0.0, start)]
+        previous: dict[tuple[int, int], tuple[int, int] | None] = {start: None}
+        cost = {start: 0.0}
+        while queue:
+            _, current_cost, current = heapq.heappop(queue)
+            if current == end:
+                break
+            if current_cost != cost.get(current):
+                continue
+            for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                neighbour = (current[0] + dx, current[1] + dy)
+                if blocked(neighbour):
+                    continue
+                candidate = current_cost + 1.0
+                if candidate >= cost.get(neighbour, float("inf")):
+                    continue
+                cost[neighbour] = candidate
+                previous[neighbour] = current
+                priority = candidate + math.dist(neighbour, end)
+                heapq.heappush(queue, (priority, candidate, neighbour))
+        if end not in previous:
+            return None
+        keys = []
+        current: tuple[int, int] | None = end
+        while current is not None:
+            keys.append(current)
+            current = previous[current]
+        keys.reverse()
+        path = [start_point]
+        path.extend(location(key) for key in keys)
+        path.append(end_point)
+        simplified = [path[0]]
+        for index in range(1, len(path) - 1):
+            a, b, c = simplified[-1], path[index], path[index + 1]
+            if ((abs(a[0] - b[0]) < 0.001 and
+                 abs(b[0] - c[0]) < 0.001) or
+                    (abs(a[1] - b[1]) < 0.001 and
+                     abs(b[1] - c[1]) < 0.001)):
+                continue
+            simplified.append(b)
+        simplified.append(path[-1])
+        return simplified
+
+    used = {0}
+    while len(used) < len(points):
+        candidates = sorted(
+            (math.dist(points[start], points[end]), start, end)
+            for start in used for end in range(len(points))
+            if end not in used)
+        selected = None
+        for _, start_index, end_index in candidates:
+            path = find_path(points[start_index], points[end_index])
+            if path is not None:
+                selected = (end_index, path)
+                break
+        if selected is None:
+            print(f"{net_name} trunk deferred for "
+                  f"{len(points) - len(used)} anchors")
+            return
+        end_index, path = selected
+        for start, end in zip(path, path[1:]):
+            track = pcbnew.PCB_TRACK(board)
+            track.SetStart(pcbnew.VECTOR2I_MM(*start))
+            track.SetEnd(pcbnew.VECTOR2I_MM(*end))
+            track.SetWidth(pcbnew.FromMM(width))
+            track.SetLayer(layer)
+            track.SetNet(net)
+            board.Add(track)
+        used.add(end_index)
+
 def generate_board():
     # pcbnew assigns UUIDs while objects and library footprints are added.
     # A fixed generator seed makes repeated source generation byte-stable;
@@ -2398,6 +2568,14 @@ def generate_board():
         b, nets, "5V_DISPLAY", region=(49.5, 48.0, 76.0, 68.5))
     add_power_plane_fanout(
         b, nets, "DISPLAY_3V3", region=(49.5, 31.0, 77.0, 64.0))
+    add_power_plane_fanout(b, nets, "SYS_ALWAYS")
+    add_power_plane_fanout(
+        b, nets, "SYS_SWITCHED",
+        forced_candidates={("U20", "6"): (69.60, 48.70)})
+    connect_power_access_mst(
+        b, nets, "SYS_ALWAYS", pcbnew.In4_Cu, width=0.60)
+    connect_power_access_mst(
+        b, nets, "SYS_SWITCHED", pcbnew.In3_Cu, width=0.80)
     for a,c in [((0, 0), (BOARD_WIDTH, 0)),
                 ((BOARD_WIDTH, 0), (BOARD_WIDTH, BOARD_HEIGHT)),
                 ((BOARD_WIDTH, BOARD_HEIGHT), (0, BOARD_HEIGHT)),
