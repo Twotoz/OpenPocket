@@ -910,7 +910,11 @@ def apply_placement() -> None:
         # via-free 5.8-GHz feed to the module ANT pad.
         # RF coax launch on the back, directly above the RX5808 module so
         # the 5.8 GHz feed remains short and avoids crossing the board.
-        "J9": (56.5, 69.8, "F"), "J11": (15.0, 29.0, "B", 180),
+        # U.FL is placed immediately to the right of the RX5808 shield.  A
+        # 90-degree rotation puts its two ground fingers above/below the
+        # launch, avoiding the module RF pad while keeping the coax feed
+        # short and on the same bottom side.
+        "J9": (56.5, 69.8, "F"), "J11": (40.0, 42.6, "B", 90),
         "J13": (110, 36, "F"),
         # Developer pads are on the accessible right edge, clear of the
         # bottom-left RX5808/U.FL launch and the central analog-video island.
