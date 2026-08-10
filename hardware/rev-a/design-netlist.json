@@ -1985,56 +1985,56 @@
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "ELRS_BOOT"
+      "1": "SYS_ALWAYS"
     }
   },
   "TP23": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "ELRS_RESET"
+      "1": "SYS_SWITCHED"
     }
   },
   "TP24": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "SYS_ALWAYS"
+      "1": "POWER_GOOD"
     }
   },
   "TP25": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "SYS_SWITCHED"
+      "1": "3V3_LOGIC"
     }
   },
   "TP26": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "POWER_GOOD"
+      "1": "SYS_SWITCHED_5V"
     }
   },
   "TP27": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "3V3_LOGIC"
+      "1": "5V_VIDEO"
     }
   },
   "TP28": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "SYS_SWITCHED_5V"
+      "1": "5V_DISPLAY"
     }
   },
   "TP29": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "5V_VIDEO"
+      "1": "5V_ELRS"
     }
   },
   "TP3": {
@@ -2048,70 +2048,70 @@
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "5V_DISPLAY"
+      "1": "DISPLAY_3V3"
     }
   },
   "TP31": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "5V_ELRS"
+      "1": "PANEL_3V3"
     }
   },
   "TP32": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "DISPLAY_3V3"
+      "1": "VBUS_USB"
     }
   },
   "TP33": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "PANEL_3V3"
+      "1": "BAT_RAW"
     }
   },
   "TP34": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "VBUS_USB"
+      "1": "RX_RSSI_RAW"
     }
   },
   "TP35": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "BAT_RAW"
+      "1": "VRX_VIDEO_RAW"
     }
   },
   "TP36": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "RX_RSSI_RAW"
+      "1": "OSD_VIDEO_RAW"
     }
   },
   "TP37": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "VRX_VIDEO_RAW"
+      "1": "AMT_RESET"
     }
   },
   "TP38": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "OSD_VIDEO_RAW"
+      "1": "AMT_FLASH_CS"
     }
   },
   "TP39": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "AMT_RESET"
+      "1": "AMT_FLASH_CLK"
     }
   },
   "TP4": {
@@ -2125,70 +2125,70 @@
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "AMT_FLASH_CS"
+      "1": "AMT_FLASH_MOSI"
     }
   },
   "TP41": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "AMT_FLASH_CLK"
+      "1": "AMT_FLASH_MISO"
     }
   },
   "TP42": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "AMT_FLASH_MOSI"
+      "1": "BUZZER_PWM"
     }
   },
   "TP43": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "AMT_FLASH_MISO"
+      "1": "BUZZER_LOW"
     }
   },
   "TP44": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "BUZZER_PWM"
+      "1": "AUDIO_I2S_BCLK"
     }
   },
   "TP45": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "BUZZER_LOW"
+      "1": "AUDIO_I2S_WS"
     }
   },
   "TP46": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "AUDIO_I2S_BCLK"
+      "1": "AUDIO_I2S_DATA"
     }
   },
   "TP47": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "AUDIO_I2S_WS"
+      "1": "AUDIO_ENABLE"
     }
   },
   "TP48": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "AUDIO_I2S_DATA"
+      "1": "SPK+"
     }
   },
   "TP49": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "AUDIO_ENABLE"
+      "1": "SPK-"
     }
   },
   "TP5": {
@@ -2202,38 +2202,24 @@
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "SPK+"
+      "1": "BL_LED_A"
     }
   },
   "TP51": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "SPK-"
+      "1": "BL_LED_K"
     }
   },
   "TP52": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
-      "1": "BL_LED_A"
-    }
-  },
-  "TP53": {
-    "mpn": "PCB-TEST-PAD-1.0MM",
-    "package": "TEST-PAD-1.0MM",
-    "pins": {
-      "1": "BL_LED_K"
-    }
-  },
-  "TP54": {
-    "mpn": "PCB-TEST-PAD-1.0MM",
-    "package": "TEST-PAD-1.0MM",
-    "pins": {
       "1": "ESP_BOOT"
     }
   },
-  "TP55": {
+  "TP53": {
     "mpn": "PCB-TEST-PAD-1.0MM",
     "package": "TEST-PAD-1.0MM",
     "pins": {
