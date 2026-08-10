@@ -2379,6 +2379,7 @@ def generate_board():
             ("R76", "2"): (35.93, 52.80),
         })
     add_power_plane_fanout(b, nets, "SYS_SWITCHED_5V")
+    add_power_plane_fanout(b, nets, "5V_VIDEO_FILT")
     for a,c in [((0, 0), (BOARD_WIDTH, 0)),
                 ((BOARD_WIDTH, 0), (BOARD_WIDTH, BOARD_HEIGHT)),
                 ((BOARD_WIDTH, BOARD_HEIGHT), (0, BOARD_HEIGHT)),
@@ -2411,6 +2412,20 @@ def generate_board():
                      (0.50, BOARD_HEIGHT - 0.50)]:
             power_outline.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
         b.Add(power_zone)
+    # Local filtered-video supply island.  It is buried behind the solid L2
+    # reference from all top-side CVBS circuitry and behind L7 from the
+    # bottom-side RX5808/U.FL launch.
+    video_zone = pcbnew.ZONE(b)
+    video_zone.SetLayer(pcbnew.In3_Cu)
+    video_zone.SetNet(nets["5V_VIDEO_FILT"])
+    video_zone.SetLocalClearance(pcbnew.FromMM(0.20))
+    video_zone.SetMinThickness(pcbnew.FromMM(0.15))
+    video_outline = video_zone.Outline()
+    video_outline.NewOutline()
+    for x, y in [(5.5, 18.5), (48.0, 18.5),
+                 (48.0, 51.0), (5.5, 51.0)]:
+        video_outline.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
+    b.Add(video_zone)
     # microSD 11 x 15 mm card body: locked and 3.12-mm farther out at eject.
     for name,start,end in [
         ("MICROSD CARD LOCKED",(26.5,0.2),(37.5,15.2)),
