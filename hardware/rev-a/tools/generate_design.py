@@ -1443,13 +1443,18 @@ def add_developer_pad_labels(board: pcbnew.BOARD) -> None:
             # Keep labels inside the board outline, at least 0.8 mm clear of
             # the exposed pad. Rotate edge labels so long names do not merge.
             if pcbnew.ToMM(pos.y) > BOARD_HEIGHT - 5:
-                text.SetPosition(pcbnew.VECTOR2I(pos.x, pos.y - pcbnew.FromMM(4.0)))
+                text.SetPosition(pcbnew.VECTOR2I(pos.x, pos.y - pcbnew.FromMM(6.0)))
                 text.SetTextAngle(pcbnew.EDA_ANGLE(90, pcbnew.DEGREES_T))
             elif pcbnew.ToMM(pos.y) < 5:
                 text.SetPosition(pcbnew.VECTOR2I(pos.x, pos.y + pcbnew.FromMM(4.0)))
                 text.SetTextAngle(pcbnew.EDA_ANGLE(90, pcbnew.DEGREES_T))
             elif pcbnew.ToMM(pos.x) < 8:
                 text.SetPosition(pcbnew.VECTOR2I(pos.x + pcbnew.FromMM(4.0), pos.y))
+            elif ref == "J14":
+                # The OLED header shares the right-edge service region with
+                # ESD and speaker copper.  Its pad legends need a larger
+                # inward offset than ordinary edge pads.
+                text.SetPosition(pcbnew.VECTOR2I(pos.x, pos.y + pcbnew.FromMM(6.0)))
             else:
                 delta = -4.0 if pos.y < center_y else 4.0
                 text.SetPosition(pcbnew.VECTOR2I(pos.x, pos.y + pcbnew.FromMM(delta)))
@@ -1481,9 +1486,10 @@ def add_developer_pad_labels(board: pcbnew.BOARD) -> None:
         else:
             title_y = (fp.GetPosition().y + pcbnew.FromMM(7.0)
                        if pcbnew.ToMM(center_y) < 5 else
-                       fp.GetPosition().y - pcbnew.FromMM(7.0))
+                       fp.GetPosition().y - pcbnew.FromMM(10.0))
             title.SetPosition(pcbnew.VECTOR2I(fp.GetPosition().x, title_y))
         title.SetLayer(pcbnew.F_SilkS)
+        title.SetMirrored(False)
         title.SetTextSize(pcbnew.VECTOR2I_MM(0.8, 0.8))
         title.SetTextThickness(pcbnew.FromMM(0.10))
         title.SetHorizJustify(0)  # KiCad SWIG enum: centered

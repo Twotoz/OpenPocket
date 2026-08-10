@@ -64342,7 +64342,7 @@
 		)
 	)
 	(gr_text "GND"
-		(at 103.8 22 0)
+		(at 103.8 24 0)
 		(layer "F.SilkS")
 		(uuid "fd8f045f-667b-40e1-adca-c3ee9500d872")
 		(effects
@@ -64353,7 +64353,7 @@
 		)
 	)
 	(gr_text "3V3"
-		(at 106.6 22 0)
+		(at 106.6 24 0)
 		(layer "F.SilkS")
 		(uuid "6fa50613-e4ef-4fcb-aa16-237825c19477")
 		(effects
@@ -64375,7 +64375,7 @@
 		)
 	)
 	(gr_text "SDA"
-		(at 109.4 22 0)
+		(at 109.4 24 0)
 		(layer "F.SilkS")
 		(uuid "a201cd27-73b9-4633-b80e-e9e4ebffef47")
 		(effects
@@ -64397,7 +64397,7 @@
 		)
 	)
 	(gr_text "SCL"
-		(at 112.2 22 0)
+		(at 112.2 24 0)
 		(layer "F.SilkS")
 		(uuid "f28fa2be-8b54-4d6c-8bfc-0a7d6c37171c")
 		(effects
@@ -64408,7 +64408,7 @@
 		)
 	)
 	(gr_text "BAT+"
-		(at 7.8 65.8 90)
+		(at 7.8 63.8 90)
 		(layer "F.SilkS")
 		(uuid "c882997b-2da1-4af3-9815-8581df69295f")
 		(effects
@@ -64430,7 +64430,7 @@
 		)
 	)
 	(gr_text "BAT-"
-		(at 10.6 65.8 90)
+		(at 10.6 63.8 90)
 		(layer "F.SilkS")
 		(uuid "d768791f-e733-46c1-946d-b2a27b236d7b")
 		(effects
@@ -64452,7 +64452,7 @@
 		)
 	)
 	(gr_text "NTC"
-		(at 13.4 65.8 90)
+		(at 13.4 63.8 90)
 		(layer "F.SilkS")
 		(uuid "f81852a5-75cd-40a8-aeba-3cab00259870")
 		(effects
@@ -64474,7 +64474,7 @@
 		)
 	)
 	(gr_text "GND"
-		(at 16.2 65.8 90)
+		(at 16.2 63.8 90)
 		(layer "F.SilkS")
 		(uuid "b35fa811-99e2-4aa8-8cca-262995534c6e")
 		(effects
@@ -64518,7 +64518,7 @@
 		)
 	)
 	(gr_text "SW-A"
-		(at 23.6 65.8 90)
+		(at 23.6 63.8 90)
 		(layer "F.SilkS")
 		(uuid "1b0f1770-095f-46c6-8a9b-ae757e54e783")
 		(effects
@@ -64540,7 +64540,7 @@
 		)
 	)
 	(gr_text "SW-B"
-		(at 26.4 65.8 90)
+		(at 26.4 63.8 90)
 		(layer "F.SilkS")
 		(uuid "d65b16d1-6af3-435e-acbe-79b40e9f99a8")
 		(effects
@@ -64606,7 +64606,7 @@
 		)
 	)
 	(gr_text "IO3"
-		(at 71.8 65.8 90)
+		(at 71.8 63.8 90)
 		(layer "F.SilkS")
 		(uuid "a261ceee-7099-4a27-94dd-f578fec85f3a")
 		(effects
@@ -64617,7 +64617,7 @@
 		)
 	)
 	(gr_text "3V3"
-		(at 75 65.8 90)
+		(at 75 63.8 90)
 		(layer "F.SilkS")
 		(uuid "ddf54939-f87a-48a4-96cf-38fbd252b28f")
 		(effects
@@ -64628,7 +64628,7 @@
 		)
 	)
 	(gr_text "GND"
-		(at 78.2 65.8 90)
+		(at 78.2 63.8 90)
 		(layer "F.SilkS")
 		(uuid "79813406-1abc-4c14-8bbd-862e3f65b9f6")
 		(effects
@@ -64639,7 +64639,7 @@
 		)
 	)
 	(gr_text "5V"
-		(at 96.8 65.8 90)
+		(at 96.8 63.8 90)
 		(layer "F.SilkS")
 		(uuid "8e2da4ea-c619-482b-90e4-8628ce08cf2d")
 		(effects
@@ -64650,7 +64650,7 @@
 		)
 	)
 	(gr_text "GND"
-		(at 99.6 65.8 90)
+		(at 99.6 63.8 90)
 		(layer "F.SilkS")
 		(uuid "87e98030-3392-474b-ad20-0c2c649db4b3")
 		(effects
@@ -64661,7 +64661,7 @@
 		)
 	)
 	(gr_text "RX"
-		(at 102.4 65.8 90)
+		(at 102.4 63.8 90)
 		(layer "F.SilkS")
 		(uuid "b945bae2-7f28-4ce7-94f6-33c471eadbea")
 		(effects
@@ -64672,7 +64672,7 @@
 		)
 	)
 	(gr_text "TX"
-		(at 105.2 65.8 90)
+		(at 105.2 63.8 90)
 		(layer "F.SilkS")
 		(uuid "36ee936d-4b7f-4ce8-a03a-8ade1017a025")
 		(effects
@@ -64683,7 +64683,7 @@
 		)
 	)
 	(gr_text "BATTERY"
-		(at 12 62.8 0)
+		(at 12 59.8 0)
 		(layer "F.SilkS")
 		(uuid "478ea663-b10c-4974-ad46-9773f12c93a2")
 		(effects
@@ -64705,7 +64705,7 @@
 		)
 	)
 	(gr_text "MASTER SW"
-		(at 25 62.8 0)
+		(at 25 59.8 0)
 		(layer "F.SilkS")
 		(uuid "a71a322c-dd62-4908-9496-d5dc511b5ce3")
 		(effects
@@ -64727,7 +64727,7 @@
 		)
 	)
 	(gr_text "DEV IO"
-		(at 75 61 0)
+		(at 75 58 0)
 		(layer "F.SilkS")
 		(uuid "08f32fff-3c72-4fdc-a0d1-0ab3ade3a2d3")
 		(effects
@@ -64738,7 +64738,7 @@
 		)
 	)
 	(gr_text "ELRS 4-WIRE"
-		(at 101 62.8 0)
+		(at 101 59.8 0)
 		(layer "F.SilkS")
 		(uuid "b4a3ac03-77e2-413f-99a8-07c85b5daf29")
 		(effects
@@ -64749,7 +64749,7 @@
 		)
 	)
 	(gr_text "OLED 128x64"
-		(at 108 11 0)
+		(at 108 8 0)
 		(layer "F.SilkS")
 		(uuid "56eb4964-28cc-458f-998b-e098b96b956a")
 		(effects
@@ -64760,7 +64760,7 @@
 		)
 	)
 	(gr_text "SPEAKER"
-		(at 110 33 0)
+		(at 110 30 0)
 		(layer "F.SilkS")
 		(uuid "bf9ac0d1-8681-4bba-a2dd-bab91bf2a536")
 		(effects
