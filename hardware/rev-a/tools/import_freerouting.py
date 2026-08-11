@@ -145,8 +145,27 @@ def _fallback_import(board: pcbnew.BOARD, session: Path) -> tuple[int, int]:
     unknown_nets = routed_names - set(board_nets)
     if unknown_nets:
         raise ValueError(f"SES contains unknown nets: {sorted(unknown_nets)}")
+    # A production DSN may mark generator-reviewed copper as ``protect``.
+    # Freerouting echoes that copper into network_out and can quantize or
+    # neck it while serializing the SES.  Keep the authoritative KiCad items
+    # for every net that contains protected session copper and import only
+    # newly routed items.  Benchmark sessions contain no protected items and
+    # retain the original replace-per-net behaviour.
+    protected_names: set[str] = set()
+    for net_node in network[1:]:
+        if (not isinstance(net_node, list) or len(net_node) < 2 or
+                net_node[0] != "net"):
+            continue
+        if any(isinstance(item, list) and
+               ((item[0] == "wire" and len(item) == 3 and
+                 item[2] == ["type", "protect"]) or
+                (item[0] == "via" and len(item) == 5 and
+                 item[4] == ["type", "protect"]))
+               for item in net_node[2:]):
+            protected_names.add(str(net_node[1]))
     for track in list(board.GetTracks()):
-        if track.GetNetname() in routed_names:
+        if (track.GetNetname() in routed_names and
+                track.GetNetname() not in protected_names):
             board.Delete(track)
     segment_count = 0
     via_count = 0
@@ -167,6 +186,9 @@ def _fallback_import(board: pcbnew.BOARD, session: Path) -> tuple[int, int]:
                 if (len(item) == 3 and
                         item[2] != ["type", "protect"]):
                     raise ValueError(f"unsupported wire property on {net_name}")
+                if len(item) == 3:
+                    # Already present in the authoritative board.
+                    continue
                 path = item[1]
                 if len(path) < 7 or path[0] != "path" or len(path[3:]) % 2:
                     raise ValueError(f"invalid path on {net_name}")
@@ -200,6 +222,9 @@ def _fallback_import(board: pcbnew.BOARD, session: Path) -> tuple[int, int]:
                 if (len(item) == 5 and
                         item[4] != ["type", "protect"]):
                     raise ValueError(f"unsupported via property on {net_name}")
+                if len(item) == 5:
+                    # Already present in the authoritative board.
+                    continue
                 padstack = str(item[1])
                 if padstack not in via_sizes:
                     raise ValueError(f"undefined SES via padstack {padstack!r}")
