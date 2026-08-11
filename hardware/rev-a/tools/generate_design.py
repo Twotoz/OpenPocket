@@ -2784,6 +2784,10 @@ def generate_board():
         ("SYS_SWITCHED_5V", pcbnew.In2_Cu, None),
         ("3V3_LOGIC", pcbnew.In5_Cu, None),
         ("5V_VIDEO_FILT", pcbnew.In3_Cu, (5.5, 18.5, 48.0, 51.0)),
+        # Charger output to the master load switch.  Keep this high-current
+        # island bounded to the power-entry/distribution corridor rather than
+        # consuming the AMT-to-TFT RGB escape area.
+        ("SYS_ALWAYS", pcbnew.In3_Cu, (51.0, 12.0, 70.5, 54.0)),
         ("DISPLAY_3V3_D", pcbnew.In4_Cu, (41.0, 25.0, 57.0, 53.0)),
         ("3V3_SD", pcbnew.In3_Cu, (82.0, 2.0, 105.0, 24.0)),
         ("DISPLAY_3V3", pcbnew.In4_Cu, (49.5, 31.0, 77.0, 64.0)),
