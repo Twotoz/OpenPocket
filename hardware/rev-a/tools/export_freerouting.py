@@ -92,7 +92,7 @@ def main() -> int:
         # incomplete for each.  Omit them only from this disposable
         # benchmark; the authoritative KiCad board retains and DRC-checks
         # both routes.
-        completed_reviewed_nets = ("USB_SHIELD", "AMT_CVBS1")
+        completed_reviewed_nets = ("USB_SHIELD", "AMT_CVBS1", "VBUS_RAW")
         for net_name in completed_reviewed_nets:
             text = _remove_blocks(text, f"    (net {net_name}\n")
         text = "\n".join(
@@ -112,7 +112,7 @@ def main() -> int:
         print("BENCHMARK_OMITTED_EXISTING_ROUTE_NETS=BAT_RAW,BAT_CELL_NEG")
         print("BENCHMARK_OMITTED_GND_PLANES_AND_NET=GND,GND1,GND2")
         print("BENCHMARK_OMITTED_COMPLETED_REVIEWED_NETS="
-              "USB_SHIELD,AMT_CVBS1")
+              "USB_SHIELD,AMT_CVBS1,VBUS_RAW")
     if args.protect_existing:
         print(f"PROTECTED_EXISTING_ROUTE_ITEMS={protected_items}")
     return 0

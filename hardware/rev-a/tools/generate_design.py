@@ -2198,6 +2198,59 @@ def add_reviewed_local_interface_routes(
     route("AMT_CVBS1", amt_start, pad("R11", "1"), 0.25)
 
 
+def add_reviewed_usb_power_entry(board: pcbnew.BOARD, nets: dict) -> None:
+    """Join the four Type-C VBUS lands to F1 with a short wide tree.
+
+    Each mirrored Type-C pin pair already overlaps within J2.  Two local vias
+    enter otherwise-clear SIG3 above the display region, merge into a broad
+    trunk, and return beside the fuse.  This avoids threading four separate
+    high-current autorouter traces through the intervening CC/USB pins.
+    """
+    net = nets["VBUS_RAW"]
+    j2 = board.FindFootprintByReference("J2")
+    fuse = board.FindFootprintByReference("F1")
+    source_pads = [next(pad for pad in j2.Pads()
+                        if str(pad.GetNumber()) == number)
+                   for number in ("A9", "A4")]
+    fuse_pad = next(pad for pad in fuse.Pads()
+                    if str(pad.GetNumber()) == "1")
+    via_points = ((52.80, 3.30), (52.70, 7.60), (49.00, 12.50))
+    vias = []
+    for x, y in via_points:
+        via = pcbnew.PCB_VIA(board)
+        via.SetPosition(pcbnew.VECTOR2I_MM(x, y))
+        via.SetWidth(pcbnew.FromMM(0.65))
+        via.SetDrill(pcbnew.FromMM(0.30))
+        via.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu)
+        via.SetNet(net)
+        via.SetFrontTentingMode(pcbnew.TENTING_MODE_TENTED)
+        via.SetBackTentingMode(pcbnew.TENTING_MODE_TENTED)
+        board.Add(via)
+        vias.append(via)
+
+    def track(layer: int, start: pcbnew.VECTOR2I,
+              end: pcbnew.VECTOR2I, width: float) -> None:
+        item = pcbnew.PCB_TRACK(board)
+        item.SetLayer(layer)
+        item.SetStart(start)
+        item.SetEnd(end)
+        item.SetWidth(pcbnew.FromMM(width))
+        item.SetNet(net)
+        board.Add(item)
+
+    for source, via in zip(source_pads, vias[:2]):
+        # The connector land is only 0.30 mm wide and sits on 0.5-mm pitch;
+        # neck down only until the escape via, then widen on SIG3.
+        track(pcbnew.F_Cu, source.GetPosition(), via.GetPosition(), 0.25)
+    junction = pcbnew.VECTOR2I_MM(51.80, 8.80)
+    trunk_corner = pcbnew.VECTOR2I_MM(51.80, 12.50)
+    track(pcbnew.In4_Cu, vias[0].GetPosition(), junction, 0.60)
+    track(pcbnew.In4_Cu, vias[1].GetPosition(), junction, 0.60)
+    track(pcbnew.In4_Cu, junction, trunk_corner, 0.80)
+    track(pcbnew.In4_Cu, trunk_corner, vias[2].GetPosition(), 0.80)
+    track(pcbnew.F_Cu, vias[2].GetPosition(), fuse_pad.GetPosition(), 0.80)
+
+
 def add_reviewed_logic_fanout(board: pcbnew.BOARD, nets: dict) -> None:
     """Route the U5 3V3 output directly into its nearest bulk capacitor.
 
@@ -2739,6 +2792,7 @@ def generate_board():
     for net_name, _plane, region in power_pours:
         add_power_plane_fanout(b, nets, net_name, region=region)
     add_reviewed_local_interface_routes(b, nets)
+    add_reviewed_usb_power_entry(b, nets)
     for a,c in [((0, 0), (BOARD_WIDTH, 0)),
                 ((BOARD_WIDTH, 0), (BOARD_WIDTH, BOARD_HEIGHT)),
                 ((BOARD_WIDTH, BOARD_HEIGHT), (0, BOARD_HEIGHT)),
