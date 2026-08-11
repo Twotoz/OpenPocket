@@ -47,6 +47,11 @@ def main() -> int:
         help=("omit the two reviewed battery seed routes from the DSN; "
               "use only for a placement-routing benchmark, never for import"),
     )
+    parser.add_argument(
+        "--protect-existing", action="store_true",
+        help=("mark all existing generator-reviewed tracks/vias as protected "
+              "so Freerouting cannot rip them up"),
+    )
     args = parser.parse_args()
     board = pcbnew.LoadBoard(str(args.board))
     if board.GetCopperLayerCount() != 8:
@@ -81,16 +86,35 @@ def main() -> int:
         # only the GND network, its route records, and the two plane blocks.
         text = _remove_blocks(text, "    (net GND\n")
         text = _remove_blocks(text, "    (plane GND ")
+        # These short critical nets are already fully connected by reviewed
+        # generator copper.  Freerouting 2.3 counts a protected polyline as
+        # an extra connection endpoint and otherwise queues a false
+        # incomplete for each.  Omit them only from this disposable
+        # benchmark; the authoritative KiCad board retains and DRC-checks
+        # both routes.
+        completed_reviewed_nets = ("USB_SHIELD", "AMT_CVBS1")
+        for net_name in completed_reviewed_nets:
+            text = _remove_blocks(text, f"    (net {net_name}\n")
         text = "\n".join(
             line for line in text.splitlines()
-            if "(net GND)" not in line
+            if "(net GND)" not in line and
+            not any(f"(net {net_name})" in line
+                    for net_name in completed_reviewed_nets)
         ) + "\n"
+    protected_items = 0
+    if args.protect_existing:
+        protected_items = text.count("(type route)")
+        text = text.replace("(type route)", "(type protect)")
     args.output.write_text(text, encoding="utf-8")
     print(f"EXPORTED_DSN={args.output}")
     print("PROTECTED_PLANES=GND1,GND2")
     if args.benchmark:
         print("BENCHMARK_OMITTED_EXISTING_ROUTE_NETS=BAT_RAW,BAT_CELL_NEG")
         print("BENCHMARK_OMITTED_GND_PLANES_AND_NET=GND,GND1,GND2")
+        print("BENCHMARK_OMITTED_COMPLETED_REVIEWED_NETS="
+              "USB_SHIELD,AMT_CVBS1")
+    if args.protect_existing:
+        print(f"PROTECTED_EXISTING_ROUTE_ITEMS={protected_items}")
     return 0
 
 
