@@ -54,13 +54,18 @@ def _child(node: list, name: str) -> list:
     raise ValueError(f"SES is missing {name!r}")
 
 
-def _fallback_import(board: pcbnew.BOARD, session: Path) -> tuple[int, int]:
+def _fallback_import(
+    board: pcbnew.BOARD,
+    session: Path,
+    excluded_nets: frozenset[str] = frozenset(),
+) -> tuple[int, int]:
     """Import Freerouting paths with strict net/layer/geometry validation.
 
     KiCad 9 rejects otherwise valid sessions made from benchmark DSNs where
     already-reviewed nets were deliberately omitted.  Recreate only the
     explicit network_out copper here.  Existing copper is retained for nets
-    absent from network_out and replaced for nets present in it.
+    absent from network_out, or explicitly excluded by the caller, and
+    replaced for the remaining nets present in it.
     """
     tree = _parse_ses(session.read_text(encoding="utf-8"))
     placement = _child(tree, "placement")
@@ -145,6 +150,11 @@ def _fallback_import(board: pcbnew.BOARD, session: Path) -> tuple[int, int]:
     unknown_nets = routed_names - set(board_nets)
     if unknown_nets:
         raise ValueError(f"SES contains unknown nets: {sorted(unknown_nets)}")
+    unknown_exclusions = excluded_nets - set(board_nets)
+    if unknown_exclusions:
+        raise ValueError(
+            f"excluded nets are absent from the PCB: {sorted(unknown_exclusions)}")
+    routed_names -= excluded_nets
     # A production DSN may mark generator-reviewed copper as ``protect``.
     # Freerouting echoes that copper into network_out and can quantize or
     # neck it while serializing the SES.  Keep the authoritative KiCad items
@@ -155,6 +165,8 @@ def _fallback_import(board: pcbnew.BOARD, session: Path) -> tuple[int, int]:
     for net_node in network[1:]:
         if (not isinstance(net_node, list) or len(net_node) < 2 or
                 net_node[0] != "net"):
+            continue
+        if str(net_node[1]) in excluded_nets:
             continue
         if any(isinstance(item, list) and
                ((item[0] == "wire" and len(item) == 3 and
@@ -175,6 +187,8 @@ def _fallback_import(board: pcbnew.BOARD, session: Path) -> tuple[int, int]:
         if net_node[0] != "net" or len(net_node) < 2:
             raise ValueError(f"unsupported network_out item {net_node[:2]!r}")
         net_name = str(net_node[1])
+        if net_name in excluded_nets:
+            continue
         net = board_nets[net_name]
         for item in net_node[2:]:
             if not isinstance(item, list) or not item:
@@ -272,6 +286,11 @@ def main() -> int:
         help=("strictly import explicit SES paths/vias when KiCad rejects a "
               "session produced from a deliberately filtered benchmark DSN"),
     )
+    parser.add_argument(
+        "--exclude-net", action="append", default=[], metavar="NET",
+        help=("retain the PCB's existing copper for NET instead of importing "
+              "that net from the SES; repeat for multiple nets"),
+    )
     args = parser.parse_args()
     if not args.session.is_file() or args.session.stat().st_size == 0:
         raise SystemExit(f"missing or empty SES: {args.session}")
@@ -280,13 +299,21 @@ def main() -> int:
     before_footprints = footprint_state(board)
     before_outline = outline_state(board)
     before_layers = board.GetCopperLayerCount()
-    imported = pcbnew.ImportSpecctraSES(board, str(args.session))
+    excluded_nets = frozenset(args.exclude_net)
+    if excluded_nets and not args.fallback_parser:
+        raise SystemExit("--exclude-net requires --fallback-parser")
+    imported = False if excluded_nets else pcbnew.ImportSpecctraSES(
+        board, str(args.session))
     if imported is False:
         if not args.fallback_parser:
             raise SystemExit("KiCad rejected the Freerouting session")
-        segments, vias = _fallback_import(board, args.session)
-        print("KICAD_NATIVE_IMPORT=REJECTED")
+        segments, vias = _fallback_import(
+            board, args.session, excluded_nets=excluded_nets)
+        print("KICAD_NATIVE_IMPORT=SKIPPED" if excluded_nets else
+              "KICAD_NATIVE_IMPORT=REJECTED")
         print("STRICT_FALLBACK_IMPORT=USED")
+        if excluded_nets:
+            print(f"EXCLUDED_NETS={','.join(sorted(excluded_nets))}")
         print(f"IMPORTED_SEGMENTS={segments}")
         print(f"IMPORTED_VIAS={vias}")
 

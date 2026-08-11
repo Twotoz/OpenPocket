@@ -33,13 +33,30 @@ This route is materially cleaner than the earlier power-islands benchmark in
 KiCad DRC terms, but it is not safe to promote. It is retained so remaining
 connections can be inspected or hand-routed without losing the experiment.
 
+## Selective salvage
+
+`import_freerouting.py --exclude-net NET` can retain the authoritative PCB's
+existing copper for selected critical nets while importing the remainder of
+this session. Excluding the USB pairs, oscillator nets, failed clearance nets,
+and high-current nets identified by `routing-audit.json` produced a temporary
+board with zero KiCad copper/geometry violations (six local footprint-library
+warnings remained) and 137 unconnected items. This is the safer starting point
+for targeted routing; the unfiltered 100-open import must not be mistaken for
+the better engineering result.
+
 ## Files
 
 - `openpocket-safe-rules60.ses`: completed Freerouting session.
 - `openpocket-safe-rules60-imported.kicad_pcb`: temporary strict-fallback
   import for inspection and manual route work; never the authoritative board.
+- `openpocket-safe-rules60-filtered.kicad_pcb`: safer hand-routing starting
+  point with the critical nets from `safe-salvage-exclusions.txt` retained
+  from the authoritative generator PCB.
 - `kicad-drc.rpt`: full KiCad DRC report for the temporary import.
 - `routing-audit.json`: critical-net routing audit for the temporary import.
+- `filtered-kicad-drc.rpt` and `filtered-routing-audit.json`: validation
+  evidence for the safer filtered import.
+- `safe-salvage-exclusions.txt`: exact critical-net exclusion set.
 - `../../visuals/openpocket-safe-rules60-{top,bottom}.png`: 3D inspection
   renders of this imported routing milestone.
 
