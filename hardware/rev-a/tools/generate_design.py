@@ -1263,6 +1263,58 @@ def apply_placement() -> None:
             if ref in by_ref:
                 put(ref, x, y, side, rotation)
 
+    # Factory test pads are functional dependants, not a decorative bank.
+    # The annealer deliberately excludes them from major-block optimization,
+    # so place them deterministically beside the circuit that owns the net.
+    # Slots extend inward from each owner and are then legalized with the
+    # other bottom-side passives.  This preserves single-side probe access
+    # while avoiding centimetre-scale diagnostic stubs across routing lanes.
+    testpoint_owner = {
+        "TP1": "J12", "TP2": "J12", "TP3": "J12",
+        "TP4": "J12", "TP5": "J12", "TP6": "J12",
+        "TP7": "U14", "TP8": "U14", "TP9": "U14",
+        "TP10": "U14", "TP11": "U14", "TP12": "U14",
+        "TP13": "U14", "TP14": "U14", "TP15": "U14",
+        "TP16": "U14", "TP17": "U14", "TP18": "MOD1",
+        "TP19": "U11", "TP20": "U11", "TP21": "U11",
+        "TP22": "U2", "TP23": "U20", "TP24": "U20",
+        "TP25": "U1", "TP26": "U6", "TP27": "U7",
+        "TP28": "U8", "TP29": "U9", "TP30": "U10",
+        "TP31": "J1", "TP32": "TVS1", "TP33": "J3",
+        "TP34": "MOD1", "TP35": "MOD1", "TP36": "U11",
+        "TP37": "U14", "TP38": "U16", "TP39": "U16",
+        "TP40": "U16", "TP41": "U16", "TP42": "U1",
+        "TP43": "Q2", "TP44": "U21", "TP45": "U21",
+        "TP46": "U21", "TP47": "U21", "TP48": "U21",
+        "TP49": "U21", "TP50": "D1", "TP51": "U17",
+        "TP52": "U1", "TP53": "U1",
+    }
+    owner_groups: dict[str, list[str]] = {}
+    for testpoint, owner in testpoint_owner.items():
+        owner_groups.setdefault(owner, []).append(testpoint)
+    board_centre = (BOARD_WIDTH / 2.0, BOARD_HEIGHT / 2.0)
+    for owner, testpoints in sorted(owner_groups.items()):
+        anchor = by_ref[owner]
+        inward_x = board_centre[0] - anchor.x
+        inward_y = board_centre[1] - anchor.y
+        length = math.hypot(inward_x, inward_y) or 1.0
+        inward_x, inward_y = inward_x / length, inward_y / length
+        tangent_x, tangent_y = -inward_y, inward_x
+        columns = min(4, len(testpoints))
+        for index, testpoint in enumerate(sorted(
+                testpoints, key=lambda ref: int(ref[2:]))):
+            row, column = divmod(index, columns)
+            row_count = min(columns, len(testpoints) - row * columns)
+            tangent = (column - (row_count - 1) / 2.0) * 1.65
+            # Bottom-side modules need the probe lands beyond their body or
+            # RF inspection keepout; top-side owners can use the close ring.
+            base_inward = {"MOD1": 16.0, "U1": 12.0}.get(owner, 3.0)
+            inward = base_inward + row * 1.65
+            put(testpoint,
+                anchor.x + inward * inward_x + tangent * tangent_x,
+                anchor.y + inward * inward_y + tangent * tangent_y,
+                "B", 0)
+
 
 apply_placement()
 
@@ -1599,6 +1651,23 @@ def legalize_small_parts(board: pcbnew.BOARD) -> None:
             rf_box.Inflate(pcbnew.FromMM(2.0))
             occupied[side].append(rf_box)
 
+    # Fiducials and mounting holes are generator-owned features added after
+    # passive legalization.  Reserve their real mask/hole clearance here so
+    # a newly localized test pad cannot occupy their future position.
+    for x, y, side in ((16, 20, "F"), (90, 22, "F"), (100, 64, "F"),
+                       (16, 8, "B"), (98, 9, "B"), (98, 64, "B")):
+        radius = pcbnew.FromMM(1.20)
+        occupied[side].append(pcbnew.BOX2I(
+            pcbnew.VECTOR2I_MM(x, y) - pcbnew.VECTOR2I(radius, radius),
+            pcbnew.VECTOR2I(2 * radius, 2 * radius)))
+    for x, y in ((4, 4), (111, 4), (4, 68), (111, 68)):
+        radius = pcbnew.FromMM(1.50)
+        keepout = pcbnew.BOX2I(
+            pcbnew.VECTOR2I_MM(x, y) - pcbnew.VECTOR2I(radius, radius),
+            pcbnew.VECTOR2I(2 * radius, 2 * radius))
+        occupied["F"].append(keepout)
+        occupied["B"].append(keepout)
+
     # Large capacitors are placed before 0402 parts, then test pads fill the
     # remaining gaps.  This makes the result deterministic across KiCad runs.
     ordered = sorted((footprints[ref] for ref in movable),
@@ -1611,7 +1680,11 @@ def legalize_small_parts(board: pcbnew.BOARD) -> None:
         # 0.5-mm local spiral, then a board-wide 1-mm fallback.  The latter is
         # only expected for the dense bottom-side factory-pad bank.
         candidates = [(0.0, 0.0)]
-        for radius in [0.5 * i for i in range(1, 25)]:
+        # Diagnostic lands may share a dense functional owner (notably the
+        # AMT video block).  Search farther only for TPs; ordinary support
+        # passives must remain inside their original 12-mm dependency ring.
+        radius_steps = 60 if fp.GetReference().startswith("TP") else 24
+        for radius in [0.5 * i for i in range(1, radius_steps + 1)]:
             steps = int(radius / 0.5)
             for index in range(-steps, steps + 1):
                 candidates.extend(((index * 0.5, -radius),
@@ -2052,6 +2125,14 @@ def add_usb_ground_escape(board: pcbnew.BOARD, nets: dict) -> None:
     footprint = board.FindFootprintByReference("J2")
     pad = next(pad for pad in footprint.Pads()
                if str(pad.GetNumber()) == "A1")
+    # The generic search can become legal after unrelated local placement
+    # changes free a via location.  Do not add a duplicate reviewed escape.
+    if any(not isinstance(item, pcbnew.PCB_VIA) and
+           item.GetNetname() == G and
+           (item.GetStart() == pad.GetPosition() or
+            item.GetEnd() == pad.GetPosition())
+           for item in board.GetTracks()):
+        return
     via_position = pcbnew.VECTOR2I_MM(53.80, 8.20)
     via = pcbnew.PCB_VIA(board)
     via.SetPosition(via_position)
@@ -2193,8 +2274,8 @@ def add_power_plane_fanout(
         for other, (left, top, right, bottom) in obstacles:
             if other is own or other.GetNetname() == net_name:
                 continue
-            if (left - 0.39 <= x <= right + 0.39 and
-                    top - 0.39 <= y <= bottom + 0.39):
+            if (left - 0.45 <= x <= right + 0.45 and
+                    top - 0.45 <= y <= bottom + 0.45):
                 return False
         for item in items:
             if (isinstance(item, pcbnew.PCB_VIA) or
@@ -2227,8 +2308,8 @@ def add_power_plane_fanout(
                 if (other is own or other.GetNetname() == net_name or
                         not other.IsOnLayer(outer_layer(own))):
                     continue
-                if (left - 0.23 <= x <= right + 0.23 and
-                        top - 0.23 <= y <= bottom + 0.23):
+                if (left - 0.32 <= x <= right + 0.32 and
+                        top - 0.32 <= y <= bottom + 0.32):
                     return False
         return True
 
