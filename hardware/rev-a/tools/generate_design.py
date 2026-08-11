@@ -615,7 +615,8 @@ for ref, title, minus, plus, n, side in (("J23","AIL","AIL-","AIL+",50,"F"),
     net_minus = {"AIL-":"CTRL_0_12","ELE-":"CTRL_0_14","THR-":"CTRL_1_0","RUD-":"CTRL_1_2"}[minus]
     net_plus = {"AIL+":"CTRL_0_13","ELE+":"CTRL_0_15","THR+":"CTRL_1_1","RUD+":"CTRL_1_3"}[plus]
     add(ref,f"{title} trim pads","OpenPocket",f"{title}-TRIM-PADS","CONS",f"{title}-TRIM-PADS",
-        [("G",G),("MINUS",net_minus),("PLUS",net_plus)],111,n,side,True,
+        [("G",G),("MINUS",net_minus),("PLUS",net_plus)],
+        4 if ref in {"J25", "J26"} else 111,n,side,True,
         notes=f"{title} three-wire trim group with adjacent edge-side GND",
         rotation=0 if ref in {"J25", "J26"} else 180)
 add("J11","5.8 GHz antenna U.FL","Hirose","U.FL-R-SMT-1(10)","C88373","U.FL",
@@ -1128,10 +1129,10 @@ def apply_placement() -> None:
             put(ref, *pos, "B")
 
     # Gimbal ADC filters stay beside the ESP ADC side; control pull-ups remain
-    # behind the two expanders near J9.
+    # behind the two expanders near their edge-control groups.
     for ref, pos in {"R95": (66, 35), "R96": (68, 35), "R97": (70, 35),
                      "R98": (72, 35), "C78": (66, 37), "C79": (68, 37),
-                     "C80": (70, 37), "C81": (72, 37), "C1": (73, 28)}.items():
+                     "C80": (70, 37), "C81": (72, 37)}.items():
         if ref in by_ref:
             put(ref, *pos, "B")
 
@@ -1176,10 +1177,6 @@ def apply_placement() -> None:
         # older manifest still contains the former J9/J16/J17 strips.
         for ref, x, y, side, rotation in (
                 ("U1",65,31,"B",0),
-                # Keep the expanders in the control region, but pull their
-                # ESP-facing edges upward so U1 fanout does not cross the
-                # entire FFC corridor.
-                ("U18",53,55,"B",0),("U19",66,55,"B",0),
                 # Keep the AMT flash mux outside the ESP32 backside body;
                 # U15/U16 remain a compact flash island left of the ESP.
                 ("U16",48,27,"F",0),
@@ -1250,10 +1247,8 @@ def apply_placement() -> None:
                 # ESP32-S3-MINI-1U fanout moat.  These passives/testpoints
                 # were previously inside the bottom-side module projection,
                 # blocking every perimeter escape even though the generic
-                # courtyard check did not flag them.  Keep C1 local but
-                # outside the module body; move non-critical filters and
-                # testpoints beyond the 4-mm routing corridor.
-                ("C1", 76, 30, "B", 0),
+                # courtyard check did not flag them. Move non-critical
+                # filters and testpoints beyond the 4-mm routing corridor.
                 ("C32", 54, 21, "B", 0),
                 ("R45", 55, 18, "B", 0),
                 ("R46", 58.5, 18.5, "B", 0),
@@ -1543,8 +1538,15 @@ def legalize_small_parts(board: pcbnew.BOARD) -> None:
     location of ICs, connectors, crystals, inductors, RF/video modules or the
     analog path ordering.
     """
+    # The charger island is placed as a reviewed compact group.  Its exposed
+    # pad, thermal-via and high-current clearances cannot be inferred from a
+    # generic passive-courtyard nudge, so keep C28–C34 at the optimizer's
+    # legal coordinates rather than shifting one capacitor into U2's PTH
+    # ground pads.
+    charger_island = {"C28", "C29", "C30", "C31", "C32", "C33", "C34"}
     movable = {part.ref for part in P
-               if part.ref.startswith(("R", "C", "TP"))}
+               if part.ref.startswith(("R", "C", "TP")) and
+               part.ref not in charger_island}
     part_by_ref = {part.ref: part for part in P}
     footprints = {fp.GetReference(): fp for fp in board.GetFootprints()}
     margin = pcbnew.FromMM(0.20)
@@ -2568,31 +2570,12 @@ def generate_board():
         add_mounting_hole(b, reference, x, y, 2.0)
     add_exposed_pad_thermal_vias(b, nets)
     add_ground_fanout(b, nets)
-    add_reviewed_logic_fanout(b, nets)
-    add_reviewed_battery_fanout(b, nets)
-    add_power_plane_fanout(
-        b, nets, "3V3_LOGIC", {
-            ("R75", "2"): (35.20, 48.30),
-            ("R76", "2"): (35.93, 52.80),
-        })
-    add_power_plane_fanout(b, nets, "SYS_SWITCHED_5V")
-    add_power_plane_fanout(b, nets, "5V_VIDEO_FILT")
-    add_power_plane_fanout(
-        b, nets, "DISPLAY_3V3_D", region=(41.0, 25.0, 57.0, 53.0))
-    add_power_plane_fanout(
-        b, nets, "3V3_SD", region=(82.0, 2.0, 105.0, 24.0))
-    add_power_plane_fanout(
-        b, nets, "5V_DISPLAY", region=(49.5, 48.0, 76.0, 68.5))
-    add_power_plane_fanout(
-        b, nets, "DISPLAY_3V3", region=(49.5, 31.0, 77.0, 64.0))
-    add_power_plane_fanout(b, nets, "SYS_ALWAYS")
-    add_power_plane_fanout(
-        b, nets, "SYS_SWITCHED",
-        forced_candidates={("U20", "6"): (69.60, 48.70)})
-    connect_power_access_mst(
-        b, nets, "SYS_ALWAYS", pcbnew.In4_Cu, width=0.60)
-    connect_power_access_mst(
-        b, nets, "SYS_SWITCHED", pcbnew.In3_Cu, width=0.80)
+    # The optimizer may relocate every non-mechanical functional block.  Do
+    # not preserve absolute-coordinate power fragments from an older
+    # floorplan: they can short against valid newly placed pads.  The seed is
+    # intentionally signal/power-unrouted; only dynamic local GND fanout is
+    # retained. Reviewed power and signal routing is added only after this
+    # placement has passed DRC, rather than hiding stale copper in a seed.
     for a,c in [((0, 0), (BOARD_WIDTH, 0)),
                 ((BOARD_WIDTH, 0), (BOARD_WIDTH, BOARD_HEIGHT)),
                 ((BOARD_WIDTH, BOARD_HEIGHT), (0, BOARD_HEIGHT)),
@@ -2608,64 +2591,9 @@ def generate_board():
                     (0.25, BOARD_HEIGHT - 0.25)]:
             out.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
         b.Add(z)
-    # Low-impedance 5V and 3V3 distribution adjacent to the uninterrupted
-    # L2/L7 references.  F/B plus SIG2/SIG3 remain available to signals.
-    for plane, net_name in (
-            (pcbnew.In2_Cu, "SYS_SWITCHED_5V"),
-            (pcbnew.In5_Cu, "3V3_LOGIC")):
-        power_zone = pcbnew.ZONE(b)
-        power_zone.SetLayer(plane)
-        power_zone.SetNet(nets[net_name])
-        power_zone.SetLocalClearance(pcbnew.FromMM(0.20))
-        power_zone.SetMinThickness(pcbnew.FromMM(0.15))
-        power_outline = power_zone.Outline()
-        power_outline.NewOutline()
-        for x, y in [(0.50, 0.50), (BOARD_WIDTH - 0.50, 0.50),
-                     (BOARD_WIDTH - 0.50, BOARD_HEIGHT - 0.50),
-                     (0.50, BOARD_HEIGHT - 0.50)]:
-            power_outline.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
-        b.Add(power_zone)
-    # Local filtered-video supply island.  It is buried behind the solid L2
-    # reference from all top-side CVBS circuitry and behind L7 from the
-    # bottom-side RX5808/U.FL launch.
-    video_zone = pcbnew.ZONE(b)
-    video_zone.SetLayer(pcbnew.In3_Cu)
-    video_zone.SetNet(nets["5V_VIDEO_FILT"])
-    video_zone.SetLocalClearance(pcbnew.FromMM(0.20))
-    video_zone.SetMinThickness(pcbnew.FromMM(0.15))
-    video_outline = video_zone.Outline()
-    video_outline.NewOutline()
-    for x, y in [(5.5, 18.5), (48.0, 18.5),
-                 (48.0, 51.0), (5.5, 51.0)]:
-        video_outline.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
-    b.Add(video_zone)
-    for plane, net_name, bounds in (
-            (pcbnew.In4_Cu, "DISPLAY_3V3_D", (41.0, 25.0, 57.0, 53.0)),
-            (pcbnew.In3_Cu, "3V3_SD", (82.0, 2.0, 105.0, 24.0)),
-            (pcbnew.In3_Cu, "DISPLAY_3V3", (49.5, 31.0, 77.0, 64.0))):
-        left, top, right, bottom = bounds
-        island = pcbnew.ZONE(b)
-        island.SetLayer(plane)
-        island.SetNet(nets[net_name])
-        island.SetLocalClearance(pcbnew.FromMM(0.20))
-        island.SetMinThickness(pcbnew.FromMM(0.15))
-        outline = island.Outline()
-        outline.NewOutline()
-        for x, y in [(left, top), (right, top),
-                     (right, bottom), (left, bottom)]:
-            outline.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
-        b.Add(island)
-    display_5v_zone = pcbnew.ZONE(b)
-    display_5v_zone.SetLayer(pcbnew.In4_Cu)
-    display_5v_zone.SetNet(nets["5V_DISPLAY"])
-    display_5v_zone.SetLocalClearance(pcbnew.FromMM(0.20))
-    display_5v_zone.SetMinThickness(pcbnew.FromMM(0.15))
-    display_5v_outline = display_5v_zone.Outline()
-    display_5v_outline.NewOutline()
-    for x, y in [(57.5, 48.0), (76.0, 48.0), (76.0, 68.5),
-                 (49.5, 68.5), (49.5, 54.0), (57.5, 54.0)]:
-        display_5v_outline.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
-    b.Add(display_5v_zone)
+    # Do not emit non-ground power pours in an unrouted placement seed.
+    # They would be isolated copper until their reviewed feeds are present;
+    # such pours are added with the final reviewed power-routing stage.
     # microSD 11 x 15 mm card body: locked and 3.12-mm farther out at eject.
     for name,start,end in [
         ("MICROSD CARD LOCKED",(26.5,0.2),(37.5,15.2)),

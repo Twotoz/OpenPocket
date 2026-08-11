@@ -187,7 +187,7 @@
     "mpn": "CGA0805X7R106K250MT",
     "package": "0805",
     "pins": {
-      "1": "BAT_PROTECTED",
+      "1": "BAT_RAW",
       "2": "GND"
     }
   },
@@ -1555,7 +1555,7 @@
     "mpn": "RC0402FR-0710RL",
     "package": "0402",
     "pins": {
-      "1": "BAT_PROTECTED",
+      "1": "BAT_RAW",
       "2": "GAUGE_CELL"
     }
   },
@@ -2662,8 +2662,8 @@
       "10": "CHG_ILIM",
       "11": "BAT_NTC",
       "12": "CHG_QON",
-      "13": "BAT_PROTECTED",
-      "14": "BAT_PROTECTED",
+      "13": "BAT_RAW",
+      "14": "BAT_RAW",
       "15": "SYS_ALWAYS",
       "16": "SYS_ALWAYS",
       "17": "GND",
@@ -2744,7 +2744,7 @@
     "pins": {
       "1": "GAUGE_CTG",
       "2": "GAUGE_CELL",
-      "3": "BAT_PROTECTED",
+      "3": "BAT_RAW",
       "4": "GND",
       "5": "GAUGE_ALERT",
       "6": "GND",

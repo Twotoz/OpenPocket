@@ -63,7 +63,7 @@ DEPENDENCIES = [
     ("U20", "U6", 11.0, 280.0),
     # Battery power is a high-current path, not an ordinary connector net.
     # Keep the charger balanced between the USB entry and the protected-cell
-    # cluster so BAT_RAW/BAT_PROTECTED/BAT_NTC do not become long detours.
+    # cluster so BAT_RAW/BAT_NTC do not become long detours.
     ("J3", "U2", 32.0, 300.0),
     ("U3", "U2", 18.0, 220.0),
     ("Q1", "U2", 18.0, 180.0),
@@ -71,8 +71,21 @@ DEPENDENCIES = [
     ("J12", "ESD2", 7.0, 260.0),
     ("J12", "ESD3", 7.0, 260.0),
     ("J6", "ESD4", 7.0, 260.0),
-    ("J9", "U18", 12.0, 170.0),
-    ("J9", "U19", 12.0, 170.0),
+    # U18 serves the menu plus right-side switches and trims; U19 serves the
+    # encoder and left-side trims.  Give each expander a weighted physical
+    # relationship to its actual user interfaces instead of the removed old
+    # J9/J16/J17 strip arrangement.
+    ("J9", "U18", 18.0, 90.0),
+    ("J18", "U18", 18.0, 45.0),
+    ("J19", "U18", 24.0, 35.0),
+    ("J20", "U18", 24.0, 35.0),
+    ("J21", "U18", 24.0, 35.0),
+    ("J22", "U18", 24.0, 35.0),
+    ("J23", "U18", 24.0, 35.0),
+    ("J24", "U18", 24.0, 35.0),
+    ("J18", "U19", 18.0, 90.0),
+    ("J25", "U19", 18.0, 65.0),
+    ("J26", "U19", 18.0, 65.0),
     ("U21", "J4", 12.0, 100.0),
     ("U21", "J13", 12.0, 100.0),
 ]
@@ -80,7 +93,7 @@ DEPENDENCIES = [
 # Local decoupling map.  The optimizer validates this map against the PCB
 # netlist and applies a much steeper penalty after the stated local radius.
 DECOUPLING = {
-    "U1": ["C1"],
+    "U18": ["C1"],
     "U2": ["C28", "C29", "C30", "C31", "C32", "C33", "C34"],
     "U5": ["C35", "C36", "C37", "C38", "C39"],
     "U6": ["C40", "C41", "C42", "C43", "C44", "C45", "C46", "C47", "C48", "C49", "C50"],
@@ -223,6 +236,20 @@ def legal(board: pcbnew.BOARD, movable: set[str], *, check_pads: bool = True) ->
             return False
         if ref in movable and any(overlap(box, other) for other in fixed):
             return False
+    # Courtyards do not always include a fine-pitch footprint's outer pad
+    # extents.  Enforce the board's copper-to-edge rule on every movable pad,
+    # otherwise a bottom-side IC can look legal while its pads protrude into
+    # the 0.5 mm edge-clearance zone.
+    for fp in board.GetFootprints():
+        if fp.GetReference() not in movable:
+            continue
+        for pad in fp.Pads():
+            box = pad.GetBoundingBox()
+            if (pcbnew.ToMM(box.GetLeft()) < 0.5 or
+                    pcbnew.ToMM(box.GetRight()) > WIDTH - 0.5 or
+                    pcbnew.ToMM(box.GetTop()) < 0.5 or
+                    pcbnew.ToMM(box.GetBottom()) > HEIGHT - 0.5):
+                return False
     items = [(r, b) for r, b in boxes.items() if r in movable]
     for index, (_, a) in enumerate(items):
         if any(overlap(a, b) for _, b in items[index + 1:]):
@@ -388,6 +415,15 @@ def repair_placement(board: pcbnew.BOARD, movable: set[str]) -> None:
                 count += int(pcbnew.ToMM(left) < 0.8 or pcbnew.ToMM(right) > WIDTH - 0.8 or
                              pcbnew.ToMM(top) < 0.8 or pcbnew.ToMM(bottom) > HEIGHT - 0.8)
                 count += sum(overlap(box, other) for other in fixed)
+        for fp in board.GetFootprints():
+            if fp.GetReference() not in movable:
+                continue
+            for pad in fp.Pads():
+                box = pad.GetBoundingBox()
+                count += int(pcbnew.ToMM(box.GetLeft()) < 0.5 or
+                             pcbnew.ToMM(box.GetRight()) > WIDTH - 0.5 or
+                             pcbnew.ToMM(box.GetTop()) < 0.5 or
+                             pcbnew.ToMM(box.GetBottom()) > HEIGHT - 0.5)
         items = [(r, b) for r, b in boxes.items() if r in movable]
         count += sum(overlap(a, b) for i, (_, a) in enumerate(items)
                      for _, b in items[i + 1:])
@@ -412,6 +448,17 @@ def repair_placement(board: pcbnew.BOARD, movable: set[str]) -> None:
                      for b, bb in boxes.items() if b in movable and a < b
                      and overlap(ba, bb)]
             conflicts = [pairs[0][0]] if pairs else []
+        if not conflicts:
+            for fp in board.GetFootprints():
+                if fp.GetReference() not in movable:
+                    continue
+                if any(pcbnew.ToMM(pad.GetBoundingBox().GetLeft()) < 0.5 or
+                       pcbnew.ToMM(pad.GetBoundingBox().GetRight()) > WIDTH - 0.5 or
+                       pcbnew.ToMM(pad.GetBoundingBox().GetTop()) < 0.5 or
+                       pcbnew.ToMM(pad.GetBoundingBox().GetBottom()) > HEIGHT - 0.5
+                       for pad in fp.Pads()):
+                    conflicts = [fp.GetReference()]
+                    break
         rf = boxes.get("MOD1")
         if rf:
             keepout = (rf[0] - pcbnew.FromMM(2.0), rf[1] - pcbnew.FromMM(2.0),
