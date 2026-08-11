@@ -51,6 +51,12 @@ DEPENDENCIES = [
     ("U14", "U15", 8.0, 90.0),
     ("U14", "U16", 12.0, 65.0),
     ("U11", "Y1", 4.0, 260.0),
+    # Connector shield bleed and AMT analog input termination are local
+    # interface networks, not generic passives that may drift into free area.
+    ("J2", "C63", 5.0, 220.0),
+    ("J2", "R54", 5.0, 180.0),
+    ("U14", "C8", 5.0, 320.0),
+    ("U14", "R11", 5.0, 320.0),
     ("U6", "L3", 4.0, 420.0),
     ("U5", "L2", 4.0, 420.0),
     ("U10", "L5", 4.0, 420.0),

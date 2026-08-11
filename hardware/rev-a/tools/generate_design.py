@@ -1315,6 +1315,16 @@ def apply_placement() -> None:
                 anchor.y + inward * inward_y + tangent * tangent_y,
                 "B", 0)
 
+    # Two interface networks exposed by the constrained routing benchmark.
+    # Keep coordinates relative to their fixed functional owner so future
+    # placement refinements cannot strand these support parts again.
+    usb = by_ref["J2"]
+    put("R54", usb.x + 0.5, usb.y + 5.8, "F", 90)
+    put("C63", usb.x + 2.5, usb.y + 5.8, "F", 90)
+    amt = by_ref["U14"]
+    put("C8", amt.x - 9.0, amt.y + 5.0, "F", 0)
+    put("R11", amt.x - 11.0, amt.y + 5.0, "F", 180)
+
 
 apply_placement()
 
@@ -2152,6 +2162,42 @@ def add_usb_ground_escape(board: pcbnew.BOARD, nets: dict) -> None:
     board.Add(track)
 
 
+def add_reviewed_local_interface_routes(
+        board: pcbnew.BOARD, nets: dict) -> None:
+    """Route two short, placement-dependent interface chains.
+
+    These are local point-to-point nets with no layer changes: the USB shield
+    bleed network beside J2 and the terminated AMT analog-video input beside
+    U14.  Keeping them deterministic prevents the bulk router from repeatedly
+    ripping up sensitive interface copper.
+    """
+    def pad(reference: str, number: str) -> pcbnew.PAD:
+        footprint = board.FindFootprintByReference(reference)
+        return next(item for item in footprint.Pads()
+                    if str(item.GetNumber()) == number)
+
+    def route(net_name: str, start: pcbnew.PAD, end: pcbnew.PAD,
+              width: float) -> None:
+        track = pcbnew.PCB_TRACK(board)
+        track.SetStart(start.GetPosition())
+        track.SetEnd(end.GetPosition())
+        track.SetWidth(pcbnew.FromMM(width))
+        track.SetLayer(pcbnew.F_Cu)
+        track.SetNet(nets[net_name])
+        board.Add(track)
+
+    usb_start = pad("J2", "1")
+    usb_support = [pad("R54", "1"), pad("C63", "1")]
+    usb_support.sort(key=lambda item: math.hypot(
+        item.GetPosition().x - usb_start.GetPosition().x,
+        item.GetPosition().y - usb_start.GetPosition().y))
+    route("USB_SHIELD", usb_start, usb_support[0], 0.20)
+    route("USB_SHIELD", usb_support[0], usb_support[1], 0.20)
+    amt_start = pad("U14", "1")
+    route("AMT_CVBS1", amt_start, pad("C8", "2"), 0.25)
+    route("AMT_CVBS1", amt_start, pad("R11", "1"), 0.25)
+
+
 def add_reviewed_logic_fanout(board: pcbnew.BOARD, nets: dict) -> None:
     """Route the U5 3V3 output directly into its nearest bulk capacitor.
 
@@ -2692,6 +2738,7 @@ def generate_board():
     )
     for net_name, _plane, region in power_pours:
         add_power_plane_fanout(b, nets, net_name, region=region)
+    add_reviewed_local_interface_routes(b, nets)
     for a,c in [((0, 0), (BOARD_WIDTH, 0)),
                 ((BOARD_WIDTH, 0), (BOARD_WIDTH, BOARD_HEIGHT)),
                 ((BOARD_WIDTH, BOARD_HEIGHT), (0, BOARD_HEIGHT)),
