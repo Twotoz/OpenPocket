@@ -2570,12 +2570,20 @@ def generate_board():
         add_mounting_hole(b, reference, x, y, 2.0)
     add_exposed_pad_thermal_vias(b, nets)
     add_ground_fanout(b, nets)
-    # The optimizer may relocate every non-mechanical functional block.  Do
-    # not preserve absolute-coordinate power fragments from an older
-    # floorplan: they can short against valid newly placed pads.  The seed is
-    # intentionally signal/power-unrouted; only dynamic local GND fanout is
-    # retained. Reviewed power and signal routing is added only after this
-    # placement has passed DRC, rather than hiding stale copper in a seed.
+    # Build shared rails from current pad coordinates.  These fanouts are
+    # recalculated after every placement optimization; no absolute-coordinate
+    # copper from an older floorplan is preserved.
+    power_pours = (
+        ("SYS_SWITCHED_5V", pcbnew.In2_Cu, None),
+        ("3V3_LOGIC", pcbnew.In5_Cu, None),
+        ("5V_VIDEO_FILT", pcbnew.In3_Cu, (5.5, 18.5, 48.0, 51.0)),
+        ("DISPLAY_3V3_D", pcbnew.In4_Cu, (41.0, 25.0, 57.0, 53.0)),
+        ("3V3_SD", pcbnew.In3_Cu, (82.0, 2.0, 105.0, 24.0)),
+        ("DISPLAY_3V3", pcbnew.In4_Cu, (49.5, 31.0, 77.0, 64.0)),
+        ("5V_DISPLAY", pcbnew.In4_Cu, (49.5, 48.0, 76.0, 68.5)),
+    )
+    for net_name, _plane, region in power_pours:
+        add_power_plane_fanout(b, nets, net_name, region=region)
     for a,c in [((0, 0), (BOARD_WIDTH, 0)),
                 ((BOARD_WIDTH, 0), (BOARD_WIDTH, BOARD_HEIGHT)),
                 ((BOARD_WIDTH, BOARD_HEIGHT), (0, BOARD_HEIGHT)),
@@ -2591,9 +2599,20 @@ def generate_board():
                     (0.25, BOARD_HEIGHT - 0.25)]:
             out.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
         b.Add(z)
-    # Do not emit non-ground power pours in an unrouted placement seed.
-    # They would be isolated copper until their reviewed feeds are present;
-    # such pours are added with the final reviewed power-routing stage.
+    for net_name, plane, region in power_pours:
+        left, top, right, bottom = region or (
+            0.50, 0.50, BOARD_WIDTH - 0.50, BOARD_HEIGHT - 0.50)
+        zone = pcbnew.ZONE(b)
+        zone.SetLayer(plane)
+        zone.SetNet(nets[net_name])
+        zone.SetLocalClearance(pcbnew.FromMM(0.20))
+        zone.SetMinThickness(pcbnew.FromMM(0.15))
+        outline = zone.Outline()
+        outline.NewOutline()
+        for x, y in ((left, top), (right, top),
+                     (right, bottom), (left, bottom)):
+            outline.Append(pcbnew.FromMM(x), pcbnew.FromMM(y))
+        b.Add(zone)
     # microSD 11 x 15 mm card body: locked and 3.12-mm farther out at eject.
     for name,start,end in [
         ("MICROSD CARD LOCKED",(26.5,0.2),(37.5,15.2)),
