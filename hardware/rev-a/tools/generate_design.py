@@ -1914,15 +1914,11 @@ def add_ground_fanout(board: pcbnew.BOARD, nets: dict) -> None:
         pad.GetPosition().x, pad.GetPosition().y))
     missing: list[str] = []
     for pad in smd_ground:
-        # User-facing edge/header pads are intentionally left for the normal
-        # router/ground zones.  A deterministic local via is not possible at
-        # the board edge and would recreate the unwanted holes beside these
-        # hand-solder pads.
-        if pad.GetParentFootprint().GetReference() in {
-                "J3", "J5", "J6", "J7", "J8", "J9", "J13", "J14",
-                "J15", "J18", "J19", "J20", "J21", "J22", "J23",
-                "J24", "J25", "J26"}:
-            continue
+        # Edge-facing hand-solder pads need the same explicit local return as
+        # IC ground pins.  The via search below rejects off-board candidates
+        # and therefore naturally selects an inward escape.  All generated
+        # vias are tented on both sides, so this does not add a second visible
+        # solder-pad style beside the uniform SMD control lands.
         pad_box = pad.GetBoundingBox()
         if any(other.GetNetname() == G and
                other.GetAttribute() == pcbnew.PAD_ATTRIB_PTH and
@@ -2043,6 +2039,36 @@ def add_ground_fanout(board: pcbnew.BOARD, nets: dict) -> None:
         # when no local via spot remains.  Do not block board generation over
         # these optional deterministic fanouts.
         print("ground fanout deferred for " + ", ".join(missing))
+
+
+def add_usb_ground_escape(board: pcbnew.BOARD, nets: dict) -> None:
+    """Connect the overlapping lower USB-C GND lands to L2/L7 locally.
+
+    J2 A1/B12 share copper at the fixed connector footprint, but the nearby
+    shield and Type-C signal lands leave no legal radial position for the
+    generic fanout search.  This reviewed inward escape has been checked by
+    KiCad DRC; its via is tented on both sides.
+    """
+    footprint = board.FindFootprintByReference("J2")
+    pad = next(pad for pad in footprint.Pads()
+               if str(pad.GetNumber()) == "A1")
+    via_position = pcbnew.VECTOR2I_MM(53.80, 8.20)
+    via = pcbnew.PCB_VIA(board)
+    via.SetPosition(via_position)
+    via.SetWidth(pcbnew.FromMM(0.45))
+    via.SetDrill(pcbnew.FromMM(0.20))
+    via.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu)
+    via.SetNet(nets[G])
+    via.SetFrontTentingMode(pcbnew.TENTING_MODE_TENTED)
+    via.SetBackTentingMode(pcbnew.TENTING_MODE_TENTED)
+    board.Add(via)
+    track = pcbnew.PCB_TRACK(board)
+    track.SetStart(pad.GetPosition())
+    track.SetEnd(via_position)
+    track.SetWidth(pcbnew.FromMM(0.20))
+    track.SetLayer(pcbnew.F_Cu)
+    track.SetNet(nets[G])
+    board.Add(track)
 
 
 def add_reviewed_logic_fanout(board: pcbnew.BOARD, nets: dict) -> None:
@@ -2570,6 +2596,7 @@ def generate_board():
         add_mounting_hole(b, reference, x, y, 2.0)
     add_exposed_pad_thermal_vias(b, nets)
     add_ground_fanout(b, nets)
+    add_usb_ground_escape(b, nets)
     # Build shared rails from current pad coordinates.  These fanouts are
     # recalculated after every placement optimization; no absolute-coordinate
     # copper from an older floorplan is preserved.
