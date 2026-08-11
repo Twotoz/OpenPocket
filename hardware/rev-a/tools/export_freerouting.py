@@ -58,6 +58,12 @@ def main() -> int:
         help=("add a conservative margin to every Specctra copper-clearance "
               "rule without changing the authoritative KiCad netclasses"),
     )
+    parser.add_argument(
+        "--minimum-rule-width-um", type=int, default=0,
+        help=("raise narrow Specctra class widths to this routing-only "
+              "minimum; useful for keeping router-generated pad necks above "
+              "the KiCad fabrication minimum"),
+    )
     args = parser.parse_args()
     board = pcbnew.LoadBoard(str(args.board))
     if board.GetCopperLayerCount() != 8:
@@ -68,6 +74,8 @@ def main() -> int:
     text = args.output.read_text(encoding="utf-8")
     if args.clearance_margin_um < 0:
         raise SystemExit("clearance margin cannot be negative")
+    if args.minimum_rule_width_um < 0:
+        raise SystemExit("minimum rule width cannot be negative")
     if args.clearance_margin_um:
         text, count = re.subn(
             r"\(clearance (\d+)\)",
@@ -77,6 +85,14 @@ def main() -> int:
         )
         if count == 0:
             raise SystemExit("exported DSN contains no clearance rules")
+    if args.minimum_rule_width_um:
+        text, count = re.subn(
+            r"\(width (\d+)\)",
+            lambda match: (f"(width {max(int(match.group(1)), args.minimum_rule_width_um)})"),
+            text,
+        )
+        if count == 0:
+            raise SystemExit("exported DSN contains no width rules")
     for name in ("GND1", "GND2"):
         old = f"(layer {name}\n      (type signal)"
         new = f"(layer {name}\n      (type power)"
@@ -126,6 +142,7 @@ def main() -> int:
     print(f"EXPORTED_DSN={args.output}")
     print("PROTECTED_PLANES=GND1,GND2")
     print(f"ROUTING_CLEARANCE_MARGIN_UM={args.clearance_margin_um}")
+    print(f"ROUTING_MINIMUM_RULE_WIDTH_UM={args.minimum_rule_width_um}")
     if args.benchmark:
         print("BENCHMARK_OMITTED_EXISTING_ROUTE_NETS=BAT_RAW,BAT_CELL_NEG")
         print("BENCHMARK_OMITTED_GND_PLANES_AND_NET=GND,GND1,GND2")
