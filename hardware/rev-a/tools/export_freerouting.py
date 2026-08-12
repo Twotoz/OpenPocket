@@ -54,6 +54,11 @@ def main() -> int:
               "so Freerouting cannot rip them up"),
     )
     parser.add_argument(
+        "--omit-ground-network", action="store_true",
+        help=("omit only the GND pin list from routing work while retaining "
+              "existing GND planes/tracks/vias as protected obstacles"),
+    )
+    parser.add_argument(
         "--clearance-margin-um", type=int, default=0,
         help=("add a conservative margin to every Specctra copper-clearance "
               "rule without changing the authoritative KiCad netclasses"),
@@ -134,6 +139,14 @@ def main() -> int:
             not any(f"(net {net_name})" in line
                     for net_name in completed_reviewed_nets)
         ) + "\n"
+    elif args.omit_ground_network:
+        # Continuation routing must see every existing GND feature as an
+        # obstacle, otherwise newly added traces can cross local ground
+        # spokes/vias and short on the authoritative PCB.  Remove only the
+        # network pin list that makes GND an unrouted task.  Keep the plane and
+        # wiring records; --protect-existing converts their route records to
+        # immutable obstacles below.
+        text = _remove_blocks(text, "    (net GND\n")
     protected_items = 0
     if args.protect_existing:
         protected_items = text.count("(type route)")
@@ -148,6 +161,9 @@ def main() -> int:
         print("BENCHMARK_OMITTED_GND_PLANES_AND_NET=GND,GND1,GND2")
         print("BENCHMARK_OMITTED_COMPLETED_REVIEWED_NETS="
               "USB_SHIELD,AMT_CVBS1,VBUS_RAW")
+    elif args.omit_ground_network:
+        print("OMITTED_GROUND_PINLIST=GND")
+        print("PROTECTED_GROUND_COPPER=GND,GND1,GND2")
     if args.protect_existing:
         print(f"PROTECTED_EXISTING_ROUTE_ITEMS={protected_items}")
     return 0

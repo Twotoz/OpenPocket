@@ -44,6 +44,14 @@ warnings remained) and 137 unconnected items. This is the safer starting point
 for targeted routing; the unfiltered 100-open import must not be mistaken for
 the better engineering result.
 
+A second, GND-aware continuation experiment kept all existing copper and both
+GND planes visible as protected obstacles while omitting only the GND pin list
+from routing work. After five passes, selective import of non-critical nets
+reduced the safer board from 137 to 127 KiCad unconnected items while retaining
+zero KiCad copper/geometry violations. The critical audit still rejects eight
+pre-existing/local power and switch-node neckdowns, so this continuation is
+also an inspection/hand-routing milestone rather than production copper.
+
 ## Files
 
 - `openpocket-safe-rules60.ses`: completed Freerouting session.
@@ -57,6 +65,11 @@ the better engineering result.
 - `filtered-kicad-drc.rpt` and `filtered-routing-audit.json`: validation
   evidence for the safer filtered import.
 - `safe-salvage-exclusions.txt`: exact critical-net exclusion set.
+- `openpocket-safe-continuation.ses`: completed GND-aware continuation session.
+- `openpocket-safe-continuation-filtered.kicad_pcb`: selective non-critical
+  import of that continuation (127 KiCad unconnected items).
+- `continuation-kicad-drc.rpt` and `continuation-routing-audit.json`:
+  project-context validation evidence for the selective continuation import.
 - `../../visuals/openpocket-safe-rules60-{top,bottom}.png`: 3D inspection
   renders of this imported routing milestone.
 

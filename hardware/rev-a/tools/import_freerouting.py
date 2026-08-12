@@ -302,15 +302,18 @@ def main() -> int:
     excluded_nets = frozenset(args.exclude_net)
     if excluded_nets and not args.fallback_parser:
         raise SystemExit("--exclude-net requires --fallback-parser")
-    imported = False if excluded_nets else pcbnew.ImportSpecctraSES(
+    # KiCad may partially mutate design settings even when its SES importer
+    # ultimately returns False.  An explicitly requested strict fallback must
+    # therefore bypass the native importer entirely; otherwise a rejected SES
+    # can silently change minimum via/drill/clearance rules on the output PCB.
+    imported = False if args.fallback_parser else pcbnew.ImportSpecctraSES(
         board, str(args.session))
     if imported is False:
         if not args.fallback_parser:
             raise SystemExit("KiCad rejected the Freerouting session")
         segments, vias = _fallback_import(
             board, args.session, excluded_nets=excluded_nets)
-        print("KICAD_NATIVE_IMPORT=SKIPPED" if excluded_nets else
-              "KICAD_NATIVE_IMPORT=REJECTED")
+        print("KICAD_NATIVE_IMPORT=SKIPPED")
         print("STRICT_FALLBACK_IMPORT=USED")
         if excluded_nets:
             print(f"EXCLUDED_NETS={','.join(sorted(excluded_nets))}")
