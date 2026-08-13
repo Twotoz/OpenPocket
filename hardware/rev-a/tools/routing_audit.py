@@ -50,6 +50,8 @@ def mm(value: int | float) -> float:
 def audit(board_path: Path) -> tuple[dict[str, object], list[str]]:
     board = pcbnew.LoadBoard(str(board_path))
     tracks = list(board.GetTracks())
+    pads = [pad for footprint in board.GetFootprints()
+            for pad in footprint.Pads()]
     report: dict[str, object] = {
         "board": str(board_path),
         "copper_layers": board.GetCopperLayerCount(),
@@ -84,9 +86,47 @@ def audit(board_path: Path) -> tuple[dict[str, object], list[str]]:
             }
             group_rows[net] = row
             required_width = MINIMUM_WIDTH_MM[group]
-            if widths and min(widths) + 1e-6 < required_width:
+            def near(point: pcbnew.VECTOR2I,
+                     other: pcbnew.VECTOR2I,
+                     tolerance_mm: float = 0.02) -> bool:
+                return (abs(mm(point.x - other.x)) <= tolerance_mm and
+                        abs(mm(point.y - other.y)) <= tolerance_mm)
+
+            def is_local_pad_escape(segment: pcbnew.PCB_TRACK) -> bool:
+                """Allow only a short pad-to-via neck before a wide trunk.
+
+                Fine-pitch IC/connector pads cannot physically launch at the
+                full switch/high-current trunk width.  The exception is
+                deliberately narrow: one endpoint must be this net's pad, the
+                other a via, and the segment may be no longer than 3 mm.
+                Via-to-via and free-junction narrow trunks remain errors.
+                """
+                if mm(segment.GetLength()) > 3.0:
+                    return False
+                endpoints = (segment.GetStart(), segment.GetEnd())
+                pad_end = any(
+                    pad.GetNetname() == net and
+                    any(near(endpoint, pad.GetPosition())
+                        for endpoint in endpoints)
+                    for pad in pads)
+                via_end = any(
+                    via.GetNetname() == net and
+                    any(near(endpoint, via.GetPosition())
+                        for endpoint in endpoints)
+                    for via in vias)
+                return pad_end and via_end
+
+            narrow = [segment for segment in segments
+                      if mm(segment.GetWidth()) + 1e-6 < required_width]
+            unacceptable = narrow
+            if group in ("switch", "high_current"):
+                unacceptable = [segment for segment in narrow
+                                if not is_local_pad_escape(segment)]
+            if unacceptable:
+                narrowest = min(mm(item.GetWidth()) for item in unacceptable)
                 errors.append(
-                    f"WIDTH_{net}: {min(widths):.3f} mm below {required_width:.3f} mm")
+                    f"WIDTH_{net}: {narrowest:.3f} mm below "
+                    f"{required_width:.3f} mm outside local pad escape")
             if group in ("rf", "crystal") and vias:
                 errors.append(f"VIA_{net}: expected no vias, found {len(vias)}")
         report["groups"][group] = group_rows

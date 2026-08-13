@@ -2244,11 +2244,11 @@ def add_reviewed_usb_power_entry(board: pcbnew.BOARD, nets: dict) -> None:
         track(pcbnew.F_Cu, source.GetPosition(), via.GetPosition(), 0.25)
     junction = pcbnew.VECTOR2I_MM(51.80, 8.80)
     trunk_corner = pcbnew.VECTOR2I_MM(51.80, 12.50)
-    track(pcbnew.In4_Cu, vias[0].GetPosition(), junction, 0.60)
-    track(pcbnew.In4_Cu, vias[1].GetPosition(), junction, 0.60)
-    track(pcbnew.In4_Cu, junction, trunk_corner, 0.80)
-    track(pcbnew.In4_Cu, trunk_corner, vias[2].GetPosition(), 0.80)
-    track(pcbnew.F_Cu, vias[2].GetPosition(), fuse_pad.GetPosition(), 0.80)
+    track(pcbnew.In4_Cu, vias[0].GetPosition(), junction, 1.20)
+    track(pcbnew.In4_Cu, vias[1].GetPosition(), junction, 1.20)
+    track(pcbnew.In4_Cu, junction, trunk_corner, 1.20)
+    track(pcbnew.In4_Cu, trunk_corner, vias[2].GetPosition(), 1.20)
+    track(pcbnew.F_Cu, vias[2].GetPosition(), fuse_pad.GetPosition(), 1.20)
 
 
 def add_reviewed_logic_fanout(board: pcbnew.BOARD, nets: dict) -> None:
