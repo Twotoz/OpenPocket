@@ -1,0 +1,51 @@
+{
+  "product": "OpenPocket Rev A",
+  "classification": "Engineering Prototype",
+  "manufacturing_release_allowed": false,
+  "board_target_mm": [115, 72],
+  "blockers": [
+    {
+      "id": "PANEL_MECHANICAL_AUDIT",
+      "resolved": false,
+      "required_evidence": "ER-TFT050A3-2 pin/timing audit plus FPC pin-1 and final enclosure-stack overlay"
+    },
+    {
+      "id": "AMT630A_FIRMWARE_LICENSE",
+      "resolved": false,
+      "required_evidence": "Independent AMT630A register and clean-room source review against the approved source manifest"
+    },
+    {
+      "id": "RX5808_CONSIGNED_MODULE",
+      "resolved": false,
+      "required_evidence": "C2908157/WREKD module footprint overlay, supplier SPI-enable work instruction, and inspected assembly sample"
+    },
+    {
+      "id": "ASSEMBLER_SOURCING",
+      "resolved": false,
+      "required_evidence": "JLC pre-order/consignment acceptance and approved no-substitution BOM; vendor-neutral alternate quote"
+    },
+    {
+      "id": "SCHEMATIC_REVIEW",
+      "resolved": false,
+      "required_evidence": "Independent pin-by-pin schematic review and clean KiCad 9 ERC"
+    },
+    {
+      "id": "LAYOUT_REVIEW",
+      "resolved": false,
+      "required_evidence": "Clean KiCad 9 DRC, Gerber inspection, impedance/stack-up review, BOM/CPL match"
+    }
+  ],
+  "physical_validation": {
+    "passed": false,
+    "required": [
+      "current-limited startup", "USB-only operation", "charging",
+      "simulator USB HID", "display colour bars", "40-pin panel",
+      "backlight thermal", "RX5808 all channels", "RSSI calibration",
+      "PAL", "NTSC", "AT7456E overlay", "video loss and recovery",
+      "weak-signal snow", "ELRS 10 mW", "ELRS 100 mW",
+      "microSD 8/16/32 GB matrix", "microSD removal under logging",
+      "RF coexistence", "low-battery shutdown", "multi-hour endurance",
+      "propeller-off HIL"
+    ]
+  }
+}

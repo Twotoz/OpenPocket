@@ -1,0 +1,2659 @@
+** Drc report for openpocket-power-islands60-imported.kicad_pcb **
+** Created on 2026-08-11T09:21:08+0200 **
+** Report includes: Errors, Warnings, Exclusions **
+
+** Found 619 DRC violations **
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(58.0000 mm, 35.2500 mm): Track [AMT_FLASH_MISO_ESP] on B.Cu, length 0.5779 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(57.4158 mm, 35.2563 mm): Track [AMT_FLASH_MISO_ESP] on B.Cu, length 0.1927 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(57.4221 mm, 35.2500 mm): Track [AMT_FLASH_MISO_ESP] on B.Cu, length 0.0089 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(53.7104 mm, 30.5622 mm): Track [AMT_FLASH_MOSI] on B.Cu, length 0.7432 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(54.1105 mm, 30.1621 mm): Track [AMT_FLASH_MOSI] on B.Cu, length 0.5658 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(58.0000 mm, 25.9000 mm): Track [AUDIO_I2S_DATA] on B.Cu, length 0.5779 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(58.5779 mm, 25.9000 mm): Track [AUDIO_I2S_DATA] on B.Cu, length 0.2792 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(58.7753 mm, 25.7026 mm): Track [AUDIO_I2S_DATA] on B.Cu, length 0.0016 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(68.8315 mm, 38.4367 mm): Track [OSD_MISO_3V3] on B.Cu, length 0.8224 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(83.4648 mm, 10.0348 mm): Track [SD_CLK] on B.Cu, length 1.0788 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(91.8866 mm, 20.7777 mm): Track [SD_CMD] on F.Cu, length 1.9486 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(98.5355 mm, 22.2523 mm): Track [SD_DAT3] on F.Cu, length 0.3691 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(98.8352 mm, 22.2523 mm): Track [SD_DAT3] on F.Cu, length 0.2997 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'USB_Preliminary' (diff pair); error
+    @(55.1300 mm, 4.6500 mm): Track [USB_D+] on F.Cu, length 0.7829 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'USB_Preliminary' (diff pair); error
+    @(54.2223 mm, 4.5252 mm): Track [USB_D+] on F.Cu, length 0.1765 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'USB_Preliminary' (diff pair); error
+    @(55.9129 mm, 5.3923 mm): Track [USB_D+] on F.Cu, length 0.7423 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'USB_Preliminary' (diff pair); error
+    @(54.1632 mm, 4.5252 mm): Track [USB_D+] on F.Cu, length 0.0591 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'USB_Preliminary' (diff pair); error
+    @(55.1300 mm, 4.6500 mm): Track [USB_D+] on F.Cu, length 0.7164 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'USB_Preliminary' (diff pair); error
+    @(55.6552 mm, 5.6500 mm): Track [USB_D+] on F.Cu, length 0.3644 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'USB_Preliminary' (diff pair); error
+    @(54.3471 mm, 6.1173 mm): Track [USB_D-] on F.Cu, length 0.0327 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'USB_Preliminary' (diff pair); error
+    @(55.1300 mm, 6.1500 mm): Track [USB_D-] on F.Cu, length 0.7829 mm
+[track_width]: Track width (board setup constraints min width 0.1200 mm; actual 0.1124 mm)
+    Rule: netclass 'USB_Preliminary' (diff pair); error
+    @(54.2550 mm, 6.0252 mm): Track [USB_D-] on F.Cu, length 0.1302 mm
+[shorting_items]: Items shorting two nets (nets CTRL_1_4 and GND)
+    Local override; error
+    @(31.3326 mm, 44.9304 mm): Via [CTRL_1_4] on F.Cu - B.Cu
+    @(31.9000 mm, 47.1500 mm): Track [GND] on F.Cu, length 2.0207 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2354 mm)
+    Rule: board setup constraints hole; error
+    @(47.9158 mm, 56.5938 mm): Track [CTRL_0_6] on SIG2, length 0.5197 mm
+    @(47.7268 mm, 57.0206 mm): Via [LCD_R6] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2282 mm)
+    Rule: board setup constraints hole; error
+    @(30.1956 mm, 57.4655 mm): Track [LCD_G3] on SIG2, length 2.5560 mm
+    @(28.2399 mm, 58.8722 mm): Via [LCD_G5] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and USB_CC1)
+    Local override; error
+    @(55.1300 mm, 8.4500 mm): Track [GND] on F.Cu, length 1.5000 mm
+    @(53.5075 mm, 7.7623 mm): Track [USB_CC1] on F.Cu, length 1.1862 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2349 mm)
+    Rule: board setup constraints hole; error
+    @(66.6737 mm, 46.2981 mm): Track [3V3_VAUX] on F.Cu, length 1.0163 mm
+    @(65.7895 mm, 46.5672 mm): Via [3V3_FB] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2387 mm)
+    Rule: board setup constraints hole; error
+    @(44.7746 mm, 38.4387 mm): Track [RX_RSSI_RAW] on SIG4, length 1.2293 mm
+    @(43.9441 mm, 38.0000 mm): Via [LCD_DCLK] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2364 mm)
+    Rule: board setup constraints hole; error
+    @(35.1782 mm, 53.7786 mm): Track [CTRL_0_6] on SIG2, length 3.3421 mm
+    @(35.5806 mm, 54.7981 mm): Via [LCD_B3] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and BAT_CELL_NEG)
+    Local override; error
+    @(17.1000 mm, 55.0500 mm): Via [GND] on F.Cu - B.Cu
+    @(19.5160 mm, 53.6899 mm): Track [BAT_CELL_NEG] on SIG1, length 7.2807 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2415 mm)
+    Rule: board setup constraints hole; error
+    @(28.3882 mm, 59.2729 mm): Track [LCD_G3] on SIG2, length 1.1016 mm
+    @(27.6881 mm, 58.8714 mm): Via [LCD_G4] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and BAT_CELL_NEG)
+    Local override; error
+    @(7.5500 mm, 48.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(7.7955 mm, 46.7005 mm): Track [BAT_CELL_NEG] on SIG2, length 4.7096 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(79.2500 mm, 44.2700 mm): Track [GND] on F.Cu, length 2.7700 mm
+    @(84.5929 mm, 43.4313 mm): Track [5V_FB] on F.Cu, length 7.0559 mm
+[shorting_items]: Items shorting two nets (nets GND and TP_OSD_VSYNC)
+    Local override; error
+    @(43.4000 mm, 41.3500 mm): Track [GND] on F.Cu, length 1.2000 mm
+    @(43.2777 mm, 40.2382 mm): Via [TP_OSD_VSYNC] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2268 mm)
+    Rule: board setup constraints hole; error
+    @(42.4487 mm, 56.5938 mm): Track [CTRL_0_6] on SIG2, length 5.4671 mm
+    @(47.7268 mm, 57.0206 mm): Via [LCD_R6] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CTRL_1_4 and GND)
+    Local override; error
+    @(31.3326 mm, 44.9304 mm): Via [CTRL_1_4] on F.Cu - B.Cu
+    @(30.6200 mm, 45.2000 mm): Track [GND] on F.Cu, length 0.7500 mm
+[shorting_items]: Items shorting two nets (nets CTRL_0_6 and GND)
+    Local override; error
+    @(30.6692 mm, 53.7786 mm): Track [CTRL_0_6] on SIG2, length 4.5090 mm
+    @(31.5000 mm, 54.0000 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2271 mm)
+    Rule: board setup constraints hole; error
+    @(64.7574 mm, 46.1716 mm): Pad 2 [GND] of C36 on B.Cu
+    @(65.7895 mm, 46.5672 mm): Via [3V3_FB] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and LCD_G3)
+    Local override; error
+    @(41.9200 mm, 50.7500 mm): Via [GND] on F.Cu - B.Cu
+    @(43.7353 mm, 49.1029 mm): Track [LCD_G3] on SIG3, length 3.7607 mm
+[shorting_items]: Items shorting two nets (nets CTRL_1_3 and GND)
+    Local override; error
+    @(25.2210 mm, 45.2174 mm): Via [CTRL_1_3] on F.Cu - B.Cu
+    @(24.9200 mm, 44.5000 mm): Track [GND] on F.Cu, length 0.7500 mm
+[shorting_items]: Items shorting two nets (nets GND and CHG_QON)
+    Local override; error
+    @(56.2500 mm, 16.9100 mm): Track [GND] on F.Cu, length 1.0922 mm
+    @(56.1433 mm, 18.2512 mm): Via [CHG_QON] on F.Cu - B.Cu
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(27.8689 mm, 36.6517 mm): Track [OSD_XTAL_OUT] on F.Cu, length 6.9689 mm
+    @(26.7200 mm, 37.8700 mm): Track [GND] on F.Cu, length 2.1215 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(51.6329 mm, 9.7318 mm): Track [USB_CC1] on F.Cu, length 0.9990 mm
+    @(51.5000 mm, 9.0000 mm): Track [GND] on F.Cu, length 2.3585 mm
+[shorting_items]: Items shorting two nets (nets CTRL_0_15 and GND)
+    Local override; error
+    @(50.1335 mm, 49.9001 mm): Via [CTRL_0_15] on F.Cu - B.Cu
+    @(51.6500 mm, 49.6000 mm): Track [GND] on F.Cu, length 1.5000 mm
+[shorting_items]: Items shorting two nets (nets GND and 3V3_PG)
+    Local override; error
+    @(68.9300 mm, 43.7500 mm): Via [GND] on F.Cu - B.Cu
+    @(69.0012 mm, 41.4580 mm): Track [3V3_PG] on F.Cu, length 2.9598 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0801 mm)
+    Rule: netclass 'Ground'; error
+    @(58.7478 mm, 18.4260 mm): Track [BAT_NTC] on F.Cu, length 0.1739 mm
+    @(59.3200 mm, 18.5000 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2427 mm)
+    Rule: board setup constraints hole; error
+    @(27.6881 mm, 59.2424 mm): Track [LCD_G4] on F.Cu, length 0.3710 mm
+    @(27.2866 mm, 59.2729 mm): Via [LCD_G3] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and TP_AMT_P8)
+    Local override; error
+    @(40.0000 mm, 46.3500 mm): Via [GND] on F.Cu - B.Cu
+    @(37.2017 mm, 49.2000 mm): Track [TP_AMT_P8] on F.Cu, length 6.8025 mm
+[shorting_items]: Items shorting two nets (nets GND and TP_AMT_P9)
+    Local override; error
+    @(40.0000 mm, 46.3500 mm): Via [GND] on F.Cu - B.Cu
+    @(40.6752 mm, 45.5823 mm): Track [TP_AMT_P9] on SIG2, length 3.7567 mm
+[shorting_items]: Items shorting two nets (nets GND and LCD_DCLK)
+    Local override; error
+    @(40.0000 mm, 46.3500 mm): Via [GND] on F.Cu - B.Cu
+    @(38.4735 mm, 47.9313 mm): Track [LCD_DCLK] on SIG3, length 5.9838 mm
+[shorting_items]: Items shorting two nets (nets GND and BAT_NTC)
+    Local override; error
+    @(59.3200 mm, 18.5000 mm): Via [GND] on F.Cu - B.Cu
+    @(58.9217 mm, 18.4260 mm): Track [BAT_NTC] on F.Cu, length 1.1821 mm
+[shorting_items]: Items shorting two nets (nets GND and CHG_QON)
+    Local override; error
+    @(56.1800 mm, 18.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(56.1433 mm, 18.2512 mm): Via [CHG_QON] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and CHG_QON)
+    Local override; error
+    @(56.1800 mm, 18.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(56.4204 mm, 18.5283 mm): Track [CHG_QON] on B.Cu, length 0.3919 mm
+[shorting_items]: Items shorting two nets (nets GND and CHG_QON)
+    Local override; error
+    @(56.1800 mm, 18.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(56.4303 mm, 18.5382 mm): Track [CHG_QON] on SIG3, length 0.4059 mm
+[shorting_items]: Items shorting two nets (nets CRSF_TX and GND)
+    Local override; error
+    @(32.4200 mm, 33.6644 mm): Track [CRSF_TX] on SIG1, length 17.6635 mm
+    @(29.9800 mm, 31.3800 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2427 mm)
+    Rule: board setup constraints hole; error
+    @(28.0000 mm, 59.5543 mm): Track [LCD_G4] on F.Cu, length 0.4411 mm
+    @(27.2866 mm, 59.2729 mm): Via [LCD_G3] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2375 mm)
+    Rule: board setup constraints hole; error
+    @(74.0693 mm, 70.4747 mm): Track [SD_CARD_DETECT] on SIG2, length 61.6721 mm
+    @(14.5122 mm, 70.9122 mm): Via [BAT_NTC] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets SD_CARD_DETECT and GND)
+    Local override; error
+    @(104.5332 mm, 51.3857 mm): Track [SD_CARD_DETECT] on SIG3, length 27.7491 mm
+    @(90.1700 mm, 66.0000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and AMT_FLASH_SEL)
+    Local override; error
+    @(45.5000 mm, 32.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(44.6199 mm, 31.2116 mm): Track [AMT_FLASH_SEL] on SIG3, length 2.7853 mm
+[clearance]: Clearance violation (netclass 'DigitalFast' clearance 0.1200 mm; actual 0.0158 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(45.5000 mm, 32.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(37.7245 mm, 31.6842 mm): Track [RX_CLK_MCU] on SIG4, length 19.0552 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2322 mm)
+    Rule: board setup constraints hole; error
+    @(55.6501 mm, 48.8612 mm): Track [I2C_SCL] on SIG1, length 0.4101 mm
+    @(54.9334 mm, 49.2202 mm): Via [LCD_G4] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and BAT_RAW)
+    Local override; error
+    @(12.7500 mm, 54.6900 mm): Via [GND] on F.Cu - B.Cu
+    @(12.0824 mm, 56.1557 mm): Track [BAT_RAW] on F.Cu, length 1.0337 mm
+[shorting_items]: Items shorting two nets (nets GND and PACK_NEG_SENSE)
+    Local override; error
+    @(12.7500 mm, 54.6900 mm): Via [GND] on F.Cu - B.Cu
+    @(12.3236 mm, 54.0134 mm): Track [PACK_NEG_SENSE] on SIG1, length 1.4743 mm
+[shorting_items]: Items shorting two nets (nets CTRL_1_0 and GND)
+    Local override; error
+    @(30.0020 mm, 54.9062 mm): Track [CTRL_1_0] on SIG4, length 21.7521 mm
+    @(12.7500 mm, 54.6900 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and I2C_SCL)
+    Local override; error
+    @(54.6200 mm, 51.2300 mm): Via [GND] on F.Cu - B.Cu
+    @(53.8129 mm, 52.3621 mm): Track [I2C_SCL] on F.Cu, length 2.2765 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2268 mm)
+    Rule: board setup constraints hole; error
+    @(27.6881 mm, 58.8714 mm): Via [LCD_G4] on F.Cu - B.Cu
+    @(28.2399 mm, 58.8722 mm): Via [LCD_G5] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0746 mm)
+    Rule: netclass 'Ground'; error
+    @(54.6200 mm, 51.2300 mm): Via [GND] on F.Cu - B.Cu
+    @(51.8393 mm, 50.8304 mm): Track [TP_AMT_UART1] on B.Cu, length 2.7949 mm
+[shorting_items]: Items shorting two nets (nets GND and CRSF_RX)
+    Local override; error
+    @(54.6200 mm, 51.2300 mm): Via [GND] on F.Cu - B.Cu
+    @(56.0818 mm, 52.6964 mm): Track [CRSF_RX] on SIG1, length 3.7894 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2269 mm)
+    Rule: board setup constraints hole; error
+    @(21.5023 mm, 58.8272 mm): Track [BAT_NTC] on SIG1, length 6.7515 mm
+    @(22.0000 mm, 58.9332 mm): Via [LCD_R0] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2428 mm)
+    Rule: board setup constraints hole; error
+    @(27.6881 mm, 58.8714 mm): Via [LCD_G4] on F.Cu - B.Cu
+    @(27.2866 mm, 59.2729 mm): Via [LCD_G3] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and OSD_SCLK_5V)
+    Local override; error
+    @(20.0000 mm, 32.5500 mm): Via [GND] on F.Cu - B.Cu
+    @(19.8208 mm, 35.2146 mm): Track [OSD_SCLK_5V] on SIG3, length 4.6392 mm
+[shorting_items]: Items shorting two nets (nets GND and BAT_NTC)
+    Local override; error
+    @(59.3200 mm, 18.5000 mm): Via [GND] on F.Cu - B.Cu
+    @(58.4957 mm, 18.0000 mm): Track [BAT_NTC] on SIG2, length 1.7846 mm
+[shorting_items]: Items shorting two nets (nets 3V3_VAUX and GND)
+    Local override; error
+    @(65.9551 mm, 47.0167 mm): Track [3V3_VAUX] on F.Cu, length 1.1501 mm
+    @(65.2145 mm, 47.1745 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and MASTER_CT)
+    Local override; error
+    @(65.2145 mm, 47.1745 mm): Via [GND] on F.Cu - B.Cu
+    @(57.6548 mm, 47.2069 mm): Track [MASTER_CT] on SIG2, length 7.3448 mm
+[shorting_items]: Items shorting two nets (nets CTRL_0_10 and GND)
+    Local override; error
+    @(65.9455 mm, 47.0167 mm): Track [CTRL_0_10] on SIG4, length 1.8914 mm
+    @(65.2145 mm, 47.1745 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and GIMBAL_RY_RAW)
+    Local override; error
+    @(69.2500 mm, 23.2500 mm): Via [GND] on F.Cu - B.Cu
+    @(74.2141 mm, 18.2235 mm): Track [GIMBAL_RY_RAW] on SIG1, length 7.1216 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2269 mm)
+    Rule: board setup constraints hole; error
+    @(26.4833 mm, 59.5290 mm): Track [LCD_R7] on SIG3, length 2.5681 mm
+    @(27.6881 mm, 58.8714 mm): Via [LCD_G4] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and AUDIO_I2S_WS)
+    Local override; error
+    @(69.2500 mm, 23.2500 mm): Via [GND] on F.Cu - B.Cu
+    @(61.2569 mm, 23.0683 mm): Track [AUDIO_I2S_WS] on SIG2, length 12.7816 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(59.1208 mm, 31.3575 mm): Track [SD_CMD_MCU] on B.Cu, length 0.4144 mm
+    @(58.8914 mm, 31.8042 mm): Via [SD_CLK_MCU] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and 5V_VIDEO_CT)
+    Local override; error
+    @(22.1000 mm, 40.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(22.9933 mm, 40.9208 mm): Track [5V_VIDEO_CT] on SIG3, length 3.3868 mm
+[shorting_items]: Items shorting two nets (nets BAT_RAW and GND)
+    Local override; error
+    @(12.0824 mm, 55.1220 mm): Track [BAT_RAW] on F.Cu, length 0.2370 mm
+    @(12.7500 mm, 53.9400 mm): Track [GND] on F.Cu, length 0.7500 mm
+[shorting_items]: Items shorting two nets (nets GND and SPK+)
+    Local override; error
+    @(94.5000 mm, 22.4700 mm): Via [GND] on F.Cu - B.Cu
+    @(96.7189 mm, 22.3677 mm): Track [SPK+] on SIG2, length 24.1663 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2385 mm)
+    Rule: board setup constraints hole; error
+    @(47.8652 mm, 57.4458 mm): Track [LCD_G4] on SIG3, length 0.8219 mm
+    @(47.7268 mm, 57.0206 mm): Via [LCD_R6] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(61.2760 mm, 34.8559 mm): Track [CRSF_RX_MCU] on SIG4, length 5.0263 mm
+    @(58.8914 mm, 31.8042 mm): Via [SD_CLK_MCU] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and AUDIO_I2S_WS)
+    Local override; error
+    @(65.8500 mm, 23.2500 mm): Via [GND] on F.Cu - B.Cu
+    @(61.2569 mm, 23.0683 mm): Track [AUDIO_I2S_WS] on SIG2, length 12.7816 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2269 mm)
+    Rule: board setup constraints hole; error
+    @(27.6881 mm, 59.8983 mm): Track [LCD_G4] on SIG3, length 3.3824 mm
+    @(29.7125 mm, 61.3756 mm): Via [LCD_G7] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.1351 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(12.7500 mm, 54.6900 mm): Via [GND] on F.Cu - B.Cu
+    @(12.2500 mm, 54.9544 mm): Track [BAT_RAW] on F.Cu, length 1.0144 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2318 mm)
+    Rule: board setup constraints hole; error
+    @(45.7792 mm, 33.0099 mm): Track [GIMBAL_LY_RAW] on SIG1, length 38.4727 mm
+    @(33.4800 mm, 20.1000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CTRL_0_8 and GND)
+    Local override; error
+    @(48.0096 mm, 53.2542 mm): Track [CTRL_0_8] on SIG2, length 5.4818 mm
+    @(44.7500 mm, 53.5000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CTRL_0_8 and GND)
+    Local override; error
+    @(56.2744 mm, 45.4882 mm): Track [CTRL_0_8] on SIG4, length 12.9325 mm
+    @(64.1774 mm, 45.7074 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2415 mm)
+    Rule: board setup constraints hole; error
+    @(27.6881 mm, 58.8714 mm): Track [LCD_G4] on SIG3, length 1.0269 mm
+    @(27.2866 mm, 59.2729 mm): Via [LCD_G3] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'AnalogVideo' clearance 0.1500 mm; actual 0.0741 mm)
+    Rule: netclass 'AnalogVideo'; error
+    @(21.9200 mm, 50.2500 mm): Via [GND] on F.Cu - B.Cu
+    @(22.3441 mm, 43.5038 mm): Track [VRX_VIDEO_COUPLED] on SIG1, length 11.4057 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0607 mm)
+    Rule: netclass 'Ground'; error
+    @(21.9200 mm, 50.2500 mm): Via [GND] on F.Cu - B.Cu
+    @(20.7750 mm, 51.9405 mm): Track [CTRL_1_4] on SIG4, length 9.9138 mm
+[shorting_items]: Items shorting two nets (nets TP_CVBS3 and GND)
+    Local override; error
+    @(41.1422 mm, 51.1219 mm): Track [TP_CVBS3] on F.Cu, length 2.1277 mm
+    @(41.9200 mm, 50.7500 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0952 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(12.7500 mm, 53.9400 mm): Track [GND] on F.Cu, length 0.7500 mm
+    @(12.0824 mm, 56.1557 mm): Track [BAT_RAW] on F.Cu, length 1.0337 mm
+[shorting_items]: Items shorting two nets (nets TP_CVBS2 and GND)
+    Local override; error
+    @(40.6116 mm, 51.5852 mm): Track [TP_CVBS2] on SIG3, length 3.1900 mm
+    @(41.9200 mm, 50.7500 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0067 mm)
+    Rule: netclass 'Ground'; error
+    @(41.9200 mm, 50.7500 mm): Via [GND] on F.Cu - B.Cu
+    @(43.2839 mm, 50.4583 mm): Track [LCD_G7] on SIG4, length 6.7223 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2359 mm)
+    Rule: board setup constraints hole; error
+    @(42.6305 mm, 62.2900 mm): Track [LCD_G4] on SIG3, length 6.8507 mm
+    @(46.7296 mm, 57.6310 mm): Via [LCD_B7] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and CTRL_1_3)
+    Local override; error
+    @(24.9200 mm, 45.2500 mm): Via [GND] on F.Cu - B.Cu
+    @(25.2210 mm, 45.2174 mm): Via [CTRL_1_3] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(54.1146 mm, 46.8043 mm): Track [CTRL_0_8] on SIG4, length 0.8482 mm
+    @(53.9379 mm, 46.3776 mm): Via [LCD_G1] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and CTRL_1_3)
+    Local override; error
+    @(24.9200 mm, 45.2500 mm): Via [GND] on F.Cu - B.Cu
+    @(25.2210 mm, 45.1789 mm): Track [CTRL_1_3] on SIG1, length 3.1704 mm
+[shorting_items]: Items shorting two nets (nets GND and CTRL_1_3)
+    Local override; error
+    @(24.9200 mm, 45.2500 mm): Via [GND] on F.Cu - B.Cu
+    @(25.2210 mm, 45.2174 mm): Track [CTRL_1_3] on SIG4, length 1.1177 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(49.8111 mm, 46.8043 mm): Track [CTRL_0_8] on SIG4, length 4.3035 mm
+    @(53.9379 mm, 46.3776 mm): Via [LCD_G1] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets LCD_G5 and GND)
+    Local override; error
+    @(48.3298 mm, 45.5870 mm): Track [LCD_G5] on F.Cu, length 2.8468 mm
+    @(48.5500 mm, 46.0000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and EN_3V3_SD)
+    Local override; error
+    @(87.6700 mm, 20.5000 mm): Via [GND] on F.Cu - B.Cu
+    @(87.0712 mm, 21.1790 mm): Track [EN_3V3_SD] on B.Cu, length 0.7454 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2482 mm)
+    Rule: board setup constraints hole; error
+    @(94.9950 mm, 4.4500 mm): Pad 10 [GND] of J12 on F.Cu
+    @(96.0682 mm, 3.6792 mm): Via [SD_CMD] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2407 mm)
+    Rule: board setup constraints hole; error
+    @(28.3882 mm, 59.2729 mm): Track [LCD_G3] on SIG2, length 1.1016 mm
+    @(28.2399 mm, 58.8722 mm): Via [LCD_G5] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0706 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(5.4423 mm, 45.6456 mm): Track [BAT_RAW] on SIG2, length 3.5815 mm
+    @(3.5700 mm, 44.7500 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and AMT_FLASH_CLK)
+    Local override; error
+    @(40.2500 mm, 35.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(40.4225 mm, 34.8935 mm): Track [AMT_FLASH_CLK] on SIG3, length 3.6466 mm
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.0014 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(12.7500 mm, 53.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(12.3236 mm, 49.6448 mm): Track [PACK_NEG_SENSE] on SIG1, length 4.3686 mm
+[shorting_items]: Items shorting two nets (nets GND and PROT_COUT)
+    Local override; error
+    @(12.7500 mm, 53.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(8.9448 mm, 53.1203 mm): Track [PROT_COUT] on SIG2, length 4.2048 mm
+[shorting_items]: Items shorting two nets (nets GND and BUZZER_LOW)
+    Local override; error
+    @(80.7500 mm, 5.9500 mm): Via [GND] on F.Cu - B.Cu
+    @(83.6236 mm, 8.3064 mm): Track [BUZZER_LOW] on SIG1, length 4.8674 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2265 mm)
+    Rule: board setup constraints hole; error
+    @(43.0722 mm, 46.7376 mm): Track [TP_AMT_P7] on B.Cu, length 2.7034 mm
+    @(43.2084 mm, 47.2046 mm): Via [LCD_G5] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and BUZZER_5V)
+    Local override; error
+    @(80.7500 mm, 5.9500 mm): Via [GND] on F.Cu - B.Cu
+    @(80.7883 mm, 7.5128 mm): Track [BUZZER_5V] on SIG3, length 5.2859 mm
+[shorting_items]: Items shorting two nets (nets CTRL_0_9 and GND)
+    Local override; error
+    @(42.6124 mm, 53.5665 mm): Track [CTRL_0_9] on SIG2, length 5.5115 mm
+    @(44.7500 mm, 53.5000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and SYS_SWITCHED)
+    Local override; error
+    @(64.0931 mm, 43.3431 mm): Via [GND] on F.Cu - B.Cu
+    @(61.4128 mm, 41.7813 mm): Track [SYS_SWITCHED] on SIG2, length 5.1815 mm
+[shorting_items]: Items shorting two nets (nets GND and EXP_INT)
+    Local override; error
+    @(64.0931 mm, 43.3431 mm): Via [GND] on F.Cu - B.Cu
+    @(69.5297 mm, 37.8518 mm): Track [EXP_INT] on SIG3, length 12.2201 mm
+[clearance]: Clearance violation (netclass 'DigitalFast' clearance 0.1200 mm; actual 0.0147 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(91.1700 mm, 18.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(84.1098 mm, 11.3848 mm): Track [SD_CMD] on SIG3, length 10.9981 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2266 mm)
+    Rule: board setup constraints hole; error
+    @(42.3673 mm, 53.8116 mm): Track [CTRL_0_9] on SIG2, length 0.3466 mm
+    @(42.7890 mm, 53.9932 mm): Via [LCD_B2] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and MASTER_CT)
+    Local override; error
+    @(63.0645 mm, 47.5045 mm): Via [GND] on F.Cu - B.Cu
+    @(57.6548 mm, 47.2069 mm): Track [MASTER_CT] on SIG2, length 7.3448 mm
+[shorting_items]: Items shorting two nets (nets GND and CTRL_0_9)
+    Local override; error
+    @(63.0645 mm, 47.5045 mm): Via [GND] on F.Cu - B.Cu
+    @(65.8206 mm, 47.3184 mm): Track [CTRL_0_9] on SIG4, length 8.1002 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2374 mm)
+    Rule: board setup constraints hole; error
+    @(49.9999 mm, 59.7230 mm): Track [EXP_INT] on SIG1, length 1.2449 mm
+    @(50.6208 mm, 59.7207 mm): Via [BL_COMP] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2313 mm)
+    Rule: board setup constraints hole; error
+    @(36.0918 mm, 59.3717 mm): Track [LCD_G5] on SIG3, length 4.4958 mm
+    @(31.7609 mm, 58.9804 mm): Via [LCD_B5] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and CTRL_0_9)
+    Local override; error
+    @(65.2145 mm, 47.1745 mm): Via [GND] on F.Cu - B.Cu
+    @(65.8206 mm, 47.3184 mm): Track [CTRL_0_9] on SIG4, length 8.1002 mm
+[clearance]: Clearance violation (netclass 'AnalogVideo' clearance 0.1500 mm; actual 0.0911 mm)
+    Rule: netclass 'AnalogVideo'; error
+    @(28.0200 mm, 31.3800 mm): Via [GND] on F.Cu - B.Cu
+    @(28.2259 mm, 30.7993 mm): Via [VRX_VIDEO_COUPLED] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(58.8467 mm, 30.9999 mm): Track [SD_D0_MCU] on B.Cu, length 2.2118 mm
+    @(59.4643 mm, 31.0140 mm): Via [SD_CMD_MCU] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets LCD_G5 and GND)
+    Local override; error
+    @(39.7890 mm, 49.9266 mm): Track [LCD_G5] on SIG3, length 4.9716 mm
+    @(39.7000 mm, 50.7500 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and VRX_VIDEO_COUPLED)
+    Local override; error
+    @(28.0200 mm, 31.3800 mm): Via [GND] on F.Cu - B.Cu
+    @(28.2259 mm, 30.7993 mm): Track [VRX_VIDEO_COUPLED] on SIG3, length 0.4424 mm
+[shorting_items]: Items shorting two nets (nets GND and USB_D-_MCU)
+    Local override; error
+    @(53.6300 mm, 2.3500 mm): Via [GND] on F.Cu - B.Cu
+    @(56.3587 mm, 4.7606 mm): Track [USB_D-_MCU] on SIG3, length 3.6929 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2333 mm)
+    Rule: board setup constraints hole; error
+    @(31.5960 mm, 59.3717 mm): Track [LCD_G5] on SIG3, length 1.6949 mm
+    @(31.7609 mm, 58.9804 mm): Via [LCD_B5] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CTRL_1_0 and GND)
+    Local override; error
+    @(46.3669 mm, 46.3798 mm): Via [CTRL_1_0] on F.Cu - B.Cu
+    @(46.4629 mm, 46.2929 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(58.7064 mm, 31.3575 mm): Track [SD_CMD_MCU] on B.Cu, length 0.6965 mm
+    @(58.8914 mm, 31.8042 mm): Via [SD_CLK_MCU] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and CTRL_1_0)
+    Local override; error
+    @(45.7129 mm, 46.2929 mm): Track [GND] on B.Cu, length 0.7500 mm
+    @(46.3669 mm, 46.3798 mm): Via [CTRL_1_0] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2420 mm)
+    Rule: board setup constraints hole; error
+    @(43.8404 mm, 39.6829 mm): Via [RX_AUDIO_TP] on F.Cu - B.Cu
+    @(43.4000 mm, 40.1500 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and TP_OSD_VSYNC)
+    Local override; error
+    @(43.4000 mm, 40.1500 mm): Via [GND] on F.Cu - B.Cu
+    @(43.2777 mm, 40.2382 mm): Via [TP_OSD_VSYNC] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets TP_OSD_VSYNC and GND)
+    Local override; error
+    @(42.7399 mm, 40.7760 mm): Track [TP_OSD_VSYNC] on SIG1, length 0.7606 mm
+    @(43.4000 mm, 40.1500 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CTRL_1_0 and GND)
+    Local override; error
+    @(47.1855 mm, 45.4711 mm): Track [CTRL_1_0] on B.Cu, length 1.1577 mm
+    @(45.7129 mm, 46.2929 mm): Track [GND] on B.Cu, length 0.7500 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(46.3669 mm, 46.2897 mm): Track [CTRL_1_0] on B.Cu, length 0.0901 mm
+    @(45.7129 mm, 46.2929 mm): Track [GND] on B.Cu, length 0.7500 mm
+[shorting_items]: Items shorting two nets (nets GND and SD_D0_MCU)
+    Local override; error
+    @(65.0000 mm, 28.6000 mm): Via [GND] on F.Cu - B.Cu
+    @(76.3313 mm, 28.5083 mm): Track [SD_D0_MCU] on SIG2, length 14.5811 mm
+[shorting_items]: Items shorting two nets (nets GND and USB_D-_MCU)
+    Local override; error
+    @(65.0000 mm, 28.6000 mm): Via [GND] on F.Cu - B.Cu
+    @(65.0167 mm, 37.2201 mm): Track [USB_D-_MCU] on SIG3, length 15.9306 mm
+[clearance]: Clearance violation (netclass 'DigitalFast' clearance 0.1200 mm; actual 0.0645 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(82.7055 mm, 14.4645 mm): Via [GND] on F.Cu - B.Cu
+    @(83.0700 mm, 15.7116 mm): Track [SD_CMD_MCU] on SIG3, length 4.5669 mm
+[shorting_items]: Items shorting two nets (nets GND and CTRL_0_13)
+    Local override; error
+    @(78.5200 mm, 53.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(103.8019 mm, 52.7501 mm): Track [CTRL_0_13] on SIG2, length 47.4038 mm
+[shorting_items]: Items shorting two nets (nets GND and CTRL_0_14)
+    Local override; error
+    @(78.5200 mm, 53.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(100.5875 mm, 52.7184 mm): Track [CTRL_0_14] on SIG4, length 46.5399 mm
+[shorting_items]: Items shorting two nets (nets GND and CTRL_1_0)
+    Local override; error
+    @(45.5058 mm, 45.0858 mm): Track [GND] on B.Cu, length 3.1785 mm
+    @(48.6347 mm, 45.4711 mm): Track [CTRL_1_0] on B.Cu, length 1.4492 mm
+[shorting_items]: Items shorting two nets (nets GND and CRSF_RX)
+    Local override; error
+    @(32.3000 mm, 29.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(36.9070 mm, 29.1733 mm): Track [CRSF_RX] on SIG1, length 4.4479 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2472 mm)
+    Rule: board setup constraints hole; error
+    @(47.4217 mm, 46.8688 mm): Pad 1 [TP_AMT_DIAG] of TP13 on B.Cu
+    @(47.2689 mm, 46.0355 mm): Via [LCD_G6] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2261 mm)
+    Rule: board setup constraints hole; error
+    @(8.8626 mm, 68.3702 mm): Track [CTRL_1_0] on SIG1, length 0.7162 mm
+    @(9.5126 mm, 67.4626 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and CTRL_1_0)
+    Local override; error
+    @(9.5126 mm, 67.4626 mm): Via [GND] on F.Cu - B.Cu
+    @(9.3690 mm, 67.8638 mm): Track [CTRL_1_0] on SIG1, length 4.6884 mm
+[shorting_items]: Items shorting two nets (nets CTRL_1_0 and GND)
+    Local override; error
+    @(46.3669 mm, 46.3798 mm): Track [CTRL_1_0] on SIG2, length 0.6206 mm
+    @(46.4629 mm, 46.2929 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'BacklightHV' clearance 0.2000 mm; actual 0.0736 mm)
+    Rule: netclass 'BacklightHV'; error
+    @(45.7946 mm, 58.5186 mm): Track [BL_LED_A] on SIG4, length 6.4633 mm
+    @(48.6800 mm, 58.0200 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CTRL_1_0 and GND)
+    Local override; error
+    @(30.0020 mm, 54.9062 mm): Track [CTRL_1_0] on SIG4, length 21.7521 mm
+    @(11.8300 mm, 55.0000 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0177 mm)
+    Rule: netclass 'Ground'; error
+    @(8.3746 mm, 15.2199 mm): Track [CTRL_0_1] on SIG3, length 8.8108 mm
+    @(13.9200 mm, 21.2500 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets AUDIO_I2S_DATA and GND)
+    Local override; error
+    @(58.7753 mm, 24.8844 mm): Track [AUDIO_I2S_DATA] on SIG1, length 5.0033 mm
+    @(60.7500 mm, 23.2500 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and AUDIO_I2S_WS)
+    Local override; error
+    @(60.7500 mm, 23.2500 mm): Via [GND] on F.Cu - B.Cu
+    @(59.3325 mm, 24.9927 mm): Track [AUDIO_I2S_WS] on SIG2, length 2.7215 mm
+[shorting_items]: Items shorting two nets (nets GND and BL_LED_K)
+    Local override; error
+    @(51.9700 mm, 60.6500 mm): Track [GND] on F.Cu, length 2.0524 mm
+    @(50.6528 mm, 60.6520 mm): Track [BL_LED_K] on F.Cu, length 0.9557 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0613 mm)
+    Rule: netclass 'Ground'; error
+    @(72.7500 mm, 24.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(70.0500 mm, 21.8463 mm): Track [I2C_SDA] on F.Cu, length 5.3784 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(97.8530 mm, 6.7224 mm): Track [SD_D0] on B.Cu, length 1.1878 mm
+    @(97.4063 mm, 5.7197 mm): Via [SD_DAT2] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2280 mm)
+    Rule: board setup constraints hole; error
+    @(29.0000 mm, 58.8795 mm): Track [LCD_G6] on SIG3, length 0.6249 mm
+    @(29.5788 mm, 58.8494 mm): Via [LCD_B0] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and BL_LED_K)
+    Local override; error
+    @(51.9700 mm, 60.6500 mm): Track [GND] on F.Cu, length 2.0524 mm
+    @(50.6528 mm, 60.6520 mm): Via [BL_LED_K] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2484 mm)
+    Rule: board setup constraints hole; error
+    @(69.3145 mm, 32.9766 mm): Track [OSD_CS_3V3] on SIG2, length 15.5715 mm
+    @(65.0000 mm, 33.4000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets USB_D-_MCU and GND)
+    Local override; error
+    @(65.0167 mm, 37.2201 mm): Track [USB_D-_MCU] on SIG3, length 15.9306 mm
+    @(65.0000 mm, 33.4000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets AMT_VCOM and GND)
+    Local override; error
+    @(37.7163 mm, 50.3458 mm): Track [AMT_VCOM] on F.Cu, length 0.0001 mm
+    @(37.4503 mm, 50.5303 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and AMT_XTAL_IN)
+    Local override; error
+    @(37.4503 mm, 50.5303 mm): Via [GND] on F.Cu - B.Cu
+    @(37.3702 mm, 50.4702 mm): Track [AMT_XTAL_IN] on B.Cu, length 1.5188 mm
+[shorting_items]: Items shorting two nets (nets GND and CTRL_0_0)
+    Local override; error
+    @(37.4503 mm, 50.5303 mm): Via [GND] on F.Cu - B.Cu
+    @(35.3919 mm, 48.7586 mm): Track [CTRL_0_0] on SIG1, length 13.1871 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(97.8530 mm, 5.5346 mm): Track [SD_D0] on B.Cu, length 0.4001 mm
+    @(97.4063 mm, 5.7197 mm): Via [SD_DAT2] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'BacklightHV' clearance 0.2000 mm; actual 0.1643 mm)
+    Rule: netclass 'BacklightHV'; error
+    @(50.6528 mm, 60.6520 mm): Via [BL_LED_K] on F.Cu - B.Cu
+    @(49.9200 mm, 60.7500 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2269 mm)
+    Rule: board setup constraints hole; error
+    @(36.6827 mm, 59.5934 mm): Track [LCD_G6] on SIG3, length 5.4125 mm
+    @(38.7217 mm, 57.0073 mm): Via [LCD_G3] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets LCD_G7 and GND)
+    Local override; error
+    @(43.2839 mm, 50.4583 mm): Track [LCD_G7] on SIG4, length 6.7223 mm
+    @(37.4503 mm, 50.5303 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and TP_OSD_VSYNC)
+    Local override; error
+    @(40.0000 mm, 38.8500 mm): Via [GND] on F.Cu - B.Cu
+    @(37.7493 mm, 36.3118 mm): Track [TP_OSD_VSYNC] on SIG1, length 6.3133 mm
+[shorting_items]: Items shorting two nets (nets GND and SD_D0)
+    Local override; error
+    @(94.2450 mm, 4.4500 mm): Via [GND] on F.Cu - B.Cu
+    @(92.5307 mm, 4.3458 mm): Track [SD_D0] on SIG2, length 5.0393 mm
+[shorting_items]: Items shorting two nets (nets OSD_CS_5V and GND)
+    Local override; error
+    @(30.7295 mm, 38.6616 mm): Track [OSD_CS_5V] on SIG2, length 10.3643 mm
+    @(40.0000 mm, 38.8500 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets SD_D0 and GND)
+    Local override; error
+    @(89.0891 mm, 7.7874 mm): Track [SD_D0] on SIG3, length 6.8447 mm
+    @(89.3400 mm, 14.0000 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(30.2705 mm, 58.4376 mm): Track [LCD_G6] on SIG3, length 1.6345 mm
+    @(30.6739 mm, 59.3879 mm): Via [LCD_B2] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and CTRL_0_1)
+    Local override; error
+    @(27.6800 mm, 44.5000 mm): Via [GND] on F.Cu - B.Cu
+    @(25.2903 mm, 41.6880 mm): Track [CTRL_0_1] on SIG3, length 7.2389 mm
+[shorting_items]: Items shorting two nets (nets GND and CTRL_1_3)
+    Local override; error
+    @(27.6800 mm, 44.5000 mm): Via [GND] on F.Cu - B.Cu
+    @(26.0113 mm, 44.4271 mm): Track [CTRL_1_3] on SIG4, length 17.4897 mm
+[shorting_items]: Items shorting two nets (nets 3V3_LOGIC and GND)
+    Local override; error
+    @(50.4300 mm, 49.2217 mm): Track [3V3_LOGIC] on B.Cu, length 1.7034 mm
+    @(50.1500 mm, 49.6000 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2352 mm)
+    Rule: board setup constraints hole; error
+    @(42.8349 mm, 52.7591 mm): Track [LCD_G6] on SIG3, length 1.2685 mm
+    @(43.3255 mm, 52.8274 mm): Via [LCD_B4] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and BL_LED_K)
+    Local override; error
+    @(34.0000 mm, 61.1200 mm): Via [GND] on F.Cu - B.Cu
+    @(40.1461 mm, 60.7287 mm): Track [BL_LED_K] on SIG2, length 17.0751 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2483 mm)
+    Rule: board setup constraints hole; error
+    @(61.2709 mm, 28.5458 mm): Track [AUDIO_I2S_BCLK] on B.Cu, length 2.3300 mm
+    @(60.8226 mm, 29.4359 mm): Via [SD_D0_MCU] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'BacklightHV' clearance 0.2000 mm; actual 0.1625 mm)
+    Rule: netclass 'BacklightHV'; error
+    @(49.9789 mm, 59.9781 mm): Track [BL_LED_K] on SIG4, length 0.9530 mm
+    @(49.9200 mm, 60.7500 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2355 mm)
+    Rule: board setup constraints hole; error
+    @(34.4936 mm, 61.1857 mm): Track [LCD_DISP] on F.Cu, length 0.3605 mm
+    @(34.0000 mm, 61.1200 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CTRL_1_1 and GND)
+    Local override; error
+    @(47.4402 mm, 47.4681 mm): Track [CTRL_1_1] on SIG2, length 2.4965 mm
+    @(48.5500 mm, 46.0000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and LCD_DISP)
+    Local override; error
+    @(34.0000 mm, 61.1200 mm): Via [GND] on F.Cu - B.Cu
+    @(34.2387 mm, 61.4406 mm): Via [LCD_DISP] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets PANEL_3V3 and GND)
+    Local override; error
+    @(34.0000 mm, 60.8639 mm): Track [PANEL_3V3] on SIG1, length 0.7375 mm
+    @(34.0000 mm, 61.1200 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and LCD_DISP)
+    Local override; error
+    @(34.0000 mm, 61.1200 mm): Via [GND] on F.Cu - B.Cu
+    @(33.2994 mm, 60.5013 mm): Track [LCD_DISP] on SIG4, length 1.3284 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2268 mm)
+    Rule: board setup constraints hole; error
+    @(46.8850 mm, 47.9502 mm): Track [TP_AMT_P7] on B.Cu, length 0.4063 mm
+    @(47.0306 mm, 48.4082 mm): Via [LCD_G7] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2494 mm)
+    Rule: board setup constraints hole; error
+    @(76.3313 mm, 21.6689 mm): Track [SD_D0_MCU] on SIG1, length 12.7688 mm
+    @(78.8000 mm, 18.6000 mm): PTH pad 9 [GND] of U21
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.0456 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(50.1500 mm, 49.6000 mm): Via [GND] on F.Cu - B.Cu
+    @(50.4300 mm, 48.6000 mm): Track [3V3_LOGIC] on B.Cu, length 0.6217 mm
+[clearance]: Clearance violation (netclass 'Power' clearance 0.1500 mm; actual 0.0663 mm)
+    Rule: netclass 'Power'; error
+    @(72.0000 mm, 54.7500 mm): Via [GND] on F.Cu - B.Cu
+    @(71.9750 mm, 55.4408 mm): Via [5V_ELRS] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets 5V_ELRS and GND)
+    Local override; error
+    @(71.9750 mm, 55.4408 mm): Track [5V_ELRS] on B.Cu, length 1.6858 mm
+    @(72.0000 mm, 54.7500 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Power' clearance 0.1500 mm; actual 0.0663 mm)
+    Rule: netclass 'Power'; error
+    @(72.0000 mm, 54.7500 mm): Via [GND] on F.Cu - B.Cu
+    @(80.9765 mm, 64.4423 mm): Track [5V_ELRS] on SIG1, length 12.7300 mm
+[shorting_items]: Items shorting two nets (nets GND and OSD_MOSI_5V)
+    Local override; error
+    @(21.9500 mm, 32.5500 mm): Via [GND] on F.Cu - B.Cu
+    @(21.3000 mm, 32.8467 mm): Track [OSD_MOSI_5V] on F.Cu, length 1.0434 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2328 mm)
+    Rule: board setup constraints hole; error
+    @(53.3111 mm, 46.2904 mm): Via [CTRL_1_2] on F.Cu - B.Cu
+    @(53.9379 mm, 46.3776 mm): Via [LCD_G1] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and 3V3_PG)
+    Local override; error
+    @(65.2145 mm, 46.4245 mm): Track [GND] on F.Cu, length 0.7500 mm
+    @(66.1006 mm, 47.3184 mm): Track [3V3_PG] on F.Cu, length 1.4939 mm
+[shorting_items]: Items shorting two nets (nets GND and 5V_ELRS)
+    Local override; error
+    @(88.0487 mm, 65.1213 mm): Via [GND] on F.Cu - B.Cu
+    @(87.0992 mm, 63.9500 mm): Track [5V_ELRS] on F.Cu, length 9.6898 mm
+[shorting_items]: Items shorting two nets (nets 5V_ELRS and GND)
+    Local override; error
+    @(88.5800 mm, 62.8067 mm): Track [5V_ELRS] on B.Cu, length 3.1933 mm
+    @(88.0487 mm, 65.1213 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0067 mm)
+    Rule: netclass 'Ground'; error
+    @(43.2839 mm, 50.4583 mm): Track [LCD_G7] on SIG4, length 6.7223 mm
+    @(39.7000 mm, 50.7500 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2452 mm)
+    Rule: board setup constraints hole; error
+    @(35.4335 mm, 46.8898 mm): Track [AMT_XTAL_OUT] on F.Cu, length 0.1270 mm
+    @(35.1500 mm, 47.2000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and AMT_XTAL_OUT)
+    Local override; error
+    @(35.1500 mm, 47.2000 mm): Via [GND] on F.Cu - B.Cu
+    @(36.0800 mm, 48.3072 mm): Track [AMT_XTAL_OUT] on B.Cu, length 3.4669 mm
+[shorting_items]: Items shorting two nets (nets CTRL_0_1 and GND)
+    Local override; error
+    @(38.5870 mm, 50.6930 mm): Track [CTRL_0_1] on SIG1, length 4.7243 mm
+    @(35.1500 mm, 47.2000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets LCD_G7 and GND)
+    Local override; error
+    @(47.0306 mm, 48.4082 mm): Track [LCD_G7] on SIG4, length 1.6966 mm
+    @(46.1142 mm, 48.3358 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and LCD_R0)
+    Local override; error
+    @(35.1500 mm, 47.2000 mm): Via [GND] on F.Cu - B.Cu
+    @(32.3847 mm, 49.6280 mm): Track [LCD_R0] on SIG3, length 7.1006 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1000 mm; actual 0.0548 mm)
+    Rule: netclass 'Default'; error
+    @(78.6358 mm, 3.6811 mm): Track [GIMBAL_RY_RAW] on SIG1, length 0.0826 mm
+    @(78.2505 mm, 4.0054 mm): Via [BUZZER_PWM] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets TP_AMT_PWM1 and GND)
+    Local override; error
+    @(47.7391 mm, 59.2538 mm): Track [TP_AMT_PWM1] on F.Cu, length 3.4409 mm
+    @(46.3300 mm, 59.5000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets LCD_G2 and GND)
+    Local override; error
+    @(48.0214 mm, 58.0343 mm): Track [LCD_G2] on SIG3, length 6.3510 mm
+    @(46.3300 mm, 59.5000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and TP_AMT_UART1)
+    Local override; error
+    @(46.3300 mm, 59.5000 mm): Via [GND] on F.Cu - B.Cu
+    @(53.2141 mm, 59.2087 mm): Track [TP_AMT_UART1] on SIG4, length 7.0941 mm
+[shorting_items]: Items shorting two nets (nets GND and SPK+)
+    Local override; error
+    @(75.4300 mm, 19.7000 mm): Via [GND] on F.Cu - B.Cu
+    @(72.4066 mm, 19.3231 mm): Track [SPK+] on B.Cu, length 3.0482 mm
+[shorting_items]: Items shorting two nets (nets GND and AUDIO_I2S_BCLK)
+    Local override; error
+    @(75.4300 mm, 19.7000 mm): Via [GND] on F.Cu - B.Cu
+    @(75.3787 mm, 17.2046 mm): Track [AUDIO_I2S_BCLK] on SIG1, length 7.5173 mm
+[shorting_items]: Items shorting two nets (nets GND and EN_3V3_SD)
+    Local override; error
+    @(75.4300 mm, 19.7000 mm): Via [GND] on F.Cu - B.Cu
+    @(85.3795 mm, 19.4873 mm): Track [EN_3V3_SD] on SIG4, length 23.8304 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2460 mm)
+    Rule: board setup constraints hole; error
+    @(36.0918 mm, 59.3717 mm): Track [LCD_G5] on SIG3, length 4.4958 mm
+    @(35.2569 mm, 58.9657 mm): Via [LCD_HSYNC] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2269 mm)
+    Rule: board setup constraints hole; error
+    @(29.4453 mm, 60.0128 mm): Track [CTRL_1_2] on SIG2, length 2.7897 mm
+    @(30.6739 mm, 59.3879 mm): Via [LCD_B2] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and GIMBAL_LY_RAW)
+    Local override; error
+    @(48.3300 mm, 34.5000 mm): Via [GND] on F.Cu - B.Cu
+    @(49.1280 mm, 35.2265 mm): Track [GIMBAL_LY_RAW] on SIG1, length 3.1347 mm
+[shorting_items]: Items shorting two nets (nets GND and BUZZER_PWM)
+    Local override; error
+    @(67.5500 mm, 23.2500 mm): Via [GND] on F.Cu - B.Cu
+    @(67.6401 mm, 34.0110 mm): Track [BUZZER_PWM] on SIG3, length 19.3952 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0933 mm)
+    Rule: netclass 'Ground'; error
+    @(82.7147 mm, 4.3313 mm): Track [BUZZER_SNUB] on B.Cu, length 0.2097 mm
+    @(82.9700 mm, 4.0000 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.0750 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(55.6200 mm, 28.5000 mm): Track [DISPLAY_3V3_D] on F.Cu, length 6.3077 mm
+    @(51.6000 mm, 28.0000 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2425 mm)
+    Rule: board setup constraints hole; error
+    @(36.0348 mm, 58.5790 mm): Track [LCD_HSYNC] on SIG2, length 0.3912 mm
+    @(35.8905 mm, 58.9815 mm): Via [LCD_VSYNC] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0273 mm)
+    Rule: netclass 'Ground'; error
+    @(47.9792 mm, 51.2726 mm): Track [CTRL_1_2] on SIG3, length 7.0459 mm
+    @(50.1500 mm, 49.6000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets AUDIO_I2S_WS and GND)
+    Local override; error
+    @(61.2569 mm, 23.0683 mm): Track [AUDIO_I2S_WS] on SIG2, length 12.7816 mm
+    @(64.1500 mm, 23.2500 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets OSD_MOSI_3V3 and GND)
+    Local override; error
+    @(70.3940 mm, 29.2266 mm): Track [OSD_MOSI_3V3] on SIG4, length 9.8231 mm
+    @(64.1500 mm, 23.2500 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and BUZZER_SNUB)
+    Local override; error
+    @(82.9700 mm, 4.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(82.7147 mm, 3.5564 mm): Track [BUZZER_SNUB] on B.Cu, length 0.7749 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(44.7793 mm, 58.3968 mm): Track [LCD_HSYNC] on SIG2, length 0.5827 mm
+    @(44.4374 mm, 58.7835 mm): Via [LCD_VSYNC] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2447 mm)
+    Rule: board setup constraints hole; error
+    @(36.0793 mm, 58.6235 mm): Track [LCD_HSYNC] on SIG2, length 0.0629 mm
+    @(35.8905 mm, 58.9815 mm): Via [LCD_VSYNC] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2447 mm)
+    Rule: board setup constraints hole; error
+    @(43.9699 mm, 58.6235 mm): Track [LCD_HSYNC] on SIG2, length 7.8906 mm
+    @(35.8905 mm, 58.9815 mm): Via [LCD_VSYNC] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0717 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(9.5126 mm, 67.4626 mm): Via [GND] on F.Cu - B.Cu
+    @(10.4093 mm, 66.9367 mm): Track [BAT_CELL_NEG] on F.Cu, length 2.6726 mm
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.0769 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(72.4066 mm, 19.3231 mm): Track [SPK+] on B.Cu, length 3.0482 mm
+    @(75.4300 mm, 22.5000 mm): Track [GND] on B.Cu, length 2.8000 mm
+[shorting_items]: Items shorting two nets (nets GND and DEV_IO3)
+    Local override; error
+    @(9.5126 mm, 67.4626 mm): Via [GND] on F.Cu - B.Cu
+    @(11.0214 mm, 68.8165 mm): Track [DEV_IO3] on SIG2, length 3.9058 mm
+[shorting_items]: Items shorting two nets (nets SPK+ and GND)
+    Local override; error
+    @(75.4548 mm, 19.3231 mm): Track [SPK+] on B.Cu, length 0.8983 mm
+    @(75.4300 mm, 22.5000 mm): Track [GND] on B.Cu, length 2.8000 mm
+[shorting_items]: Items shorting two nets (nets LCD_G0 and GND)
+    Local override; error
+    @(31.1876 mm, 54.2936 mm): Via [LCD_G0] on F.Cu - B.Cu
+    @(31.5000 mm, 54.0000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets EXP_INT and GND)
+    Local override; error
+    @(29.2979 mm, 51.6978 mm): Track [EXP_INT] on SIG1, length 13.7626 mm
+    @(31.5000 mm, 54.0000 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0494 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(53.0735 mm, 8.0573 mm): Via [CHARGER_INT] on F.Cu - B.Cu
+    @(55.1300 mm, 7.9500 mm): Track [VBUS_RAW] on F.Cu, length 2.4551 mm
+[shorting_items]: Items shorting two nets (nets GND and LCD_G0)
+    Local override; error
+    @(31.5000 mm, 54.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(31.1876 mm, 54.2936 mm): Track [LCD_G0] on SIG3, length 4.5359 mm
+[shorting_items]: Items shorting two nets (nets GND and VBUS_USB)
+    Local override; error
+    @(49.5000 mm, 19.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(49.4450 mm, 20.6481 mm): Track [VBUS_USB] on B.Cu, length 2.4708 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(42.7721 mm, 43.4631 mm): Track [LCD_R0] on F.Cu, length 1.4537 mm
+    @(42.7047 mm, 42.9836 mm): Via [LCD_DCLK] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets ESP_EN and GND)
+    Local override; error
+    @(52.5595 mm, 21.6190 mm): Track [ESP_EN] on SIG2, length 17.3699 mm
+    @(49.5000 mm, 19.0000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and EN_3V3_SD)
+    Local override; error
+    @(49.5000 mm, 19.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(58.0831 mm, 18.7663 mm): Track [EN_3V3_SD] on SIG4, length 32.2587 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(65.9551 mm, 47.0167 mm): Track [3V3_VAUX] on F.Cu, length 1.1501 mm
+    @(65.2145 mm, 46.4245 mm): Track [GND] on F.Cu, length 0.7500 mm
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0404 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(53.0735 mm, 8.0573 mm): Via [CHARGER_INT] on F.Cu - B.Cu
+    @(52.7000 mm, 7.6000 mm): Via [VBUS_RAW] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.1483 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(108.2000 mm, 28.0000 mm): Pad 2 [CTRL_0_5] of J20 on F.Cu
+    @(108.4549 mm, 25.9967 mm): Track [SPK-] on F.Cu, length 1.6856 mm
+[shorting_items]: Items shorting two nets (nets CTRL_0_15 and GND)
+    Local override; error
+    @(50.1335 mm, 49.9001 mm): Via [CTRL_0_15] on F.Cu - B.Cu
+    @(50.1500 mm, 49.6000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and CTRL_1_3)
+    Local override; error
+    @(24.9200 mm, 45.2500 mm): Via [GND] on F.Cu - B.Cu
+    @(25.2210 mm, 45.2174 mm): Track [CTRL_1_3] on SIG1, length 0.0385 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2400 mm)
+    Rule: board setup constraints hole; error
+    @(30.6193 mm, 55.1553 mm): Track [LCD_R1] on SIG3, length 2.9902 mm
+    @(28.4623 mm, 56.7466 mm): Via [LCD_R0] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0482 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(53.0735 mm, 8.0573 mm): Via [CHARGER_INT] on F.Cu - B.Cu
+    @(52.7000 mm, 7.6000 mm): Track [VBUS_RAW] on SIG3, length 1.5000 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2371 mm)
+    Rule: board setup constraints hole; error
+    @(22.9792 mm, 42.9371 mm): Track [CTRL_1_3] on SIG1, length 0.8669 mm
+    @(22.7500 mm, 42.5000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and CTRL_1_3)
+    Local override; error
+    @(21.9200 mm, 50.2500 mm): Via [GND] on F.Cu - B.Cu
+    @(21.7411 mm, 43.3083 mm): Track [CTRL_1_3] on SIG1, length 11.3790 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0042 mm)
+    Rule: netclass 'Ground'; error
+    @(49.9147 mm, 50.0000 mm): Track [CTRL_0_15] on B.Cu, length 0.1413 mm
+    @(50.1500 mm, 49.6000 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(43.8107 mm, 46.6498 mm): Track [CRSF_TX] on SIG1, length 7.4048 mm
+    @(38.4126 mm, 41.8551 mm): Via [LCD_R0] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and I2C_SCL)
+    Local override; error
+    @(50.1500 mm, 49.6000 mm): Via [GND] on F.Cu - B.Cu
+    @(44.2667 mm, 49.3874 mm): Track [I2C_SCL] on SIG2, length 6.4064 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2389 mm)
+    Rule: board setup constraints hole; error
+    @(64.8050 mm, 47.0167 mm): Track [3V3_VAUX] on F.Cu, length 0.1280 mm
+    @(65.2145 mm, 47.1745 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CTRL_1_5 and GND)
+    Local override; error
+    @(51.0891 mm, 48.2351 mm): Track [CTRL_1_5] on SIG4, length 2.0609 mm
+    @(50.1500 mm, 49.6000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets DISPLAY_3V3_A and GND)
+    Local override; error
+    @(36.1558 mm, 45.8058 mm): Track [DISPLAY_3V3_A] on F.Cu, length 2.8754 mm
+    @(36.7500 mm, 45.1600 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(28.0919 mm, 41.4334 mm): Track [RX_DATA_MCU] on SIG2, length 18.4666 mm
+    @(38.4126 mm, 41.8551 mm): Via [LCD_R0] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and CTRL_1_4)
+    Local override; error
+    @(36.7500 mm, 45.1600 mm): Via [GND] on F.Cu - B.Cu
+    @(31.3326 mm, 44.9304 mm): Track [CTRL_1_4] on SIG2, length 10.5288 mm
+[shorting_items]: Items shorting two nets (nets GND and LCD_R0)
+    Local override; error
+    @(36.7500 mm, 45.1600 mm): Via [GND] on F.Cu - B.Cu
+    @(32.3847 mm, 49.6280 mm): Track [LCD_R0] on SIG3, length 7.1006 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(25.2210 mm, 45.1789 mm): Track [CTRL_1_3] on SIG1, length 3.1704 mm
+    @(23.5090 mm, 44.0703 mm): Via [LCD_R3] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2414 mm)
+    Rule: board setup constraints hole; error
+    @(45.2295 mm, 41.4137 mm): Track [GAUGE_ALERT] on SIG4, length 17.4041 mm
+    @(38.4126 mm, 41.8551 mm): Via [LCD_R0] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.0649 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(80.1149 mm, 22.0666 mm): Track [SPK-] on B.Cu, length 2.3463 mm
+    @(79.0000 mm, 23.0000 mm): Track [GND] on B.Cu, length 0.7500 mm
+[shorting_items]: Items shorting two nets (nets CHARGER_INT and VBUS_RAW)
+    Local override; error
+    @(53.1064 mm, 8.0244 mm): Track [CHARGER_INT] on B.Cu, length 2.3380 mm
+    @(52.7000 mm, 7.6000 mm): Via [VBUS_RAW] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'DigitalFast' clearance 0.1200 mm; actual 0.0266 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(69.3145 mm, 32.9766 mm): Track [OSD_CS_3V3] on SIG2, length 15.5715 mm
+    @(62.6000 mm, 32.6500 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.1291 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(21.5575 mm, 59.3068 mm): Via [PANEL_3V3] on F.Cu - B.Cu
+    @(22.0000 mm, 58.9332 mm): Via [LCD_R0] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.1626 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(53.0735 mm, 8.0573 mm): Track [CHARGER_INT] on B.Cu, length 0.0465 mm
+    @(52.7000 mm, 7.6000 mm): Via [VBUS_RAW] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CHARGER_INT and GND)
+    Local override; error
+    @(57.1000 mm, 28.1673 mm): Track [CHARGER_INT] on SIG3, length 6.4955 mm
+    @(57.2500 mm, 27.6000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CTRL_1_4 and GND)
+    Local override; error
+    @(31.3326 mm, 44.9304 mm): Via [CTRL_1_4] on F.Cu - B.Cu
+    @(31.3700 mm, 45.2000 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.1084 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(46.1142 mm, 48.3358 mm): Via [GND] on F.Cu - B.Cu
+    @(46.2240 mm, 49.2000 mm): Track [AMT_CORE3] on F.Cu, length 1.8436 mm
+[shorting_items]: Items shorting two nets (nets TP_AMT_P7 and GND)
+    Local override; error
+    @(46.5977 mm, 48.2375 mm): Track [TP_AMT_P7] on B.Cu, length 0.9670 mm
+    @(46.1142 mm, 48.3358 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.1654 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(53.0735 mm, 13.2747 mm): Track [CHARGER_INT] on SIG3, length 5.2174 mm
+    @(52.7000 mm, 7.6000 mm): Via [VBUS_RAW] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.0583 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(43.7579 mm, 50.1480 mm): Track [DISPLAY_3V3_A] on SIG3, length 2.6550 mm
+    @(46.1142 mm, 48.3358 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2428 mm)
+    Rule: board setup constraints hole; error
+    @(44.2000 mm, 40.1785 mm): Track [LCD_R1] on F.Cu, length 2.1424 mm
+    @(46.1176 mm, 38.6702 mm): Via [LCD_DCLK_SRC] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0493 mm)
+    Rule: netclass 'Ground'; error
+    @(2.5483 mm, 70.5052 mm): Track [EN_3V3_SD] on SIG3, length 19.8326 mm
+    @(2.9226 mm, 70.2626 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and OSD_VIDEO_RAW)
+    Local override; error
+    @(22.7500 mm, 42.5000 mm): Via [GND] on F.Cu - B.Cu
+    @(22.9534 mm, 33.4869 mm): Track [OSD_VIDEO_RAW] on B.Cu, length 15.6338 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(54.0000 mm, 15.0000 mm): Track [GND] on B.Cu, length 2.2000 mm
+    @(55.0353 mm, 12.1551 mm): Track [CHG_DSEL] on B.Cu, length 5.2547 mm
+[clearance]: Clearance violation (netclass 'Power' clearance 0.1500 mm; actual 0.0742 mm)
+    Rule: netclass 'Power'; error
+    @(17.3084 mm, 41.8008 mm): Track [5V_VIDEO] on SIG4, length 6.5945 mm
+    @(22.7500 mm, 42.5000 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2389 mm)
+    Rule: board setup constraints hole; error
+    @(76.6018 mm, 44.0265 mm): Track [5V_COMP] on B.Cu, length 0.4883 mm
+    @(76.3807 mm, 43.5876 mm): Via [5V_ILIM] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2428 mm)
+    Rule: board setup constraints hole; error
+    @(45.7149 mm, 38.6636 mm): Track [LCD_R1] on F.Cu, length 0.9552 mm
+    @(46.1176 mm, 38.6702 mm): Via [LCD_DCLK_SRC] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and SYS_ALWAYS)
+    Local override; error
+    @(57.0000 mm, 62.5000 mm): Via [GND] on F.Cu - B.Cu
+    @(64.3000 mm, 54.2921 mm): Track [SYS_ALWAYS] on SIG3, length 17.4487 mm
+[shorting_items]: Items shorting two nets (nets CTRL_1_4 and GND)
+    Local override; error
+    @(31.3326 mm, 44.9304 mm): Track [CTRL_1_4] on SIG2, length 10.5288 mm
+    @(31.3700 mm, 45.2000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and USB_CC1)
+    Local override; error
+    @(53.6300 mm, 8.4500 mm): Via [GND] on F.Cu - B.Cu
+    @(53.5075 mm, 7.7623 mm): Track [USB_CC1] on F.Cu, length 1.1862 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2430 mm)
+    Rule: board setup constraints hole; error
+    @(27.7851 mm, 44.9304 mm): Track [CTRL_1_4] on SIG4, length 3.5475 mm
+    @(27.6800 mm, 44.5000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets VBUS_USB and GND)
+    Local override; error
+    @(54.7933 mm, 7.9985 mm): Track [VBUS_USB] on SIG1, length 5.6844 mm
+    @(53.6300 mm, 8.4500 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2351 mm)
+    Rule: board setup constraints hole; error
+    @(45.7911 mm, 37.4717 mm): Track [OSD_LOS_5V] on B.Cu, length 0.6190 mm
+    @(46.1790 mm, 37.2443 mm): Via [LCD_R1] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2430 mm)
+    Rule: board setup constraints hole; error
+    @(20.7750 mm, 51.9405 mm): Track [CTRL_1_4] on SIG4, length 9.9138 mm
+    @(27.6800 mm, 44.5000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and GIMBAL_RX_RAW)
+    Local override; error
+    @(72.7500 mm, 38.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(73.5700 mm, 38.3097 mm): Track [GIMBAL_RX_RAW] on SIG1, length 1.6954 mm
+[shorting_items]: Items shorting two nets (nets GND and ESP_BOOT)
+    Local override; error
+    @(57.2500 mm, 27.6000 mm): Via [GND] on F.Cu - B.Cu
+    @(61.4340 mm, 27.4083 mm): Track [ESP_BOOT] on SIG2, length 7.6369 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2486 mm)
+    Rule: board setup constraints hole; error
+    @(26.4255 mm, 57.8163 mm): Track [LCD_R6] on SIG2, length 3.0628 mm
+    @(27.7442 mm, 57.4077 mm): Via [LCD_R1] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and EXP_INT)
+    Local override; error
+    @(21.0000 mm, 61.5700 mm): Via [GND] on F.Cu - B.Cu
+    @(20.9269 mm, 62.8110 mm): Track [EXP_INT] on SIG3, length 5.5548 mm
+[shorting_items]: Items shorting two nets (nets GND and SYS_SWITCHED)
+    Local override; error
+    @(68.4000 mm, 49.6000 mm): Track [GND] on F.Cu, length 0.7500 mm
+    @(69.3748 mm, 49.0746 mm): Track [SYS_SWITCHED] on F.Cu, length 1.5506 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0630 mm)
+    Rule: netclass 'Ground'; error
+    @(59.1678 mm, 17.9320 mm): Via [CHG_QON] on F.Cu - B.Cu
+    @(59.3200 mm, 18.5000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CTRL_1_5 and GND)
+    Local override; error
+    @(44.0704 mm, 52.4901 mm): Via [CTRL_1_5] on F.Cu - B.Cu
+    @(43.7129 mm, 49.7071 mm): Track [GND] on B.Cu, length 3.9321 mm
+[shorting_items]: Items shorting two nets (nets VBUS_USB and GND)
+    Local override; error
+    @(54.7933 mm, 7.9985 mm): Track [VBUS_USB] on SIG1, length 5.6844 mm
+    @(54.3800 mm, 8.7500 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and SYS_SWITCHED)
+    Local override; error
+    @(68.4000 mm, 49.6000 mm): Track [GND] on F.Cu, length 0.7500 mm
+    @(69.3002 mm, 49.0000 mm): Track [SYS_SWITCHED] on F.Cu, length 0.1055 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(26.5811 mm, 59.1177 mm): Track [LCD_G1] on SIG3, length 2.2999 mm
+    @(27.7442 mm, 57.4077 mm): Via [LCD_R1] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and CHG_QON)
+    Local override; error
+    @(55.4300 mm, 18.0000 mm): Track [GND] on B.Cu, length 0.7500 mm
+    @(56.1433 mm, 18.2512 mm): Via [CHG_QON] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets AUDIO_I2S_WS and GND)
+    Local override; error
+    @(61.2569 mm, 23.0683 mm): Track [AUDIO_I2S_WS] on SIG2, length 12.7816 mm
+    @(67.5500 mm, 23.2500 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2487 mm)
+    Rule: board setup constraints hole; error
+    @(10.4376 mm, 59.8224 mm): Track [I2C_SDA] on SIG2, length 12.2538 mm
+    @(22.5000 mm, 59.3737 mm): Via [LCD_R1] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0866 mm)
+    Rule: netclass 'Ground'; error
+    @(67.1384 mm, 22.6596 mm): Track [I2C_SCL] on SIG3, length 14.3271 mm
+    @(67.5500 mm, 23.2500 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0685 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(68.4000 mm, 49.6000 mm): Track [GND] on F.Cu, length 0.7500 mm
+    @(69.3002 mm, 49.0000 mm): Track [SYS_SWITCHED] on F.Cu, length 0.9266 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0512 mm)
+    Rule: netclass 'Ground'; error
+    @(56.4204 mm, 18.5283 mm): Track [CHG_QON] on B.Cu, length 0.3919 mm
+    @(55.4300 mm, 18.0000 mm): Track [GND] on B.Cu, length 0.7500 mm
+[shorting_items]: Items shorting two nets (nets EN_5V_ELRS and GND)
+    Local override; error
+    @(91.4606 mm, 62.6313 mm): Via [EN_5V_ELRS] on F.Cu - B.Cu
+    @(91.1000 mm, 63.0000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and EN_5V_ELRS)
+    Local override; error
+    @(91.1000 mm, 63.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(90.3559 mm, 63.7360 mm): Track [EN_5V_ELRS] on SIG4, length 1.5623 mm
+[shorting_items]: Items shorting two nets (nets GND and 5V_ELRS)
+    Local override; error
+    @(93.7500 mm, 69.8000 mm): Via [GND] on F.Cu - B.Cu
+    @(87.0992 mm, 63.9500 mm): Track [5V_ELRS] on F.Cu, length 9.6898 mm
+[shorting_items]: Items shorting two nets (nets LCD_R1 and GND)
+    Local override; error
+    @(37.6273 mm, 44.8547 mm): Track [LCD_R1] on SIG3, length 4.8847 mm
+    @(35.1500 mm, 47.2000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CRSF_TX_MCU and GND)
+    Local override; error
+    @(18.7075 mm, 27.0562 mm): Track [CRSF_TX_MCU] on SIG1, length 6.3969 mm
+    @(18.7000 mm, 25.4500 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0878 mm)
+    Rule: netclass 'Ground'; error
+    @(34.1733 mm, 50.7995 mm): Track [LCD_R1] on SIG3, length 4.2694 mm
+    @(31.5000 mm, 54.0000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets EN_3V3_SD and GND)
+    Local override; error
+    @(59.2559 mm, 18.7602 mm): Track [EN_3V3_SD] on SIG4, length 0.4726 mm
+    @(59.3200 mm, 18.5000 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Power' clearance 0.1500 mm; actual 0.0968 mm)
+    Rule: netclass 'Power'; error
+    @(87.0992 mm, 63.9500 mm): Track [5V_ELRS] on F.Cu, length 9.6898 mm
+    @(90.1700 mm, 66.0000 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0042 mm)
+    Rule: netclass 'Ground'; error
+    @(12.7500 mm, 53.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(26.2544 mm, 52.6708 mm): Track [CTRL_1_5] on SIG2, length 16.3318 mm
+[shorting_items]: Items shorting two nets (nets SYS_SWITCHED and GND)
+    Local override; error
+    @(69.3002 mm, 49.0000 mm): Track [SYS_SWITCHED] on F.Cu, length 0.1055 mm
+    @(69.1500 mm, 49.6000 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2304 mm)
+    Rule: board setup constraints hole; error
+    @(31.1544 mm, 53.8184 mm): Track [LCD_R1] on SIG3, length 0.0836 mm
+    @(31.5000 mm, 54.0000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets SYS_SWITCHED and GND)
+    Local override; error
+    @(61.4128 mm, 41.7813 mm): Track [SYS_SWITCHED] on SIG2, length 5.1815 mm
+    @(64.1774 mm, 45.7074 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and CTRL_0_12)
+    Local override; error
+    @(48.6800 mm, 58.0200 mm): Via [GND] on F.Cu - B.Cu
+    @(48.7353 mm, 57.5481 mm): Via [CTRL_0_12] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and CTRL_0_0)
+    Local override; error
+    @(48.6800 mm, 58.0200 mm): Via [GND] on F.Cu - B.Cu
+    @(47.4581 mm, 58.3008 mm): Track [CTRL_0_0] on SIG1, length 8.7652 mm
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.1117 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(64.1774 mm, 45.7074 mm): Via [GND] on F.Cu - B.Cu
+    @(65.0767 mm, 45.4452 mm): Track [SYS_SWITCHED] on SIG2, length 1.0663 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0640 mm)
+    Rule: netclass 'Ground'; error
+    @(49.0221 mm, 57.8349 mm): Track [CTRL_0_12] on SIG2, length 47.7207 mm
+    @(48.6800 mm, 58.0200 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CHG_STAT and GND)
+    Local override; error
+    @(49.3720 mm, 18.1374 mm): Track [CHG_STAT] on SIG3, length 5.6332 mm
+    @(52.2500 mm, 21.0000 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2441 mm)
+    Rule: board setup constraints hole; error
+    @(49.6318 mm, 50.8854 mm): Track [CTRL_1_5] on SIG4, length 2.2694 mm
+    @(48.8163 mm, 51.0728 mm): Via [LCD_B5] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Power' clearance 0.1500 mm; actual 0.0313 mm)
+    Rule: netclass 'Power'; error
+    @(87.2987 mm, 65.1213 mm): Track [GND] on B.Cu, length 0.7500 mm
+    @(88.5800 mm, 62.8067 mm): Track [5V_ELRS] on B.Cu, length 3.1933 mm
+[clearance]: Clearance violation (netclass 'AnalogVideo' clearance 0.1500 mm; actual 0.0543 mm)
+    Rule: netclass 'AnalogVideo'; error
+    @(37.7163 mm, 50.3457 mm): Track [AMT_VCOM] on F.Cu, length 3.4189 mm
+    @(39.7000 mm, 50.7500 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets SPK- and GND)
+    Local override; error
+    @(80.1149 mm, 22.0666 mm): Track [SPK-] on B.Cu, length 2.3463 mm
+    @(79.7500 mm, 23.0000 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'SwitchNode' clearance 0.2000 mm; actual 0.0638 mm)
+    Rule: netclass 'SwitchNode'; error
+    @(49.0000 mm, 12.5000 mm): Track [VBUS_RAW] on F.Cu, length 2.0863 mm
+    @(49.1944 mm, 13.5418 mm): Via [CHG_SW] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets 5V_ELRS_CT and GND)
+    Local override; error
+    @(86.6703 mm, 62.3030 mm): Track [5V_ELRS_CT] on B.Cu, length 2.1350 mm
+    @(86.9000 mm, 63.0000 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2383 mm)
+    Rule: board setup constraints hole; error
+    @(23.9985 mm, 61.1190 mm): Track [LCD_R4] on SIG3, length 15.4874 mm
+    @(23.6002 mm, 46.5617 mm): Via [LCD_R2] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and GIMBAL_RY)
+    Local override; error
+    @(79.2500 mm, 41.5000 mm): Via [GND] on F.Cu - B.Cu
+    @(79.5952 mm, 41.4702 mm): Track [GIMBAL_RY] on SIG1, length 3.4934 mm
+[shorting_items]: Items shorting two nets (nets CTRL_0_5 and GND)
+    Local override; error
+    @(64.5832 mm, 41.9914 mm): Via [CTRL_0_5] on F.Cu - B.Cu
+    @(64.4645 mm, 42.4845 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and CTRL_0_5)
+    Local override; error
+    @(64.4645 mm, 42.4845 mm): Via [GND] on F.Cu - B.Cu
+    @(64.5034 mm, 41.9914 mm): Track [CTRL_0_5] on SIG3, length 11.0041 mm
+[shorting_items]: Items shorting two nets (nets GAUGE_ALERT and GND)
+    Local override; error
+    @(61.7700 mm, 6.1940 mm): Track [GAUGE_ALERT] on SIG3, length 19.7961 mm
+    @(61.5784 mm, 12.1716 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'SwitchNode' clearance 0.2000 mm; actual 0.1955 mm)
+    Rule: netclass 'SwitchNode'; error
+    @(60.0388 mm, 13.3221 mm): Track [CHG_SW] on SIG2, length 10.6247 mm
+    @(49.0000 mm, 12.5000 mm): Via [VBUS_RAW] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CTRL_1_0 and GND)
+    Local override; error
+    @(30.0020 mm, 54.9062 mm): Track [CTRL_1_0] on SIG4, length 21.7521 mm
+    @(17.1000 mm, 55.0500 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets AUDIO_I2S_WS and GND)
+    Local override; error
+    @(61.2569 mm, 23.0683 mm): Track [AUDIO_I2S_WS] on SIG2, length 12.7816 mm
+    @(62.4500 mm, 23.2500 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'SwitchNode' clearance 0.2000 mm; actual 0.1955 mm)
+    Rule: netclass 'SwitchNode'; error
+    @(49.0000 mm, 12.5000 mm): Via [VBUS_RAW] on F.Cu - B.Cu
+    @(49.4141 mm, 13.3221 mm): Track [CHG_SW] on SIG2, length 0.3107 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2268 mm)
+    Rule: board setup constraints hole; error
+    @(23.7768 mm, 60.5802 mm): Track [LCD_R2] on SIG3, length 13.8419 mm
+    @(23.3900 mm, 59.2710 mm): Via [LCD_R3] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2392 mm)
+    Rule: board setup constraints hole; error
+    @(11.8108 mm, 53.9659 mm): Track [I2C_SCL] on B.Cu, length 3.0311 mm
+    @(12.2500 mm, 51.3100 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and PACK_NEG_SENSE)
+    Local override; error
+    @(12.2500 mm, 51.3100 mm): Via [GND] on F.Cu - B.Cu
+    @(12.3236 mm, 49.6448 mm): Track [PACK_NEG_SENSE] on SIG1, length 4.3686 mm
+[shorting_items]: Items shorting two nets (nets GAUGE_CTG and GND)
+    Local override; error
+    @(10.6964 mm, 52.7102 mm): Track [GAUGE_CTG] on SIG3, length 7.0258 mm
+    @(12.2500 mm, 51.3100 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and DEV_IO3)
+    Local override; error
+    @(10.1626 mm, 68.0126 mm): Via [GND] on F.Cu - B.Cu
+    @(11.0214 mm, 68.8165 mm): Track [DEV_IO3] on SIG2, length 3.9058 mm
+[shorting_items]: Items shorting two nets (nets GND and AMT_XTAL_OUT)
+    Local override; error
+    @(33.5500 mm, 50.4000 mm): Via [GND] on F.Cu - B.Cu
+    @(33.6575 mm, 50.1809 mm): Track [AMT_XTAL_OUT] on F.Cu, length 1.2103 mm
+[shorting_items]: Items shorting two nets (nets GND and AMT_XTAL_OUT)
+    Local override; error
+    @(33.5500 mm, 50.4000 mm): Via [GND] on F.Cu - B.Cu
+    @(33.6575 mm, 50.1809 mm): Via [AMT_XTAL_OUT] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and BAT_RAW)
+    Local override; error
+    @(11.8300 mm, 55.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(12.0824 mm, 56.1557 mm): Track [BAT_RAW] on F.Cu, length 1.0337 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(85.5700 mm, 45.5000 mm): Track [5V_ILIM] on B.Cu, length 4.0495 mm
+    @(82.4200 mm, 46.0000 mm): Track [GND] on B.Cu, length 2.1449 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2287 mm)
+    Rule: board setup constraints hole; error
+    @(53.4023 mm, 50.0169 mm): Track [CRSF_RX] on SIG1, length 0.8389 mm
+    @(53.8310 mm, 49.3173 mm): Via [LCD_B1] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2286 mm)
+    Rule: board setup constraints hole; error
+    @(78.3518 mm, 44.8402 mm): Track [5V_ILIM] on SIG1, length 0.5849 mm
+    @(78.5300 mm, 45.2300 mm): PTH pad [GND] of U6
+[shorting_items]: Items shorting two nets (nets CRSF_RX and GND)
+    Local override; error
+    @(36.9070 mm, 29.1733 mm): Track [CRSF_RX] on SIG1, length 4.4479 mm
+    @(35.7000 mm, 29.0000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and CRSF_RX)
+    Local override; error
+    @(32.3000 mm, 29.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(32.4591 mm, 29.1733 mm): Track [CRSF_RX] on SIG1, length 15.3394 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2286 mm)
+    Rule: board setup constraints hole; error
+    @(78.7344 mm, 44.4576 mm): Track [5V_ILIM] on SIG1, length 0.5411 mm
+    @(78.5300 mm, 45.2300 mm): PTH pad [GND] of U6
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2401 mm)
+    Rule: board setup constraints hole; error
+    @(22.8027 mm, 59.7111 mm): Track [I2C_SDA] on SIG2, length 6.5177 mm
+    @(23.3900 mm, 59.2710 mm): Via [LCD_R3] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2314 mm)
+    Rule: board setup constraints hole; error
+    @(47.9251 mm, 46.0903 mm): Via [TP_AMT_DIAG] on F.Cu - B.Cu
+    @(48.5500 mm, 46.0000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets TP_AMT_DIAG and GND)
+    Local override; error
+    @(47.9251 mm, 46.0903 mm): Via [TP_AMT_DIAG] on F.Cu - B.Cu
+    @(45.5058 mm, 45.0858 mm): Track [GND] on B.Cu, length 3.1785 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0560 mm)
+    Rule: netclass 'Ground'; error
+    @(58.8707 mm, 35.8405 mm): Track [AMT_FLASH_SEL] on SIG3, length 3.4549 mm
+    @(57.2500 mm, 38.0000 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2297 mm)
+    Rule: board setup constraints hole; error
+    @(24.0800 mm, 44.5000 mm): Track [GAUGE_CELL] on F.Cu, length 2.6217 mm
+    @(23.5090 mm, 44.0703 mm): Via [LCD_R3] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets BAT_CELL_NEG and GND)
+    Local override; error
+    @(10.4093 mm, 66.9367 mm): Track [BAT_CELL_NEG] on F.Cu, length 2.6726 mm
+    @(10.1626 mm, 68.0126 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0662 mm)
+    Rule: netclass 'Ground'; error
+    @(47.9251 mm, 46.3654 mm): Track [TP_AMT_DIAG] on B.Cu, length 0.2751 mm
+    @(45.5058 mm, 45.0858 mm): Track [GND] on B.Cu, length 3.1785 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2345 mm)
+    Rule: board setup constraints hole; error
+    @(23.0969 mm, 58.9779 mm): Track [LCD_R3] on SIG3, length 14.4955 mm
+    @(23.4914 mm, 45.1245 mm): Via [LCD_R4] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'BacklightHV' clearance 0.2000 mm; actual 0.1625 mm)
+    Rule: netclass 'BacklightHV'; error
+    @(50.6528 mm, 60.6520 mm): Track [BL_LED_K] on F.Cu, length 0.9557 mm
+    @(49.9200 mm, 60.7500 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets EXP_INT and GND)
+    Local override; error
+    @(49.9999 mm, 60.4930 mm): Track [EXP_INT] on SIG1, length 0.7700 mm
+    @(49.9200 mm, 60.7500 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0115 mm)
+    Rule: netclass 'Ground'; error
+    @(42.8086 mm, 54.9655 mm): Track [TP_AMT_DIAG] on SIG3, length 7.0093 mm
+    @(44.7500 mm, 53.5000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CRSF_TX and GND)
+    Local override; error
+    @(38.1036 mm, 41.4138 mm): Track [CRSF_TX] on SIG1, length 8.0378 mm
+    @(36.7500 mm, 40.0700 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets VRX_VIDEO_TO_OSD and GND)
+    Local override; error
+    @(36.7500 mm, 44.7865 mm): Track [VRX_VIDEO_TO_OSD] on SIG3, length 9.0658 mm
+    @(36.7500 mm, 40.0700 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2484 mm)
+    Rule: board setup constraints hole; error
+    @(28.2968 mm, 62.8121 mm): Track [5V_VIDEO_CT] on SIG3, length 4.5417 mm
+    @(27.4826 mm, 61.3638 mm): Via [LCD_G2] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets I2C_SCL and GND)
+    Local override; error
+    @(44.2421 mm, 53.2369 mm): Track [I2C_SCL] on F.Cu, length 4.9042 mm
+    @(44.7500 mm, 53.5000 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.0583 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(45.6353 mm, 48.2706 mm): Track [DISPLAY_3V3_A] on SIG3, length 3.4858 mm
+    @(46.1142 mm, 48.3358 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0817 mm)
+    Rule: netclass 'Ground'; error
+    @(44.4548 mm, 54.3704 mm): Track [TP_AMT_UART0] on SIG3, length 6.1002 mm
+    @(44.7500 mm, 53.5000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets GND and CTRL_0_10)
+    Local override; error
+    @(44.7500 mm, 53.5000 mm): Via [GND] on F.Cu - B.Cu
+    @(42.7473 mm, 53.4316 mm): Track [CTRL_0_10] on SIG4, length 6.4120 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2268 mm)
+    Rule: board setup constraints hole; error
+    @(25.0853 mm, 59.6006 mm): Track [5V_VIDEO_CT] on SIG3, length 6.0200 mm
+    @(25.5121 mm, 59.2844 mm): Via [LCD_R7] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2283 mm)
+    Rule: board setup constraints hole; error
+    @(46.3191 mm, 39.1171 mm): Track [CTRL_0_4] on B.Cu, length 0.7720 mm
+    @(46.5939 mm, 39.4456 mm): Via [LCD_R4] on F.Cu - B.Cu
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'PowerLogic'; error
+    @(50.2800 mm, 29.8700 mm): Track [GND] on F.Cu, length 2.2890 mm
+    @(55.6200 mm, 28.5000 mm): Track [DISPLAY_3V3_D] on F.Cu, length 6.3077 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2466 mm)
+    Rule: board setup constraints hole; error
+    @(35.6023 mm, 49.7718 mm): Track [I2C_SCL] on SIG2, length 8.2800 mm
+    @(39.0122 mm, 49.3252 mm): Via [TP_AMT_P6] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2269 mm)
+    Rule: board setup constraints hole; error
+    @(47.1207 mm, 39.5225 mm): Track [GAUGE_ALERT] on SIG4, length 2.6746 mm
+    @(46.5939 mm, 39.4456 mm): Via [LCD_R4] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets EXP_INT and GND)
+    Local override; error
+    @(39.0295 mm, 61.4294 mm): Track [EXP_INT] on SIG1, length 10.0340 mm
+    @(41.2500 mm, 61.7500 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2268 mm)
+    Rule: board setup constraints hole; error
+    @(48.1207 mm, 57.4473 mm): Track [CRSF_TX] on SIG1, length 0.5705 mm
+    @(47.6347 mm, 57.8741 mm): Via [LCD_DCLK_SRC] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2407 mm)
+    Rule: board setup constraints hole; error
+    @(27.8254 mm, 41.4137 mm): Track [GAUGE_ALERT] on SIG4, length 5.9065 mm
+    @(23.4914 mm, 45.1245 mm): Via [LCD_R4] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0208 mm)
+    Rule: netclass 'Ground'; error
+    @(40.5185 mm, 62.0491 mm): Track [LCD_B1] on SIG3, length 7.9996 mm
+    @(41.2500 mm, 61.7500 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CTRL_1_0 and GND)
+    Local override; error
+    @(46.3669 mm, 46.2897 mm): Track [CTRL_1_0] on B.Cu, length 0.0901 mm
+    @(46.4629 mm, 46.2929 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2283 mm)
+    Rule: board setup constraints hole; error
+    @(46.5733 mm, 56.4704 mm): Track [CRSF_TX] on SIG1, length 4.1254 mm
+    @(47.0016 mm, 55.5624 mm): Via [LCD_B6] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2395 mm)
+    Rule: board setup constraints hole; error
+    @(47.7033 mm, 43.9322 mm): Track [TP_AMT_P6] on B.Cu, length 1.2075 mm
+    @(47.9785 mm, 42.3820 mm): Via [LCD_R7] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2351 mm)
+    Rule: board setup constraints hole; error
+    @(47.5502 mm, 57.4473 mm): Track [CRSF_TX] on SIG1, length 1.3815 mm
+    @(47.6347 mm, 57.8741 mm): Via [LCD_DCLK_SRC] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.0433 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(55.4517 mm, 58.0000 mm): Track [PANEL_3V3] on F.Cu, length 2.8647 mm
+    @(55.9200 mm, 58.7700 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2369 mm)
+    Rule: board setup constraints hole; error
+    @(47.7033 mm, 42.7247 mm): Track [TP_AMT_P6] on B.Cu, length 0.8908 mm
+    @(47.9785 mm, 42.3820 mm): Via [LCD_R7] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets EXP_INT and GND)
+    Local override; error
+    @(50.8802 mm, 58.8427 mm): Track [EXP_INT] on SIG1, length 6.0570 mm
+    @(55.9200 mm, 58.7700 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2413 mm)
+    Rule: board setup constraints hole; error
+    @(38.5747 mm, 41.4138 mm): Track [CRSF_TX] on SIG1, length 0.4711 mm
+    @(38.4126 mm, 41.8551 mm): Via [LCD_R0] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets LCD_R6 and GND)
+    Local override; error
+    @(48.3989 mm, 46.6275 mm): Track [LCD_R6] on SIG1, length 2.0270 mm
+    @(48.5500 mm, 46.0000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets TP_AMT_P7 and GND)
+    Local override; error
+    @(46.5977 mm, 48.2375 mm): Track [TP_AMT_P7] on B.Cu, length 0.9670 mm
+    @(45.9200 mm, 49.0000 mm): Track [GND] on B.Cu, length 0.6920 mm
+[shorting_items]: Items shorting two nets (nets GND and TP_AMT_UART0)
+    Local override; error
+    @(48.5500 mm, 46.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(48.7683 mm, 50.0569 mm): Track [TP_AMT_UART0] on SIG3, length 4.3528 mm
+[shorting_items]: Items shorting two nets (nets CTRL_0_2 and GND)
+    Local override; error
+    @(53.3200 mm, 58.0200 mm): Track [CTRL_0_2] on B.Cu, length 3.3390 mm
+    @(53.0000 mm, 60.7500 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets TP_AMT_P8 and GND)
+    Local override; error
+    @(37.2017 mm, 49.2000 mm): Track [TP_AMT_P8] on F.Cu, length 6.8025 mm
+    @(36.3500 mm, 47.6000 mm): Track [GND] on F.Cu, length 3.8581 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2335 mm)
+    Rule: board setup constraints hole; error
+    @(25.9088 mm, 45.5920 mm): Track [PWR_SW_EN] on SIG3, length 2.0179 mm
+    @(24.8274 mm, 46.0603 mm): Via [LCD_R5] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.1231 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(51.2261 mm, 61.9875 mm): Track [PANEL_3V3] on SIG1, length 1.7337 mm
+    @(53.0000 mm, 60.7500 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2392 mm)
+    Rule: board setup constraints hole; error
+    @(25.0000 mm, 60.3700 mm): Pad 11 [LCD_R6] of J1 on F.Cu
+    @(24.8772 mm, 61.3632 mm): Via [LCD_R5] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0312 mm)
+    Rule: netclass 'Ground'; error
+    @(70.0500 mm, 21.8463 mm): Track [I2C_SDA] on F.Cu, length 5.3784 mm
+    @(72.7500 mm, 25.0500 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(34.6177 mm, 33.0099 mm): Track [CRSF_TX_MCU] on SIG4, length 0.8328 mm
+    @(33.8334 mm, 32.8927 mm): Via [OSD_MISO_5V] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'DigitalFast' clearance 0.1200 mm; actual 0.0281 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(61.7364 mm, 24.7219 mm): Track [AUDIO_I2S_BCLK] on SIG2, length 13.6423 mm
+    @(72.7500 mm, 25.0500 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(34.0288 mm, 32.4210 mm): Track [CRSF_TX_MCU] on SIG4, length 9.9565 mm
+    @(33.8334 mm, 32.8927 mm): Via [OSD_MISO_5V] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets MASTER_CT and GND)
+    Local override; error
+    @(31.2371 mm, 45.6733 mm): Via [MASTER_CT] on F.Cu - B.Cu
+    @(31.3700 mm, 45.2000 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2286 mm)
+    Rule: board setup constraints hole; error
+    @(31.2371 mm, 45.6733 mm): Track [MASTER_CT] on SIG2, length 0.6118 mm
+    @(31.3700 mm, 45.2000 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2322 mm)
+    Rule: board setup constraints hole; error
+    @(25.0000 mm, 59.2418 mm): Track [LCD_R6] on F.Cu, length 0.7242 mm
+    @(25.5121 mm, 59.2844 mm): Via [LCD_R7] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets CTRL_1_4 and GND)
+    Local override; error
+    @(27.7851 mm, 44.9304 mm): Track [CTRL_1_4] on SIG4, length 3.5475 mm
+    @(31.3700 mm, 45.2000 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets BL_LED_K and GND)
+    Local override; error
+    @(40.1461 mm, 60.7287 mm): Track [BL_LED_K] on SIG2, length 17.0751 mm
+    @(37.5000 mm, 61.1200 mm): Via [GND] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets ESP_EN and GND)
+    Local override; error
+    @(52.5595 mm, 21.6190 mm): Track [ESP_EN] on SIG2, length 17.3699 mm
+    @(52.2500 mm, 21.0000 mm): Via [GND] on F.Cu - B.Cu
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(45.5058 mm, 45.0858 mm): Track [GND] on B.Cu, length 3.1785 mm
+    @(47.2772 mm, 44.6803 mm): Track [TP_AMT_P9] on B.Cu, length 1.3629 mm
+[shorting_items]: Items shorting two nets (nets GND and EN_3V3_SD)
+    Local override; error
+    @(86.9200 mm, 20.5000 mm): Track [GND] on B.Cu, length 0.7500 mm
+    @(87.0712 mm, 21.1790 mm): Track [EN_3V3_SD] on B.Cu, length 0.7454 mm
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.1048 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(36.3500 mm, 47.6000 mm): Track [GND] on F.Cu, length 3.8581 mm
+    @(37.7474 mm, 47.5493 mm): Track [AMT_CORE1] on F.Cu, length 0.0001 mm
+[shorting_items]: Items shorting two nets (nets GND and EN_3V3_SD)
+    Local override; error
+    @(87.6700 mm, 20.5000 mm): Via [GND] on F.Cu - B.Cu
+    @(87.5983 mm, 20.6519 mm): Track [EN_3V3_SD] on B.Cu, length 1.7019 mm
+[shorting_items]: Items shorting two nets (nets GND and VBUS_USB)
+    Local override; error
+    @(51.0000 mm, 19.0000 mm): Track [GND] on B.Cu, length 1.5000 mm
+    @(49.4450 mm, 20.6481 mm): Track [VBUS_USB] on B.Cu, length 2.4708 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(48.1207 mm, 57.4473 mm): Track [CRSF_TX] on SIG1, length 0.5705 mm
+    @(47.7268 mm, 57.0206 mm): Via [LCD_R6] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2266 mm)
+    Rule: board setup constraints hole; error
+    @(47.2395 mm, 57.1366 mm): Track [CTRL_0_12] on SIG2, length 0.4394 mm
+    @(47.7268 mm, 57.0206 mm): Via [LCD_R6] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2362 mm)
+    Rule: board setup constraints hole; error
+    @(3.0507 mm, 71.0076 mm): Track [EN_3V3_SD] on SIG3, length 0.7105 mm
+    @(2.9226 mm, 70.2626 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.1048 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(36.3500 mm, 47.6000 mm): Track [GND] on F.Cu, length 3.8581 mm
+    @(37.7474 mm, 47.6028 mm): Track [AMT_CORE1] on F.Cu, length 0.0535 mm
+[shorting_items]: Items shorting two nets (nets GND and AMT_CORE1)
+    Local override; error
+    @(36.3500 mm, 47.6000 mm): Track [GND] on F.Cu, length 3.8581 mm
+    @(37.7475 mm, 47.5493 mm): Via [AMT_CORE1] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.0769 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(74.4300 mm, 20.0000 mm): Track [GND] on B.Cu, length 1.0440 mm
+    @(72.4066 mm, 19.3231 mm): Track [SPK+] on B.Cu, length 3.0482 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2354 mm)
+    Rule: board setup constraints hole; error
+    @(47.8869 mm, 56.5649 mm): Track [AMT_RESET] on SIG4, length 0.4804 mm
+    @(47.7268 mm, 57.0206 mm): Via [LCD_R6] on F.Cu - B.Cu
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(46.5977 mm, 48.2375 mm): Track [TP_AMT_P7] on B.Cu, length 0.9670 mm
+    @(46.1142 mm, 47.5858 mm): Track [GND] on B.Cu, length 0.7500 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2462 mm)
+    Rule: board setup constraints hole; error
+    @(44.7166 mm, 58.0833 mm): Track [CTRL_0_0] on SIG1, length 2.5240 mm
+    @(47.6347 mm, 57.8741 mm): Via [LCD_DCLK_SRC] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(59.3200 mm, 18.5000 mm): Via [GND] on F.Cu - B.Cu
+    @(60.8220 mm, 18.7602 mm): Track [EN_3V3_SD] on SIG4, length 1.5661 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2265 mm)
+    Rule: board setup constraints hole; error
+    @(47.1207 mm, 39.5225 mm): Track [GAUGE_ALERT] on SIG4, length 2.6746 mm
+    @(47.2411 mm, 40.0053 mm): Via [LCD_R6] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2266 mm)
+    Rule: board setup constraints hole; error
+    @(47.2406 mm, 58.0833 mm): Track [CTRL_0_0] on SIG1, length 0.3076 mm
+    @(47.6347 mm, 57.8741 mm): Via [LCD_DCLK_SRC] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0555 mm)
+    Rule: netclass 'Ground'; error
+    @(9.5000 mm, 52.0000 mm): Track [GND] on B.Cu, length 3.7985 mm
+    @(10.1783 mm, 52.1308 mm): Via [CTRL_0_11] on F.Cu - B.Cu
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(86.9200 mm, 20.5000 mm): Track [GND] on B.Cu, length 0.7500 mm
+    @(87.5983 mm, 20.6519 mm): Track [EN_3V3_SD] on B.Cu, length 1.7019 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(74.3969 mm, 41.9769 mm): Track [GIMBAL_LX] on B.Cu, length 8.7573 mm
+    @(73.9645 mm, 40.9645 mm): Track [GND] on B.Cu, length 2.1573 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(47.4581 mm, 58.3008 mm): Track [CTRL_0_0] on SIG1, length 8.7652 mm
+    @(47.6347 mm, 57.8741 mm): Via [LCD_DCLK_SRC] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.1000 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(50.6498 mm, 49.2000 mm): Track [AMT_CORE3] on F.Cu, length 4.4258 mm
+    @(51.6500 mm, 49.6000 mm): Track [GND] on F.Cu, length 1.5000 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0801 mm)
+    Rule: netclass 'Ground'; error
+    @(59.3200 mm, 18.5000 mm): Via [GND] on F.Cu - B.Cu
+    @(58.9217 mm, 18.4260 mm): Track [EN_3V3_SD] on SIG4, length 0.4983 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2272 mm)
+    Rule: board setup constraints hole; error
+    @(35.3919 mm, 48.7586 mm): Track [CTRL_0_0] on SIG1, length 13.1871 mm
+    @(38.0868 mm, 50.8494 mm): Via [LCD_B5] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2297 mm)
+    Rule: board setup constraints hole; error
+    @(25.5121 mm, 59.2844 mm): Via [LCD_R7] on F.Cu - B.Cu
+    @(25.5121 mm, 58.7297 mm): Via [LCD_R6] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2268 mm)
+    Rule: board setup constraints hole; error
+    @(25.0853 mm, 59.6006 mm): Track [5V_VIDEO_CT] on SIG3, length 6.0200 mm
+    @(25.5121 mm, 58.7297 mm): Via [LCD_R6] on F.Cu - B.Cu
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(37.3702 mm, 50.4702 mm): Track [AMT_XTAL_IN] on B.Cu, length 1.5188 mm
+    @(36.9200 mm, 50.0000 mm): Track [GND] on B.Cu, length 0.7500 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'PowerLogic'; error
+    @(55.5700 mm, 17.0000 mm): Track [REGN] on B.Cu, length 4.1484 mm
+    @(54.0000 mm, 15.0000 mm): Track [GND] on B.Cu, length 2.2000 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(47.1855 mm, 45.4711 mm): Track [CTRL_1_0] on B.Cu, length 1.1577 mm
+    @(45.5058 mm, 45.0858 mm): Track [GND] on B.Cu, length 3.1785 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0145 mm)
+    Rule: netclass 'Ground'; error
+    @(13.9200 mm, 21.2500 mm): Via [GND] on F.Cu - B.Cu
+    @(13.5805 mm, 20.9077 mm): Track [CTRL_0_0] on SIG3, length 9.1739 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2280 mm)
+    Rule: board setup constraints hole; error
+    @(48.1001 mm, 55.7545 mm): Track [LCD_R6] on SIG1, length 7.8555 mm
+    @(47.7121 mm, 54.6055 mm): Via [LCD_DE] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2310 mm)
+    Rule: board setup constraints hole; error
+    @(44.2982 mm, 59.2538 mm): Track [TP_AMT_PWM1] on F.Cu, length 0.4336 mm
+    @(44.4374 mm, 58.7835 mm): Via [LCD_VSYNC] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'AnalogVideo' clearance 0.1500 mm; actual 0.0225 mm)
+    Rule: netclass 'AnalogVideo'; error
+    @(35.4248 mm, 52.3869 mm): Track [TP_CVBS3] on F.Cu, length 0.6111 mm
+    @(36.3500 mm, 52.0000 mm): Track [AMT_CVBS1] on F.Cu, length 3.2802 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0074 mm)
+    Rule: netclass 'Ground'; error
+    @(82.5800 mm, 41.0000 mm): Track [GND] on B.Cu, length 3.3673 mm
+    @(81.6873 mm, 41.4702 mm): Via [GIMBAL_RY] on F.Cu - B.Cu
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'AnalogVideo'; error
+    @(35.4248 mm, 52.3869 mm): Track [TP_CVBS3] on F.Cu, length 0.6111 mm
+    @(36.3500 mm, 52.0000 mm): Track [AMT_CVBS1] on F.Cu, length 2.4809 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(76.0900 mm, 15.8917 mm): Track [AUDIO_ENABLE] on B.Cu, length 3.3502 mm
+    @(74.4200 mm, 18.0000 mm): Track [GND] on B.Cu, length 2.7800 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2368 mm)
+    Rule: board setup constraints hole; error
+    @(30.6941 mm, 56.6105 mm): Track [LCD_R6] on SIG2, length 11.4012 mm
+    @(38.7217 mm, 57.0073 mm): Via [LCD_G3] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2458 mm)
+    Rule: board setup constraints hole; error
+    @(43.9916 mm, 58.9472 mm): Track [TP_AMT_PWM1] on F.Cu, length 0.7837 mm
+    @(44.4374 mm, 58.7835 mm): Via [LCD_VSYNC] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(57.5758 mm, 48.7570 mm): Track [TP_AMT_PWM1] on F.Cu, length 1.4122 mm
+    @(57.1491 mm, 49.9563 mm): Via [LCD_B3] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0719 mm)
+    Rule: netclass 'Ground'; error
+    @(49.4300 mm, 58.0200 mm): Track [GND] on B.Cu, length 0.7500 mm
+    @(48.7353 mm, 57.5481 mm): Via [CTRL_0_12] on F.Cu - B.Cu
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(82.2200 mm, 4.0000 mm): Track [GND] on B.Cu, length 0.7500 mm
+    @(82.7147 mm, 3.5564 mm): Track [BUZZER_SNUB] on B.Cu, length 0.7749 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(22.8027 mm, 59.7111 mm): Track [I2C_SDA] on SIG2, length 6.5177 mm
+    @(25.5121 mm, 59.2844 mm): Via [LCD_R7] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(49.4450 mm, 20.6481 mm): Track [VBUS_USB] on B.Cu, length 2.4708 mm
+    @(50.9300 mm, 16.5000 mm): Track [GND] on B.Cu, length 2.8801 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2268 mm)
+    Rule: board setup constraints hole; error
+    @(54.0744 mm, 45.9105 mm): Track [TP_AMT_PWM1] on F.Cu, length 0.4158 mm
+    @(53.9379 mm, 46.3776 mm): Via [LCD_G1] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2468 mm)
+    Rule: board setup constraints hole; error
+    @(47.6192 mm, 42.1448 mm): Track [RX_DATA_MCU] on SIG2, length 1.9945 mm
+    @(47.9785 mm, 42.3820 mm): Via [LCD_R7] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(35.1500 mm, 47.2000 mm): Via [GND] on F.Cu - B.Cu
+    @(35.2464 mm, 47.3524 mm): Track [CTRL_0_1] on SIG1, length 3.9119 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(44.3735 mm, 51.3290 mm): Via [CTRL_0_14] on F.Cu - B.Cu
+    @(43.7129 mm, 49.7071 mm): Track [GND] on B.Cu, length 3.9321 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(48.6800 mm, 58.0200 mm): Via [GND] on F.Cu - B.Cu
+    @(49.2370 mm, 57.7559 mm): Track [TP_AMT_PWM1] on F.Cu, length 2.1184 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(85.5700 mm, 45.5000 mm): Track [5V_ILIM] on B.Cu, length 4.0495 mm
+    @(84.4200 mm, 46.0000 mm): Track [GND] on B.Cu, length 1.6804 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(75.5398 mm, 21.7602 mm): Track [AUDIO_ENABLE] on B.Cu, length 0.9698 mm
+    @(75.4300 mm, 22.5000 mm): Track [GND] on B.Cu, length 2.8000 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(54.1159 mm, 25.8835 mm): Track [AMT_FLASH_C_MOSI] on F.Cu, length 0.3245 mm
+    @(53.6692 mm, 25.8075 mm): Via [AMT_FLASH_CLK] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2269 mm)
+    Rule: board setup constraints hole; error
+    @(26.4833 mm, 59.5290 mm): Track [LCD_R7] on SIG3, length 2.5681 mm
+    @(27.2866 mm, 59.2729 mm): Via [LCD_G3] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(53.7971 mm, 27.4083 mm): Track [ESP_BOOT] on SIG2, length 11.3495 mm
+    @(48.6845 mm, 22.9628 mm): Via [AMT_FLASH_C_MISO] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2302 mm)
+    Rule: board setup constraints hole; error
+    @(36.0918 mm, 59.3717 mm): Track [LCD_G5] on SIG3, length 4.4958 mm
+    @(35.8905 mm, 58.9815 mm): Via [LCD_VSYNC] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2460 mm)
+    Rule: board setup constraints hole; error
+    @(39.3479 mm, 53.5995 mm): Track [CTRL_0_10] on SIG4, length 3.2315 mm
+    @(42.7890 mm, 53.9932 mm): Via [LCD_B2] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'DigitalFast' clearance 0.1200 mm; actual 0.0000 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(40.2500 mm, 35.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(42.9197 mm, 32.3963 mm): Track [AMT_FLASH_CLK] on SIG3, length 3.5316 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2361 mm)
+    Rule: board setup constraints hole; error
+    @(93.3695 mm, 47.2061 mm): Track [CTRL_0_10] on SIG4, length 27.2346 mm
+    @(77.4800 mm, 46.7700 mm): PTH pad [GND] of U6
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2307 mm)
+    Rule: board setup constraints hole; error
+    @(53.2356 mm, 49.3553 mm): Track [CTRL_0_10] on SIG4, length 5.7648 mm
+    @(52.6968 mm, 49.2850 mm): Via [LCD_B0] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0427 mm)
+    Rule: netclass 'Ground'; error
+    @(48.7683 mm, 45.7041 mm): Track [TP_AMT_UART0] on SIG3, length 2.7501 mm
+    @(48.5500 mm, 46.0000 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0524 mm)
+    Rule: netclass 'Ground'; error
+    @(30.2533 mm, 45.6733 mm): Track [MASTER_CT] on F.Cu, length 0.9838 mm
+    @(31.9000 mm, 47.1500 mm): Track [GND] on F.Cu, length 2.0207 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(9.5000 mm, 52.0000 mm): Track [GND] on B.Cu, length 3.7985 mm
+    @(11.1966 mm, 54.5801 mm): Track [I2C_SCL] on B.Cu, length 0.8686 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2468 mm)
+    Rule: board setup constraints hole; error
+    @(56.8059 mm, 35.7031 mm): Track [AMT_FLASH_CLK_ESP] on F.Cu, length 1.2250 mm
+    @(57.2231 mm, 35.2563 mm): Via [AMT_FLASH_MISO_ESP] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0427 mm)
+    Rule: netclass 'Ground'; error
+    @(9.5000 mm, 52.0000 mm): Track [GND] on B.Cu, length 3.7985 mm
+    @(11.1966 mm, 57.6756 mm): Track [I2C_SCL] on B.Cu, length 3.0955 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2460 mm)
+    Rule: board setup constraints hole; error
+    @(42.5794 mm, 53.5995 mm): Track [CTRL_0_10] on SIG4, length 0.2374 mm
+    @(42.7890 mm, 53.9932 mm): Via [LCD_B2] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(49.0635 mm, 61.4294 mm): Track [EXP_INT] on SIG1, length 1.3243 mm
+    @(49.9200 mm, 60.7500 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(31.2371 mm, 45.6733 mm): Via [MASTER_CT] on F.Cu - B.Cu
+    @(31.9000 mm, 47.1500 mm): Track [GND] on F.Cu, length 2.0207 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(55.3601 mm, 49.1512 mm): Track [I2C_SCL] on SIG1, length 1.5387 mm
+    @(54.9334 mm, 49.2202 mm): Via [LCD_G4] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(45.8641 mm, 28.9176 mm): Track [GIMBAL_RX_RAW] on SIG1, length 27.1376 mm
+    @(46.0595 mm, 28.4459 mm): Via [AMT_FLASH_CS] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(69.5297 mm, 36.9083 mm): Track [EXP_INT] on SIG3, length 0.9435 mm
+    @(70.0014 mm, 37.1036 mm): Via [RX_DATA_MCU] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0749 mm)
+    Rule: netclass 'Ground'; error
+    @(54.6200 mm, 51.2300 mm): Via [GND] on F.Cu - B.Cu
+    @(54.6342 mm, 50.8304 mm): Track [TP_AMT_UART1] on B.Cu, length 1.5224 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0295 mm)
+    Rule: netclass 'Ground'; error
+    @(46.1200 mm, 59.2087 mm): Track [TP_AMT_UART1] on SIG4, length 0.9263 mm
+    @(46.3300 mm, 59.5000 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(65.2145 mm, 47.1745 mm): Via [GND] on F.Cu - B.Cu
+    @(64.9996 mm, 47.2069 mm): Track [MASTER_CT] on SIG2, length 0.8672 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2466 mm)
+    Rule: board setup constraints hole; error
+    @(70.0962 mm, 36.3418 mm): Track [EXP_INT] on SIG3, length 0.8012 mm
+    @(70.0014 mm, 37.1036 mm): Via [RX_DATA_MCU] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'AnalogVideo' clearance 0.1500 mm; actual 0.1053 mm)
+    Rule: netclass 'AnalogVideo'; error
+    @(42.1394 mm, 49.3415 mm): Via [AMT_VCOM] on F.Cu - B.Cu
+    @(35.6023 mm, 49.7718 mm): Track [I2C_SCL] on SIG2, length 8.2800 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(46.6273 mm, 27.6274 mm): Track [AMT_FLASH_CS] on SIG3, length 0.2507 mm
+    @(46.8123 mm, 28.0741 mm): Via [AMT_FLASH_MISO] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(46.0595 mm, 28.1952 mm): Track [AMT_FLASH_CS] on SIG3, length 0.8030 mm
+    @(46.8123 mm, 28.0741 mm): Via [AMT_FLASH_MISO] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(44.2667 mm, 49.3874 mm): Track [I2C_SCL] on SIG2, length 6.4064 mm
+    @(45.0612 mm, 49.8141 mm): Via [LCD_DCLK_SRC] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(64.4645 mm, 42.4845 mm): Via [GND] on F.Cu - B.Cu
+    @(69.5297 mm, 37.8518 mm): Track [EXP_INT] on SIG3, length 12.2201 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(54.7855 mm, 34.1974 mm): Track [AMT_FLASH_CS_ESP] on F.Cu, length 2.5136 mm
+    @(55.2622 mm, 35.3059 mm): Via [AMT_FLASH_C_MISO] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2483 mm)
+    Rule: board setup constraints hole; error
+    @(29.2035 mm, 39.0587 mm): Track [OSD_CS_5V] on F.Cu, length 0.6666 mm
+    @(29.6518 mm, 39.3688 mm): Via [OSD_MOSI_5V] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2468 mm)
+    Rule: board setup constraints hole; error
+    @(56.2249 mm, 35.0104 mm): Track [GAUGE_ALERT] on B.Cu, length 4.1069 mm
+    @(55.2622 mm, 35.3059 mm): Via [AMT_FLASH_C_MISO] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'AnalogVideo' clearance 0.1500 mm; actual 0.0678 mm)
+    Rule: netclass 'AnalogVideo'; error
+    @(34.9927 mm, 51.9548 mm): Track [TP_CVBS3] on F.Cu, length 0.3096 mm
+    @(36.3500 mm, 52.0000 mm): Track [AMT_CVBS1] on F.Cu, length 2.4809 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2351 mm)
+    Rule: board setup constraints hole; error
+    @(47.2395 mm, 57.1366 mm): Track [CTRL_0_12] on SIG2, length 0.4394 mm
+    @(47.6347 mm, 57.8741 mm): Via [LCD_DCLK_SRC] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0478 mm)
+    Rule: netclass 'Ground'; error
+    @(48.7353 mm, 57.5481 mm): Track [CTRL_0_12] on SIG2, length 0.4056 mm
+    @(48.6800 mm, 58.0200 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2482 mm)
+    Rule: board setup constraints hole; error
+    @(55.2627 mm, 30.1140 mm): Track [AMT_FLASH_C_CLK] on SIG4, length 3.3754 mm
+    @(52.9672 mm, 30.5622 mm): Via [AMT_FLASH_MOSI] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(29.1199 mm, 20.3749 mm): Track [OSD_SCLK_3V3] on SIG3, length 9.8374 mm
+    @(22.6105 mm, 27.5160 mm): Via [OSD_CS_5V] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(47.5502 mm, 57.4473 mm): Track [CTRL_0_12] on SIG2, length 1.0843 mm
+    @(47.7268 mm, 57.0206 mm): Via [LCD_R6] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'AnalogVideo' clearance 0.1500 mm; actual 0.0000 mm)
+    Rule: netclass 'AnalogVideo'; error
+    @(36.3500 mm, 52.0000 mm): Track [AMT_CVBS1] on F.Cu, length 3.2802 mm
+    @(36.6675 mm, 52.5925 mm): Track [TP_CVBS3] on F.Cu, length 1.0371 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(43.3247 mm, 37.2709 mm): Track [AMT_FLASH_MOSI] on SIG2, length 1.4623 mm
+    @(42.8780 mm, 37.0858 mm): Via [OSD_CS_5V] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2477 mm)
+    Rule: board setup constraints hole; error
+    @(52.1244 mm, 32.7108 mm): Track [AMT_FLASH_MISO_ESP] on SIG1, length 2.6897 mm
+    @(53.5683 mm, 33.5215 mm): Via [AMT_FLASH_C_MISO] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2295 mm)
+    Rule: board setup constraints hole; error
+    @(30.8343 mm, 57.4368 mm): Track [CTRL_0_12] on SIG2, length 8.1264 mm
+    @(38.7217 mm, 57.0073 mm): Via [LCD_G3] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'AnalogVideo' clearance 0.1500 mm; actual 0.0000 mm)
+    Rule: netclass 'AnalogVideo'; error
+    @(35.6304 mm, 52.5925 mm): Track [TP_CVBS3] on F.Cu, length 0.2908 mm
+    @(36.3500 mm, 52.0000 mm): Track [AMT_CVBS1] on F.Cu, length 2.4809 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2266 mm)
+    Rule: board setup constraints hole; error
+    @(29.3204 mm, 59.7111 mm): Track [I2C_SDA] on SIG2, length 2.7897 mm
+    @(29.5788 mm, 58.8494 mm): Via [LCD_B0] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2389 mm)
+    Rule: board setup constraints hole; error
+    @(47.1256 mm, 54.9356 mm): Via [CTRL_0_13] on F.Cu - B.Cu
+    @(47.0016 mm, 55.5624 mm): Via [LCD_B6] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(30.0985 mm, 40.2209 mm): Track [OSD_CS_5V] on SIG1, length 1.0948 mm
+    @(29.6518 mm, 39.3688 mm): Via [OSD_MOSI_5V] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2382 mm)
+    Rule: board setup constraints hole; error
+    @(22.8027 mm, 59.7111 mm): Track [I2C_SDA] on SIG2, length 6.5177 mm
+    @(27.2866 mm, 59.2729 mm): Via [LCD_G3] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(30.4346 mm, 38.9565 mm): Track [OSD_CS_5V] on SIG2, length 0.4171 mm
+    @(30.8813 mm, 39.1415 mm): Via [OSD_SCLK_5V] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2322 mm)
+    Rule: board setup constraints hole; error
+    @(54.6632 mm, 47.5315 mm): Track [I2C_SDA] on SIG3, length 0.6468 mm
+    @(55.1014 mm, 47.9637 mm): Via [LCD_G3] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(10.6964 mm, 53.6919 mm): Via [GAUGE_CTG] on F.Cu - B.Cu
+    @(9.5000 mm, 52.0000 mm): Track [GND] on B.Cu, length 3.7985 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(30.4346 mm, 39.8848 mm): Track [OSD_CS_5V] on SIG2, length 0.9283 mm
+    @(30.8813 mm, 39.1415 mm): Via [OSD_SCLK_5V] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2266 mm)
+    Rule: board setup constraints hole; error
+    @(46.1733 mm, 38.0112 mm): Track [OSD_LOS_5V] on SIG2, length 0.6822 mm
+    @(46.1176 mm, 38.6702 mm): Via [LCD_DCLK_SRC] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2472 mm)
+    Rule: board setup constraints hole; error
+    @(47.2427 mm, 55.0527 mm): Track [CTRL_0_13] on SIG2, length 3.4945 mm
+    @(47.7121 mm, 54.6055 mm): Via [LCD_DE] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2450 mm)
+    Rule: board setup constraints hole; error
+    @(45.6909 mm, 38.4936 mm): Track [OSD_LOS_5V] on SIG2, length 0.0503 mm
+    @(46.1176 mm, 38.6702 mm): Via [LCD_DCLK_SRC] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2450 mm)
+    Rule: board setup constraints hole; error
+    @(45.6909 mm, 38.5439 mm): Track [OSD_LOS_5V] on SIG2, length 3.1865 mm
+    @(46.1176 mm, 38.6702 mm): Via [LCD_DCLK_SRC] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(27.8789 mm, 61.0962 mm): Track [LCD_G0] on SIG1, length 4.6791 mm
+    @(29.5788 mm, 58.8494 mm): Via [LCD_B0] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0094 mm)
+    Rule: netclass 'Ground'; error
+    @(43.7129 mm, 49.7071 mm): Track [GND] on B.Cu, length 3.9321 mm
+    @(44.3735 mm, 51.3290 mm): Track [CTRL_0_14] on B.Cu, length 0.4371 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2444 mm)
+    Rule: board setup constraints hole; error
+    @(29.5788 mm, 59.5172 mm): Track [LCD_B0] on SIG3, length 3.2671 mm
+    @(32.0000 mm, 61.3665 mm): Via [LCD_B4] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(43.4000 mm, 40.1500 mm): Via [GND] on F.Cu - B.Cu
+    @(43.2777 mm, 40.2382 mm): Track [TP_OSD_VSYNC] on B.Cu, length 2.3921 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(49.4703 mm, 34.7233 mm): Track [OSD_RESET_3V3] on SIG2, length 12.0630 mm
+    @(46.5495 mm, 32.4696 mm): Via [AMT_FLASH_MOSI] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2268 mm)
+    Rule: board setup constraints hole; error
+    @(31.8890 mm, 61.8274 mm): Track [LCD_B0] on SIG3, length 8.4482 mm
+    @(34.2387 mm, 61.4406 mm): Via [LCD_DISP] on F.Cu - B.Cu
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'HighCurrent'; error
+    @(55.1300 mm, 7.9500 mm): Track [VBUS_RAW] on F.Cu, length 2.4551 mm
+    @(54.6198 mm, 6.6500 mm): Track [USB_CC1] on F.Cu, length 1.5730 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(42.1548 mm, 38.4408 mm): Track [AMT_FLASH_MOSI] on SIG2, length 1.6545 mm
+    @(42.8780 mm, 37.0858 mm): Via [OSD_CS_5V] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2340 mm)
+    Rule: board setup constraints hole; error
+    @(53.5075 mm, 7.7623 mm): Track [USB_CC1] on F.Cu, length 1.1862 mm
+    @(53.0735 mm, 8.0573 mm): Via [CHARGER_INT] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(23.0572 mm, 27.2621 mm): Track [OSD_MOSI_3V3] on SIG3, length 1.0840 mm
+    @(22.6105 mm, 27.5160 mm): Via [OSD_CS_5V] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0729 mm)
+    Rule: netclass 'Ground'; error
+    @(50.9265 mm, 9.0254 mm): Via [USB_CC1] on F.Cu - B.Cu
+    @(51.5000 mm, 9.0000 mm): Track [GND] on F.Cu, length 2.3585 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(50.1500 mm, 49.6000 mm): Via [GND] on F.Cu - B.Cu
+    @(50.0146 mm, 49.9001 mm): Track [CTRL_0_15] on B.Cu, length 0.1189 mm
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.1735 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(51.8000 mm, 8.8000 mm): Track [VBUS_RAW] on SIG3, length 3.7000 mm
+    @(50.9265 mm, 9.0254 mm): Via [USB_CC1] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(50.1500 mm, 49.6000 mm): Via [GND] on F.Cu - B.Cu
+    @(50.1335 mm, 49.9001 mm): Track [CTRL_0_15] on SIG2, length 0.6000 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(78.5200 mm, 53.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(100.0843 mm, 53.2728 mm): Track [CTRL_0_15] on SIG2, length 43.2153 mm
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(56.1233 mm, 3.7050 mm): Track [USB_CC2] on SIG2, length 8.1002 mm
+    @(52.8000 mm, 3.3000 mm): Via [VBUS_RAW] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(42.6124 mm, 53.5665 mm): Track [CTRL_0_9] on SIG2, length 5.5115 mm
+    @(42.7890 mm, 53.9932 mm): Via [LCD_B2] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2431 mm)
+    Rule: board setup constraints hole; error
+    @(56.5099 mm, 33.0340 mm): Track [AMT_FLASH_SEL] on SIG3, length 3.3387 mm
+    @(57.2493 mm, 34.4000 mm): Via [AMT_RESET] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2278 mm)
+    Rule: board setup constraints hole; error
+    @(41.1211 mm, 56.2096 mm): Track [LCD_B4] on SIG3, length 3.1175 mm
+    @(42.7890 mm, 53.9932 mm): Via [LCD_B2] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2317 mm)
+    Rule: board setup constraints hole; error
+    @(30.5000 mm, 60.3700 mm): Pad 22 [LCD_B1] of J1 on F.Cu
+    @(30.6739 mm, 59.3879 mm): Via [LCD_B2] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(54.1632 mm, 4.5252 mm): Track [USB_D+] on B.Cu, length 2.2390 mm
+    @(52.8000 mm, 3.3000 mm): Via [VBUS_RAW] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(71.8746 mm, 38.3097 mm): Track [GIMBAL_RX_RAW] on SIG1, length 2.6142 mm
+    @(70.0014 mm, 37.1036 mm): Via [RX_DATA_MCU] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0202 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(52.5800 mm, 2.9420 mm): Track [USB_D+] on B.Cu, length 0.9420 mm
+    @(52.8000 mm, 3.3000 mm): Via [VBUS_RAW] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(46.1936 mm, 28.9176 mm): Track [GIMBAL_RX_RAW] on SIG1, length 0.3295 mm
+    @(46.0595 mm, 28.4459 mm): Via [AMT_FLASH_CS] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2282 mm)
+    Rule: board setup constraints hole; error
+    @(31.3208 mm, 58.8715 mm): Track [LCD_B3] on F.Cu, length 3.3613 mm
+    @(31.7609 mm, 58.9804 mm): Via [LCD_B5] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2445 mm)
+    Rule: board setup constraints hole; error
+    @(36.3619 mm, 56.2080 mm): Track [CTRL_0_3] on SIG1, length 2.2137 mm
+    @(35.5806 mm, 54.7981 mm): Via [LCD_B3] on F.Cu - B.Cu
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'HighCurrent'; error
+    @(52.7000 mm, 7.6000 mm): Track [VBUS_RAW] on SIG3, length 1.5000 mm
+    @(51.8783 mm, 13.3029 mm): Track [USB_D+_MCU] on SIG3, length 10.6479 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(22.1638 mm, 27.3310 mm): Track [OSD_SCLK_3V3] on SIG3, length 0.4401 mm
+    @(22.6105 mm, 27.5160 mm): Via [OSD_CS_5V] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2278 mm)
+    Rule: board setup constraints hole; error
+    @(35.7424 mm, 55.1848 mm): Track [LCD_B5] on SIG3, length 0.9718 mm
+    @(35.5806 mm, 54.7981 mm): Via [LCD_B3] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'AnalogVideo' clearance 0.1500 mm; actual 0.0000 mm)
+    Rule: netclass 'AnalogVideo'; error
+    @(37.2769 mm, 50.7852 mm): Track [AMT_VCOM] on F.Cu, length 0.0005 mm
+    @(37.4503 mm, 50.5303 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0215 mm)
+    Rule: netclass 'Ground'; error
+    @(81.6873 mm, 41.4702 mm): Track [GIMBAL_RY] on SIG1, length 2.0921 mm
+    @(79.2500 mm, 41.5000 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(52.5000 mm, 7.3576 mm): Track [USB_D-] on F.Cu, length 0.9657 mm
+    @(55.1300 mm, 7.9500 mm): Track [VBUS_RAW] on F.Cu, length 2.4551 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2268 mm)
+    Rule: board setup constraints hole; error
+    @(56.7223 mm, 49.7725 mm): Track [CTRL_0_5] on SIG3, length 1.0592 mm
+    @(57.1491 mm, 49.9563 mm): Via [LCD_B3] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'AnalogVideo' clearance 0.1500 mm; actual 0.0000 mm)
+    Rule: netclass 'AnalogVideo'; error
+    @(37.2764 mm, 50.7852 mm): Track [AMT_VCOM] on F.Cu, length 0.0209 mm
+    @(37.4503 mm, 50.5303 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.1143 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(53.0698 mm, 6.7878 mm): Track [USB_D-] on F.Cu, length 0.8058 mm
+    @(55.1300 mm, 7.9500 mm): Track [VBUS_RAW] on F.Cu, length 2.4551 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(52.6800 mm, 58.0200 mm): Track [CTRL_0_3] on B.Cu, length 3.4499 mm
+    @(53.0000 mm, 60.7500 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'AnalogVideo' clearance 0.1500 mm; actual 0.0000 mm)
+    Rule: netclass 'AnalogVideo'; error
+    @(37.7163 mm, 50.3457 mm): Track [AMT_VCOM] on F.Cu, length 3.4189 mm
+    @(37.4503 mm, 50.5303 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'AnalogVideo' clearance 0.1500 mm; actual 0.0000 mm)
+    Rule: netclass 'AnalogVideo'; error
+    @(37.4503 mm, 50.5303 mm): Via [GND] on F.Cu - B.Cu
+    @(36.3500 mm, 50.8000 mm): Track [AMT_VCOM] on F.Cu, length 0.9116 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Default'; error
+    @(78.6358 mm, 3.7637 mm): Track [GIMBAL_RY_RAW] on SIG1, length 6.2531 mm
+    @(78.2505 mm, 4.0054 mm): Via [BUZZER_PWM] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(52.6297 mm, 6.3477 mm): Via [USB_D-] on F.Cu - B.Cu
+    @(52.8000 mm, 3.3000 mm): Track [VBUS_RAW] on SIG3, length 5.5902 mm
+[clearance]: Clearance violation (netclass 'AnalogVideo' clearance 0.1500 mm; actual 0.0000 mm)
+    Rule: netclass 'AnalogVideo'; error
+    @(37.4503 mm, 50.5303 mm): Via [GND] on F.Cu - B.Cu
+    @(37.2769 mm, 50.7852 mm): Track [AMT_VCOM] on F.Cu, length 0.6214 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2482 mm)
+    Rule: board setup constraints hole; error
+    @(70.4594 mm, 32.1655 mm): Track [GIMBAL_RY_RAW] on SIG1, length 7.2275 mm
+    @(72.7754 mm, 33.8123 mm): Via [RX_DATA_MCU] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2311 mm)
+    Rule: board setup constraints hole; error
+    @(49.3424 mm, 50.6817 mm): Track [LCD_B4] on F.Cu, length 3.1646 mm
+    @(48.8163 mm, 51.0728 mm): Via [LCD_B5] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(69.2500 mm, 23.2500 mm): Via [GND] on F.Cu - B.Cu
+    @(69.1784 mm, 23.2592 mm): Track [GIMBAL_RY_RAW] on SIG1, length 7.1837 mm
+[clearance]: Clearance violation (netclass 'USB_Preliminary' clearance 0.1500 mm; actual 0.0000 mm)
+    Rule: netclass 'USB_Preliminary'; error
+    @(53.6300 mm, 2.3500 mm): Via [GND] on F.Cu - B.Cu
+    @(53.7474 mm, 2.1493 mm): Track [USB_D-_MCU] on SIG3, length 3.8569 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2268 mm)
+    Rule: board setup constraints hole; error
+    @(48.0096 mm, 53.2542 mm): Track [CTRL_0_8] on SIG2, length 5.4818 mm
+    @(43.3255 mm, 52.8274 mm): Via [LCD_B4] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(47.5350 mm, 39.0189 mm): Track [CTRL_0_4] on B.Cu, length 1.1177 mm
+    @(46.5939 mm, 39.4456 mm): Via [LCD_R4] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(36.3500 mm, 47.2000 mm): Track [GND] on F.Cu, length 1.2000 mm
+    @(35.4227 mm, 47.2173 mm): Track [AMT_XTAL_OUT] on F.Cu, length 0.1636 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2469 mm)
+    Rule: board setup constraints hole; error
+    @(46.3191 mm, 39.1171 mm): Track [CTRL_0_4] on B.Cu, length 0.7720 mm
+    @(46.1176 mm, 38.6702 mm): Via [LCD_DCLK_SRC] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(55.1300 mm, 7.9500 mm): Track [VBUS_RAW] on F.Cu, length 2.4551 mm
+    @(53.5075 mm, 7.7623 mm): Track [USB_CC1] on F.Cu, length 1.1862 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2454 mm)
+    Rule: board setup constraints hole; error
+    @(37.3702 mm, 50.9685 mm): Track [AMT_XTAL_IN] on B.Cu, length 0.0846 mm
+    @(37.4503 mm, 50.5303 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2283 mm)
+    Rule: board setup constraints hole; error
+    @(46.4173 mm, 39.0189 mm): Track [CTRL_0_4] on B.Cu, length 0.1389 mm
+    @(46.5939 mm, 39.4456 mm): Via [LCD_R4] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(37.4503 mm, 50.5303 mm): Via [GND] on F.Cu - B.Cu
+    @(37.3702 mm, 50.4702 mm): Track [AMT_XTAL_IN] on B.Cu, length 0.4983 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2287 mm)
+    Rule: board setup constraints hole; error
+    @(32.2500 mm, 54.0000 mm): Track [GND] on F.Cu, length 0.7500 mm
+    @(31.1876 mm, 54.2936 mm): Via [LCD_G0] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(38.4735 mm, 54.9922 mm): Track [LCD_DCLK] on SIG3, length 7.0609 mm
+    @(38.0868 mm, 50.8494 mm): Via [LCD_B5] on F.Cu - B.Cu
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(34.1000 mm, 48.8500 mm): Track [GND] on F.Cu, length 1.6447 mm
+    @(33.6575 mm, 50.1809 mm): Track [AMT_XTAL_OUT] on F.Cu, length 1.2103 mm
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(52.5000 mm, 7.3576 mm): Track [USB_D-] on F.Cu, length 0.9657 mm
+    @(52.7000 mm, 7.6000 mm): Via [VBUS_RAW] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2311 mm)
+    Rule: board setup constraints hole; error
+    @(43.2839 mm, 50.4583 mm): Track [LCD_G7] on SIG4, length 6.7223 mm
+    @(38.0868 mm, 50.8494 mm): Via [LCD_B5] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(35.4227 mm, 47.2173 mm): Track [AMT_XTAL_OUT] on F.Cu, length 0.1636 mm
+    @(35.1500 mm, 47.2000 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(51.8000 mm, 8.8000 mm): Track [VBUS_RAW] on SIG3, length 3.7000 mm
+    @(51.8783 mm, 13.3029 mm): Track [USB_D+_MCU] on SIG3, length 10.6479 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0191 mm)
+    Rule: netclass 'Ground'; error
+    @(36.3500 mm, 50.4000 mm): Track [GND] on F.Cu, length 2.8000 mm
+    @(33.6575 mm, 50.1809 mm): Track [AMT_XTAL_OUT] on F.Cu, length 1.2103 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(43.8708 mm, 50.3380 mm): Track [LCD_B5] on SIG2, length 5.2726 mm
+    @(43.7106 mm, 50.7247 mm): Via [LCD_DCLK_SRC] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.1732 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(52.7000 mm, 7.6000 mm): Track [VBUS_RAW] on SIG3, length 1.5000 mm
+    @(53.0735 mm, 13.2747 mm): Track [CHARGER_INT] on SIG3, length 5.2174 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(44.3822 mm, 50.8494 mm): Track [LCD_B5] on SIG2, length 0.7232 mm
+    @(43.7106 mm, 50.7247 mm): Via [LCD_DCLK_SRC] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.0000 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(34.0000 mm, 60.8639 mm): Track [PANEL_3V3] on SIG1, length 0.4775 mm
+    @(34.0000 mm, 61.1200 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(51.8783 mm, 13.3029 mm): Track [USB_D+_MCU] on SIG3, length 10.6479 mm
+    @(51.8000 mm, 12.5000 mm): Track [VBUS_RAW] on SIG3, length 2.8000 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'HighCurrent'; error
+    @(51.8783 mm, 13.3029 mm): Track [USB_D+_MCU] on SIG3, length 10.6479 mm
+    @(52.8000 mm, 3.3000 mm): Track [VBUS_RAW] on SIG3, length 5.5902 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2380 mm)
+    Rule: board setup constraints hole; error
+    @(35.4227 mm, 46.8898 mm): Track [AMT_XTAL_OUT] on F.Cu, length 0.0108 mm
+    @(35.1500 mm, 47.2000 mm): Via [GND] on F.Cu - B.Cu
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Ground'; error
+    @(36.3500 mm, 47.2000 mm): Track [GND] on F.Cu, length 1.2000 mm
+    @(35.4227 mm, 47.2173 mm): Track [AMT_XTAL_OUT] on F.Cu, length 0.3275 mm
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.0000 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(34.0000 mm, 61.1200 mm): Via [GND] on F.Cu - B.Cu
+    @(34.0000 mm, 60.8639 mm): Track [PANEL_3V3] on SIG1, length 1.8166 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2304 mm)
+    Rule: board setup constraints hole; error
+    @(31.7609 mm, 58.9510 mm): Track [LCD_B5] on SIG3, length 5.3262 mm
+    @(35.5806 mm, 54.7981 mm): Via [LCD_B3] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.1168 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(34.0000 mm, 61.1200 mm): Via [GND] on F.Cu - B.Cu
+    @(34.4775 mm, 60.8639 mm): Track [PANEL_3V3] on SIG1, length 1.5890 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(35.5271 mm, 55.1848 mm): Track [LCD_B5] on SIG3, length 0.2153 mm
+    @(35.5806 mm, 54.7981 mm): Via [LCD_B3] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0059 mm)
+    Rule: netclass 'Ground'; error
+    @(36.3500 mm, 47.2000 mm): Track [GND] on F.Cu, length 1.2000 mm
+    @(35.4227 mm, 47.3809 mm): Track [AMT_XTAL_OUT] on F.Cu, length 0.9460 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0747 mm)
+    Rule: netclass 'Ground'; error
+    @(34.0000 mm, 60.3700 mm): Track [GND] on F.Cu, length 0.7500 mm
+    @(34.2387 mm, 61.4406 mm): Via [LCD_DISP] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.0000 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(52.4520 mm, 60.7616 mm): Track [PANEL_3V3] on SIG1, length 1.4181 mm
+    @(53.0000 mm, 60.7500 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'PowerLogic' clearance 0.1500 mm; actual 0.0000 mm)
+    Rule: netclass 'PowerLogic'; error
+    @(41.2500 mm, 61.7500 mm): Via [GND] on F.Cu - B.Cu
+    @(35.6011 mm, 61.9875 mm): Track [PANEL_3V3] on SIG1, length 15.6250 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2318 mm)
+    Rule: board setup constraints hole; error
+    @(64.5034 mm, 41.9914 mm): Track [CTRL_0_5] on SIG3, length 11.0041 mm
+    @(57.1491 mm, 49.9563 mm): Via [LCD_B3] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2267 mm)
+    Rule: board setup constraints hole; error
+    @(45.9019 mm, 55.9491 mm): Track [LCD_DE] on SIG3, length 1.2599 mm
+    @(47.0016 mm, 55.5624 mm): Via [LCD_B6] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(36.3500 mm, 50.4000 mm): Track [GND] on F.Cu, length 2.8000 mm
+    @(33.6575 mm, 50.1809 mm): Via [AMT_XTAL_OUT] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Power' clearance 0.1500 mm; actual 0.0663 mm)
+    Rule: netclass 'Power'; error
+    @(94.5000 mm, 69.8000 mm): Track [GND] on F.Cu, length 0.7500 mm
+    @(87.0992 mm, 63.9500 mm): Track [5V_ELRS] on F.Cu, length 9.6898 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0956 mm)
+    Rule: netclass 'Ground'; error
+    @(33.4647 mm, 49.1257 mm): Track [AMT_XTAL_OUT] on B.Cu, length 0.8624 mm
+    @(33.5500 mm, 50.4000 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0923 mm)
+    Rule: netclass 'Ground'; error
+    @(12.7500 mm, 53.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(13.1496 mm, 53.1203 mm): Track [PROT_COUT] on SIG2, length 1.7707 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2300 mm)
+    Rule: board setup constraints hole; error
+    @(36.0918 mm, 59.3717 mm): Track [LCD_G5] on SIG3, length 4.4958 mm
+    @(33.6122 mm, 58.9817 mm): Via [LCD_B7] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.1748 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(49.2902 mm, 18.0225 mm): Track [VBUS_USB] on B.Cu, length 0.2869 mm
+    @(49.5000 mm, 19.0000 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(33.4647 mm, 49.9881 mm): Track [AMT_XTAL_OUT] on B.Cu, length 0.2727 mm
+    @(33.5500 mm, 50.4000 mm): Via [GND] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2278 mm)
+    Rule: board setup constraints hole; error
+    @(46.2000 mm, 57.6498 mm): Track [LCD_DCLK_SRC] on F.Cu, length 0.5350 mm
+    @(46.7296 mm, 57.6310 mm): Via [LCD_B7] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(49.5000 mm, 19.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(49.4450 mm, 18.1773 mm): Track [VBUS_USB] on B.Cu, length 0.2189 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'HighCurrent'; error
+    @(49.4931 mm, 17.8196 mm): Track [VBUS_USB] on B.Cu, length 1.5027 mm
+    @(50.9300 mm, 16.5000 mm): Track [GND] on B.Cu, length 2.8801 mm
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(76.6719 mm, 21.7602 mm): Track [AUDIO_ENABLE] on B.Cu, length 1.1321 mm
+    @(75.4300 mm, 22.5000 mm): Track [GND] on B.Cu, length 2.8000 mm
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.1748 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(49.5000 mm, 19.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(47.3983 mm, 18.0225 mm): Track [VBUS_USB] on B.Cu, length 1.8919 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2460 mm)
+    Rule: board setup constraints hole; error
+    @(36.0918 mm, 59.3717 mm): Track [LCD_G5] on SIG3, length 4.4958 mm
+    @(34.5000 mm, 58.9657 mm): Via [LCD_DCLK] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'HighCurrent' clearance 0.2000 mm; actual 0.0327 mm)
+    Rule: netclass 'HighCurrent'; error
+    @(54.3800 mm, 8.7500 mm): Via [GND] on F.Cu - B.Cu
+    @(54.7933 mm, 7.6261 mm): Track [VBUS_USB] on SIG1, length 0.3724 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2467 mm)
+    Rule: board setup constraints hole; error
+    @(59.3325 mm, 26.4941 mm): Track [AUDIO_I2S_WS] on B.Cu, length 1.0406 mm
+    @(59.5917 mm, 26.8666 mm): Via [AUDIO_I2S_BCLK] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2491 mm)
+    Rule: board setup constraints hole; error
+    @(9.3961 mm, 31.4023 mm): Track [RX_AUDIO_TP] on SIG4, length 1.3988 mm
+    @(9.8452 mm, 32.6285 mm): Via [RX_RSSI_RAW] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2371 mm)
+    Rule: board setup constraints hole; error
+    @(46.5783 mm, 58.0281 mm): Track [LCD_DCLK_SRC] on F.Cu, length 0.9024 mm
+    @(46.7296 mm, 57.6310 mm): Via [LCD_B7] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'AnalogVideo' clearance 0.1500 mm; actual 0.0000 mm)
+    Rule: netclass 'AnalogVideo'; error
+    @(27.9131 mm, 31.1121 mm): Track [VRX_VIDEO_COUPLED] on SIG3, length 8.9290 mm
+    @(28.0200 mm, 31.3800 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(43.7106 mm, 50.7247 mm): Via [LCD_DCLK_SRC] on F.Cu - B.Cu
+    @(43.7129 mm, 49.7071 mm): Track [GND] on B.Cu, length 3.9321 mm
+[clearance]: Clearance violation (netclass 'AnalogVideo' clearance 0.1500 mm; actual 0.0235 mm)
+    Rule: netclass 'AnalogVideo'; error
+    @(36.7500 mm, 44.7865 mm): Track [VRX_VIDEO_TO_OSD] on SIG3, length 9.0658 mm
+    @(36.7500 mm, 45.1600 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'AnalogVideo' clearance 0.1500 mm; actual 0.0000 mm)
+    Rule: netclass 'AnalogVideo'; error
+    @(36.7500 mm, 45.1600 mm): Via [GND] on F.Cu - B.Cu
+    @(29.8594 mm, 51.6771 mm): Track [VRX_VIDEO_TO_OSD] on SIG3, length 9.7448 mm
+[clearance]: Clearance violation (netclass 'DigitalFast' clearance 0.1200 mm; actual 0.0000 mm)
+    Rule: netclass 'DigitalFast'; error
+    @(69.5498 mm, 32.3871 mm): Track [RX_LE_MCU] on SIG2, length 15.9986 mm
+    @(62.6000 mm, 32.6500 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0438 mm)
+    Rule: netclass 'Ground'; error
+    @(34.3950 mm, 48.4200 mm): Track [LCD_G0] on SIG3, length 9.4708 mm
+    @(35.1500 mm, 47.2000 mm): Via [GND] on F.Cu - B.Cu
+[clearance]: Clearance violation (netclass 'Ground' clearance 0.1000 mm; actual 0.0000 mm)
+    Rule: netclass 'Ground'; error
+    @(24.9200 mm, 45.2500 mm): Via [GND] on F.Cu - B.Cu
+    @(25.9196 mm, 43.8095 mm): Track [RX_RSSI] on SIG4, length 2.9450 mm
+[lib_footprint_issues]: The current configuration does not include the footprint library 'OpenPocket'.
+    Local override; warning
+    @(100.0000 mm, 64.0000 mm): Footprint FID3
+[lib_footprint_issues]: The current configuration does not include the footprint library 'OpenPocket'.
+    Local override; warning
+    @(16.0000 mm, 20.0000 mm): Footprint FID1
+[lib_footprint_issues]: The current configuration does not include the footprint library 'OpenPocket'.
+    Local override; warning
+    @(90.0000 mm, 22.0000 mm): Footprint FID2
+[lib_footprint_issues]: The current configuration does not include the footprint library 'OpenPocket'.
+    Local override; warning
+    @(16.0000 mm, 8.0000 mm): Footprint FID4
+[lib_footprint_issues]: The current configuration does not include the footprint library 'OpenPocket'.
+    Local override; warning
+    @(98.0000 mm, 9.0000 mm): Footprint FID5
+[lib_footprint_issues]: The current configuration does not include the footprint library 'OpenPocket'.
+    Local override; warning
+    @(98.0000 mm, 64.0000 mm): Footprint FID6
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2495 mm; actual 0.0000 mm)
+    Rule: board setup constraints; warning
+    @(33.5500 mm, 50.4000 mm): Via [GND] on F.Cu - B.Cu
+    @(33.6575 mm, 50.1809 mm): Via [AMT_XTAL_OUT] on F.Cu - B.Cu
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2495 mm; actual 0.0039 mm)
+    Rule: board setup constraints; warning
+    @(56.1800 mm, 18.0000 mm): Via [GND] on F.Cu - B.Cu
+    @(56.1433 mm, 18.2512 mm): Via [CHG_QON] on F.Cu - B.Cu
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2495 mm; actual 0.2251 mm)
+    Rule: board setup constraints; warning
+    @(48.6800 mm, 58.0200 mm): Via [GND] on F.Cu - B.Cu
+    @(48.7353 mm, 57.5481 mm): Via [CTRL_0_12] on F.Cu - B.Cu
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2495 mm; actual 0.0506 mm)
+    Rule: board setup constraints; warning
+    @(50.1335 mm, 49.9001 mm): Via [CTRL_0_15] on F.Cu - B.Cu
+    @(50.1500 mm, 49.6000 mm): Via [GND] on F.Cu - B.Cu
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2495 mm; actual 0.0000 mm)
+    Rule: board setup constraints; warning
+    @(46.3669 mm, 46.3798 mm): Via [CTRL_1_0] on F.Cu - B.Cu
+    @(46.4629 mm, 46.2929 mm): Via [GND] on F.Cu - B.Cu
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2495 mm; actual 0.0528 mm)
+    Rule: board setup constraints; warning
+    @(24.9200 mm, 45.2500 mm): Via [GND] on F.Cu - B.Cu
+    @(25.2210 mm, 45.2174 mm): Via [CTRL_1_3] on F.Cu - B.Cu
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2495 mm; actual 0.0222 mm)
+    Rule: board setup constraints; warning
+    @(31.3326 mm, 44.9304 mm): Via [CTRL_1_4] on F.Cu - B.Cu
+    @(31.3700 mm, 45.2000 mm): Via [GND] on F.Cu - B.Cu
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2495 mm; actual 0.0000 mm)
+    Rule: board setup constraints; warning
+    @(43.4000 mm, 40.1500 mm): Via [GND] on F.Cu - B.Cu
+    @(43.2777 mm, 40.2382 mm): Via [TP_OSD_VSYNC] on F.Cu - B.Cu
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2495 mm; actual 0.1997 mm)
+    Rule: board setup constraints; warning
+    @(34.0000 mm, 61.1200 mm): Via [GND] on F.Cu - B.Cu
+    @(34.2387 mm, 61.4406 mm): Via [LCD_DISP] on F.Cu - B.Cu
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2495 mm; actual 0.2287 mm)
+    Rule: board setup constraints; warning
+    @(31.1876 mm, 54.2936 mm): Via [LCD_G0] on F.Cu - B.Cu
+    @(31.5000 mm, 54.0000 mm): Via [GND] on F.Cu - B.Cu
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2495 mm; actual 0.2416 mm)
+    Rule: board setup constraints; warning
+    @(31.2371 mm, 45.6733 mm): Via [MASTER_CT] on F.Cu - B.Cu
+    @(31.3700 mm, 45.2000 mm): Via [GND] on F.Cu - B.Cu
+
+** Found 50 unconnected pads **
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(34.9500 mm, 29.6500 mm): Pad 1 [3V3_LOGIC] of U13 on F.Cu
+    @(28.2300 mm, 20.5000 mm): Via [3V3_LOGIC] on F.Cu - B.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(40.6300 mm, 52.6000 mm): Via [3V3_LOGIC] on F.Cu - B.Cu
+    @(45.5700 mm, 55.0000 mm): Track [3V3_LOGIC] on B.Cu, length 0.7000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(46.5700 mm, 50.0000 mm): Pad 2 [3V3_LOGIC] of R87 on B.Cu
+    @(48.5700 mm, 50.0000 mm): Track [3V3_LOGIC] on B.Cu, length 0.6217 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(50.9300 mm, 44.5000 mm): Track [3V3_LOGIC] on B.Cu, length 0.3748 mm
+    @(44.5700 mm, 39.0000 mm): Pad 2 [3V3_LOGIC] of R77 on B.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(51.9300 mm, 47.5000 mm): Track [3V3_LOGIC] on B.Cu, length 0.9000 mm
+    @(50.4300 mm, 48.6000 mm): Pad 2 [3V3_LOGIC] of R92 on B.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(51.9300 mm, 47.5000 mm): Track [3V3_LOGIC] on B.Cu, length 0.9000 mm
+    @(51.3048 mm, 44.5000 mm): Track [3V3_LOGIC] on B.Cu, length 0.8977 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(52.8300 mm, 47.5000 mm): Via [3V3_LOGIC] on F.Cu - B.Cu
+    @(54.4300 mm, 47.0000 mm): Pad 2 [3V3_LOGIC] of R91 on B.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(54.4300 mm, 47.0000 mm): Pad 2 [3V3_LOGIC] of R91 on B.Cu
+    @(54.4300 mm, 48.6000 mm): Track [3V3_LOGIC] on B.Cu, length 0.7000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(56.3883 mm, 39.7157 mm): Pad 1 [3V3_LOGIC] of TP25 on B.Cu
+    @(51.9396 mm, 43.8652 mm): Via [3V3_LOGIC] on F.Cu - B.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(82.0000 mm, 2.0000 mm): Zone [3V3_SD] on SIG2, priority 0
+    @(82.0000 mm, 2.0000 mm): Zone [3V3_SD] on SIG2, priority 0
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(54.0300 mm, 59.3500 mm): Track [5V_DISPLAY] on F.Cu, length 0.7000 mm
+    @(54.7500 mm, 62.5000 mm): Track [5V_DISPLAY] on F.Cu, length 0.7000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(54.7500 mm, 62.5000 mm): Track [5V_DISPLAY] on F.Cu, length 0.7000 mm
+    @(55.5000 mm, 66.0000 mm): Via [5V_DISPLAY] on F.Cu - B.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(66.6500 mm, 62.9500 mm): Pad 6 [5V_DISPLAY] of U8 on F.Cu
+    @(66.8000 mm, 66.0000 mm): Via [5V_DISPLAY] on F.Cu - B.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(66.6500 mm, 62.9500 mm): Pad 6 [5V_DISPLAY] of U8 on F.Cu
+    @(66.8766 mm, 59.2183 mm): Track [5V_DISPLAY] on B.Cu, length 0.7000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(71.0500 mm, 54.2500 mm): Track [5V_DISPLAY] on F.Cu, length 0.5000 mm
+    @(66.8766 mm, 59.2183 mm): Track [5V_DISPLAY] on B.Cu, length 0.7000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(80.1800 mm, 46.7500 mm): Pad 10 [5V_SS] of U6 on F.Cu
+    @(81.5800 mm, 46.0000 mm): Pad 1 [5V_SS] of C42 on B.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(75.8200 mm, 46.7500 mm): Pad 1 [5V_VCC] of U6 on F.Cu
+    @(81.7142 mm, 44.4142 mm): Pad 1 [5V_VCC] of C40 on B.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(21.0800 mm, 49.5000 mm): Track [5V_VIDEO_FILT] on B.Cu, length 0.7000 mm
+    @(26.9700 mm, 43.0000 mm): Track [5V_VIDEO_FILT] on F.Cu, length 0.7000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(26.0700 mm, 38.5700 mm): Via [5V_VIDEO_FILT] on F.Cu - B.Cu
+    @(26.9700 mm, 43.0000 mm): Track [5V_VIDEO_FILT] on F.Cu, length 0.7000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(43.0000 mm, 41.3500 mm): Pad 22 [AMT_CORE2] of U14 on F.Cu
+    @(50.7000 mm, 46.0000 mm): Pad 1 [AMT_CORE2] of C11 on B.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(15.2712 mm, 67.1480 mm): Track [BAT_RAW] on B.Cu, length 1.2205 mm
+    @(7.8000 mm, 69.8000 mm): Pad 1 [BAT_RAW] of J3 on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(53.0000 mm, 19.0000 mm): Pad 1 [BAT_RAW] of C31 on B.Cu
+    @(58.9100 mm, 16.2500 mm): Track [BAT_RAW] on F.Cu, length 0.5000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(53.0000 mm, 19.0000 mm): Pad 1 [BAT_RAW] of C31 on B.Cu
+    @(20.1565 mm, 44.4135 mm): Track [BAT_RAW] on F.Cu, length 0.5848 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(58.5983 mm, 56.0000 mm): Track [BL_SW] on F.Cu, length 0.0510 mm
+    @(54.0300 mm, 60.6500 mm): Pad 4 [BL_SW] of U17 on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(32.3000 mm, 45.0000 mm): Pad 1 [DISPLAY_3V3] of FB2 on F.Cu
+    @(51.3000 mm, 35.0000 mm): Track [DISPLAY_3V3] on F.Cu, length 0.7000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(51.3000 mm, 35.0000 mm): Track [DISPLAY_3V3] on F.Cu, length 0.7000 mm
+    @(53.3000 mm, 58.0000 mm): Track [DISPLAY_3V3] on F.Cu, length 1.4500 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(53.3000 mm, 58.0000 mm): Track [DISPLAY_3V3] on F.Cu, length 1.4500 mm
+    @(66.6787 mm, 54.6213 mm): Via [DISPLAY_3V3] on F.Cu - B.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(43.4719 mm, 50.1480 mm): Track [DISPLAY_3V3_D] on F.Cu, length 2.5620 mm
+    @(36.3500 mm, 48.4000 mm): Pad 10 [DISPLAY_3V3_D] of U14 on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(41.0000 mm, 25.0000 mm): Zone [DISPLAY_3V3_D] on SIG3, priority 0
+    @(41.0000 mm, 25.0000 mm): Zone [DISPLAY_3V3_D] on SIG3, priority 0
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(44.8729 mm, 46.2929 mm): Track [DISPLAY_3V3_D] on B.Cu, length 0.7000 mm
+    @(44.5850 mm, 48.5050 mm): Track [DISPLAY_3V3_D] on F.Cu, length 0.6235 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(49.9200 mm, 35.2000 mm): Via [DISPLAY_3V3_D] on F.Cu - B.Cu
+    @(42.6000 mm, 42.3519 mm): Track [DISPLAY_3V3_D] on F.Cu, length 1.0019 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(49.9300 mm, 47.5000 mm): Pad 2 [DISPLAY_3V3_D] of R13 on B.Cu
+    @(51.6500 mm, 48.8000 mm): Pad 40 [DISPLAY_3V3_D] of U14 on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(49.9300 mm, 47.5000 mm): Pad 2 [DISPLAY_3V3_D] of R13 on B.Cu
+    @(45.0800 mm, 49.0000 mm): Track [DISPLAY_3V3_D] on B.Cu, length 0.7000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(52.7000 mm, 35.0000 mm): Track [DISPLAY_3V3_D] on F.Cu, length 0.7000 mm
+    @(49.9200 mm, 35.2000 mm): Via [DISPLAY_3V3_D] on F.Cu - B.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(53.4000 mm, 35.0000 mm): Via [DISPLAY_3V3_D] on F.Cu - B.Cu
+    @(53.6000 mm, 31.9000 mm): Track [DISPLAY_3V3_D] on F.Cu, length 0.7000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(53.4000 mm, 35.0000 mm): Via [DISPLAY_3V3_D] on F.Cu - B.Cu
+    @(56.1300 mm, 37.1000 mm): Pad 3 [DISPLAY_3V3_D] of U15 on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(54.8700 mm, 31.2000 mm): Via [DISPLAY_3V3_D] on F.Cu - B.Cu
+    @(54.9200 mm, 28.5000 mm): Track [DISPLAY_3V3_D] on B.Cu, length 0.7000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(72.9500 mm, 53.7500 mm): Pad 7 [DISP_SW] of U10 on F.Cu
+    @(73.3300 mm, 57.0000 mm): Pad 1 [DISP_SW] of L5 on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(40.0000 mm, 39.6000 mm): Pad 3 [GND] of J11 on B.Cu
+    @(43.4000 mm, 41.3500 mm): Track [GND] on F.Cu, length 1.2000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(45.5058 mm, 45.0858 mm): Track [GND] on B.Cu, length 3.1785 mm
+    @(45.7129 mm, 46.2929 mm): Track [GND] on B.Cu, length 0.7500 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(52.5800 mm, 50.0000 mm): Pad 2 [GND] of C1 on B.Cu
+    @(51.6500 mm, 49.6000 mm): Track [GND] on F.Cu, length 1.5000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(63.5700 mm, 18.0000 mm): Track [I2C_SCL] on F.Cu, length 0.8176 mm
+    @(55.0900 mm, 15.7500 mm): Pad 5 [I2C_SCL] of U2 on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(58.2574 mm, 44.7574 mm): Pad 1 [L3V3_A] of L2 on F.Cu
+    @(63.9645 mm, 44.5045 mm): Pad 11 [L3V3_A] of U5 on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(61.2574 mm, 44.7574 mm): Pad 2 [L3V3_B] of L2 on F.Cu
+    @(64.9645 mm, 44.5045 mm): Pad 9 [L3V3_B] of U5 on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(53.0000 mm, 11.0000 mm): Pad 1 [PMID] of C28 on B.Cu
+    @(56.2500 mm, 13.0900 mm): Pad 23 [PMID] of U2 on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(68.0000 mm, 48.4000 mm): Pad 8 [PWR_SW_EN] of U20 on F.Cu
+    @(26.0700 mm, 45.4308 mm): Track [PWR_SW_EN] on F.Cu, length 0.9308 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(56.7500 mm, 13.0900 mm): Pad 22 [REGN] of U2 on F.Cu
+    @(55.8358 mm, 12.5858 mm): Pad 1 [REGN] of C29 on B.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(51.0000 mm, 12.0000 mm): Zone [SYS_ALWAYS] on SIG2, priority 0
+    @(51.0000 mm, 12.0000 mm): Zone [SYS_ALWAYS] on SIG2, priority 0
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(61.4056 mm, 44.8198 mm): Track [SYS_SWITCHED] on B.Cu, length 1.9117 mm
+    @(64.4732 mm, 48.1846 mm): Pad 1 [SYS_SWITCHED] of TP23 on B.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(78.7500 mm, 44.2700 mm): Track [SYS_SWITCHED_5V] on F.Cu, length 0.7000 mm
+    @(79.8355 mm, 42.4645 mm): Via [SYS_SWITCHED_5V] on F.Cu - B.Cu
+
+** Found 0 Footprint errors **
+
+** End of Report **

@@ -1,0 +1,11 @@
+(footprint "TEST-PAD-1.0MM"
+  (version 20240108)
+  (generator openpocket)
+  (layer "F.Cu")
+  (attr smd)
+  (property "Reference" "REF**" (at 0 -3 0) (layer "F.SilkS")
+    (effects (font (size 0.8 0.8) (thickness 0.12))))
+  (property "Value" "TEST-PAD-1.0MM" (at 0 3 0) (layer "F.Fab")
+    (effects (font (size 0.8 0.8) (thickness 0.12))))
+  (pad "1" smd circle (at 0 0) (size 1 1) (layers "F.Cu" "F.Mask"))
+)

@@ -1,0 +1,13 @@
+pin,function,net,pad_x_mm,pad_y_mm,evidence
+1,GND,GND,36.000,40.070,C2908157 EasyEDA footprint; 28x23 mm module geometry; published 12-pad order
+2,ANT,RX_RF,36.000,42.610,C2908157 EasyEDA footprint; 28x23 mm module geometry; published 12-pad order
+3,RF_GND,GND,36.000,45.160,C2908157 EasyEDA footprint; 28x23 mm module geometry; published 12-pad order
+4,DATA,RX_DATA,8.000,45.160,C2908157 EasyEDA footprint; 28x23 mm module geometry; published 12-pad order
+5,LE,RX_LE,8.000,42.620,C2908157 EasyEDA footprint; 28x23 mm module geometry; published 12-pad order
+6,CLK,RX_CLK,8.000,40.080,C2908157 EasyEDA footprint; 28x23 mm module geometry; published 12-pad order
+7,DGND,GND,8.000,37.540,C2908157 EasyEDA footprint; 28x23 mm module geometry; published 12-pad order
+8,5V,5V_VIDEO_FILT,8.000,35.000,C2908157 EasyEDA footprint; 28x23 mm module geometry; published 12-pad order
+9,RSSI,RX_RSSI_RAW,8.000,32.460,C2908157 EasyEDA footprint; 28x23 mm module geometry; published 12-pad order
+10,AUDIO,RX_AUDIO_TP,8.000,29.920,C2908157 EasyEDA footprint; 28x23 mm module geometry; published 12-pad order
+11,VIDEO,VRX_VIDEO_RAW,8.000,27.380,C2908157 EasyEDA footprint; 28x23 mm module geometry; published 12-pad order
+12,AGND,GND,8.000,24.840,C2908157 EasyEDA footprint; 28x23 mm module geometry; published 12-pad order

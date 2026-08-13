@@ -1,0 +1,414 @@
+{
+  "board": "/tmp/openpocket-critical-filtered-project-check/openpocket-rev-a.kicad_pcb",
+  "copper_layers": 8,
+  "errors": [
+    "WIDTH_CHG_SW: 0.200 mm below 0.800 mm",
+    "WIDTH_L3V3_A: 0.200 mm below 0.800 mm",
+    "WIDTH_L3V3_B: 0.200 mm below 0.800 mm",
+    "WIDTH_BL_SW: 0.200 mm below 0.800 mm",
+    "WIDTH_VBUS_RAW: 0.250 mm below 1.200 mm",
+    "WIDTH_BAT_CELL_NEG: 0.200 mm below 1.200 mm",
+    "WIDTH_SYS_ALWAYS: 0.200 mm below 1.200 mm",
+    "WIDTH_SYS_SWITCHED_5V: 0.200 mm below 1.200 mm"
+  ],
+  "groups": {
+    "battery_sense": {
+      "BAT_NEG_SENSE": {
+        "layers": [
+          "F.Cu"
+        ],
+        "length_mm": 2.7,
+        "maximum_width_mm": 0.4,
+        "minimum_width_mm": 0.4,
+        "segment_count": 1,
+        "via_count": 0
+      },
+      "PACK_NEG_SENSE": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      }
+    },
+    "clock": {
+      "LCD_DCLK": {
+        "layers": [
+          "B.Cu",
+          "F.Cu",
+          "SIG3"
+        ],
+        "length_mm": 29.495,
+        "maximum_width_mm": 0.17,
+        "minimum_width_mm": 0.17,
+        "segment_count": 10,
+        "via_count": 3
+      },
+      "LCD_DCLK_SRC": {
+        "layers": [
+          "B.Cu",
+          "F.Cu",
+          "SIG1"
+        ],
+        "length_mm": 22.178,
+        "maximum_width_mm": 0.17,
+        "minimum_width_mm": 0.17,
+        "segment_count": 10,
+        "via_count": 2
+      },
+      "RX_CLK": {
+        "layers": [
+          "B.Cu",
+          "SIG1"
+        ],
+        "length_mm": 24.181,
+        "maximum_width_mm": 0.17,
+        "minimum_width_mm": 0.17,
+        "segment_count": 6,
+        "via_count": 2
+      },
+      "RX_CLK_MCU": {
+        "layers": [
+          "B.Cu",
+          "SIG1",
+          "SIG2",
+          "SIG4"
+        ],
+        "length_mm": 155.434,
+        "maximum_width_mm": 0.17,
+        "minimum_width_mm": 0.17,
+        "segment_count": 28,
+        "via_count": 4
+      },
+      "SD_CLK": {
+        "layers": [
+          "B.Cu",
+          "F.Cu",
+          "SIG1",
+          "SIG2",
+          "SIG3"
+        ],
+        "length_mm": 41.098,
+        "maximum_width_mm": 0.17,
+        "minimum_width_mm": 0.127,
+        "segment_count": 19,
+        "via_count": 4
+      },
+      "SD_CLK_MCU": {
+        "layers": [
+          "B.Cu",
+          "SIG3"
+        ],
+        "length_mm": 35.638,
+        "maximum_width_mm": 0.17,
+        "minimum_width_mm": 0.17,
+        "segment_count": 9,
+        "via_count": 2
+      }
+    },
+    "crystal": {
+      "AMT_XTAL_IN": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      },
+      "AMT_XTAL_OUT": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      },
+      "OSD_XTAL_IN": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      },
+      "OSD_XTAL_OUT": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      }
+    },
+    "high_current": {
+      "BAT_CELL_NEG": {
+        "layers": [
+          "F.Cu"
+        ],
+        "length_mm": 15.748,
+        "maximum_width_mm": 0.2,
+        "minimum_width_mm": 0.2,
+        "segment_count": 5,
+        "via_count": 0
+      },
+      "BAT_PROTECTED": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      },
+      "BAT_RAW": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      },
+      "PMID": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      },
+      "SYS_ALWAYS": {
+        "layers": [
+          "B.Cu",
+          "F.Cu"
+        ],
+        "length_mm": 7.45,
+        "maximum_width_mm": 0.2,
+        "minimum_width_mm": 0.2,
+        "segment_count": 9,
+        "via_count": 9
+      },
+      "SYS_SWITCHED": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      },
+      "SYS_SWITCHED_5V": {
+        "layers": [
+          "B.Cu",
+          "F.Cu"
+        ],
+        "length_mm": 11.7,
+        "maximum_width_mm": 0.2,
+        "minimum_width_mm": 0.2,
+        "segment_count": 18,
+        "via_count": 16
+      },
+      "VBUS_RAW": {
+        "layers": [
+          "F.Cu",
+          "SIG3"
+        ],
+        "length_mm": 20.505,
+        "maximum_width_mm": 0.8,
+        "minimum_width_mm": 0.25,
+        "segment_count": 7,
+        "via_count": 3
+      },
+      "VBUS_USB": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      }
+    },
+    "rf": {
+      "RX_RF": {
+        "layers": [
+          "B.Cu"
+        ],
+        "length_mm": 4.004,
+        "maximum_width_mm": 0.25,
+        "minimum_width_mm": 0.25,
+        "segment_count": 3,
+        "via_count": 0
+      }
+    },
+    "switch": {
+      "BL_SW": {
+        "layers": [
+          "F.Cu",
+          "SIG1"
+        ],
+        "length_mm": 25.681,
+        "maximum_width_mm": 0.8,
+        "minimum_width_mm": 0.2,
+        "segment_count": 13,
+        "via_count": 2
+      },
+      "CHG_SW": {
+        "layers": [
+          "B.Cu",
+          "F.Cu",
+          "SIG1",
+          "SIG4"
+        ],
+        "length_mm": 37.636,
+        "maximum_width_mm": 0.2,
+        "minimum_width_mm": 0.2,
+        "segment_count": 22,
+        "via_count": 4
+      },
+      "DISP_SW": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      },
+      "L3V3_A": {
+        "layers": [
+          "F.Cu",
+          "SIG2"
+        ],
+        "length_mm": 10.187,
+        "maximum_width_mm": 0.2,
+        "minimum_width_mm": 0.2,
+        "segment_count": 10,
+        "via_count": 2
+      },
+      "L3V3_B": {
+        "layers": [
+          "F.Cu"
+        ],
+        "length_mm": 9.493,
+        "maximum_width_mm": 0.2,
+        "minimum_width_mm": 0.2,
+        "segment_count": 7,
+        "via_count": 0
+      },
+      "L5V_SW": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      }
+    },
+    "usb": {
+      "USB_D+": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      },
+      "USB_D+_MCU": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      },
+      "USB_D-": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      },
+      "USB_D-_MCU": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      }
+    },
+    "video": {
+      "AMT_CVBS1": {
+        "layers": [
+          "F.Cu"
+        ],
+        "length_mm": 5.761,
+        "maximum_width_mm": 0.25,
+        "minimum_width_mm": 0.25,
+        "segment_count": 2,
+        "via_count": 0
+      },
+      "AMT_CVBS_PRE": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      },
+      "OSD_VIDEO_BYP": {
+        "layers": [
+          "B.Cu",
+          "F.Cu"
+        ],
+        "length_mm": 11.715,
+        "maximum_width_mm": 0.25,
+        "minimum_width_mm": 0.25,
+        "segment_count": 6,
+        "via_count": 1
+      },
+      "OSD_VIDEO_RAW": {
+        "layers": [
+          "B.Cu",
+          "F.Cu",
+          "SIG1"
+        ],
+        "length_mm": 37.372,
+        "maximum_width_mm": 0.25,
+        "minimum_width_mm": 0.25,
+        "segment_count": 16,
+        "via_count": 2
+      },
+      "VRX_VIDEO_COUPLED": {
+        "layers": [
+          "F.Cu",
+          "SIG1",
+          "SIG3"
+        ],
+        "length_mm": 35.593,
+        "maximum_width_mm": 0.25,
+        "minimum_width_mm": 0.25,
+        "segment_count": 15,
+        "via_count": 4
+      },
+      "VRX_VIDEO_RAW": {
+        "layers": [],
+        "length_mm": 0,
+        "maximum_width_mm": null,
+        "minimum_width_mm": null,
+        "segment_count": 0,
+        "via_count": 0
+      },
+      "VRX_VIDEO_TO_OSD": {
+        "layers": [
+          "F.Cu",
+          "SIG1",
+          "SIG3"
+        ],
+        "length_mm": 47.703,
+        "maximum_width_mm": 0.25,
+        "minimum_width_mm": 0.25,
+        "segment_count": 19,
+        "via_count": 3
+      }
+    }
+  }
+}

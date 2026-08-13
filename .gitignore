@@ -8,6 +8,11 @@
 
 # Local build and editor files
 build/
+__pycache__/
+*.pyc
 .DS_Store
+.easyeda_cache/
+/manufacturing/
+hardware/rev-a/easyeda/**/CONN-SMD_DF40C-100DS-0.4V-51.*
 *.swp
 *~

@@ -1,0 +1,306 @@
+Designator,Value,Manufacturer,MPN,LCSC,Package,Qty,DNP,Notes
+U1,ESP32-S3-MINI-1U-N8,Espressif,ESP32-S3-MINI-1U-N8,C2980299,ESP32-S3-MINI-1U,1,no,
+J2,USB-C,GCT,USB4105-GF-A,C3020560,USB4105-GF-A,1,no,
+ESD1,USB ESD,Texas Instruments,TPD2EUSB30DRTR,C97502,SOT-9X3-3,1,no,
+F1,USB VBUS resettable fuse,Littelfuse,1206L200PR,C151163,1206,1,no,
+TVS1,USB VBUS TVS,onsemi,ESD5Z5.0T1G,C82044,SOD-523,1,no,
+U2,1S charger/power path,Texas Instruments,BQ25895RTWR,C80200,WQFN-24-EP,1,no,
+U3,1S protector,Texas Instruments,BQ29700DSER,C183096,WSON-6,1,no,
+Q1,dual protection FET,FUXINSEMI,FS8205A,C908265,SOT-23-6,1,no,
+U4,fuel gauge,Analog Devices,MAX17048G+T10,C2682616,TDFN-8-EP,1,no,
+U20,master load switch,Texas Instruments,TPS22992SRXNR,C3229354,WQFN-8,1,no,
+U5,3V3 buck-boost,Texas Instruments,TPS63070RNMR,C109322,VQFN-15,1,no,
+U6,5V boost,Texas Instruments,TPS61088RHLR,C87357,VQFN-20-EP,1,no,
+U7,5V_VIDEO load switch,Texas Instruments,TPS22918DBVR,C131941,SOT-23-6,1,no,
+U8,5V_DISPLAY load switch,Texas Instruments,TPS22918DBVR,C131941,SOT-23-6,1,no,
+U9,5V_ELRS load switch,Texas Instruments,TPS22918DBVR,C131941,SOT-23-6,1,no,
+U10,display 3V3 buck,Texas Instruments,TPS62162DSGR,C40256,WSON-8-EP,1,no,
+MOD1,RX5808 SPI receiver,WREKD,RX5808 SPI-modified,C2908157,SMD-12_23.0X28.0X2.54P,1,no,pre-order or consigned
+U11,analog OSD,Zhongkewei,AT7456E,C82351,TSSOP-28-EP,1,no,
+U12,OSD 3V3-to-5V,Texas Instruments,SN74AHCT125PWR,C36365,TSSOP-14,1,no,
+U13,OSD 5V-to-3V3,Texas Instruments,SN74LVC1T45DCKR,C9382,SC70-6,1,no,
+U14,CVBS TFT controller,Actions Microelectronics,AMT630A,C9900018923,LQFP-64_14x14_P0.4,1,no,
+U15,AMT boot flash,Winbond,W25X05CLSNIG,C2641187,SOIC-8,1,no,
+U16,AMT flash mux,Texas Instruments,SN74CB3Q3257PWR,C397142,TSSOP-16,1,no,
+J1,ER-TFT050A3-2 FFC,Hirose,FH12-40S-0.5SH(55),C202114,FH12-40S-0.5SH(55),1,no,
+U17,backlight boost,Texas Instruments,TPS61165DRVR,C122568,WSON-6-EP,1,no,
+U18,GPIO expander 0x20,Texas Instruments,TCA9535PWR,C130204,TSSOP-24,1,no,
+U19,GPIO expander 0x21,Texas Instruments,TCA9535PWR,C130204,TSSOP-24,1,no,
+BZ1,passive magnetic buzzer,Fengming,YS-SBZ7525C05R30,C7421675,SMD-7.5x7.5,1,no,
+Q2,Q_BUZZ buzzer MOSFET,Alpha & Omega,AO3400A,C20917,SOT-23,1,no,
+D2,D_BUZZ buzzer flyback,LGE,1N4148W,C81598,SOD-123,1,no,
+U21,I2S speaker amplifier,Nsiway,NS4168,C910588,ESOP-8-EP,1,no,
+J4,speaker connector,JST,S2B-PH-SM4-TB(LF)(SN),C295747,JST-PH-2-SMD,1,no,
+J13,speaker solder pads,OpenPocket,SOLDER-PADS-2,CONS,EDGE-PADS-2,1,yes,integral differential speaker pads; neither pad is ground
+J14,SSD1306 128x64 OLED pads,OpenPocket,DEV-PADS-4,CONS,DEV-PADS-4,1,yes,four-wire SSD1306/SH1106 128x64 OLED; shared GPIO15/GPIO16 I2C bus
+J15,expander developer pads,OpenPocket,DEV-PADS-6,CONS,DEV-PADS-6,1,yes,hand-solder TCA9535 U19 slow-I/O access
+U22,3V3_SD load switch,Texas Instruments,TPS22918DBVR,C131941,SOT-23-6,1,no,
+J12,push-push microSD,SOFNG,TF-001A-P3,C3021282,TF-001A-P3,1,no,card detect active-low; card ejects toward top edge
+ESD2,microSD ESD array A,Texas Instruments,TPD4E001DRLR,C527516,SOT-563,1,no,
+ESD3,microSD ESD array B,Texas Instruments,TPD4E001DRLR,C527516,SOT-563,1,no,
+TP1,3V3_SD test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP2,SD_CLK test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP3,SD_CMD test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP4,SD_D0 test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP5,SD_CARD_DETECT test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP6,GND test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+J3,battery/NTC,OpenPocket,SOLDER-PADS-4,CONS,EDGE-PADS-4,1,yes,"integral solder pads; user-wired, not an assembly item"
+J5,master switch,OpenPocket,SOLDER-PADS-2,CONS,EDGE-PADS-2,1,yes,"integral solder pads; user-wired, not an assembly item"
+J6,ELRS,OpenPocket,SOLDER-PADS-4,CONS,EDGE-PADS-4,1,yes,four-wire ELRS UART/power pads; BOOT and RESET remain internal debug nets
+ESD4,ELRS UART ESD,Texas Instruments,TPD2EUSB30DRTR,C97502,SOT-9X3-3,1,no,
+J7,left gimbal,OpenPocket,SOLDER-PADS-6,CONS,EDGE-PADS-6,1,yes,"integral solder pads; user-wired, not an assembly item"
+J8,right gimbal,OpenPocket,SOLDER-PADS-6,CONS,EDGE-PADS-6,1,yes,"integral solder pads; user-wired, not an assembly item"
+J9,menu/UI control pads,OpenPocket,MENU-CONTROL-PADS,CONS,MENU-CONTROL-PADS,1,yes,left-edge menu pads; each button has adjacent edge-side GND
+J18,rotary encoder control pads,OpenPocket,ENCODER-CONTROL-PADS,CONS,ENCODER-CONTROL-PADS,1,yes,left-edge encoder A/G/B plus press/G pads
+J19,ARM switch pads,OpenPocket,ARM-CONTROL-PADS,CONS,ARM-CONTROL-PADS,1,yes,right-edge ARM switch; GND is the outermost pad
+J20,AUX2 three-position switch pads,OpenPocket,AUX2-CONTROL-PADS,CONS,AUX2-CONTROL-PADS,1,yes,right-edge AUX2 group; edge-side GND between the signal escape points
+J21,AUX3 three-position switch pads,OpenPocket,AUX3-CONTROL-PADS,CONS,AUX3-CONTROL-PADS,1,yes,right-edge AUX3 group; edge-side GND between the signal escape points
+J22,AUX4 three-position switch pads,OpenPocket,AUX4-CONTROL-PADS,CONS,AUX4-CONTROL-PADS,1,yes,right-edge AUX4 group; edge-side GND between the signal escape points
+J23,AIL trim pads,OpenPocket,AIL-TRIM-PADS,CONS,AIL-TRIM-PADS,1,yes,AIL three-wire trim group with adjacent edge-side GND
+J24,ELE trim pads,OpenPocket,ELE-TRIM-PADS,CONS,ELE-TRIM-PADS,1,yes,ELE three-wire trim group with adjacent edge-side GND
+J25,THR trim pads,OpenPocket,THR-TRIM-PADS,CONS,THR-TRIM-PADS,1,yes,THR three-wire trim group with adjacent edge-side GND
+J26,RUD trim pads,OpenPocket,RUD-TRIM-PADS,CONS,RUD-TRIM-PADS,1,yes,RUD three-wire trim group with adjacent edge-side GND
+J11,5.8 GHz antenna U.FL,Hirose,U.FL-R-SMT-1(10),C88373,U.FL,1,no,populate on bottom; accepts U.FL/MHF1 plug vertically; secure cable to enclosure
+R1,5.1k,Yageo,RC0402FR-075K1L,C105872,0402,1,no,
+R2,5.1k,Yageo,RC0402FR-075K1L,C105872,0402,1,no,
+R3,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R4,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R5,100k,Yageo,RC0402FR-07100KL,C60491,0402,1,no,
+R6,100,Yageo,RC0402FR-07100RL,C106232,0402,1,no,
+R7,100k,Yageo,RC0402FR-07100KL,C60491,0402,1,no,
+R8,100k,Yageo,RC0402FR-07100KL,C60491,0402,1,no,
+R9,4.99,Yageo,RC0603FR-074R99L,C137704,0402,1,no,
+R10,18,Yageo,RC0603FR-0718RL,C245924,0402,1,no,
+R11,56,Yageo,RC0603FR-0756RL,C126360,0402,1,no,
+R12,100k,Yageo,RC0402FR-07100KL,C60491,0402,1,no,
+R13,100k,Yageo,RC0402FR-07100KL,C60491,0402,1,no,
+R14,2.2k,Yageo,RC0402FR-072K2L,C114762,0402,1,no,
+R15,2.2k,Yageo,RC0402FR-072K2L,C114762,0402,1,no,
+R16,100k,Yageo,RC0402FR-07100KL,C60491,0402,1,no,
+R18,1M,Yageo,RC0402FR-071ML,C138033,0402,1,no,
+R20,316k,Yageo,RC0402FR-07316KL,C185427,0402,1,no,
+R21,100k,Yageo,RC0402FR-07100KL,C60491,0402,1,no,
+R22,1M,Yageo,RC0402FR-071ML,C138033,0402,1,no,
+R23,316k,Yageo,RC0402FR-07316KL,C185427,0402,1,no,
+R24,150k,Yageo,RC0402FR-07150KL,C93947,0402,1,no,
+R25,1k,Yageo,RC0402FR-071KL,C106235,0402,1,no,
+R26,12k,Yageo,RC0402FR-0712KL,C114760,0402,1,no,
+R27,18k,Yageo,RC0402FR-0718KL,C138044,0402,1,no,
+R28,27,Yageo,RC0402FR-0727RL,C138021,0402,1,no,
+R29,27,Yageo,RC0402FR-0727RL,C138021,0402,1,no,
+R30,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R31,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R32,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R33,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R34,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R35,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R36,100k,Yageo,RC0402FR-07100KL,C60491,0402,1,no,
+R37,27,Yageo,RC0402FR-0727RL,C138021,0402,1,no,
+R38,27,Yageo,RC0402FR-0727RL,C138021,0402,1,no,
+R39,27,Yageo,RC0402FR-0727RL,C138021,0402,1,no,
+R40,100k,Yageo,RC0402FR-07100KL,C60491,0402,1,no,
+R41,100k,Yageo,RC0402FR-07100KL,C60491,0402,1,no,
+R42,750,Yageo,RC0402FR-07750RL,C137936,0402,1,no,
+R43,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R44,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R45,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R46,5.23k,Yageo,RC0402FR-075K23L,C477746,0402,1,no,
+R47,30.1k,Yageo,RC0402FR-0730K1L,C138009,0402,1,no,
+R48,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R49,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R50,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R51,330k,Yageo,RC0402FR-07330KL,C138006,0402,1,no,
+R52,18.2k,Yageo,RC0402FR-0718K2L,C274351,0402,1,no,
+R53,1k,Yageo,RC0402FR-071KL,C106235,0402,1,no,
+R54,1M,Yageo,RC0402FR-071ML,C138033,0402,1,no,
+R55,10,Yageo,RC0402FR-0710RL,C138066,0402,1,no,
+R56,330,Uniroyal Electronics,0402WGF3300TCE,C25104,0402,1,no,
+R57,2.2k,Uniroyal Electronics,0402WGF2201TCE,C25879,0402,1,no,
+R58,33,Yageo,RC0402FR-0733RL,C138002,0402,1,no,
+R59,33,Yageo,RC0402FR-0733RL,C138002,0402,1,no,
+R60,33,Yageo,RC0402FR-0733RL,C138002,0402,1,no,
+R61,33,Yageo,RC0402FR-0733RL,C138002,0402,1,no,
+R62,5.1M,Uniroyal Electronics,0402WGF5104TCE,C270595,0402,1,no,
+R63,5.1M,Uniroyal Electronics,0402WGF5104TCE,C270595,0402,1,no,
+R64,1k,Yageo,RC0402FR-071KL,C106235,0402,1,no,
+R65,1k,Yageo,RC0402FR-071KL,C106235,0402,1,no,
+R66,100k,Yageo,RC0402FR-07100KL,C60491,0402,1,no,
+R67,100k,Yageo,RC0402FR-07100KL,C60491,0402,1,no,
+R68,100k,Yageo,RC0402FR-07100KL,C60491,0402,1,no,
+R69,100k,Yageo,RC0402FR-07100KL,C60491,0402,1,no,
+R70,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R71,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R72,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R73,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R74,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R75,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R76,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R77,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R78,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R79,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R80,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R81,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R82,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R83,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R84,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R85,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R86,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R87,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R88,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R89,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R90,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R91,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R92,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R93,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R94,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+R95,1k,Yageo,RC0402FR-071KL,C106235,0402,1,no,
+R96,1k,Yageo,RC0402FR-071KL,C106235,0402,1,no,
+R97,1k,Yageo,RC0402FR-071KL,C106235,0402,1,no,
+R98,1k,Yageo,RC0402FR-071KL,C106235,0402,1,no,
+R99,33,Yageo,RC0402FR-0733RL,C138002,0402,1,no,
+R100,33,Yageo,RC0402FR-0733RL,C138002,0402,1,no,
+R101,0,Yageo,RC0402FR-070RL,C106231,0402,1,no,
+R102,100,Yageo,RC0402FR-07100RL,C106232,0402,1,yes,
+R103,75,Yageo,RC0603FR-0775RL,C112309,0603,1,no,
+R104,10k,Yageo,RC0402FR-0710KL,C60490,0402,1,no,
+C1,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C2,10u,Samsung Electro-Mechanics,CL21A106KAYNNNE,C15850,0805,1,no,
+C3,10u,Samsung Electro-Mechanics,CL21A106KAYNNNE,C15850,0805,1,no,
+C4,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C5,10u,Samsung Electro-Mechanics,CL21A106KAYNNNE,C15850,0805,1,no,
+C6,470u,Lelon,VZH471M1ATR-1008,C249929,SMD-D10,1,no,
+C7,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C8,22n,Samsung Electro-Mechanics,CL05B223KB5NNNC,C337699,0402,1,no,
+C9,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C10,4.7u,Samsung Electro-Mechanics,CL10A475KP8NNNC,C1705,0603,1,no,
+C11,4.7u,Samsung Electro-Mechanics,CL10A475KP8NNNC,C1705,0603,1,no,
+C12,4.7u,Samsung Electro-Mechanics,CL10A475KP8NNNC,C1705,0603,1,no,
+C15,33p C0G,Yageo,CC0402JRNPO9BN330,C107005,0402,1,no,
+C16,33p C0G,Yageo,CC0402JRNPO9BN330,C107005,0402,1,no,
+C17,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C18,10u,Samsung Electro-Mechanics,CL21A106KAYNNNE,C15850,0805,1,no,
+C19,10u,Samsung Electro-Mechanics,CL21A106KAYNNNE,C15850,0805,1,no,
+C20,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C21,10u,Samsung Electro-Mechanics,CL21A106KAYNNNE,C15850,0805,1,no,
+C22,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C23,10n,Samsung Electro-Mechanics,CL05B103KB5NNNC,C15195,0402,1,no,
+C24,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C25,10u,Samsung Electro-Mechanics,CL21A106KAYNNNE,C15850,0805,1,no,
+C26,47u,Samsung Electro-Mechanics,CL31A476MPHNNNE,C96123,1206,1,no,
+C27,1n,Samsung Electro-Mechanics,CL05B102KB5NNNC,C14442,0402,1,no,
+C28,10u 25V,HRE,CGA0805X7R106K250MT,C6119932,0805,1,no,
+C29,4.7u 10V,Fenghua Advanced,0603B475K100NT,C108342,0603,1,no,
+C30,47n 50V,Yageo,CC0402KRX7R9BB473,C272875,0402,1,no,
+C31,10u 25V,HRE,CGA0805X7R106K250MT,C6119932,0805,1,no,
+C32,22u 10V,HRE,CGA0805X7R226M100MT,C23692981,0805,1,no,
+C33,22u 10V,HRE,CGA0805X7R226M100MT,C23692981,0805,1,no,
+C34,10u 25V,HRE,CGA0805X7R106K250MT,C6119932,0805,1,no,
+C35,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C36,10u,Samsung Electro-Mechanics,CL21A106KAYNNNE,C15850,0805,1,no,
+C37,10u,Samsung Electro-Mechanics,CL21A106KAYNNNE,C15850,0805,1,no,
+C38,22u 10V,HRE,CGA0805X7R226M100MT,C23692981,0805,1,no,
+C39,22u 10V,HRE,CGA0805X7R226M100MT,C23692981,0805,1,no,
+C40,2.2u,Samsung Electro-Mechanics,CL10A225KO8NNNC,C23630,0603,1,no,
+C41,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C42,47n 50V,Yageo,CC0402KRX7R9BB473,C272875,0402,1,no,
+C43,4.7n,Samsung Electro-Mechanics,CL05B472KB5NNNC,C84705,0402,1,no,
+C44,2.2n,Samsung Electro-Mechanics,CL05B222KB5NNNC,C84703,0402,1,no,
+C45,22u 10V,HRE,CGA0805X7R226M100MT,C23692981,0805,1,no,
+C46,22u 10V,HRE,CGA0805X7R226M100MT,C23692981,0805,1,no,
+C47,22u 10V,HRE,CGA0805X7R226M100MT,C23692981,0805,1,no,
+C48,22u 10V,HRE,CGA0805X7R226M100MT,C23692981,0805,1,no,
+C49,22u 10V,HRE,CGA0805X7R226M100MT,C23692981,0805,1,no,
+C50,22u 10V,HRE,CGA0805X7R226M100MT,C23692981,0805,1,no,
+C51,10u,Samsung Electro-Mechanics,CL21A106KAYNNNE,C15850,0805,1,no,
+C52,22u 10V,HRE,CGA0805X7R226M100MT,C23692981,0805,1,no,
+C53,4.7u 10V,Fenghua Advanced,0603B475K100NT,C108342,0603,1,no,
+C54,220n,Yageo,CC0402KRX7R8BB224,C723566,0402,1,no,
+C55,1u 50V,Yageo,CC0805KKX7R9BB105,C91185,0805,1,no,
+C56,1u 50V,Yageo,CC0805KKX7R9BB105,C91185,0805,1,no,
+C57,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C58,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C59,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C60,10u,Samsung Electro-Mechanics,CL21A106KAYNNNE,C15850,0805,1,no,
+C61,470n 16V,HRE,CGA0402X7R474K160GT,C22435970,0402,1,no,
+C62,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C63,4.7n,Samsung Electro-Mechanics,CL05B472KB5NNNC,C84705,0402,1,no,
+C64,1n,Samsung Electro-Mechanics,CL05B102KB5NNNC,C14442,0402,1,no,
+C65,1n,Samsung Electro-Mechanics,CL05B102KB5NNNC,C14442,0402,1,no,
+C66,1n,Samsung Electro-Mechanics,CL05B102KB5NNNC,C14442,0402,1,no,
+C67,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C68,1u,Samsung Electro-Mechanics,CL05A105KA5NQNC,C52923,0402,1,no,
+C69,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C70,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C71,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C72,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C73,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C74,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C75,10u,Samsung Electro-Mechanics,CL21A106KAYNNNE,C15850,0805,1,no,
+C77,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C78,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C79,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C80,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C81,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C82,100n,Samsung Electro-Mechanics,CL05B104KO5NNNC,C1525,0402,1,no,
+C76,220u 10V,Panasonic,EEEFK1A221P,C401648,SMD-D8,1,yes,
+C83,10n,Samsung Electro-Mechanics,CL05B103KB5NNNC,C15195,0402,1,yes,
+Y1,27.000MHz,Abracon,ABM8-27.000MHZ-B2-T,C1985251,ABM8,1,no,
+Y2,27.000MHz,Abracon,ABM8-27.000MHZ-B2-T,C1985251,ABM8,1,no,
+L1,2.2uH charger,Sunlord,SWPA4030S2R2MT,C36409,L-4x4,1,no,
+L2,1uH 3V3,Sunlord,SWPA4020S1R0MT,C142484,L-4x4,1,no,
+L3,1.8uH 5V 10A,Coilcraft,XAL6030-182MEC,C19191693,L-6.5x6.3,1,no,
+L4,10uH backlight,Sunlord,SWPA4020S100MT,C82398,L-4x4,1,no,
+L5,2.2uH display buck,Sunlord,SWPA3015S2R2MT,C43389,L-3x3,1,no,
+D1,40V Schottky,Diodes Inc,B240A-13-F,C92506,SMA,1,no,
+FB1,video ferrite,Murata,BLM21PG221SN1D,C85840,0805,1,no,
+FB2,AMT analog ferrite,Murata,BLM18AG601SN1D,C19330,0603,1,no,
+FB3,AMT digital ferrite,Murata,BLM18AG601SN1D,C19330,0603,1,no,
+FB4,panel logic ferrite,Murata,BLM18AG601SN1D,C19330,0603,1,no,
+JP1,CVBS NORMAL/BYPASS,OpenPocket,SJ-DPDT,N/A,SOLDER-JUMPER-6,1,yes,factory hand-bridge pads 1-2 and 4-5; bypass cuts both and bridges 5-6
+TP7,TP_CVBS2 test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP8,TP_CVBS3 test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP9,TP_AMT_P6 test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP10,TP_AMT_P7 test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP11,TP_AMT_P8 test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP12,TP_AMT_P9 test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP13,TP_AMT_DIAG test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP14,TP_AMT_UART1 test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP15,TP_AMT_UART0 test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP16,TP_AMT_PWM1 test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP17,TP_AMT_PWM0 test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP18,RX_AUDIO_TP test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP19,TP_OSD_CLK test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP20,TP_OSD_HSYNC test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP21,TP_OSD_VSYNC test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP22,SYS_ALWAYS test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP23,SYS_SWITCHED test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP24,POWER_GOOD test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP25,3V3_LOGIC test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP26,SYS_SWITCHED_5V test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP27,5V_VIDEO test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP28,5V_DISPLAY test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP29,5V_ELRS test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP30,DISPLAY_3V3 test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP31,PANEL_3V3 test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP32,VBUS_USB test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP33,BAT_RAW test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP34,RX_RSSI_RAW test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP35,VRX_VIDEO_RAW test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP36,OSD_VIDEO_RAW test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP37,AMT_RESET test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP38,AMT_FLASH_CS test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP39,AMT_FLASH_CLK test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP40,AMT_FLASH_MOSI test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP41,AMT_FLASH_MISO test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP42,BUZZER_PWM test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP43,BUZZER_LOW test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP44,AUDIO_I2S_BCLK test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP45,AUDIO_I2S_WS test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP46,AUDIO_I2S_DATA test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP47,AUDIO_ENABLE test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP48,SPK+ test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP49,SPK- test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP50,BL_LED_A test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP51,BL_LED_K test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP52,ESP_BOOT test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component
+TP53,ESP_EN test pad,OpenPocket,PCB-TEST-PAD-1.0MM,N/A,TEST-PAD-1.0MM,1,yes,bare ENIG copper test feature; not an assembled component

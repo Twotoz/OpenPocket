@@ -1,0 +1,2 @@
+Reference,Part,Quantity,Required revision,PCBWay operation,Acceptance criteria
+MOD1,RX5808 shielded receiver module,1,20120322-style SPI-modifiable 28x23mm module,Remove selected RTC6715 SPI-enable pull-down before board assembly; restore shield; manually solder module,Correct supplier/revision; modification microscope inspection; shield seated; no bridges; DATA LE CLK tune test; RSSI and video functional

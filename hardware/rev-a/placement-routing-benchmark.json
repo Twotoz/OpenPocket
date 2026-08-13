@@ -1,0 +1,17 @@
+{
+  "board": "authoritative generated PCB",
+  "board_file": "openpocket-rev-a.kicad_pcb",
+  "freerouting": "2.2.4",
+  "layers": 8,
+  "protected_planes": ["GND1", "GND2"],
+  "passes_requested": 20,
+  "router_threads": 5,
+  "initial_incompletes": 562,
+  "initial_items": 797,
+  "completed_incompletes": 0,
+  "remaining_at_stop": 562,
+  "runtime_seconds": 83,
+  "status": "stuck_during_pass_1",
+  "ses_imported": false,
+  "notes": "Authoritative hand-tuned placement retained because its routing benchmark is marginally better than the optimizer candidate (562/797 versus 563/798 after the RF legalizer fix). FreeRouting entered pass 1 but found no accessible expansion doors for the dense shared power/control nets. The optimizer candidate is preserved separately for future work; no temporary routes were imported."
+}

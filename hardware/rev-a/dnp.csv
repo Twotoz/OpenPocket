@@ -1,0 +1,7 @@
+Reference,Description,Default state,Use
+SJ_VIDEO_BYPASS,Two-position analog-video bypass,DNP BYPASS / populate NORMAL,Direct RX5808 to AMT630A diagnosis only
+C_ELRS_BULK,Optional 220uF ELRS local bulk,DNP,Populate after startup transient measurement if required
+TP_TOUCH37,Panel pin 37 test pad,DNP,Future compatible touch variant investigation
+TP_TOUCH38,Panel pin 38 test pad,DNP,Future compatible touch variant investigation
+TP_TOUCH39,Panel pin 39 test pad,DNP,Future compatible touch variant investigation
+TP_TOUCH40,Panel pin 40 test pad,DNP,Future compatible touch variant investigation
