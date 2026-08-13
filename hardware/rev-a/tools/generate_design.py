@@ -2318,7 +2318,8 @@ def add_power_plane_fanout(
         board: pcbnew.BOARD, nets: dict, net_name: str,
         forced_candidates: dict[tuple[str, str], tuple[float, float]] | None =
         None,
-        region: tuple[float, float, float, float] | None = None) -> None:
+        region: tuple[float, float, float, float] | None = None,
+        plane_layer: int | None = None) -> None:
     """Escape a distributed power rail locally to its internal plane.
 
     The previous ratsnest exposed every shared supply branch to Freerouting,
@@ -2425,6 +2426,8 @@ def add_power_plane_fanout(
     target_pads = [pad for pad in pads
                    if pad.GetNetname() == net_name and
                    pad.GetAttribute() == pcbnew.PAD_ATTRIB_SMD and
+                   (plane_layer is None or
+                    outer_layer(pad) != plane_layer) and
                    in_region(pad)]
     target_pads.sort(key=lambda pad: (
         pad.GetParentFootprint().GetReference(), str(pad.GetNumber())))
@@ -2788,13 +2791,19 @@ def generate_board():
         # island bounded to the power-entry/distribution corridor rather than
         # consuming the AMT-to-TFT RGB escape area.
         ("SYS_ALWAYS", pcbnew.In3_Cu, (51.0, 12.0, 70.5, 54.0)),
+        # Local high-current distribution island around U20, U5 and U6.  A
+        # bounded top-copper pour can neck around their fine-pitch pads while
+        # remaining wide between the three ICs; bottom-side input capacitors
+        # connect through the local fanout vias generated below.
+        ("SYS_SWITCHED", pcbnew.F_Cu, (60.5, 41.5, 81.5, 53.5)),
         ("DISPLAY_3V3_D", pcbnew.In4_Cu, (41.0, 25.0, 57.0, 53.0)),
         ("3V3_SD", pcbnew.In3_Cu, (82.0, 2.0, 105.0, 24.0)),
         ("DISPLAY_3V3", pcbnew.In4_Cu, (49.5, 31.0, 77.0, 64.0)),
         ("5V_DISPLAY", pcbnew.In4_Cu, (49.5, 48.0, 76.0, 68.5)),
     )
-    for net_name, _plane, region in power_pours:
-        add_power_plane_fanout(b, nets, net_name, region=region)
+    for net_name, plane, region in power_pours:
+        add_power_plane_fanout(
+            b, nets, net_name, region=region, plane_layer=plane)
     add_reviewed_local_interface_routes(b, nets)
     add_reviewed_usb_power_entry(b, nets)
     for a,c in [((0, 0), (BOARD_WIDTH, 0)),
@@ -2820,6 +2829,8 @@ def generate_board():
         zone.SetNet(nets[net_name])
         zone.SetLocalClearance(pcbnew.FromMM(0.20))
         zone.SetMinThickness(pcbnew.FromMM(0.15))
+        if net_name == "SYS_SWITCHED" and plane == pcbnew.F_Cu:
+            zone.SetPadConnection(pcbnew.ZONE_CONNECTION_FULL)
         outline = zone.Outline()
         outline.NewOutline()
         for x, y in ((left, top), (right, top),
